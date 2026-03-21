@@ -1,0 +1,13 @@
+export { HomePage } from './HomePage';
+export { StorePage } from './StorePage';
+export { AllStoresPage } from './AllStoresPage';
+export { CategoryPage } from './CategoryPage';
+export { CategoriesPage } from './CategoriesPage';
+export { CouponPage } from './CouponPage';
+export { SearchPage } from './SearchPage';
+export { ContactPage } from './ContactPage';
+export { AboutPage } from './AboutPage';
+export { TermsPage } from './TermsPage';
+export { PrivacyPage } from './PrivacyPage';
+export { SeasonalPage } from './SeasonalPage';
+export { NotFoundPage } from './NotFoundPage';
