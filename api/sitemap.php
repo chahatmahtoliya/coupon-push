@@ -77,7 +77,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
         foreach ($stores as $store) {
             $lastmod = $store['updated_at'] ? date('Y-m-d', strtotime($store['updated_at'])) : $today;
             echo "    <url>\n";
-            echo "        <loc>{$baseUrl}/store/{$store['slug']}</loc>\n";
+            echo "        <loc>{$baseUrl}/{$store['slug']}</loc>\n";
             echo "        <lastmod>{$lastmod}</lastmod>\n";
             echo "        <changefreq>daily</changefreq>\n";
             echo "        <priority>0.8</priority>\n";

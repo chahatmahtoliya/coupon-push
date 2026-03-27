@@ -8,6 +8,12 @@ RewriteBase /
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Redirect legacy singular store index URL to the live stores listing page.
+RewriteRule ^store/?$ /stores/ [L,R=301]
+
+# Redirect legacy store detail URLs to the new top-level store URLs.
+RewriteRule ^store/([^/]+)/?$ /$1/ [L,R=301]
+
 # ============================================
 # React Router Support (SPA)
 # ============================================
