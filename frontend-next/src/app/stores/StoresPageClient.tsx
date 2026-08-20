@@ -1,115 +1,49 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import type { Store } from '@/types';
-import { storesApi } from '@/services/api';
+import { useEffect, useState } from 'react';
 import { StoreCard } from '@/components/features';
+import { storesApi } from '@/services/api';
+import type { Store } from '@/types';
 
-export default function StoresPageClient() {
-    const [stores, setStores] = useState<Store[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState('');
+export default function StoresPageClient({ initialStores }: { initialStores: Store[] }) {
+    const [query, setQuery] = useState('');
+    const [stores, setStores] = useState(initialStores);
 
     useEffect(() => {
-        document.title = 'All Stores - CouponPush | Find Coupons by Brand';
-        storesApi.getAll()
-            .then(setStores)
-            .catch(console.error)
-            .finally(() => setLoading(false));
+        let active = true;
+        storesApi.getAllFresh().then((fresh) => { if (active) setStores(fresh); }).catch((error) => console.error('Failed to refresh stores:', error));
+        return () => { active = false; };
     }, []);
 
-    const filteredStores = stores.filter((store) =>
-        store.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const groupedStores = filteredStores.reduce((acc, store) => {
+    const filtered = stores.filter((store) => store.name.toLowerCase().includes(query.toLowerCase()));
+    const featuredCount = stores.filter((store) => store.is_featured).length;
+    const offerCount = stores.reduce((sum, store) => sum + (store.coupon_count || 0), 0);
+    const grouped = filtered.reduce<Record<string, Store[]>>((result, store) => {
         const letter = store.name.charAt(0).toUpperCase();
-        if (!acc[letter]) acc[letter] = [];
-        acc[letter].push(store);
-        return acc;
-    }, {} as Record<string, Store[]>);
+        (result[letter] ||= []).push(store);
+        return result;
+    }, {});
+    const letters = Object.keys(grouped).sort();
 
-    const letters = Object.keys(groupedStores).sort();
-    const activeLetter = searchQuery ? '' : (letters[0] || '');
-
-    if (loading) {
-        return (
-            <div className="loading-container">
-                <div className="spinner"></div>
-                <p>Loading stores...</p>
+    return <>
+        <section className="all-stores-hero-react stores-directory-hero">
+            <div className="container">
+                <div className="breadcrumb-nav breadcrumb-nav-light"><Link href="/">Home</Link><i className="fas fa-chevron-right" /><span>All Stores</span></div>
+                <div className="all-stores-hero-react-body">
+                    <div><h1 className="all-stores-title-react">Stores</h1><p className="all-stores-subtitle-react">Find every brand page with active coupon codes, deals, and verified offers.</p></div>
+                    <div className="all-stores-tools-react">
+                        <label className="stores-search stores-search-elevated"><i className="fas fa-search" /><input type="text" placeholder="Search stores..." value={query} onChange={(event) => setQuery(event.target.value)} className="stores-search-input" />{query && <button type="button" className="stores-search-clear" aria-label="Clear search" onClick={() => setQuery('')}><i className="fas fa-times" /></button>}</label>
+                        <div className="all-stores-stats-react"><span className="all-stores-stat-pill-react"><i className="fas fa-store" /> {stores.length} Stores</span><span className="all-stores-stat-pill-react"><i className="fas fa-ticket-alt" /> {offerCount} Offers</span>{featuredCount > 0 && <span className="all-stores-stat-pill-react"><i className="fas fa-star" /> {featuredCount} Featured</span>}</div>
+                    </div>
+                </div>
+                <div className="alphabet-filter alphabet-filter-react">{letters.map((letter) => <a href={`#letter-${letter}`} className="alphabet-item" key={letter}>{letter}</a>)}</div>
             </div>
-        );
-    }
-
-    return (
-        <>
-            <section className="all-stores-hero-react">
-                <div className="container">
-                    <div className="breadcrumb-nav breadcrumb-nav-light">
-                        <Link href="/">Home</Link>
-                        <i className="fas fa-chevron-right"></i>
-                        <span>All Stores</span>
-                    </div>
-
-                    <div className="all-stores-hero-react-body">
-                        <div>
-                            <h1 className="all-stores-title-react">Browse all coupon stores in one place</h1>
-                            <p className="all-stores-subtitle-react">
-                                Explore {stores.length}+ stores, search instantly, and jump by alphabet to find brand pages faster.
-                            </p>
-                        </div>
-
-                        <div className="all-stores-tools-react">
-                            <label className="stores-search stores-search-elevated">
-                                <i className="fas fa-search"></i>
-                                <input
-                                    type="text"
-                                    placeholder="Search stores..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="stores-search-input"
-                                />
-                            </label>
-                            <div className="all-stores-stats-react">
-                                <span className="all-stores-stat-pill-react">{stores.length}+ Stores</span>
-                                {activeLetter && <span className="all-stores-stat-pill-react">Starting with {activeLetter}</span>}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="alphabet-filter alphabet-filter-react">
-                        {letters.map((letter) => (
-                            <a key={letter} href={`#letter-${letter}`} className="alphabet-item">
-                                {letter}
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="section section-light">
-                <div className="container">
-                    {letters.map((letter) => (
-                        <div key={letter} id={`letter-${letter}`} className="stores-letter-group">
-                            <h2 className="letter-heading">{letter}</h2>
-                            <div className="store-grid">
-                                {groupedStores[letter].map((store) => (
-                                    <StoreCard key={store.id} store={store} />
-                                ))}
-                            </div>
-                        </div>
-                    ))}
-
-                    {filteredStores.length === 0 && (
-                        <div className="empty-state">
-                            <i className="fas fa-store-slash"></i>
-                            <h3>No Stores Found</h3>
-                            <p>Try a different search term.</p>
-                        </div>
-                    )}
-                </div>
-            </section>
-        </>
-    );
+        </section>
+        <section className="stores-directory-section"><div className="container">
+            <div className="stores-directory-summary"><div><h2>{query ? `Results for “${query}”` : 'Browse by Brand'}</h2><p>{filtered.length} {filtered.length === 1 ? 'store' : 'stores'} available</p></div>{!query && letters.length > 0 && <span>Showing A-Z groups</span>}</div>
+            <div className="stores-directory-list">{letters.map((letter) => <div id={`letter-${letter}`} className="stores-letter-group" key={letter}><div className="letter-heading-row"><h2 className="letter-heading">{letter}</h2><span>{grouped[letter].length} {grouped[letter].length === 1 ? 'store' : 'stores'}</span></div><div className="stores-directory-grid">{grouped[letter].map((store) => <StoreCard store={store} key={store.id} />)}</div></div>)}</div>
+            {!filtered.length && <div className="empty-state"><i className="fas fa-store-slash" /><h3>No Stores Found</h3><p>Try a different search term.</p></div>}
+        </div></section>
+    </>;
 }

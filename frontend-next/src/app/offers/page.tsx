@@ -9,7 +9,7 @@ import { getStorePath } from '@/lib/routes';
 
 export default function OffersPage() {
     const [offers, setOffers] = useState<SeasonalOffer[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | null>(null);
     const [showModal, setShowModal] = useState(false);
 

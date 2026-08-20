@@ -101,37 +101,20 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
 
                     <div className="coupon-card-v2-content">
                         <h3 className="coupon-card-v2-title">{coupon.title}</h3>
-
-                        {(coupon.original_price || coupon.sale_price) && (
-                            <div className="coupon-price-display">
-                                {coupon.original_price && (
-                                    <span className="coupon-original-price">₹{coupon.original_price.toLocaleString('en-IN')}</span>
-                                )}
-                                {coupon.sale_price && (
-                                    <span className="coupon-sale-price">₹{coupon.sale_price.toLocaleString('en-IN')}</span>
-                                )}
-                                {coupon.original_price && coupon.sale_price && (
-                                    <span className="coupon-savings-badge">
-                                        Save ₹{(coupon.original_price - coupon.sale_price).toLocaleString('en-IN')}
-                                    </span>
-                                )}
-                            </div>
-                        )}
-
-                        {coupon.description && (
-                            <p className="coupon-card-v2-description">
-                                {coupon.description.length > 80
-                                    ? coupon.description.substring(0, 80) + '...'
-                                    : coupon.description}
-                            </p>
-                        )}
+                        <div className="coupon-card-v2-offer-area">
+                            {(coupon.original_price || coupon.sale_price) && (
+                                <div className="coupon-price-display">
+                                    {coupon.original_price && <span className="coupon-original-price">₹{coupon.original_price.toLocaleString('en-IN')}</span>}
+                                    {coupon.sale_price && <span className="coupon-sale-price">₹{coupon.sale_price.toLocaleString('en-IN')}</span>}
+                                    {coupon.original_price && coupon.sale_price && <span className="coupon-savings-badge">Save ₹{(coupon.original_price - coupon.sale_price).toLocaleString('en-IN')}</span>}
+                                </div>
+                            )}
+                            {coupon.description && <p className="coupon-card-v2-description">{coupon.description.length > 80 ? coupon.description.substring(0, 80) + '...' : coupon.description}</p>}
+                        </div>
 
                         <div className="coupon-card-v2-footer">
                             <div className="coupon-card-v2-meta">
-                                <span className="coupon-card-v2-expiry">
-                                    <i className="fas fa-clock" aria-hidden="true"></i>
-                                    {getExpiryText()}
-                                </span>
+                                {coupon.expiry_date && <span className="coupon-card-v2-expiry"><i className="fas fa-clock" aria-hidden="true"></i>{getExpiryText()}</span>}
                                 <span className="coupon-card-v2-uses">
                                     {formatUsageCount(clickCount)}
                                 </span>

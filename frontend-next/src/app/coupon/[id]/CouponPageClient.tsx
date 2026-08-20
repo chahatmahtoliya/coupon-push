@@ -1,17 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { couponsApi, trackClick } from '@/services/api';
 import type { Coupon } from '@/types';
 import { getStorePath } from '@/lib/routes';
 
-export default function CouponPageClient() {
-    const params = useParams();
-    const id = params?.id as string;
-    const [coupon, setCoupon] = useState<Coupon | null>(null);
-    const [loading, setLoading] = useState(true);
+export default function CouponPageClient({ initialCoupon, id }: { initialCoupon: Coupon | null; id: string }) {
+    const [coupon, setCoupon] = useState<Coupon | null>(initialCoupon);
+    const [loading, setLoading] = useState(!initialCoupon);
     const [copied, setCopied] = useState(false);
     const [error, setError] = useState(false);
 
@@ -19,19 +16,19 @@ export default function CouponPageClient() {
         const loadCoupon = async () => {
             if (!id) { setError(true); setLoading(false); return; }
             try {
-                const data = await couponsApi.getById(parseInt(id));
+                const data = await couponsApi.getByIdFresh(parseInt(id));
                 setCoupon(data);
                 document.title = `${data.title} | ${data.store_name} Coupons`;
                 trackClick('coupon', parseInt(id));
             } catch (err) {
                 console.error('Failed to load coupon:', err);
-                setError(true);
+                if (!initialCoupon) setError(true);
             } finally {
                 setLoading(false);
             }
         };
         loadCoupon();
-    }, [id]);
+    }, [id, initialCoupon]);
 
     const handleCopyCode = async () => {
         if (coupon?.code) {
