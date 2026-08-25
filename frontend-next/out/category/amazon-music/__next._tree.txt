@@ -4,4 +4,4 @@
 :HL["https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css","style"]
 :HL["https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css","style"]
 :HL["/assets/home-ui/logo-transparent.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"category","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"amazon-music","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"X9C0pnPyd9JjkZ0L8nylf"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"category","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"amazon-music","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"JcaBw0uvrxnoxxqq0iF9Z"}

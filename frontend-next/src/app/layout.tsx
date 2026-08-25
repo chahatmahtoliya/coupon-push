@@ -50,6 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
                     rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 />
+                <meta name="mitgo-verification" content="baeeba74-8ae3-4835-8306-bbec73818051" />
             </head>
             <body>
                 <div className="app">
