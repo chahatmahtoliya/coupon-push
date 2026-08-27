@@ -29,7 +29,7 @@ f:["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","di
 12:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/3ggrx6bvxfpdy.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 1b:I[647,["/_next/static/chunks/3r9a55i3oiq-b.js","/_next/static/chunks/1jxhrc8s18l6i.js"],"default"]
 e:C
-13:["$","$L1b",null,{"initialData":{"store":{"id":33,"name":"Cetaphil","slug":"cetaphil","h1_suffix":null,"logo":"https://couponpush.com/uploads/stores/store_6a6a303654f38_1785344054.webp","website_url":"https://www.cetaphil.in/","description":"","about_content":"","howto_content":"","terms_content":"","rating":4,"is_featured":false,"category_id":53,"category_name":"Skincare / Cleansers","category_slug":"skincare-cleansers"},"coupons":[],"related_stores":[]},"slug":"cetaphil"}]
+13:["$","$L1b",null,{"initialData":{"store":{"id":33,"name":"Cetaphil","slug":"cetaphil","h1_suffix":null,"logo":"https://media.couponpush.com/uploads/stores/store_6a6a303654f38_1785344054.webp","website_url":"https://www.cetaphil.in/","description":"","about_content":"","howto_content":"","terms_content":"","rating":4,"is_featured":false,"category_id":53,"category_name":"Skincare / Cleansers","category_slug":"skincare-cleansers"},"coupons":[],"related_stores":[]},"slug":"cetaphil"}]
 18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 1c:I[27201,["/_next/static/chunks/3r9a55i3oiq-b.js"],"IconMark"]
 16:null

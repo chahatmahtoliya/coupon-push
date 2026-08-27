@@ -29,7 +29,7 @@ f:["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","di
 12:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/3ggrx6bvxfpdy.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 1b:I[647,["/_next/static/chunks/3r9a55i3oiq-b.js","/_next/static/chunks/1jxhrc8s18l6i.js"],"default"]
 e:C
-13:["$","$L1b",null,{"initialData":{"store":{"id":11,"name":"Lenovo","slug":"lenovo","h1_suffix":null,"logo":"https://couponpush.com/uploads/stores/store_69ff7718e8028_1778349848.png","website_url":"https://www.lenovo.com/","description":"","about_content":"","howto_content":"","terms_content":"","rating":4,"is_featured":false,"category_id":0,"category_name":null,"category_slug":null},"coupons":[],"related_stores":[]},"slug":"lenovo"}]
+13:["$","$L1b",null,{"initialData":{"store":{"id":11,"name":"Lenovo","slug":"lenovo","h1_suffix":null,"logo":"https://media.couponpush.com/uploads/stores/store_69ff7718e8028_1778349848.png","website_url":"https://www.lenovo.com/","description":"","about_content":"","howto_content":"","terms_content":"","rating":4,"is_featured":false,"category_id":0,"category_name":null,"category_slug":null},"coupons":[],"related_stores":[]},"slug":"lenovo"}]
 18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 1c:I[27201,["/_next/static/chunks/3r9a55i3oiq-b.js"],"IconMark"]
 16:null
