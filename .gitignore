@@ -17,3 +17,11 @@ test-results/
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Local Hostinger deployment packages (contain production credentials/assets)
+api.couponpush.com/
+api.couponpush.com-upload.zip
+media.couponpush.com/
+media.couponpush.com-upload.zip
+public_html (1)/
+public_html (1).zip

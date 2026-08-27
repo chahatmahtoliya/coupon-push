@@ -23,4 +23,42 @@ interface DeployedSnapshot {
     coupons: Record<string, Coupon | null>;
 }
 
-export const deployedSnapshot = snapshotJson as unknown as DeployedSnapshot;
+const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
+const IMAGE_FIELDS = new Set(['logo', 'store_logo', 'image', 'banner_image', 'mobile_banner_image']);
+
+function normalizeSnapshotAsset(value: string): string {
+    if (!value || value.startsWith('data:')) return value;
+    if (value.startsWith('//')) return `https:${value}`;
+
+    if (/^https?:\/\//i.test(value)) {
+        try {
+            const url = new URL(value);
+            if ((url.hostname === 'couponpush.com' || url.hostname === 'www.couponpush.com')
+                && url.pathname.startsWith('/uploads/')) {
+                return `${MEDIA_BASE}${url.pathname}${url.search}`;
+            }
+        } catch {
+            return value;
+        }
+        return value;
+    }
+
+    if (value.startsWith('/uploads/')) return `${MEDIA_BASE}${value}`;
+    if (value.startsWith('uploads/')) return `${MEDIA_BASE}/${value}`;
+    return value;
+}
+
+function normalizeSnapshotMedia(value: unknown): unknown {
+    if (Array.isArray(value)) return value.map(normalizeSnapshotMedia);
+    if (value && typeof value === 'object') {
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [
+            key,
+            IMAGE_FIELDS.has(key) && typeof item === 'string'
+                ? normalizeSnapshotAsset(item)
+                : normalizeSnapshotMedia(item),
+        ]));
+    }
+    return value;
+}
+
+export const deployedSnapshot = normalizeSnapshotMedia(snapshotJson) as DeployedSnapshot;

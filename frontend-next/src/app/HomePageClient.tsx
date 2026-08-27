@@ -32,12 +32,27 @@ const storeSections: Array<{ key: StoreKey; slug: string; fallbackName: string; 
     { key: 'ajio', slug: 'ajio', fallbackName: 'AJIO', title: "Today's Top AJIO Deals" },
 ];
 
+const mediaBase = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
+
 function imageUrl(value?: string | null): string | null {
     if (!value) return null;
-    if (/^https?:\/\//i.test(value)) return value;
     if (value.startsWith('//')) return `https:${value}`;
+    if (/^https?:\/\//i.test(value)) {
+        try {
+            const url = new URL(value);
+            if ((url.hostname === 'couponpush.com' || url.hostname === 'www.couponpush.com')
+                && url.pathname.startsWith('/uploads/')) {
+                return `${mediaBase}${url.pathname}${url.search}`;
+            }
+        } catch {
+            return value;
+        }
+        return value;
+    }
+    if (value.startsWith('/uploads/')) return `${mediaBase}${value}`;
+    if (value.startsWith('uploads/')) return `${mediaBase}/${value}`;
     try {
-        const api = new URL('https://couponpush.com/api');
+        const api = new URL(process.env.NEXT_PUBLIC_API_URL || 'https://api.couponpush.com/api');
         return `${api.origin}${value.startsWith('/') ? value : `/${value}`}`;
     } catch {
         return value;
