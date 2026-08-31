@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import '@/styles/style.css';
+import '@/styles/homepage.css';
 import '@/styles/store-hero.css';
 import '@/styles/seo.css';
 import { Footer, Header } from '@/components/layout';

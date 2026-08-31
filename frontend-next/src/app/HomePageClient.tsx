@@ -154,7 +154,7 @@ function HeroItemCard({ item, large = false, onImageError }: { item: HeroItem; l
     return item.kind === 'slide' ? <SlideHeroCard slide={item.slide} large={large} onImageError={onImageError} /> : <CouponHeroCard coupon={item.coupon} large={large} />;
 }
 
-function HeroCarousel({ items, activeIndex, canNavigate, onNavigate, onImageError }: { items: HeroItem[]; activeIndex: number; canNavigate: boolean; onNavigate: (direction: number) => void; onImageError: (url: string) => void }) {
+function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, isRotationPaused, onNavigate, onSelect, onTogglePause, onImageError }: { items: HeroItem[]; activeIndex: number; totalItems: number; canNavigate: boolean; isPaused: boolean; isRotationPaused: boolean; onNavigate: (direction: number) => void; onSelect: (index: number) => void; onTogglePause: () => void; onImageError: (url: string) => void }) {
     return (
         <div className="cp-hero-carousel">
             {canNavigate && <>
@@ -167,6 +167,14 @@ function HeroCarousel({ items, activeIndex, canNavigate, onNavigate, onImageErro
                     <div className="cp-hero-side">{items.slice(1, 3).map((item) => <HeroItemCard key={item.key} item={item} onImageError={onImageError} />)}</div>
                 </div>
             </div>
+            {canNavigate && <div className="cp-hero-toolbar">
+                <span className="cp-hero-counter" aria-live="polite">{String(activeIndex + 1).padStart(2, '0')} <span>/</span> {String(totalItems).padStart(2, '0')}</span>
+                <div className="cp-hero-pagination" role="group" aria-label="Choose featured deal">
+                    {Array.from({ length: totalItems }, (_, index) => <button key={index} type="button" className={index === activeIndex ? 'active' : ''} aria-label={`Show featured deal ${index + 1}`} aria-current={index === activeIndex ? 'true' : undefined} onClick={() => onSelect(index)} />)}
+                </div>
+                <span className="cp-hero-progress" aria-hidden="true"><span key={activeIndex} className={isRotationPaused ? 'is-paused' : ''} /></span>
+                <button type="button" className="cp-hero-pause" aria-label={isPaused ? 'Resume featured deals' : 'Pause featured deals'} aria-pressed={isPaused} onClick={onTogglePause}><i className={`fas ${isPaused ? 'fa-play' : 'fa-pause'}`} aria-hidden="true" /></button>
+            </div>}
         </div>
     );
 }
@@ -278,8 +286,10 @@ export default function HomePageClient(props: HomePageClientProps) {
     const [productSlides, setProductSlides] = useState<Record<StoreKey, number>>({ amazon: 0, flipkart: 0, ajio: 0 });
     const [cardsPerView, setCardsPerView] = useState(4);
     const [heroIndex, setHeroIndex] = useState(0);
+    const [heroPaused, setHeroPaused] = useState(false);
+    const [heroInteracting, setHeroInteracting] = useState(false);
     const [failedHeroImages, setFailedHeroImages] = useState(() => new Set<string>());
-    const [storesPerPage, setStoresPerPage] = useState(12);
+    const storesPerPage = 14;
     const [storePage, setStorePage] = useState(0);
     const [touchStart, setTouchStart] = useState<number | null>(null);
 
@@ -301,10 +311,10 @@ export default function HomePageClient(props: HomePageClientProps) {
     useEffect(() => {
         const resize = () => {
             const width = window.innerWidth;
-            if (width <= 620) { setCardsPerView(1); setStoresPerPage(6); }
-            else if (width <= 760) { setCardsPerView(2); setStoresPerPage(8); }
-            else if (width <= 1100) { setCardsPerView(3); setStoresPerPage(10); }
-            else { setCardsPerView(4); setStoresPerPage(12); }
+            if (width <= 620) setCardsPerView(1);
+            else if (width <= 760) setCardsPerView(2);
+            else if (width <= 1100) setCardsPerView(3);
+            else setCardsPerView(4);
         };
         resize(); window.addEventListener('resize', resize); return () => window.removeEventListener('resize', resize);
     }, []);
@@ -334,7 +344,7 @@ export default function HomePageClient(props: HomePageClientProps) {
     const maxStorePage = Math.max(0, storePages.length - 1);
 
     useEffect(() => setHeroIndex(0), [heroItems.length]);
-    useEffect(() => { if (heroItems.length <= 1) return; const timer = window.setInterval(() => setHeroIndex((index) => (index + 1) % heroItems.length), 4500); return () => window.clearInterval(timer); }, [heroItems.length]);
+    useEffect(() => { if (heroItems.length <= 1 || heroPaused || heroInteracting) return; const timer = window.setInterval(() => setHeroIndex((index) => (index + 1) % heroItems.length), 4500); return () => window.clearInterval(timer); }, [heroInteracting, heroItems.length, heroPaused]);
     useEffect(() => setStorePage((page) => Math.min(page, maxStorePage)), [maxStorePage]);
     useEffect(() => setProductSlides((current) => {
         const next = { ...current }; let changed = false;
@@ -353,8 +363,21 @@ export default function HomePageClient(props: HomePageClientProps) {
 
     return <>
         <h1 className="visually-hidden">CouponPush - Best Coupons, Promo Codes and Deals</h1>
-        <section className="cp-hero cp-shell" aria-label="Featured deals">
-            {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} canNavigate={heroItems.length > 1} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onImageError={markHeroFailed} /> : <EmptyState label="No featured backend offers are available right now." />}
+        <section className="cp-hero cp-shell" aria-label="Featured deals" onMouseEnter={() => setHeroInteracting(true)} onMouseLeave={() => setHeroInteracting(false)} onFocusCapture={() => setHeroInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHeroInteracting(false); }}>
+            {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} totalItems={heroItems.length} canNavigate={heroItems.length > 1} isPaused={heroPaused} isRotationPaused={heroPaused || heroInteracting} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onSelect={setHeroIndex} onTogglePause={() => setHeroPaused((paused) => !paused)} onImageError={markHeroFailed} /> : <EmptyState label="No featured backend offers are available right now." />}
+        </section>
+
+        <section className="cp-section cp-shell cp-store-section">
+            <div className="cp-section-head cp-section-head-inline"><h2>Top Stores</h2><Link href="/stores" className="cp-text-link">View all stores <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
+            {storePages.length > 0 ? <div className="cp-store-carousel" onTouchStart={(event) => setTouchStart(event.touches[0]?.clientX ?? null)} onTouchEnd={handleTouchEnd}>
+                <button className="cp-store-nav cp-store-nav-prev" type="button" aria-label="Previous top stores" disabled={storePage === 0} onClick={() => goToStorePage(storePage - 1)}><i className="fas fa-chevron-left" aria-hidden="true" /></button>
+                <div className="cp-store-viewport"><div className="cp-store-track" style={{ transform: `translateX(-${storePage * 100}%)` }}>{storePages.map((page, pageIndex) => <div key={pageIndex} className="cp-store-row">
+                    {page.map((store) => <Link key={store.id} href={getStorePath(store.slug)} className="cp-store-card" aria-label={`${store.name} store`}><img src={imageUrl(store.logo) || '/placeholder-store.png'} alt={store.name} loading="lazy" decoding="async" onError={(event) => event.currentTarget.closest('.cp-store-card')?.classList.add('is-hidden')} /></Link>)}
+                    {pageIndex === storePages.length - 1 && <Link href="/stores" className="cp-store-card cp-store-all" aria-label="View all stores"><span className="cp-grid-icon"><i /><i /><i /><i /></span></Link>}
+                </div>)}</div></div>
+                <button className="cp-store-nav cp-store-nav-next" type="button" aria-label="Next top stores" disabled={storePage >= maxStorePage} onClick={() => goToStorePage(storePage + 1)}><i className="fas fa-chevron-right" aria-hidden="true" /></button>
+                {storePages.length > 1 && <div className="cp-store-dots" aria-label="Top store pages">{storePages.map((_, index) => <button key={index} type="button" className={index === storePage ? 'active' : ''} aria-label={`Show top stores page ${index + 1}`} onClick={() => goToStorePage(index)} />)}</div>}
+            </div> : <EmptyState label="No featured stores returned from the backend." />}
         </section>
 
         {seasonalOffers.length > 0 && <SeasonalBanner offer={seasonalOffers[0]} />}
@@ -371,19 +394,6 @@ export default function HomePageClient(props: HomePageClientProps) {
             </div>
             {trendingCoupons.length > 0 ? <div id="trending-coupons-panel" className="cp-coupon-grid" role="tabpanel" aria-labelledby={`coupon-tab-${filters.indexOf(filter)}`} tabIndex={0}>{trendingCoupons.map((coupon) => <TrendingCouponCard key={coupon.id} coupon={coupon} />)}</div> : <div id="trending-coupons-panel" role="tabpanel"><EmptyState label="No live coupons returned from the backend." /></div>}
             <Link href="/deals" className="cp-text-link">View all deals <i className="fas fa-arrow-right" aria-hidden="true" /></Link>
-        </section>
-
-        <section className="cp-section cp-shell cp-store-section">
-            <div className="cp-section-head cp-section-head-inline"><h2>Top Stores</h2><Link href="/stores" className="cp-text-link">View all stores <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
-            {storePages.length > 0 ? <div className="cp-store-carousel" onTouchStart={(event) => setTouchStart(event.touches[0]?.clientX ?? null)} onTouchEnd={handleTouchEnd}>
-                <button className="cp-store-nav cp-store-nav-prev" type="button" aria-label="Previous top stores" disabled={storePage === 0} onClick={() => goToStorePage(storePage - 1)}><i className="fas fa-chevron-left" aria-hidden="true" /></button>
-                <div className="cp-store-viewport"><div className="cp-store-track" style={{ transform: `translateX(-${storePage * 100}%)` }}>{storePages.map((page, pageIndex) => <div key={pageIndex} className="cp-store-row">
-                    {page.map((store) => <Link key={store.id} href={getStorePath(store.slug)} className="cp-store-card" aria-label={`${store.name} store`}><img src={imageUrl(store.logo) || '/placeholder-store.png'} alt={store.name} loading="lazy" decoding="async" onError={(event) => event.currentTarget.closest('.cp-store-card')?.classList.add('is-hidden')} /></Link>)}
-                    {pageIndex === storePages.length - 1 && <Link href="/stores" className="cp-store-card cp-store-all" aria-label="View all stores"><span className="cp-grid-icon"><i /><i /><i /><i /></span></Link>}
-                </div>)}</div></div>
-                <button className="cp-store-nav cp-store-nav-next" type="button" aria-label="Next top stores" disabled={storePage >= maxStorePage} onClick={() => goToStorePage(storePage + 1)}><i className="fas fa-chevron-right" aria-hidden="true" /></button>
-                {storePages.length > 1 && <div className="cp-store-dots" aria-label="Top store pages">{storePages.map((_, index) => <button key={index} type="button" className={index === storePage ? 'active' : ''} aria-label={`Show top stores page ${index + 1}`} onClick={() => goToStorePage(index)} />)}</div>}
-            </div> : <EmptyState label="No featured stores returned from the backend." />}
         </section>
 
         <section className="cp-section cp-shell cp-best-deals">
