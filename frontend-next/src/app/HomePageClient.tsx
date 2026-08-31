@@ -134,16 +134,17 @@ function SlideHeroCard({ slide, large = false, onImageError }: { slide: HeroSlid
     const title = slide.heading || (visual ? '' : slide.badge_text || 'Featured Deal');
     const description = slide.subheading || (visual ? '' : 'Fresh savings picked for you');
     const cta = slide.cta_label || (visual ? '' : 'Shop Now');
+    const hasOverlayContent = Boolean(slide.badge_text || title || description || cta);
     const ariaLabel = [slide.badge_text, slide.heading, slide.subheading].filter(Boolean).join(': ') || 'View featured CouponPush deal';
     return (
         <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`${large ? 'cp-hero-main' : 'cp-promo-tile'} cp-live-hero-card${visual ? ' has-image' : ''}`} aria-label={ariaLabel}>
             {visual && <img src={visual} alt={slide.alt_text || ariaLabel} decoding={large ? 'sync' : 'async'} fetchPriority={large ? 'high' : 'auto'} onError={(event) => { event.currentTarget.style.display = 'none'; onImageError(visual); }} />}
-            <div className="cp-live-hero-overlay">
+            {hasOverlayContent && <div className="cp-live-hero-overlay">
                 {slide.badge_text && <span>{slide.badge_text}</span>}
                 {title && <h2>{title}</h2>}
                 {description && <p>{description}</p>}
                 {cta && <strong>{cta} <i className="fas fa-arrow-right" aria-hidden="true" /></strong>}
-            </div>
+            </div>}
         </a>
     );
 }

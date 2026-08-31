@@ -33,7 +33,21 @@
 
 .cp-hero-main,
 .cp-promo-tile {
+    isolation: isolate;
+    contain: layout paint;
     transition: box-shadow 220ms ease, transform 220ms ease;
+}
+
+.cp-live-hero-card.has-image > img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    transform: none;
 }
 
 .cp-hero-main:focus-visible,
@@ -52,7 +66,7 @@
 }
 
 .cp-live-hero-card.has-image:hover > img {
-    transform: translate(-1px, -1px) scale(1.018);
+    transform: scale(1.018);
 }
 
 .cp-promo-tile .cp-live-hero-overlay {
