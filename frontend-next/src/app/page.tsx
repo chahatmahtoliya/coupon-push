@@ -7,6 +7,12 @@ export const metadata: Metadata = {
     title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
     description: 'Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.',
     alternates: { canonical: 'https://couponpush.com/' },
+    openGraph: {
+        type: 'website',
+        url: 'https://couponpush.com/',
+        title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
+        description: 'Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.',
+    },
 };
 
 async function safely<T>(request: Promise<T>, fallback: T): Promise<T> {

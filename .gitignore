@@ -1,6 +1,7 @@
 # Dependencies and framework caches
 node_modules/
 .next/
+*.tsbuildinfo
 
 # Local environment files
 .env

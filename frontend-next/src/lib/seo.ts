@@ -10,7 +10,7 @@ export function getStorePageTitle(storeName: string): string {
     const date = new Date();
     const month = date.toLocaleString('en-US', { month: 'long' });
     const year = date.getFullYear();
-    return `${storeName} Coupon Codes ${month} ${year} - Working Promo Codes & Offers | CouponPush`;
+    return `${storeName} Coupon Codes & Offers ${month} ${year} | CouponPush`;
 }
 
 /**
@@ -30,14 +30,18 @@ export function getCategoryPageTitle(categoryName: string): string {
     const date = new Date();
     const month = date.toLocaleString('en-US', { month: 'long' });
     const year = date.getFullYear();
-    return `Best ${categoryName} Coupons & Discount Codes ${month} ${year} | CouponPush India`;
+    return `Best ${categoryName} Coupons ${month} ${year}`;
 }
 
 /**
  * Generate SEO-optimized description for category pages
  */
 export function getCategoryPageDescription(categoryName: string, couponCount: number): string {
-    return `Find ${couponCount}+ working ${categoryName} coupon codes and discount offers. Save big on ${categoryName.toLowerCase()} shopping with verified promo codes. Updated daily!`;
+    if (couponCount <= 0) {
+        return `Browse ${categoryName.toLowerCase()} coupon codes and online offers on CouponPush.`;
+    }
+
+    return `Browse ${couponCount} active ${categoryName.toLowerCase()} coupon codes and discount offers from verified stores on CouponPush.`;
 }
 
 /**
@@ -87,23 +91,14 @@ export function generateStoreSchema(store: {
     logo?: string;
     description?: string;
     website_url?: string;
-    rating?: number;
 }, couponCount: number) {
     return {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         'name': store.name,
-        'url': store.website_url || `https://couponpush.com/${store.slug}`,
+        'url': store.website_url || `https://couponpush.com/store/${store.slug}/`,
         'logo': store.logo || 'https://couponpush.com/assets/images/logo.png',
-        'description': store.description || `Find the best ${store.name} coupons and promo codes`,
-        ...(store.rating && {
-            'aggregateRating': {
-                '@type': 'AggregateRating',
-                'ratingValue': store.rating,
-                'ratingCount': 1240,
-                'bestRating': 5
-            }
-        }),
+        'description': store.description || `Browse current ${store.name} coupon codes and online offers.`,
         'offers': {
             '@type': 'AggregateOffer',
             'offerCount': couponCount,

@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import '@/styles/style.css';
 import '@/styles/homepage.css';
 import '@/styles/store-hero.css';
+import '@/styles/store-page-cleanup.css';
 import '@/styles/seo.css';
 import { Footer, Header } from '@/components/layout';
 import { ScrollToTop } from '@/components/common';
@@ -27,9 +28,6 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         siteName: 'CouponPush',
-        url: 'https://couponpush.com',
-        title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
-        description: 'Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.',
         images: [{ url: '/assets/images/logo.png', alt: 'CouponPush' }],
     },
 };

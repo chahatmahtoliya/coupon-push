@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Terms of Service',
     description: 'Read the terms governing use of CouponPush.',
+    alternates: { canonical: 'https://couponpush.com/terms/' },
 };
 
 export default function TermsPage() {

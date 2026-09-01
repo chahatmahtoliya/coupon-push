@@ -95,7 +95,7 @@ export default function CouponPageClient({ initialCoupon, id }: { initialCoupon:
                     </div>
 
                     <div className="coupon-redeem-body">
-                        <h2 className="coupon-redeem-title">{coupon.title}</h2>
+                        <h1 className="coupon-redeem-title">{coupon.title}</h1>
                         {coupon.description && <p className="coupon-redeem-description">{coupon.description}</p>}
 
                         {hasCode ? (

@@ -1,6 +1,13 @@
 import type { MetadataRoute } from 'next';
-import { categoriesApi, storesApi } from '@/services/api';
+import { categoriesApi, couponsApi, storesApi } from '@/services/api';
 import { getStorePath } from '@/lib/routes';
+import { deployedSnapshot } from '@/lib/deployed-snapshot';
+import {
+    hasIndexableCategoryContent,
+    hasIndexableStoreContent,
+    isCategoryInventoryIndexable,
+    MIN_INDEXABLE_CATEGORY_COUPONS,
+} from '@/lib/indexability';
 
 const baseUrl = 'https://couponpush.com';
 
@@ -14,15 +21,50 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: path === '' ? 1 : 0.7,
     }));
 
+    let stores = deployedSnapshot.storesPage?.initialStores || [];
+    let categories = deployedSnapshot.categoriesPage?.initialCategories || [];
+
     try {
-        const [stores, categories] = await Promise.all([storesApi.getAll(), categoriesApi.getAll()]);
-        entries.push(
-            ...stores.map((store) => ({ url: `${baseUrl}${getStorePath(store.slug)}/`, changeFrequency: 'daily' as const, priority: 0.8 })),
-            ...categories.map((category) => ({ url: `${baseUrl}/category/${category.slug}/`, changeFrequency: 'weekly' as const, priority: 0.7 })),
-        );
+        stores = await storesApi.getAll();
     } catch {
-        // The core sitemap remains available when the coupon API is temporarily offline.
+        // Keep the last deployed store inventory when the API is unavailable.
     }
+
+    try {
+        categories = await categoriesApi.getAll();
+    } catch {
+        // Keep the last deployed category inventory when the API is unavailable.
+    }
+
+    const indexableStores = (await Promise.all(stores.map(async (store) => {
+        const snapshot = deployedSnapshot.stores[store.slug];
+        if (hasIndexableStoreContent(snapshot)) return store;
+
+        try {
+            return hasIndexableStoreContent(await storesApi.getBySlug(store.slug)) ? store : null;
+        } catch {
+            return null;
+        }
+    }))).filter((store): store is NonNullable<typeof store> => Boolean(store));
+
+    const indexableCategories = (await Promise.all(categories
+        .filter(isCategoryInventoryIndexable)
+        .map(async (category) => {
+            const snapshot = deployedSnapshot.categories[category.slug] as { coupons?: unknown[] } | undefined;
+            if (hasIndexableCategoryContent(snapshot)) return category;
+
+            try {
+                const coupons = await couponsApi.getByCategory(category.slug);
+                return coupons.length >= MIN_INDEXABLE_CATEGORY_COUPONS ? category : null;
+            } catch {
+                return null;
+            }
+        }))).filter((category): category is NonNullable<typeof category> => Boolean(category));
+
+    entries.push(
+        ...indexableStores.map((store) => ({ url: `${baseUrl}${getStorePath(store.slug)}/`, changeFrequency: 'daily' as const, priority: 0.8 })),
+        ...indexableCategories.map((category) => ({ url: `${baseUrl}/category/${category.slug}/`, changeFrequency: 'weekly' as const, priority: 0.7 })),
+    );
 
     return entries;
 }

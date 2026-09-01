@@ -6,6 +6,13 @@ import { deployedSnapshot } from '@/lib/deployed-snapshot';
 export const metadata: Metadata = {
     title: "Today's Best Deals & Offers",
     description: 'Browse the latest featured shopping deals and verified offers on CouponPush.',
+    alternates: { canonical: 'https://couponpush.com/deals/' },
+    openGraph: {
+        type: 'website',
+        url: 'https://couponpush.com/deals/',
+        title: "Today's Best Deals & Offers",
+        description: 'Browse the latest featured shopping deals and verified offers on CouponPush.',
+    },
 };
 
 export default async function DealsPage() {

@@ -10,11 +10,15 @@ export interface Store {
     about_content?: string;
     howto_content?: string;
     terms_content?: string;
+    meta_title?: string;
+    meta_description?: string;
+    updated_at?: string;
     rating: number;
     coupon_count: number;
     is_featured: boolean;
     category_id: number;
     category_name?: string;
+    category_slug?: string;
 }
 
 // Coupon interface

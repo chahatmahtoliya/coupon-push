@@ -14,7 +14,6 @@ export default function OffersPage() {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        document.title = 'Seasonal Offers - CouponPush | Festival Deals & Limited-Time Savings';
         seasonalOffersApi.getActive()
             .then(setOffers)
             .catch(console.error)

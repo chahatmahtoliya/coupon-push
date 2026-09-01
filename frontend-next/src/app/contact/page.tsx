@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Contact Us',
     description: 'Contact CouponPush with questions, corrections or partnership enquiries.',
+    alternates: { canonical: 'https://couponpush.com/contact/' },
 };
 
 export default function ContactPage() {

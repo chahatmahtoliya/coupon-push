@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'About Us',
     description: 'Learn how CouponPush finds and verifies coupon codes, promotions and online deals.',
+    alternates: { canonical: 'https://couponpush.com/about/' },
 };
 
 export default function AboutPage() {

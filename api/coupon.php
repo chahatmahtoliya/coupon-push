@@ -32,7 +32,7 @@ try {
         AND s.status = 1
     ";
 
-    $coupon = db()->fetchOne($sql, [$id]);
+    $coupon = db()->fetch($sql, [$id]);
 
     if (!$coupon) {
         jsonError('Coupon not found', 404);

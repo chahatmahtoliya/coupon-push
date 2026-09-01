@@ -3,4 +3,4 @@ Disallow: /api/
 Disallow: /admin/
 Allow: /
 
-Sitemap: https://couponpush.com/api/sitemap.php
+Sitemap: https://couponpush.com/sitemap.xml
