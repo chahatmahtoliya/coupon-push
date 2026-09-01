@@ -1,12 +1,13 @@
 'use client';
 
-import type { CSSProperties, TouchEvent } from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { TouchEvent } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import type { Coupon, Deal, HeroSlide, SeasonalOffer, Store } from '@/types';
 import { couponsApi, dealsApi, heroSlidesApi, seasonalOffersApi, storesApi, trackClick } from '@/services/api';
-import { CouponModal } from '@/components/common/CouponModal';
 import { SeasonalBanner } from '@/components/features/SeasonalBanner';
+import { TopTrendingCarousel } from '@/components/features/TopTrendingCarousel';
+import { MaterialStoreCarousel } from '@/components/features/MaterialStoreCarousel';
 import { getCouponPath, getStorePath } from '@/lib/routes';
 import { getCouponCtaLabel, isCodeCoupon } from '@/utils/coupon';
 
@@ -22,12 +23,10 @@ interface HomePageClientProps {
     initialSeasonalOffers: SeasonalOffer[];
 }
 
-const filters = ['Popular', 'Newest', 'Expiring Soon'] as const;
-type CouponFilter = (typeof filters)[number];
 type StoreKey = 'amazon' | 'flipkart' | 'ajio';
 
 const storeSections: Array<{ key: StoreKey; slug: string; fallbackName: string; title: string }> = [
-    { key: 'amazon', slug: 'amazon', fallbackName: 'Amazon', title: "Today's Top Amazon Deals" },
+    { key: 'amazon', slug: 'amazon', fallbackName: 'Amazon', title: 'More ways to save: Amazon promo codes' },
     { key: 'flipkart', slug: 'flipkart', fallbackName: 'Flipkart', title: "Today's Top Flipkart Deals" },
     { key: 'ajio', slug: 'ajio', fallbackName: 'AJIO', title: "Today's Top AJIO Deals" },
 ];
@@ -62,18 +61,10 @@ function imageUrl(value?: string | null): string | null {
 function discountLabel(coupon: Coupon): string {
     if (coupon.discount_value && Number(coupon.discount_value) !== 0) {
         if (coupon.discount_type === 'percentage') return `${Number(coupon.discount_value)}% OFF`;
-        if (coupon.discount_type === 'fixed') return `Rs.${Number(coupon.discount_value).toLocaleString('en-IN')} OFF`;
+        if (coupon.discount_type === 'fixed' || (coupon.discount_type as string) === 'flat') return `Rs.${Number(coupon.discount_value).toLocaleString('en-IN')} OFF`;
         return 'DEAL';
     }
     return isCodeCoupon(coupon) ? 'CODE' : 'DEAL';
-}
-
-function usageLabel(count = 0): string {
-    if (count >= 1000) {
-        const thousands = count / 1000;
-        return `${Number.isInteger(thousands) ? thousands.toFixed(0) : thousands.toFixed(1)}k used`;
-    }
-    return `${count} used`;
 }
 
 function couponTarget(coupon: Coupon): string {
@@ -180,29 +171,6 @@ function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, i
     );
 }
 
-function TrendingCouponCard({ coupon }: { coupon: Coupon }) {
-    const [modalCoupon, setModalCoupon] = useState<Coupon | null>(null);
-    const target = couponTarget(coupon);
-    const coded = isCodeCoupon(coupon);
-    const cta = <><span className="cp-mini-cta-label">{getCouponCtaLabel(coupon).toUpperCase()}</span><span className="cp-mini-cta-reveal" aria-hidden="true" /><span className="cp-mini-cta-shine" aria-hidden="true" /></>;
-    return <>
-        <article className="cp-coupon-card">
-            <div className="cp-coupon-top">
-                <Link href={getStorePath(coupon.store_slug)} aria-label={`${coupon.store_name} store`}><BrandIdentity name={coupon.store_name} logo={coupon.store_logo} slug={coupon.store_slug} /></Link>
-                <span className="cp-discount-pill">{discountLabel(coupon)}</span>
-            </div>
-            <h3>{coupon.title}</h3>
-            {coupon.description && <p>{coupon.description}</p>}
-            <div className="cp-coupon-meta">
-                {coupon.is_verified && <span className="verified"><i className="fas fa-check-circle" aria-hidden="true" /> Verified</span>}
-                <span><i className="fas fa-users" aria-hidden="true" /> {usageLabel(coupon.click_count)}</span>
-                {coded ? <button type="button" className="cp-mini-cta" onClick={() => setModalCoupon(coupon)}>{cta}</button> : <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className="cp-mini-cta" onClick={() => void trackClick('coupon', coupon.id)}>{cta}</a>}
-            </div>
-        </article>
-        <CouponModal coupon={modalCoupon} isOpen={Boolean(modalCoupon)} onClose={() => setModalCoupon(null)} />
-    </>;
-}
-
 function BestDealCard({ deal }: { deal: Deal }) {
     const visual = imageUrl(deal.image);
     const [loaded, setLoaded] = useState(false);
@@ -215,51 +183,6 @@ function BestDealCard({ deal }: { deal: Deal }) {
             {visual && !failed && <img className={loaded ? 'is-loaded' : ''} src={visual} alt="" loading="lazy" decoding="async" onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />}
             <div className="cp-real-deal-copy"><h3>{deal.title}</h3><p>{deal.description || deal.store_name}</p><span>Shop Now <i className="fas fa-arrow-right" aria-hidden="true" /></span></div>
         </a>
-    );
-}
-
-function ProductCouponCard({ coupon }: { coupon: Coupon }) {
-    const target = couponTarget(coupon);
-    const couponImage = imageUrl(coupon.image);
-    const storeLogo = imageUrl(coupon.store_logo);
-    const [failed, setFailed] = useState(false);
-    const hasCouponImage = Boolean(couponImage && !failed);
-    const visual = hasCouponImage ? couponImage : storeLogo;
-    useEffect(() => setFailed(false), [couponImage, storeLogo]);
-    return (
-        <article className="cp-product-card">
-            <div className="cp-product-top"><span>{discountLabel(coupon)}</span><Link href={getCouponPath(coupon.id)} aria-label={`Open ${coupon.title}`}><i className="far fa-heart" aria-hidden="true" /></Link></div>
-            <div className="cp-product-image">{visual ? <img src={visual} alt={hasCouponImage ? '' : coupon.store_name} loading="lazy" decoding="async" onError={() => setFailed(true)} /> : <BrandIdentity name={coupon.store_name} logo={coupon.store_logo} slug={coupon.store_slug} compact />}</div>
-            <h3>{coupon.title}</h3>
-            <p><i className="fas fa-star" aria-hidden="true" /> {coupon.is_verified ? 'Verified' : 'Deal'} <span>|</span> {usageLabel(coupon.click_count)}</p>
-            <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className="cp-product-cta" onClick={() => void trackClick('coupon', coupon.id)}>View Deal <i className="fas fa-arrow-right" aria-hidden="true" /></a>
-        </article>
-    );
-}
-
-function StoreDealsSection({ config, coupons, slide, cardsPerView, onSlideChange }: { config: (typeof storeSections)[number]; coupons: Coupon[]; slide: number; cardsPerView: number; onSlideChange: (slide: number) => void }) {
-    if (coupons.length === 0) return null;
-    const maxSlide = Math.max(0, coupons.length - cardsPerView);
-    const dots = Array.from({ length: Math.max(1, maxSlide + 1) }, (_, index) => index);
-    const name = coupons[0]?.store_name || config.fallbackName;
-    const logo = coupons[0]?.store_logo;
-    const slug = coupons[0]?.store_slug || config.slug;
-    return (
-        <section className="cp-amazon cp-store-deals cp-shell" aria-label={config.title}>
-            <button className="cp-slider-arrow cp-slider-prev" type="button" aria-label={`Previous ${name} deals`} disabled={slide === 0} onClick={() => onSlideChange(Math.max(0, slide - 1))}><i className="fas fa-chevron-left" aria-hidden="true" /></button>
-            <button className="cp-slider-arrow cp-slider-next" type="button" aria-label={`Next ${name} deals`} disabled={slide >= maxSlide} onClick={() => onSlideChange(Math.min(maxSlide, slide + 1))}><i className="fas fa-chevron-right" aria-hidden="true" /></button>
-            <div className="cp-amazon-head">
-                <Link href={getStorePath(slug)} className="cp-store-deal-logo" aria-label={`${name} store`}><BrandIdentity name={name} logo={logo} slug={slug} compact /></Link>
-                <div><h2>{config.title}</h2></div>
-                <Link href={getStorePath(slug)} className="cp-outline-button">View all deals <i className="fas fa-arrow-right" aria-hidden="true" /></Link>
-            </div>
-            <div className="cp-product-viewport" style={{ '--cp-amazon-per-view': cardsPerView } as CSSProperties}>
-                <div className="cp-product-track" style={{ transform: `translateX(calc(-${slide} * (100% / ${cardsPerView})))` }}>
-                    {coupons.map((coupon) => <div key={coupon.id} className="cp-product-slide"><ProductCouponCard coupon={coupon} /></div>)}
-                </div>
-            </div>
-            <div className="cp-carousel-dots" aria-hidden="true">{dots.map((dot) => <button key={dot} type="button" className={dot === slide ? 'active' : ''} onClick={() => onSlideChange(dot)} aria-label={`Show ${name} deal slide ${dot + 1}`} />)}</div>
-        </section>
     );
 }
 
@@ -280,12 +203,9 @@ export default function HomePageClient(props: HomePageClientProps) {
     const [latestCoupons, setLatestCoupons] = useState(props.initialLatestCoupons);
     const [stores, setStores] = useState(props.initialFeaturedStores);
     const [deals, setDeals] = useState(props.initialFeaturedDeals);
-    const [storeCoupons, setStoreCoupons] = useState<Record<StoreKey, Coupon[]>>({ amazon: props.initialAmazonCoupons.slice(0, 8), flipkart: props.initialFlipkartCoupons.slice(0, 8), ajio: props.initialAjioCoupons.slice(0, 8) });
+    const [storeCoupons, setStoreCoupons] = useState<Record<StoreKey, Coupon[]>>({ amazon: props.initialAmazonCoupons, flipkart: props.initialFlipkartCoupons, ajio: props.initialAjioCoupons });
     const [heroSlides, setHeroSlides] = useState(props.initialHeroSlides);
     const [seasonalOffers, setSeasonalOffers] = useState(props.initialSeasonalOffers);
-    const [filter, setFilter] = useState<CouponFilter>('Popular');
-    const [productSlides, setProductSlides] = useState<Record<StoreKey, number>>({ amazon: 0, flipkart: 0, ajio: 0 });
-    const [cardsPerView, setCardsPerView] = useState(4);
     const [heroIndex, setHeroIndex] = useState(0);
     const [heroPaused, setHeroPaused] = useState(false);
     const [heroInteracting, setHeroInteracting] = useState(false);
@@ -298,44 +218,40 @@ export default function HomePageClient(props: HomePageClientProps) {
         let active = true;
         seasonalOffersApi.getActiveFresh().then((data) => active && setSeasonalOffers(data)).catch((error) => console.error('Failed to refresh seasonal offers:', error));
         Promise.all([
-            couponsApi.getFeaturedFresh(8), couponsApi.getLatestFresh(12), storesApi.getAllFresh(), dealsApi.getFeaturedFresh(4),
+            couponsApi.getFeaturedFresh(16), couponsApi.getLatestFresh(16), storesApi.getAllFresh(), dealsApi.getFeaturedFresh(4),
             storesApi.getBySlugFresh('amazon'), storesApi.getBySlugFresh('flipkart'), storesApi.getBySlugFresh('ajio'), heroSlidesApi.getActiveFresh(),
         ]).then(([featured, latest, allStores, featuredDeals, amazon, flipkart, ajio, slides]) => {
             if (!active) return;
             setFeaturedCoupons(featured); setLatestCoupons(latest); setStores(allStores); setDeals(featuredDeals);
-            setStoreCoupons({ amazon: amazon.coupons.slice(0, 8), flipkart: flipkart.coupons.slice(0, 8), ajio: ajio.coupons.slice(0, 8) });
+            setStoreCoupons({ amazon: amazon.coupons, flipkart: flipkart.coupons, ajio: ajio.coupons });
             setHeroSlides(slides);
         }).catch((error) => console.error('Failed to refresh homepage backend data:', error));
         return () => { active = false; };
     }, []);
 
-    useEffect(() => {
-        const resize = () => {
-            const width = window.innerWidth;
-            if (width <= 620) setCardsPerView(1);
-            else if (width <= 760) setCardsPerView(2);
-            else if (width <= 1100) setCardsPerView(3);
-            else setCardsPerView(4);
-        };
-        resize(); window.addEventListener('resize', resize); return () => window.removeEventListener('resize', resize);
-    }, []);
-
+    // Ranked top trending coupons
     const trendingCoupons = useMemo(() => {
         const sorted = uniqueCoupons([...featuredCoupons, ...latestCoupons]).sort((a, b) => {
-            if (filter === 'Newest') return (b.id || 0) - (a.id || 0);
-            if (filter === 'Expiring Soon') {
-                if (!a.expiry_date) return 1;
-                if (!b.expiry_date) return -1;
-                return new Date(a.expiry_date).getTime() - new Date(b.expiry_date).getTime();
-            }
             return (b.click_count || 0) - (a.click_count || 0);
         });
         const picked: Coupon[] = [];
         const storeKeys = new Set<string>();
-        sorted.forEach((coupon) => { const key = coupon.store_slug || coupon.store_name || String(coupon.store_id || coupon.id); if (picked.length < 6 && !storeKeys.has(key)) { storeKeys.add(key); picked.push(coupon); } });
-        sorted.forEach((coupon) => { if (picked.length < 6 && !picked.some((item) => item.id === coupon.id)) picked.push(coupon); });
+        // First pass: unique stores
+        sorted.forEach((coupon) => {
+            const key = coupon.store_slug || coupon.store_name || String(coupon.store_id || coupon.id);
+            if (picked.length < 18 && !storeKeys.has(key)) {
+                storeKeys.add(key);
+                picked.push(coupon);
+            }
+        });
+        // Second pass: fill remaining
+        sorted.forEach((coupon) => {
+            if (picked.length < 18 && !picked.some((item) => item.id === coupon.id)) {
+                picked.push(coupon);
+            }
+        });
         return picked;
-    }, [featuredCoupons, latestCoupons, filter]);
+    }, [featuredCoupons, latestCoupons]);
 
     const heroFallbackCoupons = useMemo(() => trendingCoupons.slice(0, 3), [trendingCoupons]);
     const validHeroSlides = useMemo(() => heroSlides.filter((slide) => { const url = imageUrl(slide.image); return !url || !failedHeroImages.has(url); }), [failedHeroImages, heroSlides]);
@@ -347,11 +263,6 @@ export default function HomePageClient(props: HomePageClientProps) {
     useEffect(() => setHeroIndex(0), [heroItems.length]);
     useEffect(() => { if (heroItems.length <= 1 || heroPaused || heroInteracting) return; const timer = window.setInterval(() => setHeroIndex((index) => (index + 1) % heroItems.length), 4500); return () => window.clearInterval(timer); }, [heroInteracting, heroItems.length, heroPaused]);
     useEffect(() => setStorePage((page) => Math.min(page, maxStorePage)), [maxStorePage]);
-    useEffect(() => setProductSlides((current) => {
-        const next = { ...current }; let changed = false;
-        storeSections.forEach(({ key }) => { const max = Math.max(0, storeCoupons[key].length - cardsPerView); if (next[key] > max) { next[key] = 0; changed = true; } });
-        return changed ? next : current;
-    }), [cardsPerView, storeCoupons]);
 
     const markHeroFailed = useCallback((url: string) => setFailedHeroImages((current) => current.has(url) ? current : new Set(current).add(url)), []);
     const goToStorePage = (page: number) => setStorePage(Math.max(0, Math.min(maxStorePage, page)));
@@ -364,10 +275,34 @@ export default function HomePageClient(props: HomePageClientProps) {
 
     return <>
         <h1 className="visually-hidden">CouponPush - Best Coupons, Promo Codes and Deals</h1>
+
+        {/* Hero Banner Carousel */}
         <section className="cp-hero cp-shell" aria-label="Featured deals" onMouseEnter={() => setHeroInteracting(true)} onMouseLeave={() => setHeroInteracting(false)} onFocusCapture={() => setHeroInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHeroInteracting(false); }}>
             {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} totalItems={heroItems.length} canNavigate={heroItems.length > 1} isPaused={heroPaused} isRotationPaused={heroPaused || heroInteracting} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onSelect={setHeroIndex} onTogglePause={() => setHeroPaused((paused) => !paused)} onImageError={markHeroFailed} /> : <EmptyState label="No featured backend offers are available right now." />}
         </section>
 
+        {/* Top Trending Section with Material UI Product Cards Carousel & More Trending Deals Banner */}
+        {trendingCoupons.length > 0 && (
+            <TopTrendingCarousel
+                coupons={trendingCoupons}
+                title="Top trending"
+                viewAllLink="/deals"
+                showPromoBanner={true}
+            />
+        )}
+
+        {/* Amazon Promo Codes Carousel */}
+        {storeCoupons.amazon.length > 0 && (
+            <MaterialStoreCarousel
+                title="More ways to save: Amazon promo codes"
+                coupons={storeCoupons.amazon}
+                storeSlug="amazon"
+                storeName="Amazon"
+                storeLogo={storeCoupons.amazon[0]?.store_logo}
+            />
+        )}
+
+        {/* Top Stores Section */}
         <section className="cp-section cp-shell cp-store-section">
             <div className="cp-section-head cp-section-head-inline"><h2>Top Stores</h2><Link href="/stores" className="cp-text-link">View all stores <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
             {storePages.length > 0 ? <div className="cp-store-carousel" onTouchStart={(event) => setTouchStart(event.touches[0]?.clientX ?? null)} onTouchEnd={handleTouchEnd}>
@@ -381,27 +316,37 @@ export default function HomePageClient(props: HomePageClientProps) {
             </div> : <EmptyState label="No featured stores returned from the backend." />}
         </section>
 
+        {/* Seasonal Offers */}
         {seasonalOffers.length > 0 && <SeasonalBanner offer={seasonalOffers[0]} />}
 
-        <section className="cp-section cp-shell">
-            <div className="cp-section-head">
-                <div><h2>Trending Coupons</h2><p>Handpicked coupons from top stores</p></div>
-                <div className="cp-filter-tabs" role="tablist" aria-label="Sort trending coupons">
-                    {filters.map((label, index) => <button key={label} id={`coupon-tab-${index}`} type="button" role="tab" className={filter === label ? 'active' : ''} aria-selected={filter === label} aria-controls="trending-coupons-panel" tabIndex={filter === label ? 0 : -1} onClick={() => setFilter(label)} onKeyDown={(event) => {
-                        let next = index; if (event.key === 'ArrowRight') next = (index + 1) % filters.length; else if (event.key === 'ArrowLeft') next = (index - 1 + filters.length) % filters.length; else if (event.key === 'Home') next = 0; else if (event.key === 'End') next = filters.length - 1; else return;
-                        event.preventDefault(); setFilter(filters[next]); document.getElementById(`coupon-tab-${next}`)?.focus();
-                    }}>{label}</button>)}
-                </div>
-            </div>
-            {trendingCoupons.length > 0 ? <div id="trending-coupons-panel" className="cp-coupon-grid" role="tabpanel" aria-labelledby={`coupon-tab-${filters.indexOf(filter)}`} tabIndex={0}>{trendingCoupons.map((coupon) => <TrendingCouponCard key={coupon.id} coupon={coupon} />)}</div> : <div id="trending-coupons-panel" role="tabpanel"><EmptyState label="No live coupons returned from the backend." /></div>}
-            <Link href="/deals" className="cp-text-link">View all deals <i className="fas fa-arrow-right" aria-hidden="true" /></Link>
-        </section>
+        {/* Flipkart Deals Carousel */}
+        {storeCoupons.flipkart.length > 0 && (
+            <MaterialStoreCarousel
+                title="Today's Top Flipkart Deals"
+                coupons={storeCoupons.flipkart}
+                storeSlug="flipkart"
+                storeName="Flipkart"
+                storeLogo={storeCoupons.flipkart[0]?.store_logo}
+            />
+        )}
 
-        <section className="cp-section cp-shell cp-best-deals">
-            <div className="cp-section-head cp-section-head-inline"><h2>Best Deals Today</h2><Link href="/deals" className="cp-text-link">View all deals <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
-            {deals.length > 0 ? <div className="cp-deal-strip">{deals.slice(0, 4).map((deal) => <BestDealCard key={deal.id} deal={deal} />)}</div> : <EmptyState label="No featured deals returned from the backend." />}
-        </section>
+        {/* Best Deals Today */}
+        {deals.length > 0 && (
+            <section className="cp-section cp-shell cp-best-deals">
+                <div className="cp-section-head cp-section-head-inline"><h2>Best Deals Today</h2><Link href="/deals" className="cp-text-link">View all deals <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
+                <div className="cp-deal-strip">{deals.slice(0, 4).map((deal) => <BestDealCard key={deal.id} deal={deal} />)}</div>
+            </section>
+        )}
 
-        {storeSections.map((config) => <StoreDealsSection key={config.key} config={config} coupons={storeCoupons[config.key]} slide={productSlides[config.key]} cardsPerView={cardsPerView} onSlideChange={(slide) => setProductSlides((current) => ({ ...current, [config.key]: slide }))} />)}
+        {/* AJIO Deals Carousel */}
+        {storeCoupons.ajio.length > 0 && (
+            <MaterialStoreCarousel
+                title="Today's Top AJIO Deals"
+                coupons={storeCoupons.ajio}
+                storeSlug="ajio"
+                storeName="AJIO"
+                storeLogo={storeCoupons.ajio[0]?.store_logo}
+            />
+        )}
     </>;
 }

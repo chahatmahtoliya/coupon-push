@@ -4,3 +4,7 @@ export { DealCard } from './DealCard';
 export { CategoryCard } from './CategoryCard';
 export { FilterSidebar } from './FilterSidebar';
 export { SeasonalBanner } from './SeasonalBanner';
+export { TrendingProductCard } from './TrendingProductCard';
+export { TopTrendingCarousel } from './TopTrendingCarousel';
+export { MaterialStoreCarousel } from './MaterialStoreCarousel';
+
