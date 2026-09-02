@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { CouponModal } from '@/components/common';
 import { getStorePath } from '@/lib/routes';
+import { getStorePseoContent } from '@/lib/store-pseo';
 import { storesApi } from '@/services/api';
 import type { Coupon, Store, StorePageData } from '@/types';
 import { getCouponCtaLabel, isCodeCoupon } from '@/utils/coupon';
@@ -46,12 +47,6 @@ function hasContent(value?: string | null): boolean {
 
 function cleanStoreName(name: string): string {
     return name.replace(/\s+(coupon|promo|discount)\s+codes?$/i, '').replace(/\s+coupons?$/i, '').trim() || name;
-}
-
-function officialDomain(url?: string | null): string {
-    if (!url) return '';
-    try { return new URL(url).hostname.replace(/^www\./, ''); }
-    catch { return url.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]; }
 }
 
 function currency(value: number): string {
@@ -139,10 +134,12 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     if (!store) return <section className="store-ui-page store-ui-empty"><div className="store-ui-shell"><div className="store-ui-empty-panel"><i className="fa-solid fa-store-slash" aria-hidden="true" /><h1>Store not found</h1><p>We could not load this store page right now.</p><Link href="/stores" className="store-ui-primary-button">Browse Stores</Link></div></div></section>;
 
     const codeCount = coupons.filter(isCodeCoupon).length;
-    const dealCount = coupons.length - codeCount;
-    const verifiedCount = coupons.filter((coupon) => coupon.is_verified).length;
     const offerCount = coupons.length || store.coupon_count || 0;
+    const dealCount = Math.max(offerCount - codeCount, 0);
+    const verifiedCount = coupons.filter((coupon) => coupon.is_verified).length;
     const month = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const shortMonth = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    const pseo = getStorePseoContent({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount, monthYear: month, shortMonthYear: shortMonth });
     const factualSummary = offerCount
         ? `${offerCount} active ${displayName} offers are listed: ${codeCount} coupon ${codeCount === 1 ? 'code' : 'codes'} and ${dealCount} online ${dealCount === 1 ? 'deal' : 'deals'}.`
         : `There are no active ${displayName} coupon codes or online offers listed right now.`;
@@ -153,11 +150,26 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     const featuredCoupon = sortCoupons(coupons, 'popular')[0];
     const aboutHtml = hasContent(store.about_content) && normalizedText(store.about_content) !== normalizedText(description) ? formatStoreContent(store.about_content) : '';
     const couponArticle = /^[aeiou]/i.test(displayName) ? 'an' : 'a';
-    const contentPanels = [
+    const contentPanels = pseo ? [] : [
         aboutHtml ? { id: 'about-store', icon: 'fa-circle-info', title: `About ${displayName}`, html: aboutHtml } : null,
         hasContent(store.howto_content) ? { id: 'how-to-use', icon: 'fa-ticket', title: `How to Use ${couponArticle} ${displayName} Coupon Code`, html: formatStoreContent(store.howto_content) } : null,
         hasContent(store.terms_content) ? { id: 'terms', icon: 'fa-file-contract', title: `${displayName} Coupon Terms`, html: formatStoreContent(store.terms_content) } : null,
     ].filter((panel): panel is ContentPanel => Boolean(panel?.html));
+    const faqItems = pseo?.faqs || [
+        { question: `How many ${displayName} coupons and offers are active?`, answer: factualSummary },
+        {
+            question: `Are there verified ${displayName} coupon codes?`,
+            answer: codeCount ? `${codeCount} active ${displayName} coupon ${codeCount === 1 ? 'code is' : 'codes are'} listed. ${verifiedCount} of all current offers ${verifiedCount === 1 ? 'is' : 'are'} marked as verified.` : `No code-based ${displayName} coupons are listed at the moment; the current listings are online deals that do not require a code.`,
+        },
+        {
+            question: `Which ${displayName} offer should I check first?`,
+            answer: featuredCoupon ? `Start with "${featuredCoupon.title}". Review its eligibility, expiry information and final price before completing your order.` : `There is no active offer to recommend right now. Check the official ${displayName} site for current promotions.`,
+        },
+        {
+            question: `When do ${displayName} coupon codes expire?`,
+            answer: nearestExpiry ? `The nearest listed expiry is ${expiryLabel(nearestExpiry.expiry_date).toLowerCase()} for "${nearestExpiry.title}". Other offers may have different dates.` : `No current ${displayName} offer has a listed expiry date. Confirm availability on the offer page before checkout.`,
+        },
+    ];
 
     const toggleSaved = (id: number) => setSaved((current) => {
         const next = new Set(current);
@@ -167,18 +179,26 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
 
     return <section className="store-ui-page">
         <nav className="store-ui-breadcrumb store-ui-shell" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fa-solid fa-chevron-right" aria-hidden="true" /><Link href={categoryHref}>{categoryName}</Link><i className="fa-solid fa-chevron-right" aria-hidden="true" /><span>{displayName} Coupons</span></nav>
+        <div className="store-ui-shell store-ui-header-row">
+            <section className="store-ui-hero">
+                <div className="store-ui-hero-content">
+                    <div className="store-ui-hero-mobile-logo" aria-hidden="true"><StoreLogo store={store} displayName={displayName} /></div>
+                    <div className="store-ui-hero-copy">
+                        <h1>{pseo?.h1 || `${displayName} Coupon Codes & Offers`}</h1>
+                        <p className="store-ui-verified-line">Current {displayName} coupons and deals for {month}</p>
+                        <div className="store-ui-hero-stats" aria-label="Offer summary"><div><span><i className="fa-solid fa-tags" aria-hidden="true" /></span><strong>{offerCount}</strong><small>Active offers</small></div><div><span><i className="fa-solid fa-ticket" aria-hidden="true" /></span><strong>{codeCount}</strong><small>Coupon codes</small></div><div><span><i className="fa-solid fa-bolt" aria-hidden="true" /></span><strong>{dealCount}</strong><small>Online deals</small></div></div>
+                        {(pseo?.heroDescription || description) && <p className="store-ui-hero-description">{pseo?.heroDescription || description}</p>}
+                    </div>
+                    {store.website_url && <a className="store-ui-mobile-shop-button" href={store.website_url} target="_blank" rel="noopener noreferrer">Visit {displayName} <i className="fa-solid fa-arrow-right" aria-hidden="true" /></a>}
+                    <div className="store-ui-hero-brand">{store.website_url && <a href={store.website_url} target="_blank" rel="noopener noreferrer">Visit {displayName} <i className="fa-solid fa-arrow-right" aria-hidden="true" /></a>}</div>
+                </div>
+            </section>
+        </div>
         <div className="store-ui-shell store-ui-layout">
             <aside className="store-ui-sidebar" aria-label={`${displayName} store information`}>
-                <Card className="store-ui-brand-card">
-                    <div className="store-ui-brand-logo"><StoreLogo store={store} displayName={displayName} /></div>
-                    <h2>{displayName}</h2>
-                    {store.website_url && <><a className="store-ui-site-link" href={store.website_url} target="_blank" rel="noopener noreferrer">{officialDomain(store.website_url)} <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" /></a><a className="store-ui-primary-button store-ui-full-button store-ui-brand-cta" href={store.website_url} target="_blank" rel="noopener noreferrer">Visit {displayName}</a></>}
-                </Card>
-                <Card className="store-ui-page-nav-card"><h2>On this page</h2><nav className="store-ui-page-nav" aria-label={`${displayName} page sections`}><a href="#store-ui-offers">Coupon codes and offers</a>{contentPanels.map((panel) => <a href={`#store-ui-${panel.id}`} key={panel.id}>{panel.title}</a>)}<a href="#store-ui-faqs">Coupon FAQs</a>{!!relatedStores.length && <a href="#store-ui-related">Related stores</a>}</nav></Card>
+                <Card className="store-ui-page-nav-card"><h2>On this page</h2><nav className="store-ui-page-nav" aria-label={`${displayName} page sections`}><a href="#store-ui-offers">Coupon codes and offers</a>{pseo?.sections.map((section) => <a href={`#store-ui-${section.id}`} key={section.id}>{section.title}</a>)}{contentPanels.map((panel) => <a href={`#store-ui-${panel.id}`} key={panel.id}>{panel.title}</a>)}<a href="#store-ui-faqs">Coupon FAQs</a>{!!relatedStores.length && <a href="#store-ui-related">Related stores</a>}</nav></Card>
             </aside>
             <main className="store-ui-main">
-                <section className="store-ui-hero"><div className="store-ui-hero-content"><div className="store-ui-hero-mobile-logo" aria-hidden="true"><StoreLogo store={store} displayName={displayName} /></div><div className="store-ui-hero-copy"><h1>{displayName} Coupon Codes &amp; Offers</h1><p className="store-ui-verified-line">Current {displayName} coupons and deals for {month}</p><div className="store-ui-hero-stats" aria-label="Offer summary"><div><span><i className="fa-solid fa-tags" aria-hidden="true" /></span><strong>{offerCount}</strong><small>Active offers</small></div><div><span><i className="fa-solid fa-ticket" aria-hidden="true" /></span><strong>{codeCount}</strong><small>Coupon codes</small></div><div><span><i className="fa-solid fa-bolt" aria-hidden="true" /></span><strong>{dealCount}</strong><small>Online deals</small></div></div>{description && <p className="store-ui-hero-description">{description}</p>}</div>{store.website_url && <a className="store-ui-mobile-shop-button" href={store.website_url} target="_blank" rel="noopener noreferrer">Visit {displayName} <i className="fa-solid fa-arrow-right" aria-hidden="true" /></a>}<div className="store-ui-hero-brand">{store.website_url && <a href={store.website_url} target="_blank" rel="noopener noreferrer">Visit {displayName} <i className="fa-solid fa-arrow-right" aria-hidden="true" /></a>}</div></div></section>
-
                 <section className="store-ui-coupon-section" id="store-ui-offers">
                     <div className="store-ui-coupon-toolbar"><h2>Latest {displayName} Coupon Codes and Offers <span>({filteredCoupons.length})</span></h2><div className="store-ui-filter-panel"><div className="store-ui-segments" role="tablist" aria-label="Offer filter">{([{ id: 'all', label: `All (${coupons.length})` }, { id: 'codes', label: `Codes (${codeCount})` }, { id: 'deals', label: `Deals (${dealCount})` }] as { id: Filter; label: string }[]).map((item) => <button type="button" role="tab" className={filter === item.id ? 'active' : ''} onClick={() => setFilter(item.id)} aria-selected={filter === item.id} key={item.id}>{item.label}</button>)}</div><label><span>Sort by:</span><select value={sort} onChange={(event) => setSort(event.target.value as Sort)}><option value="popular">Popular</option><option value="newest">Newest</option><option value="discount">Discount</option></select></label></div></div>
                     {!filteredCoupons.length ? <div className="store-ui-empty-offers"><i className="fa-solid fa-ticket" aria-hidden="true" /><h3>{coupons.length ? 'No offers match this filter' : `No active ${displayName} offers`}</h3><p>{coupons.length ? 'Choose All to see every active offer.' : `Check ${displayName}'s official site for current promotions.`}</p>{!!coupons.length && <button type="button" onClick={() => setFilter('all')}>Show all offers</button>}</div> : <div className="store-ui-coupon-list">{filteredCoupons.map((coupon) => {
@@ -190,7 +210,9 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
 
                 {!!contentPanels.length && <section className="store-ui-content-stack" aria-label={`${displayName} coupon guide`}>{contentPanels.map((panel) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${panel.id}`} key={panel.id}><header><i className={`fa-solid ${panel.icon}`} aria-hidden="true" /><h2>{panel.title}</h2></header><div dangerouslySetInnerHTML={{ __html: panel.html }} /></article>)}</section>}
 
-                <Card className="store-ui-faq-card" id="store-ui-faqs"><h2>{displayName} Coupon Code FAQs</h2><div className="store-ui-faq-list"><article><h3>How many {displayName} coupons and offers are active?</h3><p>{factualSummary}</p></article><article><h3>Are there verified {displayName} coupon codes?</h3><p>{codeCount ? `${codeCount} active ${displayName} coupon ${codeCount === 1 ? 'code is' : 'codes are'} listed. ${verifiedCount} of all current offers ${verifiedCount === 1 ? 'is' : 'are'} marked as verified.` : `No code-based ${displayName} coupons are listed at the moment; the current listings are online deals that do not require a code.`}</p></article><article><h3>Which {displayName} offer should I check first?</h3><p>{featuredCoupon ? `Start with “${featuredCoupon.title}”. Review its eligibility, expiry information and final price before completing your order.` : `There is no active offer to recommend right now. Check the official ${displayName} site for current promotions.`}</p></article><article><h3>When do {displayName} coupon codes expire?</h3><p>{nearestExpiry ? `The nearest listed expiry is ${expiryLabel(nearestExpiry.expiry_date).toLowerCase()} for “${nearestExpiry.title}”. Other offers may have different dates.` : `No current ${displayName} offer has a listed expiry date. Confirm availability on the offer page before checkout.`}</p></article></div></Card>
+                {!!pseo?.sections.length && <section className="store-ui-content-stack" aria-label={`${displayName} hosting deal guide`}>{pseo.sections.map((section) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${section.id}`} key={section.id}><header><i className={`fa-solid ${section.icon}`} aria-hidden="true" /><h2>{section.title}</h2></header><div>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{!!section.items?.length && <ul className="store-ui-pseo-list">{section.items.map((item) => <li key={item.title}><strong>{item.title}</strong><span>{item.description}</span></li>)}</ul>}</div></article>)}</section>}
+
+                <Card className="store-ui-faq-card" id="store-ui-faqs"><h2>{displayName} Coupon Code FAQs</h2><div className="store-ui-faq-list">{faqItems.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></Card>
 
                 {!!relatedStores.length && <section className="store-ui-related" id="store-ui-related"><div className="store-ui-section-heading"><h2>More Stores in {categoryName}</h2></div><div className="store-ui-related-grid">{relatedStores.map((related) => {
                     const relatedName = cleanStoreName(related.name);

@@ -3,6 +3,7 @@ import { storesApi } from '@/services/api';
 import StorePageClient from './StorePageClient';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { hasIndexableStoreContent } from '@/lib/indexability';
+import { getStorePseoContent } from '@/lib/store-pseo';
 
 function cleanStoreName(name: string): string {
     return name
@@ -72,18 +73,26 @@ export async function generateMetadata(
     const storeName = cleanStoreName(data.store.name);
     const offerCount = data.coupons?.length || data.store.coupon_count || 0;
     const codeCount = data.coupons?.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length || 0;
-    const description = storeDescription(storeName, offerCount, codeCount, hasContent(data.store.meta_description) ? data.store.meta_description : data.store.description);
+    const dealCount = Math.max(offerCount - codeCount, 0);
     const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const shortMonthYear = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    const pseo = getStorePseoContent({ slug, storeName, coupons: data.coupons || [], offerCount, codeCount, dealCount, monthYear, shortMonthYear });
+    const customDescription = hasContent(data.store.meta_description) ? data.store.meta_description!.trim() : '';
+    const description = customDescription || pseo?.metaDescription || storeDescription(storeName, offerCount, codeCount, data.store.description);
     const customTitle = cleanCustomTitle(data.store.meta_title);
     const title = customTitle && customTitle.toLowerCase().includes(storeName.toLowerCase()) && /(coupon|offer|deal|promo)/i.test(customTitle)
         ? customTitle
-        : `${storeName} Coupon Codes & Offers ${monthYear}`;
+        : pseo?.metaTitle || `${storeName} Coupon Codes & Offers ${monthYear}`;
 
     return {
-        title,
+        title: pseo ? { absolute: title } : title,
         description,
         alternates: { canonical },
-        robots: { index: hasIndexableStoreContent(data), follow: true },
+        robots: {
+            index: hasIndexableStoreContent(data),
+            follow: true,
+            googleBot: { index: hasIndexableStoreContent(data), follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+        },
         openGraph: {
             type: 'website',
             url: canonical,
@@ -112,12 +121,17 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     const storeName = cleanStoreName(initialData.store.name);
     const offerCount = initialData.coupons?.length || initialData.store.coupon_count || 0;
     const codeCount = initialData.coupons?.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length || 0;
-    const description = storeDescription(storeName, offerCount, codeCount, hasContent(initialData.store.meta_description) ? initialData.store.meta_description : initialData.store.description);
+    const dealCount = Math.max(offerCount - codeCount, 0);
+    const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const shortMonthYear = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    const pseo = getStorePseoContent({ slug, storeName, coupons: initialData.coupons || [], offerCount, codeCount, dealCount, monthYear, shortMonthYear });
+    const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';
+    const description = customDescription || pseo?.metaDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
     const structuredData = [
         {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: `${storeName} Coupon Codes & Offers`,
+            name: pseo?.h1 || `${storeName} Coupon Codes & Offers`,
             description,
             url: canonical,
             isPartOf: { '@type': 'WebSite', name: 'CouponPush', url: 'https://couponpush.com/' },
@@ -132,6 +146,15 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
                 { '@type': 'ListItem', position: 3, name: `${storeName} Coupons`, item: canonical },
             ],
         },
+        ...(pseo ? [{
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: pseo.faqs.map((faq) => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+            })),
+        }] : []),
     ];
 
     return <>
