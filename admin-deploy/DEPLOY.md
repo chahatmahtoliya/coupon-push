@@ -36,7 +36,7 @@ protection files inside `config`, `includes`, and `uploads`.
 
 1. Visit `https://api.couponpush.com/admin/login.php`.
 2. Sign in with an active database admin username or email.
-3. Confirm Dashboard, Coupons, Stores, Categories, Deals, and Settings load.
+3. Confirm Dashboard, Coupons, Bulk Import, Stores, Categories, Deals, and Settings load.
 4. Upload one test image and confirm it can be opened from the returned URL.
 5. Log out and confirm the dashboard redirects back to the login page.
 

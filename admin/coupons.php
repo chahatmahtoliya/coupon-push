@@ -120,9 +120,14 @@ if ($action === 'edit' && $id > 0) {
             <h1 class="page-title">Manage Coupons</h1>
             <p class="page-subtitle">Add, edit, and manage your coupon codes</p>
         </div>
-        <a href="?action=add" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i> Add Coupon
-        </a>
+        <div class="d-flex gap-2">
+            <a href="bulk-import.php" class="btn btn-outline-primary">
+                <i class="fas fa-file-import me-2"></i> Bulk Import
+            </a>
+            <a href="?action=add" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i> Add Coupon
+            </a>
+        </div>
     </div>
 
     <div class="card">

@@ -269,6 +269,13 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link <?php echo $currentPage === 'bulk-import' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/bulk-import.php">
+                            <i class="fas fa-file-import"></i>
+                            <span>Bulk Import</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link <?php echo $currentPage === 'stores' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/stores.php">
                             <i class="fas fa-store"></i>
                             <span>Stores</span>

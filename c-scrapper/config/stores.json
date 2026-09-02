@@ -1,0 +1,175 @@
+[
+  {
+    "slug": "hostinger",
+    "name": "Hostinger",
+    "domain": "hostinger.in",
+    "website_url": "https://www.hostinger.in",
+    "category": "Web Hosting",
+    "affiliate_template": "https://www.hostinger.com/in?REFERRALCODE=PJFCHAHATM4D",
+    "offer_urls": [
+      "https://www.hostinger.in/coupons",
+      "https://www.hostinger.com/coupons",
+      "https://www.hostinger.com/in/coupons"
+    ],
+    "selectors": {
+      "note": "Hostinger uses pricing-table + COUPONSPAGE auto-applied code. Scraper extracts % off, Rs. pricing, and plan features. No coupon code needed for deals."
+    },
+    "scraper": "hostinger_special",
+    "notes": "Official Hostinger coupons - auto-applied COUPONSPAGE code, 30-day money-back guarantee. Live + fallback enriched."
+  },
+  {
+    "slug": "cetaphil",
+    "name": "Cetaphil",
+    "domain": "cetaphil.in",
+    "website_url": "https://www.cetaphil.in",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://www.cetaphil.in{path}",
+    "offer_urls": [
+      "https://www.cetaphil.in/products-3",
+      "https://www.cetaphil.in/jointheclub.html"
+    ],
+    "scraper": "cetaphil_special",
+    "notes": "Official Cetaphil India - codes New5 (extra 5% on 50% sitewide), BESTSELLER10 (10% no min), extra5 (5% on 1499+), verified Aug 30 2026 on GrabOn."
+  },
+  {
+    "slug": "amazon",
+    "name": "Amazon",
+    "domain": "amazon.in",
+    "website_url": "https://www.amazon.in",
+    "category": "Electronics",
+    "affiliate_template": "https://www.amazon.in/dp/{asin}?tag=YOURTAG",
+    "offer_urls": [
+      "https://www.amazon.in/gp/goldbox",
+      "https://www.amazon.in/deals"
+    ],
+    "selectors": {
+      "card": "[data-testid='deal-card'], .a-section.a-spacing-none",
+      "title": "h2, .a-truncate-cut, [data-testid='product-title']",
+      "discount": ".a-badge-text, .a-color-price",
+      "image": "img",
+      "link": "a.a-link-normal"
+    },
+    "notes": "Amazon blocks scraping - uses demo + heuristic fallback. Replace with official Amazon Associates API for production."
+  },
+  {
+    "slug": "flipkart",
+    "name": "Flipkart",
+    "domain": "flipkart.com",
+    "website_url": "https://www.flipkart.com",
+    "category": "Electronics",
+    "affiliate_template": "https://www.flipkart.com{path}?affid=YOURID",
+    "offer_urls": [
+      "https://www.flipkart.com/offers"
+    ],
+    "selectors": {
+      "card": "._2GaeWJ, ._1AtVbE",
+      "title": "._30kJ5a, ._2B8iJ6",
+      "discount": "._3Ay6Sb, ._2ZdXDB",
+      "code": "._2EoKrv",
+      "image": "img",
+      "link": "a"
+    }
+  },
+  {
+    "slug": "myntra",
+    "name": "Myntra",
+    "domain": "myntra.com",
+    "website_url": "https://www.myntra.com",
+    "category": "Fashion & Lifestyle",
+    "affiliate_template": "https://www.myntra.com{path}",
+    "offer_urls": [
+      "https://www.myntra.com/coupons",
+      "https://www.myntra.com/offers"
+    ],
+    "selectors": {
+      "card": ".coupon-card, .offer-card, .desktop-couponCard",
+      "title": ".coupon-title, h3",
+      "code": ".coupon-code, .code",
+      "discount": ".discount-text",
+      "expiry": ".expiry-text"
+    }
+  },
+  {
+    "slug": "nykaa",
+    "name": "Nykaa",
+    "domain": "nykaa.com",
+    "website_url": "https://www.nykaa.com",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://www.nykaa.com{path}",
+    "offer_urls": [
+      "https://www.nykaa.com/offers.html"
+    ],
+    "selectors": {
+      "card": ".offer-card, .css-1dbjc4n",
+      "title": "h2, .offer-title",
+      "code": ".coupon-code",
+      "discount": ".discount"
+    }
+  },
+  {
+    "slug": "ajio",
+    "name": "Ajio",
+    "domain": "ajio.com",
+    "website_url": "https://www.ajio.com",
+    "category": "Fashion & Lifestyle",
+    "affiliate_template": "https://www.ajio.com{path}",
+    "offer_urls": [
+      "https://www.ajio.com/offers"
+    ],
+    "selectors": {
+      "card": ".offer, .coupon",
+      "title": "h3, .title",
+      "code": ".code"
+    }
+  },
+  {
+    "slug": "zomato",
+    "name": "Zomato",
+    "domain": "zomato.com",
+    "website_url": "https://www.zomato.com",
+    "category": "Food & Dining",
+    "affiliate_template": "https://www.zomato.com{path}",
+    "offer_urls": [
+      "https://www.zomato.com/coupons"
+    ],
+    "selectors": {
+      "card": ".coupon, .offer-card",
+      "title": "h3",
+      "code": ".code"
+    }
+  },
+  {
+    "slug": "makemytrip",
+    "name": "MakeMyTrip",
+    "domain": "makemytrip.com",
+    "website_url": "https://www.makemytrip.com",
+    "category": "Travel & Hotels",
+    "affiliate_template": "https://www.makemytrip.com{path}",
+    "offer_urls": [
+      "https://www.makemytrip.com/offers/"
+    ],
+    "selectors": {
+      "card": ".offerCard, .tileCard",
+      "title": "p.offerTitle, h3",
+      "code": ".promoCode, .code",
+      "discount": ".discount",
+      "expiry": ".validity"
+    }
+  },
+  {
+    "slug": "swiggy",
+    "name": "Swiggy",
+    "domain": "swiggy.com",
+    "website_url": "https://www.swiggy.com",
+    "category": "Food & Dining",
+    "affiliate_template": "https://www.swiggy.com{path}",
+    "offer_urls": [
+      "https://www.swiggy.com/offers"
+    ],
+    "selectors": {
+      "card": ".offer-card",
+      "title": "h3",
+      "code": ".code"
+    }
+  }
+]
