@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { storesApi } from '@/services/api';
 import StorePageClient from './StorePageClient';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
-import { hasIndexableStoreContent } from '@/lib/indexability';
+import { getLatestContentUpdate } from '@/lib/content-dates';
+import { getActiveCoupons, hasIndexableStoreContent } from '@/lib/indexability';
+import { getCanonicalStoreSlug, isCanonicalStoreSlug } from '@/lib/routes';
 import { getStorePseoContent } from '@/lib/store-pseo';
 
 function cleanStoreName(name: string): string {
@@ -30,19 +32,21 @@ function storeDescription(storeName: string, offerCount: number, codeCount: numb
 const fallbackStoreSlugs = [
     'flipkart', 'kapiva-coupon-code', 'ajio', 'myntra', 'zomato', 'swiggy', 'blinkit',
     'dominos', 'redbus', 'cetaphil-coupon-code', 'amazon', 'boat-lifestyle', 'hostinger',
-    'amazon-prime-day-sale-2026', 'decathlon-coupon-code', 'derma-co-coupon-code',
+    'decathlon-coupon-code', 'derma-co-coupon-code',
     'lenovo', 'dot-key-coupon-codes', 'cetaphil',
 ];
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     try {
         const stores = await storesApi.getAll();
-        return stores.map((store) => ({
+        return stores.filter((store) => isCanonicalStoreSlug(store.slug)).map((store) => ({
             slug: store.slug,
         }));
     } catch (error) {
         console.error('Failed to fetch stores for static params:', error);
-        return fallbackStoreSlugs.map((slug) => ({ slug }));
+        return fallbackStoreSlugs.filter(isCanonicalStoreSlug).map((slug) => ({ slug }));
     }
 }
 
@@ -50,7 +54,8 @@ export async function generateMetadata(
     { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
     const { slug } = await params;
-    const canonical = `https://couponpush.com/store/${slug}/`;
+    const canonicalSlug = getCanonicalStoreSlug(slug);
+    const canonical = `https://couponpush.com/store/${canonicalSlug}/`;
     let data = deployedSnapshot.stores[slug] || null;
 
     if (!data) {
@@ -71,18 +76,17 @@ export async function generateMetadata(
     }
 
     const storeName = cleanStoreName(data.store.name);
-    const offerCount = data.coupons?.length || data.store.coupon_count || 0;
-    const codeCount = data.coupons?.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length || 0;
+    const coupons = getActiveCoupons(data.coupons);
+    const offerCount = coupons.length;
+    const codeCount = coupons.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length;
     const dealCount = Math.max(offerCount - codeCount, 0);
-    const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    const shortMonthYear = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-    const pseo = getStorePseoContent({ slug, storeName, coupons: data.coupons || [], offerCount, codeCount, dealCount, monthYear, shortMonthYear });
+    const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(data.store.meta_description) ? data.store.meta_description!.trim() : '';
     const description = customDescription || pseo?.metaDescription || storeDescription(storeName, offerCount, codeCount, data.store.description);
     const customTitle = cleanCustomTitle(data.store.meta_title);
     const title = customTitle && customTitle.toLowerCase().includes(storeName.toLowerCase()) && /(coupon|offer|deal|promo)/i.test(customTitle)
         ? customTitle
-        : pseo?.metaTitle || `${storeName} Coupon Codes & Offers ${monthYear}`;
+        : pseo?.metaTitle || `${storeName} Coupon Codes & Offers`;
 
     return {
         title: pseo ? { absolute: title } : title,
@@ -117,16 +121,17 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
 
     if (!initialData?.store) return <StorePageClient initialData={initialData} slug={slug} />;
 
-    const canonical = `https://couponpush.com/store/${slug}/`;
+    const canonicalSlug = getCanonicalStoreSlug(slug);
+    const canonical = `https://couponpush.com/store/${canonicalSlug}/`;
     const storeName = cleanStoreName(initialData.store.name);
-    const offerCount = initialData.coupons?.length || initialData.store.coupon_count || 0;
-    const codeCount = initialData.coupons?.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length || 0;
+    const coupons = getActiveCoupons(initialData.coupons);
+    const offerCount = coupons.length;
+    const codeCount = coupons.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length;
     const dealCount = Math.max(offerCount - codeCount, 0);
-    const monthYear = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    const shortMonthYear = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-    const pseo = getStorePseoContent({ slug, storeName, coupons: initialData.coupons || [], offerCount, codeCount, dealCount, monthYear, shortMonthYear });
+    const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';
     const description = customDescription || pseo?.metaDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
+    const dateModified = getLatestContentUpdate(initialData.store, ...coupons);
     const structuredData = [
         {
             '@context': 'https://schema.org',
@@ -135,7 +140,7 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
             description,
             url: canonical,
             isPartOf: { '@type': 'WebSite', name: 'CouponPush', url: 'https://couponpush.com/' },
-            ...(initialData.store.updated_at ? { dateModified: initialData.store.updated_at } : {}),
+            ...(dateModified ? { dateModified } : {}),
         },
         {
             '@context': 'https://schema.org',

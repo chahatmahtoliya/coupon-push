@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { CouponModal } from '@/components/common';
 import { getStorePath } from '@/lib/routes';
 import { getStorePseoContent } from '@/lib/store-pseo';
+import { getActiveCoupons } from '@/lib/indexability';
 import { storesApi } from '@/services/api';
 import type { Coupon, Store, StorePageData } from '@/types';
 import { getCouponCtaLabel, isCodeCoupon } from '@/utils/coupon';
@@ -124,7 +125,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     }, [slug]);
 
     const store = data?.store || null;
-    const coupons = data?.coupons || [];
+    const coupons = useMemo(() => getActiveCoupons(data?.coupons), [data?.coupons]);
     const relatedStores = data?.related_stores || [];
     const displayName = cleanStoreName(store?.name || 'Store');
     const filteredCoupons = useMemo(() => sortCoupons(coupons.filter((coupon) => (
@@ -137,9 +138,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     const offerCount = coupons.length || store.coupon_count || 0;
     const dealCount = Math.max(offerCount - codeCount, 0);
     const verifiedCount = coupons.filter((coupon) => coupon.is_verified).length;
-    const month = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    const shortMonth = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-    const pseo = getStorePseoContent({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount, monthYear: month, shortMonthYear: shortMonth });
+    const pseo = getStorePseoContent({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount });
     const factualSummary = offerCount
         ? `${offerCount} active ${displayName} offers are listed: ${codeCount} coupon ${codeCount === 1 ? 'code' : 'codes'} and ${dealCount} online ${dealCount === 1 ? 'deal' : 'deals'}.`
         : `There are no active ${displayName} coupon codes or online offers listed right now.`;
@@ -185,7 +184,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
                     <div className="store-ui-hero-mobile-logo" aria-hidden="true"><StoreLogo store={store} displayName={displayName} /></div>
                     <div className="store-ui-hero-copy">
                         <h1>{pseo?.h1 || `${displayName} Coupon Codes & Offers`}</h1>
-                        <p className="store-ui-verified-line">Current {displayName} coupons and deals for {month}</p>
+                        <p className="store-ui-verified-line">Current {displayName} coupons and deals</p>
                         <div className="store-ui-hero-stats" aria-label="Offer summary"><div><span><i className="fa-solid fa-tags" aria-hidden="true" /></span><strong>{offerCount}</strong><small>Active offers</small></div><div><span><i className="fa-solid fa-ticket" aria-hidden="true" /></span><strong>{codeCount}</strong><small>Coupon codes</small></div><div><span><i className="fa-solid fa-bolt" aria-hidden="true" /></span><strong>{dealCount}</strong><small>Online deals</small></div></div>
                         {(pseo?.heroDescription || description) && <p className="store-ui-hero-description">{pseo?.heroDescription || description}</p>}
                     </div>
@@ -196,7 +195,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
         </div>
         <div className="store-ui-shell store-ui-layout">
             <aside className="store-ui-sidebar" aria-label={`${displayName} store information`}>
-                <Card className="store-ui-page-nav-card"><h2>On this page</h2><nav className="store-ui-page-nav" aria-label={`${displayName} page sections`}><a href="#store-ui-offers">Coupon codes and offers</a>{pseo?.sections.map((section) => <a href={`#store-ui-${section.id}`} key={section.id}>{section.title}</a>)}{contentPanels.map((panel) => <a href={`#store-ui-${panel.id}`} key={panel.id}>{panel.title}</a>)}<a href="#store-ui-faqs">Coupon FAQs</a>{!!relatedStores.length && <a href="#store-ui-related">Related stores</a>}</nav></Card>
+                <Card className="store-ui-page-nav-card"><h2>On this page</h2><nav className="store-ui-page-nav" aria-label={`${displayName} page sections`}><a href="#store-ui-offers">Coupon codes and offers</a><a href="#store-ui-faqs">Coupon FAQs</a>{pseo?.sections.map((section) => <a href={`#store-ui-${section.id}`} key={section.id}>{section.title}</a>)}{contentPanels.map((panel) => <a href={`#store-ui-${panel.id}`} key={panel.id}>{panel.title}</a>)}{!!relatedStores.length && <a href="#store-ui-related">Related stores</a>}</nav></Card>
             </aside>
             <main className="store-ui-main">
                 <section className="store-ui-coupon-section" id="store-ui-offers">
@@ -208,11 +207,11 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
                     })}</div>}
                 </section>
 
+                <Card className="store-ui-faq-card" id="store-ui-faqs"><h2>{displayName} Coupon Code FAQs</h2><div className="store-ui-faq-list">{faqItems.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></Card>
+
                 {!!contentPanels.length && <section className="store-ui-content-stack" aria-label={`${displayName} coupon guide`}>{contentPanels.map((panel) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${panel.id}`} key={panel.id}><header><i className={`fa-solid ${panel.icon}`} aria-hidden="true" /><h2>{panel.title}</h2></header><div dangerouslySetInnerHTML={{ __html: panel.html }} /></article>)}</section>}
 
                 {!!pseo?.sections.length && <section className="store-ui-content-stack" aria-label={`${displayName} hosting deal guide`}>{pseo.sections.map((section) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${section.id}`} key={section.id}><header><i className={`fa-solid ${section.icon}`} aria-hidden="true" /><h2>{section.title}</h2></header><div>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{!!section.items?.length && <ul className="store-ui-pseo-list">{section.items.map((item) => <li key={item.title}><strong>{item.title}</strong><span>{item.description}</span></li>)}</ul>}</div></article>)}</section>}
-
-                <Card className="store-ui-faq-card" id="store-ui-faqs"><h2>{displayName} Coupon Code FAQs</h2><div className="store-ui-faq-list">{faqItems.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></Card>
 
                 {!!relatedStores.length && <section className="store-ui-related" id="store-ui-related"><div className="store-ui-section-heading"><h2>More Stores in {categoryName}</h2></div><div className="store-ui-related-grid">{relatedStores.map((related) => {
                     const relatedName = cleanStoreName(related.name);

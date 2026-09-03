@@ -12,7 +12,7 @@ export interface Store {
     terms_content?: string;
     meta_title?: string;
     meta_description?: string;
-    updated_at?: string;
+    updated_at?: string | null;
     rating: number;
     coupon_count: number;
     is_featured: boolean;
@@ -44,6 +44,7 @@ export interface Coupon {
     affiliate_link?: string | null;
     coupon_type?: 'code' | 'coupon' | 'deal' | string | null;
     created_at?: string | null;
+    updated_at?: string | null;
 }
 
 // Category interface
@@ -54,6 +55,8 @@ export interface Category {
     icon: string;
     description?: string;
     coupon_count: number;
+    created_at?: string | null;
+    updated_at?: string | null;
 }
 
 // Deal interface

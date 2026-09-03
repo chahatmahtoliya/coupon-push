@@ -229,11 +229,16 @@ export default function HomePageClient(props: HomePageClientProps) {
         return () => { active = false; };
     }, []);
 
-    // Ranked top trending coupons
+    const recentlyAddedCoupons = useMemo(() => uniqueCoupons(latestCoupons).slice(0, 18), [latestCoupons]);
+    const recentlyAddedIds = useMemo(() => new Set(recentlyAddedCoupons.map((coupon) => coupon.id)), [recentlyAddedCoupons]);
+
+    // Ranked top trending coupons, excluding the separate recently-added feed.
     const trendingCoupons = useMemo(() => {
-        const sorted = uniqueCoupons([...featuredCoupons, ...latestCoupons]).sort((a, b) => {
-            return (b.click_count || 0) - (a.click_count || 0);
-        });
+        const sorted = uniqueCoupons([...featuredCoupons, ...latestCoupons])
+            .filter((coupon) => !recentlyAddedIds.has(coupon.id))
+            .sort((a, b) => {
+                return (b.click_count || 0) - (a.click_count || 0);
+            });
         const picked: Coupon[] = [];
         const storeKeys = new Set<string>();
         // First pass: unique stores
@@ -251,7 +256,7 @@ export default function HomePageClient(props: HomePageClientProps) {
             }
         });
         return picked;
-    }, [featuredCoupons, latestCoupons]);
+    }, [featuredCoupons, latestCoupons, recentlyAddedIds]);
 
     const heroFallbackCoupons = useMemo(() => trendingCoupons.slice(0, 3), [trendingCoupons]);
     const validHeroSlides = useMemo(() => heroSlides.filter((slide) => { const url = imageUrl(slide.image); return !url || !failedHeroImages.has(url); }), [failedHeroImages, heroSlides]);
@@ -280,6 +285,17 @@ export default function HomePageClient(props: HomePageClientProps) {
         <section className="cp-hero cp-shell" aria-label="Featured deals" onMouseEnter={() => setHeroInteracting(true)} onMouseLeave={() => setHeroInteracting(false)} onFocusCapture={() => setHeroInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHeroInteracting(false); }}>
             {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} totalItems={heroItems.length} canNavigate={heroItems.length > 1} isPaused={heroPaused} isRotationPaused={heroPaused || heroInteracting} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onSelect={setHeroIndex} onTogglePause={() => setHeroPaused((paused) => !paused)} onImageError={markHeroFailed} /> : <EmptyState label="No featured backend offers are available right now." />}
         </section>
+
+        {/* Newly added coupons use the same carousel without trending ranks. */}
+        {recentlyAddedCoupons.length > 0 && (
+            <TopTrendingCarousel
+                coupons={recentlyAddedCoupons}
+                title="Newly added coupons"
+                viewAllLink="/offers"
+                showPromoBanner={false}
+                showRanks={false}
+            />
+        )}
 
         {/* Top Trending Section with Material UI Product Cards Carousel & More Trending Deals Banner */}
         {trendingCoupons.length > 0 && (

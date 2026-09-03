@@ -54,12 +54,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const fallback = deployedSnapshot.categories[slug] as CategoryPageData | undefined;
     let name = fallback?.categoryName || slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     let couponCount = fallback?.coupons?.length || 0;
+    let indexable = hasIndexableCategoryContent(fallback);
 
     try {
-        const categories = await categoriesApi.getAll();
+        const [categories, coupons] = await Promise.all([
+            categoriesApi.getAll(),
+            indexable ? Promise.resolve(fallback?.coupons || []) : couponsApi.getByCategory(slug),
+        ]);
         const category = categories.find((item) => item.slug === slug);
         name = category?.name || name;
-        couponCount = category?.coupon_count || couponCount;
+        couponCount = coupons.length || category?.coupon_count || couponCount;
+        indexable = hasIndexableCategoryContent({ coupons });
     } catch {
         // Use the last deployed snapshot when the API is unavailable during export.
     }
@@ -72,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title,
         description,
         alternates: { canonical },
-        robots: { index: hasIndexableCategoryContent(fallback), follow: true },
+        robots: { index: indexable, follow: true },
         openGraph: { type: 'website', url: canonical, title, description },
     };
 }

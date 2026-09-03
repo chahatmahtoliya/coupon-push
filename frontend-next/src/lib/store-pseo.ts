@@ -29,8 +29,6 @@ interface StorePseoContext {
     offerCount: number;
     codeCount: number;
     dealCount: number;
-    monthYear: string;
-    shortMonthYear: string;
 }
 
 function bestPercentageDiscount(coupons: Coupon[]): number | null {
@@ -68,9 +66,9 @@ function buildHostingerProfile(context: StorePseoContext): StorePseoContent {
         : 'No active offers are listed right now.';
 
     return {
-        metaTitle: `Hostinger Coupon Code: ${discountPhrase} (${context.shortMonthYear})`,
+        metaTitle: `Hostinger Coupon Code: ${discountPhrase}`,
         metaDescription: `Compare ${context.offerCount} Hostinger coupon codes and deals for web, WordPress, and VPS hosting. Check eligibility, billing terms, and renewal pricing before checkout.`,
-        h1: `Hostinger Coupon Codes & Hosting Deals - ${context.monthYear}`,
+        h1: 'Hostinger Coupon Codes & Hosting Deals',
         heroDescription: `Compare current Hostinger discounts for ${products}. Check the eligible plan, billing period, renewal price, and included features before you complete payment.`,
         sections: [
             {

@@ -9,6 +9,10 @@
 
   # Consolidate duplicate legacy URLs.
   RewriteRule ^privacy/?$ /privacy-policy/ [R=301,L]
+  RewriteRule ^store/cetaphil/?$ /store/cetaphil-coupon-code/ [R=301,L,NE]
+  RewriteRule ^store/amazon-prime-day-sale-2026/?$ /store/amazon/ [R=301,L,NE]
+  RewriteRule ^cetaphil/?$ /store/cetaphil-coupon-code/ [R=301,L,NE]
+  RewriteRule ^amazon-prime-day-sale-2026/?$ /store/amazon/ [R=301,L,NE]
   RewriteRule ^(flipkart|kapiva-coupon-code|ajio|myntra|zomato|swiggy|blinkit|dominos|redbus|cetaphil-coupon-code|amazon|boat-lifestyle|hostinger|amazon-prime-day-sale-2026|decathlon-coupon-code|derma-co-coupon-code|lenovo|dot-key-coupon-codes|cetaphil)/?$ /store/$1/ [R=301,L,NE]
 </IfModule>
 

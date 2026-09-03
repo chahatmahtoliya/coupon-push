@@ -16,6 +16,7 @@ interface TopTrendingCarouselProps {
     title?: string;
     viewAllLink?: string;
     showPromoBanner?: boolean;
+    showRanks?: boolean;
 }
 
 export function TopTrendingCarousel({
@@ -23,6 +24,7 @@ export function TopTrendingCarousel({
     title = 'Top trending',
     viewAllLink = '/deals',
     showPromoBanner = true,
+    showRanks = true,
 }: TopTrendingCarouselProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -230,7 +232,7 @@ export function TopTrendingCarousel({
                             >
                                 <TrendingProductCard
                                     coupon={coupon}
-                                    rank={index + 1}
+                                    rank={showRanks ? index + 1 : undefined}
                                     onCouponClick={(c) => {
                                         if (c.code && c.code.trim()) {
                                             setSelectedCoupon(c);

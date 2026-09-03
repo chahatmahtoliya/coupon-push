@@ -7,30 +7,21 @@
  * Generate SEO-optimized title for store pages
  */
 export function getStorePageTitle(storeName: string): string {
-    const date = new Date();
-    const month = date.toLocaleString('en-US', { month: 'long' });
-    const year = date.getFullYear();
-    return `${storeName} Coupon Codes & Offers ${month} ${year} | CouponPush`;
+    return `${storeName} Coupon Codes & Offers | CouponPush`;
 }
 
 /**
  * Generate SEO-optimized description for store pages
  */
 export function getStorePageDescription(storeName: string, couponCount: number): string {
-    const date = new Date();
-    const month = date.toLocaleString('en-US', { month: 'long' });
-    const year = date.getFullYear();
-    return `✓ ${couponCount} verified ${storeName} coupon codes & promo codes for ${month} ${year}. Get exclusive discounts, deals & free shipping offers. Updated today!`;
+    return `Browse ${couponCount} active ${storeName} coupon codes, promo codes, and online offers. Check the listed eligibility, terms, and expiry information before checkout.`;
 }
 
 /**
  * Generate SEO-optimized title for category pages
  */
 export function getCategoryPageTitle(categoryName: string): string {
-    const date = new Date();
-    const month = date.toLocaleString('en-US', { month: 'long' });
-    const year = date.getFullYear();
-    return `Best ${categoryName} Coupons ${month} ${year}`;
+    return `Best ${categoryName} Coupons & Offers`;
 }
 
 /**

@@ -49,12 +49,16 @@ try {
         'title' => $coupon['title'],
         'description' => $coupon['description'],
         'code' => $coupon['code'],
+        'coupon_type' => $coupon['coupon_type'] ?? null,
         'discount_type' => $coupon['discount_type'],
         'discount_value' => (float)$coupon['discount_value'],
         'expiry_date' => $coupon['expiry_date'],
         'is_featured' => (bool)$coupon['is_featured'],
         'is_verified' => (bool)$coupon['is_verified'],
-        'click_count' => (int)$coupon['click_count']
+        'click_count' => (int)$coupon['click_count'],
+        'affiliate_link' => $coupon['affiliate_link'] ?? null,
+        'created_at' => $coupon['created_at'] ?? null,
+        'updated_at' => $coupon['updated_at'] ?? null
     ];
 
     jsonResponse($result);

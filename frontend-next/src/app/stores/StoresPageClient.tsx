@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { StoreCard } from '@/components/features';
 import { storesApi } from '@/services/api';
+import { isCanonicalStoreSlug } from '@/lib/routes';
 import type { Store } from '@/types';
+
+function visibleStore(store: Store): boolean {
+    return isCanonicalStoreSlug(store.slug) && (store.coupon_count || 0) > 0;
+}
 
 export default function StoresPageClient({ initialStores }: { initialStores: Store[] }) {
     const [query, setQuery] = useState('');
@@ -12,7 +17,7 @@ export default function StoresPageClient({ initialStores }: { initialStores: Sto
 
     useEffect(() => {
         let active = true;
-        storesApi.getAllFresh().then((fresh) => { if (active) setStores(fresh); }).catch((error) => console.error('Failed to refresh stores:', error));
+        storesApi.getAllFresh().then((fresh) => { if (active) setStores(fresh.filter(visibleStore)); }).catch((error) => console.error('Failed to refresh stores:', error));
         return () => { active = false; };
     }, []);
 

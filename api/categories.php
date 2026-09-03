@@ -34,7 +34,9 @@ try {
             'slug' => $category['slug'],
             'icon' => $category['icon'] ?? null,
             'description' => $category['description'] ?? '',
-            'coupon_count' => (int)$category['coupon_count']
+            'coupon_count' => (int)$category['coupon_count'],
+            'created_at' => $category['created_at'] ?? null,
+            'updated_at' => $category['updated_at'] ?? null
         ];
     }, $categories);
 

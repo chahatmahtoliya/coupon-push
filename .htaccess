@@ -11,8 +11,14 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Redirect legacy singular store index URL to the live stores listing page.
 RewriteRule ^store/?$ /stores/ [L,R=301]
 
-# Redirect legacy store detail URLs to the new top-level store URLs.
-RewriteRule ^store/([^/]+)/?$ /$1/ [L,R=301]
+# Consolidate duplicate store URLs before routing old top-level brand links.
+RewriteRule ^store/cetaphil/?$ /store/cetaphil-coupon-code/ [L,R=301,NE]
+RewriteRule ^store/amazon-prime-day-sale-2026/?$ /store/amazon/ [L,R=301,NE]
+RewriteRule ^cetaphil/?$ /store/cetaphil-coupon-code/ [L,R=301,NE]
+RewriteRule ^amazon-prime-day-sale-2026/?$ /store/amazon/ [L,R=301,NE]
+
+# Redirect legacy top-level store URLs to the canonical /store/ structure.
+RewriteRule ^(flipkart|kapiva-coupon-code|ajio|myntra|zomato|swiggy|blinkit|dominos|redbus|cetaphil-coupon-code|amazon|boat-lifestyle|hostinger|decathlon-coupon-code|derma-co-coupon-code|lenovo|dot-key-coupon-codes)/?$ /store/$1/ [L,R=301,NE]
 
 # ============================================
 # React Router Support (SPA)

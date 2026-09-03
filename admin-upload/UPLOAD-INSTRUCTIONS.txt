@@ -1,0 +1,17 @@
+FULL ADMIN PANEL PACKAGE - UPLOAD INSIDE THE EXISTING API /admin DIRECTORY
+
+1. Open the document root used by api.couponpush.com.
+2. Open its existing admin folder.
+3. Upload or extract the CONTENTS of admin-upload.zip there.
+4. Allow the existing admin PHP files and includes to be overwritten.
+5. Confirm these paths exist:
+   - /admin/index.php
+   - /admin/login.php
+   - /admin/bulk-import.php
+   - /admin/templates/coupon-import-template.csv
+6. Do not create /admin/admin or upload the outer admin-upload folder.
+7. Visit https://api.couponpush.com/admin/bulk-import.php
+
+This package contains the complete admin panel folder, including its shared
+header and footer. It still relies on the existing API installation's root
+/includes, /config, database credentials, assets, and uploads directories.

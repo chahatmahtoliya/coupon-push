@@ -32,6 +32,19 @@
     "notes": "Official Cetaphil India - codes New5 (extra 5% on 50% sitewide), BESTSELLER10 (10% no min), extra5 (5% on 1499+), verified Aug 30 2026 on GrabOn."
   },
   {
+    "slug": "redbus",
+    "name": "redBus",
+    "domain": "redbus.in",
+    "website_url": "https://www.redbus.in",
+    "category": "Travel & Hotels",
+    "affiliate_template": "https://www.redbus.in{path}",
+    "offer_urls": [
+      "https://www.redbus.in/offers"
+    ],
+    "scraper": "redbus_special",
+    "notes": "Official redBus offers - FIRST (250 first user), GRAB500 (500), FREEDOM300, BUS300, bank codes IDFC500/RBLCC500/AXIS500, train SUPERB60 verified Sep 2026."
+  },
+  {
     "slug": "amazon",
     "name": "Amazon",
     "domain": "amazon.in",
