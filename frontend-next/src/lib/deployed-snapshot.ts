@@ -23,8 +23,13 @@ interface DeployedSnapshot {
     coupons: Record<string, Coupon | null>;
 }
 
-const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://api.couponpush.com').replace(/\/$/, '');
+const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
+const STORE_MEDIA_BASE = (process.env.NEXT_PUBLIC_STORE_MEDIA_URL || 'https://api.couponpush.com').replace(/\/$/, '');
 const IMAGE_FIELDS = new Set(['logo', 'store_logo', 'image', 'banner_image', 'mobile_banner_image']);
+
+function uploadBase(pathname: string): string {
+    return /^\/uploads\/stores(?:\/|$)/i.test(pathname) ? STORE_MEDIA_BASE : MEDIA_BASE;
+}
 
 function normalizeSnapshotAsset(value: string): string {
     if (!value || value.startsWith('data:')) return value;
@@ -36,7 +41,7 @@ function normalizeSnapshotAsset(value: string): string {
             const url = new URL(value);
             if ((url.hostname === 'couponpush.com' || url.hostname === 'www.couponpush.com')
                 && url.pathname.startsWith('/uploads/')) {
-                return `${MEDIA_BASE}${url.pathname}${url.search}`;
+                return `${uploadBase(url.pathname)}${url.pathname}${url.search}`;
             }
         } catch {
             return value;
@@ -44,8 +49,8 @@ function normalizeSnapshotAsset(value: string): string {
         return value;
     }
 
-    if (value.startsWith('/uploads/')) return `${MEDIA_BASE}${value}`;
-    if (value.startsWith('uploads/')) return `${MEDIA_BASE}/${value}`;
+    if (value.startsWith('/uploads/')) return `${uploadBase(value)}${value}`;
+    if (value.startsWith('uploads/')) return `${uploadBase(`/${value}`)}/${value}`;
     return value;
 }
 
