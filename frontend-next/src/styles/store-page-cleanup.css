@@ -200,6 +200,26 @@
 }
 
 @media (max-width: 760px) {
+    .store-ui-coupon-section {
+        order: 1;
+    }
+
+    .store-ui-faq-card {
+        order: 2;
+    }
+
+    .store-ui-content-stack {
+        order: 3;
+    }
+
+    .store-ui-related {
+        order: 4;
+    }
+
+    .store-ui-sidebar {
+        order: 5;
+    }
+
     .store-ui-header-row {
         margin-bottom: 18px;
     }
@@ -219,10 +239,6 @@
 
     .store-ui-header-row .store-ui-hero-mobile-logo > span {
         font-size: 22px;
-    }
-
-    .store-ui-related {
-        order: 8;
     }
 
     .store-ui-related-grid {

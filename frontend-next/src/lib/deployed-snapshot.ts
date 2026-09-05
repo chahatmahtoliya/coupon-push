@@ -23,11 +23,12 @@ interface DeployedSnapshot {
     coupons: Record<string, Coupon | null>;
 }
 
-const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
+const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://api.couponpush.com').replace(/\/$/, '');
 const IMAGE_FIELDS = new Set(['logo', 'store_logo', 'image', 'banner_image', 'mobile_banner_image']);
 
 function normalizeSnapshotAsset(value: string): string {
     if (!value || value.startsWith('data:')) return value;
+    if (/\/uploads\/stores\/placeholder\.png(?:[?#].*)?$/i.test(value)) return '/placeholder-store.png';
     if (value.startsWith('//')) return `https:${value}`;
 
     if (/^https?:\/\//i.test(value)) {

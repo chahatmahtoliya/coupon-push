@@ -64,10 +64,14 @@ function jsonError($message, $code = 400)
  */
 function getStoreLogoUrl($logo)
 {
-    if (empty($logo)) {
-        return '/uploads/stores/placeholder.png';
+    $logo = trim((string) $logo);
+    if ($logo === '' || strtolower(basename($logo)) === 'placeholder.png') {
+        return 'https://couponpush.com/placeholder-store.png';
     }
-    return '/uploads/stores/' . $logo;
+    if (preg_match('#^https?://#i', $logo)) return $logo;
+    if (strpos($logo, '/uploads/') === 0) return 'https://api.couponpush.com' . $logo;
+    if (strpos($logo, 'uploads/') === 0) return 'https://api.couponpush.com/' . $logo;
+    return 'https://api.couponpush.com/uploads/stores/' . rawurlencode(basename($logo));
 }
 
 /**

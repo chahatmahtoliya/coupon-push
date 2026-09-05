@@ -31,6 +31,11 @@ export function StoreCard({ store }: StoreCardProps) {
                     decoding="async"
                     width="96"
                     height="96"
+                    onError={(event) => {
+                        if (!event.currentTarget.src.endsWith('/placeholder-store.png')) {
+                            event.currentTarget.src = '/placeholder-store.png';
+                        }
+                    }}
                 />
             </div>
             <h4 className="store-card-name">{store.name}</h4>

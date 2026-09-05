@@ -20,7 +20,7 @@ export interface TrendingProductCardProps {
     onCouponClick?: (coupon: Coupon) => void;
 }
 
-const mediaBase = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
+const mediaBase = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://api.couponpush.com').replace(/\/$/, '');
 
 function normalizeImageUrl(value?: string | null): string | null {
     if (!value) return null;

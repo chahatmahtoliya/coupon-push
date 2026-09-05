@@ -31,7 +31,7 @@ const storeSections: Array<{ key: StoreKey; slug: string; fallbackName: string; 
     { key: 'ajio', slug: 'ajio', fallbackName: 'AJIO', title: "Today's Top AJIO Deals" },
 ];
 
-const mediaBase = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
+const mediaBase = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://api.couponpush.com').replace(/\/$/, '');
 
 function imageUrl(value?: string | null): string | null {
     if (!value) return null;

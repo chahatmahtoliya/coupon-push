@@ -12,6 +12,12 @@ requireLogin();
 
 $currentUser = getCurrentUser();
 $currentPage = basename($_SERVER['PHP_SELF'], '.php');
+$adminRoot = dirname(__DIR__);
+$heroSliderFiles = array_merge(
+    glob($adminRoot . '/hero*.php') ?: [],
+    glob($adminRoot . '/*slider*.php') ?: []
+);
+$heroSliderPage = $heroSliderFiles ? basename($heroSliderFiles[0]) : null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -302,6 +308,15 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                             <span>Deals</span>
                         </a>
                     </li>
+
+                    <?php if ($heroSliderPage): ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $currentPage === pathinfo($heroSliderPage, PATHINFO_FILENAME) ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/<?php echo rawurlencode($heroSliderPage); ?>">
+                            <i class="fas fa-images"></i>
+                            <span>Hero Slider</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
 
                     <li class="nav-item">
                         <a class="nav-link <?php echo $currentPage === 'seasonal-offers' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/seasonal-offers.php">
