@@ -11,7 +11,7 @@
 require_once __DIR__ . '/config.php';
 
 $featured = isset($_GET['featured']) ? (bool)$_GET['featured'] : false;
-$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 20;
+$limit = isset($_GET['limit']) ? max(1, min((int)$_GET['limit'], 200)) : 20;
 
 try {
     // Check if deals table exists
@@ -37,8 +37,7 @@ try {
         $sql .= " AND d.is_featured = 1";
     }
 
-    $sql .= " ORDER BY d.is_featured DESC, d.created_at DESC LIMIT ?";
-    $params[] = $limit;
+    $sql .= " ORDER BY d.is_featured DESC, d.created_at DESC LIMIT {$limit}";
 
     $deals = db()->fetchAll($sql, $params);
 
@@ -58,7 +57,8 @@ try {
     }, $deals);
 
     jsonResponse($deals);
-} catch (Exception $e) {
+} catch (Throwable $e) {
+    error_log('Deals API failed: ' . $e->getMessage());
     // Return empty array on error to prevent breaking the frontend
     jsonResponse([]);
 }

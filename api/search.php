@@ -87,6 +87,7 @@ try {
         'stores' => $storesData,
         'coupons' => $couponsData
     ]);
-} catch (Exception $e) {
+} catch (Throwable $e) {
+    error_log('Search API failed: ' . $e->getMessage());
     jsonError('Search failed: ' . $e->getMessage(), 500);
 }

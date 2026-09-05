@@ -62,6 +62,7 @@ try {
     ];
 
     jsonResponse($result);
-} catch (Exception $e) {
+} catch (Throwable $e) {
+    error_log('Coupon API failed: ' . $e->getMessage());
     jsonError('Failed to fetch coupon: ' . $e->getMessage(), 500);
 }

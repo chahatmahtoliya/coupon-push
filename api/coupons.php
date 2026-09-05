@@ -17,7 +17,7 @@ $featured = isset($_GET['featured']) ? (bool)$_GET['featured'] : false;
 $latest = isset($_GET['latest']) ? (bool)$_GET['latest'] : false;
 $storeId = isset($_GET['store_id']) ? (int)$_GET['store_id'] : null;
 $category = isset($_GET['category']) ? sanitize($_GET['category']) : null;
-$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 50;
+$limit = isset($_GET['limit']) ? max(1, min((int)$_GET['limit'], 500)) : 50;
 
 try {
     $sql = "
@@ -59,8 +59,7 @@ try {
         $sql .= " ORDER BY cp.is_featured DESC, cp.click_count DESC";
     }
 
-    $sql .= " LIMIT ?";
-    $params[] = $limit;
+    $sql .= " LIMIT {$limit}";
 
     $coupons = db()->fetchAll($sql, $params);
 
@@ -93,6 +92,7 @@ try {
     }, $coupons);
 
     jsonResponse($coupons);
-} catch (Exception $e) {
+} catch (Throwable $e) {
+    error_log('Coupons API failed: ' . $e->getMessage());
     jsonError('Failed to fetch coupons: ' . $e->getMessage(), 500);
 }

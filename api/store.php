@@ -126,6 +126,7 @@ try {
         'coupons' => $couponsData,
         'related_stores' => $relatedData
     ]);
-} catch (Exception $e) {
+} catch (Throwable $e) {
+    error_log('Store API failed: ' . $e->getMessage());
     jsonError('Failed to fetch store: ' . $e->getMessage(), 500);
 }

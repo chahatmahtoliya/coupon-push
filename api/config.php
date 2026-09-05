@@ -32,7 +32,16 @@ function jsonResponse($data, $success = true, $message = null)
     if ($message) {
         $response['message'] = $message;
     }
-    echo json_encode($response, JSON_UNESCAPED_UNICODE);
+    // Bulk CSV files can contain invalid legacy-encoded bytes. A single bad value
+    // must not turn the entire public catalog response into an empty HTTP 500.
+    $json = json_encode($response, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
+    if ($json === false) {
+        error_log('API JSON encoding failed: ' . json_last_error_msg());
+        http_response_code(500);
+        echo '{"success":false,"message":"Unable to encode API response","data":null}';
+        exit();
+    }
+    echo $json;
     exit();
 }
 
@@ -46,7 +55,7 @@ function jsonError($message, $code = 400)
         'success' => false,
         'message' => $message,
         'data' => null
-    ], JSON_UNESCAPED_UNICODE);
+    ], JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
     exit();
 }
 
