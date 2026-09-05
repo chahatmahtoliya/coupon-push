@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { SeasonalOffer, Coupon } from '@/types';
 import { seasonalOffersApi } from '@/services/api';
+import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { CouponModal } from '@/components/common/CouponModal';
 import { getStorePath } from '@/lib/routes';
 
 export default function OffersPage() {
-    const [offers, setOffers] = useState<SeasonalOffer[]>([]);
+    const [offers, setOffers] = useState<SeasonalOffer[]>(deployedSnapshot.homepage?.initialSeasonalOffers || []);
     const [loading, setLoading] = useState(false);
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | null>(null);
     const [showModal, setShowModal] = useState(false);

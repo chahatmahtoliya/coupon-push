@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/prepare-catalog.mjs --refresh && next build && python scripts/check-seo.py",
+    "build:snapshot": "node scripts/prepare-catalog.mjs && next build && python scripts/check-seo.py",
+    "seo:check": "python scripts/check-seo.py",
+    "catalog:refresh": "node scripts/prepare-catalog.mjs --refresh",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

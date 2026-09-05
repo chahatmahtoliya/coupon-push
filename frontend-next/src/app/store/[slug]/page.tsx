@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { storesApi } from '@/services/api';
+import { notFound } from 'next/navigation';
+import { isCodeCoupon } from '@/utils/coupon';
 import StorePageClient from './StorePageClient';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { getLatestContentUpdate } from '@/lib/content-dates';
@@ -29,25 +30,10 @@ function storeDescription(storeName: string, offerCount: number, codeCount: numb
     return `Browse ${offerCount} active ${storeName} offers, including ${codeCount} coupon ${codeCount === 1 ? 'code' : 'codes'} and ${dealCount} online ${dealCount === 1 ? 'deal' : 'deals'}. Check current terms and expiry dates.`;
 }
 
-const fallbackStoreSlugs = [
-    'flipkart', 'kapiva-coupon-code', 'ajio', 'myntra', 'zomato', 'swiggy', 'blinkit',
-    'dominos', 'redbus', 'cetaphil-coupon-code', 'amazon', 'boat-lifestyle', 'hostinger',
-    'decathlon-coupon-code', 'derma-co-coupon-code',
-    'lenovo', 'dot-key-coupon-codes', 'cetaphil',
-];
-
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    try {
-        const stores = await storesApi.getAll();
-        return stores.filter((store) => isCanonicalStoreSlug(store.slug)).map((store) => ({
-            slug: store.slug,
-        }));
-    } catch (error) {
-        console.error('Failed to fetch stores for static params:', error);
-        return fallbackStoreSlugs.filter(isCanonicalStoreSlug).map((slug) => ({ slug }));
-    }
+    return Object.keys(deployedSnapshot.stores).filter(isCanonicalStoreSlug).map(slug => ({ slug }));
 }
 
 export async function generateMetadata(
@@ -58,27 +44,12 @@ export async function generateMetadata(
     const canonical = `https://couponpush.com/store/${canonicalSlug}/`;
     let data = deployedSnapshot.stores[slug] || null;
 
-    if (!data) {
-        try {
-            data = await storesApi.getBySlug(slug);
-        } catch {
-            // Use the last deployed snapshot when the API is unavailable during export.
-        }
-    }
-
-    if (!data?.store) {
-        return {
-            title: 'Store Coupons',
-            description: 'Find verified store coupon codes and promo offers on CouponPush.',
-            alternates: { canonical },
-            robots: { index: false, follow: true },
-        };
-    }
+    if (!data?.store) notFound();
 
     const storeName = cleanStoreName(data.store.name);
     const coupons = getActiveCoupons(data.coupons);
     const offerCount = coupons.length;
-    const codeCount = coupons.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length;
+    const codeCount = coupons.filter(isCodeCoupon).length;
     const dealCount = Math.max(offerCount - codeCount, 0);
     const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(data.store.meta_description) ? data.store.meta_description!.trim() : '';
@@ -111,22 +82,14 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     const { slug } = await params;
     let initialData = deployedSnapshot.stores[slug] || null;
 
-    if (!initialData) {
-        try {
-            initialData = await storesApi.getBySlug(slug);
-        } catch (error) {
-            console.error(`Failed to fetch ${slug} store page:`, error);
-        }
-    }
-
-    if (!initialData?.store) return <StorePageClient initialData={initialData} slug={slug} />;
+    if (!initialData?.store) notFound();
 
     const canonicalSlug = getCanonicalStoreSlug(slug);
     const canonical = `https://couponpush.com/store/${canonicalSlug}/`;
     const storeName = cleanStoreName(initialData.store.name);
     const coupons = getActiveCoupons(initialData.coupons);
     const offerCount = coupons.length;
-    const codeCount = coupons.filter((coupon) => Boolean(coupon.code) || coupon.coupon_type === 'code' || coupon.coupon_type === 'coupon').length;
+    const codeCount = coupons.filter(isCodeCoupon).length;
     const dealCount = Math.max(offerCount - codeCount, 0);
     const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';

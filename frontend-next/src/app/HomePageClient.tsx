@@ -106,7 +106,7 @@ function CouponHeroCard({ coupon, large = false }: { coupon: Coupon; large?: boo
     return (
         <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`${large ? 'cp-hero-main' : 'cp-promo-tile'} cp-live-hero-card`} aria-label={`${coupon.store_name}: ${coupon.title} (${discountLabel(coupon)})`} onClick={() => void trackClick('coupon', coupon.id)}>
             <div className="cp-live-hero-copy">
-                <span>{coupon.is_featured ? 'Featured Deal' : 'Verified Deal'}</span>
+                <span>{coupon.is_featured ? 'Featured Deal' : coupon.is_verified ? 'Verified Deal' : 'Listed Deal'}</span>
                 <h2>{large ? discountLabel(coupon) : coupon.store_name}</h2>
                 <h3>{coupon.title}</h3>
                 <p>{coupon.description || `Latest offer from ${coupon.store_name}`}</p>

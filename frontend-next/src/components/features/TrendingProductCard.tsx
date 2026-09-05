@@ -134,7 +134,7 @@ export function TrendingProductCard({
         if (coupon.click_count && coupon.click_count > 0) {
             return { text: `${coupon.click_count > 999 ? (coupon.click_count / 1000).toFixed(1) + 'k' : coupon.click_count} shoppers used`, icon: 'star' };
         }
-        return { text: `Verified on ${coupon.store_name || 'Store'}`, icon: 'check' };
+        return { text: `Listed on ${coupon.store_name || 'Store'}`, icon: 'tag' };
     }, [coupon, rank]);
 
     const handleCardClick = (e: React.MouseEvent) => {

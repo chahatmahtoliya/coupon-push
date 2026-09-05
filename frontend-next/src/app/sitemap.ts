@@ -1,14 +1,11 @@
 import type { MetadataRoute } from 'next';
 import type { Coupon } from '@/types';
-import { categoriesApi, couponsApi, storesApi } from '@/services/api';
 import { getStorePath } from '@/lib/routes';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { getLatestContentUpdate } from '@/lib/content-dates';
 import {
     hasIndexableCategoryContent,
     hasIndexableStoreContent,
-    isCategoryInventoryIndexable,
-    MIN_INDEXABLE_CATEGORY_COUPONS,
 } from '@/lib/indexability';
 
 const baseUrl = 'https://couponpush.com';
@@ -23,47 +20,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: path === '' ? 1 : 0.7,
     }));
 
-    let stores = deployedSnapshot.storesPage?.initialStores || [];
-    let categories = deployedSnapshot.categoriesPage?.initialCategories || [];
-
-    try {
-        stores = await storesApi.getAll();
-    } catch {
-        // Keep the last deployed store inventory when the API is unavailable.
-    }
-
-    try {
-        categories = await categoriesApi.getAll();
-    } catch {
-        // Keep the last deployed category inventory when the API is unavailable.
-    }
-
-    const indexableStores = (await Promise.all(stores.map(async (store) => {
-        let data = deployedSnapshot.stores[store.slug];
-        if (data && hasIndexableStoreContent(data)) return { store, data };
-
-        try {
-            data = await storesApi.getBySlug(store.slug);
-            return hasIndexableStoreContent(data) ? { store, data } : null;
-        } catch {
-            return null;
-        }
-    }))).filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
-
-    const indexableCategories = (await Promise.all(categories
-        .filter(isCategoryInventoryIndexable)
-        .map(async (category) => {
-            let data = deployedSnapshot.categories[category.slug] as { coupons?: Coupon[] } | undefined;
-            if (data && hasIndexableCategoryContent(data)) return { category, data };
-
-            try {
-                const coupons = await couponsApi.getByCategory(category.slug);
-                data = { coupons };
-                return coupons.length >= MIN_INDEXABLE_CATEGORY_COUPONS ? { category, data } : null;
-            } catch {
-                return null;
-            }
-        }))).filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
+    const indexableStores = Object.values(deployedSnapshot.stores)
+        .filter(hasIndexableStoreContent).map(data => ({ store: data.store, data }));
+    const indexableCategories = (deployedSnapshot.categoriesPage?.initialCategories || [])
+        .map(category => ({ category, data: deployedSnapshot.categories[category.slug] as { coupons?: Coupon[] } }))
+        .filter(({ data }) => hasIndexableCategoryContent(data));
 
     entries.push(
         ...indexableStores.map(({ store, data }) => ({
@@ -80,5 +41,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         })),
     );
 
-    return entries;
+    return entries.filter((entry, index) => entries.findIndex((candidate) => candidate.url === entry.url) === index);
 }

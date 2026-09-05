@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-09-05T08:26:27.083574+00:00",
+  "scope": "Ordinary audit HTTP client, not verified Googlebot",
+  "results": [
+    {
+      "url": "http://couponpush.com/",
+      "status": 200,
+      "final_url": "http://couponpush.com/",
+      "server": "cloudflare"
+    },
+    {
+      "url": "https://www.couponpush.com/",
+      "error": "<urlopen error [Errno 11001] getaddrinfo failed>"
+    },
+    {
+      "url": "https://couponpush.com/",
+      "status": 200,
+      "final_url": "https://couponpush.com/",
+      "server": "cloudflare"
+    },
+    {
+      "url": "https://couponpush.com/robots.txt",
+      "status": 200,
+      "final_url": "https://couponpush.com/robots.txt",
+      "server": "cloudflare",
+      "sitemap_declared": true
+    },
+    {
+      "url": "https://couponpush.com/sitemap.xml",
+      "status": 200,
+      "final_url": "https://couponpush.com/sitemap.xml",
+      "server": "cloudflare"
+    },
+    {
+      "url": "https://couponpush.com/store/cetaphil/",
+      "status": 404,
+      "final_url": "https://couponpush.com/store/cetaphil/",
+      "server": "cloudflare"
+    },
+    {
+      "url": "https://couponpush.com/store/cetaphil-coupon-code/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/cetaphil-coupon-code/",
+      "server": "cloudflare"
+    },
+    {
+      "url": "https://couponpush.com/store/seo-audit-nonexistent-store/",
+      "status": 404,
+      "final_url": "https://couponpush.com/store/seo-audit-nonexistent-store/",
+      "server": "cloudflare"
+    }
+  ]
+}

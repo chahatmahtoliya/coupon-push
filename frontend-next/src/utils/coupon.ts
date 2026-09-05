@@ -5,8 +5,7 @@ export function hasCouponCode(coupon: Coupon): boolean {
 }
 
 export function isCodeCoupon(coupon: Coupon): boolean {
-    const type = String(coupon.coupon_type || '').toLowerCase();
-    return type ? type === 'code' || type === 'coupon' : hasCouponCode(coupon);
+    return hasCouponCode(coupon);
 }
 
 export function getCouponCtaLabel(coupon: Coupon): string {

@@ -53,8 +53,8 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
 
     const handleVisitStore = () => {
         if (!coupon) return;
-        const targetUrl = coupon.store_website_url || getStorePath(coupon.store_slug);
-        window.open(targetUrl, '_blank');
+        const targetUrl = coupon.affiliate_link || coupon.store_website_url || getStorePath(coupon.store_slug);
+        window.open(targetUrl, '_blank', 'noopener,noreferrer');
     };
 
     if (!isOpen || !coupon || !mounted) return null;
@@ -89,7 +89,7 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
 
                 {/* Body Content */}
                 <div className="modal-body-new">
-                    <span className="modal-exclusive-badge">EXCLUSIVE DEAL</span>
+                    <span className="modal-exclusive-badge">{coupon.code ? 'COUPON CODE' : 'LISTED OFFER'}</span>
                     <h2 className="modal-title-new">{coupon.title}</h2>
                     <p className="modal-description-new">
                         {coupon.description || 'Use this code at checkout to save on your purchase. Valid on all categories.'}

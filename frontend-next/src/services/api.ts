@@ -11,6 +11,8 @@ import type {
     StorePageData,
 } from '@/types';
 
+import { readCatalogSnapshot } from '@/lib/snapshot-api';
+
 const SERVER_API_BASE = process.env.API_URL || 'https://api.couponpush.com/api';
 const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
 const IMAGE_FIELDS = new Set(['logo', 'store_logo', 'image', 'banner_image', 'mobile_banner_image']);
@@ -100,6 +102,8 @@ function normalizeAssetsInData(value: unknown): unknown {
 }
 
 async function fetchApi<T>(endpoint: string, fresh = false): Promise<T> {
+    const catalog = readCatalogSnapshot(endpoint);
+    if (catalog !== undefined) return catalog as T;
     const separator = endpoint.includes('?') ? '&' : '?';
     const cacheBuster = fresh ? `${separator}_=${Date.now()}` : '';
     const response = await fetch(`${getApiBase()}${endpoint}${cacheBuster}`, fresh

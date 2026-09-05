@@ -135,7 +135,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     if (!store) return <section className="store-ui-page store-ui-empty"><div className="store-ui-shell"><div className="store-ui-empty-panel"><i className="fa-solid fa-store-slash" aria-hidden="true" /><h1>Store not found</h1><p>We could not load this store page right now.</p><Link href="/stores" className="store-ui-primary-button">Browse Stores</Link></div></div></section>;
 
     const codeCount = coupons.filter(isCodeCoupon).length;
-    const offerCount = coupons.length || store.coupon_count || 0;
+    const offerCount = coupons.length;
     const dealCount = Math.max(offerCount - codeCount, 0);
     const verifiedCount = coupons.filter((coupon) => coupon.is_verified).length;
     const pseo = getStorePseoContent({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount });
@@ -183,7 +183,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
                 <div className="store-ui-hero-content">
                     <div className="store-ui-hero-mobile-logo" aria-hidden="true"><StoreLogo store={store} displayName={displayName} /></div>
                     <div className="store-ui-hero-copy">
-                        <h1>{pseo?.h1 || `${displayName} Coupon Codes & Offers`}</h1>
+                        <h1>{pseo?.h1 || `${displayName} ${codeCount ? 'Coupon Codes & Offers' : 'Offers & Deals'}`}</h1>
                         <p className="store-ui-verified-line">Current {displayName} coupons and deals</p>
                         <div className="store-ui-hero-stats" aria-label="Offer summary"><div><span><i className="fa-solid fa-tags" aria-hidden="true" /></span><strong>{offerCount}</strong><small>Active offers</small></div><div><span><i className="fa-solid fa-ticket" aria-hidden="true" /></span><strong>{codeCount}</strong><small>Coupon codes</small></div><div><span><i className="fa-solid fa-bolt" aria-hidden="true" /></span><strong>{dealCount}</strong><small>Online deals</small></div></div>
                         {(pseo?.heroDescription || description) && <p className="store-ui-hero-description">{pseo?.heroDescription || description}</p>}
