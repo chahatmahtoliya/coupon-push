@@ -9,6 +9,7 @@ https://couponpush.com/privacy-policy/,indexable,indexable,Privacy Policy | Coup
 https://couponpush.com/search/,noindex,intentional coupon detail/search exclusion,Search Coupons and Stores | CouponPush
 https://couponpush.com/stores/,indexable,indexable,All Coupon Stores | CouponPush
 https://couponpush.com/terms/,indexable,indexable,Terms of Service | CouponPush
+https://couponpush.com/stores/view/,noindex,insufficient active inventory or merchant copy/URL; editorial review required,Store Offers | CouponPush
 https://couponpush.com/store/ajio/,indexable,indexable,Ajio Coupon Codes & Offers | CouponPush
 https://couponpush.com/store/amazon/,indexable,indexable,Amazon Coupon Codes & Offers | CouponPush
 https://couponpush.com/store/blinkit/,noindex,empty inventory; add supported offers before indexing,Blinkit Coupon Codes & Offers | CouponPush

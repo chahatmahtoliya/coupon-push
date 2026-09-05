@@ -217,15 +217,22 @@ export default function HomePageClient(props: HomePageClientProps) {
     useEffect(() => {
         let active = true;
         seasonalOffersApi.getActiveFresh().then((data) => active && setSeasonalOffers(data)).catch((error) => console.error('Failed to refresh seasonal offers:', error));
-        Promise.all([
+        Promise.allSettled([
             couponsApi.getFeaturedFresh(16), couponsApi.getLatestFresh(16), storesApi.getAllFresh(), dealsApi.getFeaturedFresh(4),
             storesApi.getBySlugFresh('amazon'), storesApi.getBySlugFresh('flipkart'), storesApi.getBySlugFresh('ajio'), heroSlidesApi.getActiveFresh(),
         ]).then(([featured, latest, allStores, featuredDeals, amazon, flipkart, ajio, slides]) => {
             if (!active) return;
-            setFeaturedCoupons(featured); setLatestCoupons(latest); setStores(allStores); setDeals(featuredDeals);
-            setStoreCoupons({ amazon: amazon.coupons, flipkart: flipkart.coupons, ajio: ajio.coupons });
-            setHeroSlides(slides);
-        }).catch((error) => console.error('Failed to refresh homepage backend data:', error));
+            if (featured.status === 'fulfilled') setFeaturedCoupons(featured.value);
+            if (latest.status === 'fulfilled') setLatestCoupons(latest.value);
+            if (allStores.status === 'fulfilled') setStores(allStores.value);
+            if (featuredDeals.status === 'fulfilled') setDeals(featuredDeals.value);
+            setStoreCoupons(current => ({
+                amazon: amazon.status === 'fulfilled' ? amazon.value.coupons : current.amazon,
+                flipkart: flipkart.status === 'fulfilled' ? flipkart.value.coupons : current.flipkart,
+                ajio: ajio.status === 'fulfilled' ? ajio.value.coupons : current.ajio,
+            }));
+            if (slides.status === 'fulfilled') setHeroSlides(slides.value);
+        });
         return () => { active = false; };
     }, []);
 

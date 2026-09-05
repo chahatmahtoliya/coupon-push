@@ -102,12 +102,14 @@ function normalizeAssetsInData(value: unknown): unknown {
 }
 
 async function fetchApi<T>(endpoint: string, fresh = false): Promise<T> {
-    const catalog = readCatalogSnapshot(endpoint);
-    if (catalog !== undefined) return catalog as T;
+    if (typeof window === 'undefined') {
+        const catalog = readCatalogSnapshot(endpoint);
+        if (catalog !== undefined) return catalog as T;
+    }
     const separator = endpoint.includes('?') ? '&' : '?';
     const cacheBuster = fresh ? `${separator}_=${Date.now()}` : '';
-    const response = await fetch(`${getApiBase()}${endpoint}${cacheBuster}`, fresh
-        ? { cache: 'no-store', headers: { Accept: 'application/json' } }
+    const response = await fetch(`${getApiBase()}${endpoint}${cacheBuster}`, fresh || typeof window !== 'undefined'
+        ? { cache: 'no-store', signal: AbortSignal.timeout(15000), headers: { Accept: 'application/json' } }
         : { next: { revalidate: 3600 }, headers: { Accept: 'application/json' } });
 
     if (!response.ok) {
