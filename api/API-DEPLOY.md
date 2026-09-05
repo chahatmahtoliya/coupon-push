@@ -2,7 +2,11 @@
 
 The frontend and the API use different document roots. A frontend Git deployment does not necessarily update `api.couponpush.com`.
 
-Upload these files to the existing public API directory (the directory currently containing `stores.php`), preserving their names:
+Upload and extract the repository root's `api-public-hotfix.zip` in the existing
+public API directory (the directory currently containing `stores.php`). The ZIP
+contains only the public API files listed below and no database credentials.
+
+If uploading files individually, preserve these names:
 
 - `config.php`
 - `stores.php`
