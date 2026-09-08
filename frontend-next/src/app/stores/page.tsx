@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { Store } from '@/types';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
-import { hasIndexableStoreContent } from '@/lib/indexability';
+import { isCanonicalStoreSlug } from '@/lib/routes';
 import StoresPageClient from './StoresPageClient';
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default async function StoresPage() {
     const initialStores: Store[] = (deployedSnapshot.storesPage?.initialStores || [])
-        .filter((store) => hasIndexableStoreContent(deployedSnapshot.stores[store.slug]));
+        .filter((store) => isCanonicalStoreSlug(store.slug));
 
     return <StoresPageClient initialStores={initialStores} />;
 }

@@ -1,5 +1,7 @@
 'use client';
 
+import { CouponDescription } from '@/components/common/CouponDescription';
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import type { SeasonalOffer, Coupon } from '@/types';
@@ -131,7 +133,7 @@ export default function OffersPage() {
                                                         <h3 className="coupon-title-new">{coupon.title}</h3>
                                                     </div>
                                                 </div>
-                                                {coupon.description && <p className="coupon-description-new">{coupon.description}</p>}
+                                                {coupon.description && <CouponDescription className="coupon-description-new">{coupon.description}</CouponDescription>}
                                                 <div className="coupon-meta-new">
                                                     {coupon.is_verified && <span className="coupon-meta-item verified"><i className="fas fa-check-circle"></i> Verified</span>}
                                                     <span className="coupon-meta-item"><i className="fas fa-users"></i> {coupon.click_count} uses</span>

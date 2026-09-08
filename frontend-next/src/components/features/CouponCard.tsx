@@ -1,5 +1,7 @@
 'use client';
 
+import { CouponDescription } from '@/components/common/CouponDescription';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import type { Coupon } from '@/types';
@@ -109,7 +111,7 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
                                     {coupon.original_price && coupon.sale_price && <span className="coupon-savings-badge">Save ₹{(coupon.original_price - coupon.sale_price).toLocaleString('en-IN')}</span>}
                                 </div>
                             )}
-                            {coupon.description && <p className="coupon-card-v2-description">{coupon.description.length > 80 ? coupon.description.substring(0, 80) + '...' : coupon.description}</p>}
+                            {coupon.description && <CouponDescription className="coupon-card-v2-description">{coupon.description}</CouponDescription>}
                         </div>
 
                         <div className="coupon-card-v2-footer">
@@ -185,7 +187,7 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
                             </div>
                         )}
                         {coupon.description && (
-                            <p className="coupon-description">{coupon.description}</p>
+                            <CouponDescription className="coupon-description">{coupon.description}</CouponDescription>
                         )}
                         <div className="coupon-meta">
                             {coupon.expiry_date && (

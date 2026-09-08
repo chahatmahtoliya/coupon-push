@@ -1,0 +1,33 @@
+.text {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3 !important;
+    overflow: hidden !important;
+    line-height: 1.5 !important;
+    max-height: none !important;
+}
+
+.text[data-expanded='true'] {
+    display: block !important;
+    -webkit-line-clamp: unset !important;
+    overflow: visible !important;
+}
+
+.toggle {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: #1d4ed8;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.toggle:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+}
