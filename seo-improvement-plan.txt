@@ -1,0 +1,254 @@
+COUPONPUSH SEO IMPROVEMENT PLAN
+Created: September 5, 2026
+
+CURRENT SITUATION
+
+Semrush currently detects only two ranking keywords in India:
+
+- "cetaphil coupon code" — position 70, search volume 880
+- "cetaphil discount code" — position 75, search volume 320
+
+These rankings are too low to generate meaningful organic traffic. This does not
+mean that Google has indexed only two pages; it means CouponPush has almost no
+measurable keyword visibility in Semrush's database.
+
+The code and deployed site show several issues that can suppress visibility:
+
+1. The export contains 63 HTML pages, but only 19 are indexable.
+2. Valuable pages can become noindex when build-time API requests fail.
+3. The sitemap includes only 19 URLs and omits useful pages such as Electronics.
+4. HTTP pages return 200 instead of permanently redirecting to HTTPS.
+5. The Cetaphil page targets coupon-code searches but currently lists no real
+   coupon codes; most entries are no-code product deals.
+6. Indian and US Cetaphil offers are mixed on one India-focused page.
+7. Cetaphil content contains broken placeholder text: "$21" and "$22".
+8. Verification dates, verification methods, and exact offer conditions are not
+   sufficiently visible.
+9. The homepage is heavy: about 80 images, few explicit image dimensions, and
+   roughly 1 MB of referenced local CSS and JavaScript before compression.
+
+
+PRIMARY OBJECTIVE
+
+Build a technically reliable, India-focused coupon website that Google can crawl,
+understand, trust, and rank. Fix indexation before expanding the number of pages.
+
+
+PHASE 1 — TECHNICAL SEO AND INDEXATION (DAYS 1–7)
+
+1. Create one reliable build-time data snapshot.
+   - Fetch stores, categories, coupons, and metadata before running next build.
+   - Use the same snapshot for page HTML, metadata, internal links, and sitemap.
+   - Do not silently change a useful page to noindex because an API request fails.
+   - Fail the build when required SEO data is unavailable or inconsistent.
+
+2. Add automated SEO checks to the build.
+   - Every indexable page must appear in sitemap.xml.
+   - Every sitemap URL must return 200.
+   - Every sitemap URL must have index,follow and a self-referencing canonical.
+   - No noindex URL should appear in the sitemap.
+   - Important pages must not use generic fallback titles such as "Store Coupons."
+   - Titles, descriptions, canonicals, and H1 elements must be present.
+
+3. Repair sitemap generation.
+   - Generate the sitemap from the finalized snapshot, not unreliable live API
+     requests during page export.
+   - Add every completed, indexable store and category page.
+   - Remove the older duplicate static sitemap source so there is one source of
+     truth.
+
+4. Normalize URL variants.
+   - Permanently redirect HTTP to HTTPS.
+   - Redirect known legacy store slugs to their canonical store URL.
+   - Example: /store/cetaphil/ to /store/cetaphil-coupon-code/.
+   - Use trailing-slash canonical URLs consistently in internal links.
+   - Configure the www hostname to redirect to the non-www domain if it may receive
+     links or traffic.
+
+5. Validate the deployment.
+   - Test robots.txt, sitemap.xml, redirects, canonicals, and response codes.
+   - Submit the corrected sitemap in Google Search Console.
+   - Inspect and request indexing for the homepage, Cetaphil page, store directory,
+     category directory, and priority category pages.
+
+
+PHASE 2 — REBUILD THE CETAPHIL PAGE (DAYS 4–14)
+
+Use Cetaphil as the first high-quality SEO landing page because it is already
+receiving keyword visibility.
+
+1. Make the page region-specific.
+   - Keep the primary page focused on Indian shoppers, INR pricing, Indian stores,
+     and Cetaphil India.
+   - Remove US offers and dollar-denominated promotions.
+   - Create a separate US version only if CouponPush can maintain genuinely useful
+     US content and implement localization correctly.
+
+2. Match the actual search intent.
+   - Separate real coupon codes from automatically applied deals.
+   - If no working codes are available, do not claim that codes are available.
+   - Use an honest "Cetaphil Offers & Deals" title until verified codes exist.
+   - When a real code exists, place it prominently with exact eligibility and
+     redemption steps.
+
+3. Fix and improve content quality.
+   - Remove the broken "$21" and "$22" content.
+   - Consolidate repetitive product offers instead of publishing many near-duplicate
+     descriptions.
+   - Add useful sections: best current offer, real coupon codes, no-code deals,
+     first-order offers, free shipping, retailer comparison, how to redeem, common
+     failure reasons, and FAQs.
+   - Keep all claims factual and source-backed.
+
+4. Make verification transparent.
+   - Show "Last checked" for every offer.
+   - Record the actual source or retailer.
+   - Display eligibility, minimum order, payment restrictions, region, expiry, and
+     whether a code is required.
+   - Distinguish verified, unverified, and expired states.
+   - Do not give every offer a generic year-end expiry unless that date is confirmed.
+
+5. Improve the Cetaphil metadata.
+   - Include India and the current month/year only when the page is maintained.
+   - Keep the title accurate and readable rather than keyword-stuffed.
+   - Write a description based on the real number of active codes and deals.
+   - Keep one clear H1 aligned with the title and page content.
+
+
+PHASE 3 — SITE ARCHITECTURE AND CONTENT (WEEKS 2–6)
+
+1. Select 8–12 priority merchants.
+   - Use search demand, available offers, conversion potential, and the ability to
+     verify promotions.
+   - Do not index a merchant page unless it has current inventory and meaningful,
+     merchant-specific information.
+
+2. Strengthen store pages.
+   - Add unique store information, offer instructions, restrictions, FAQs, and
+     freshness signals.
+   - Keep thin individual coupon-detail URLs noindex unless they provide substantial
+     standalone value.
+   - Concentrate authority on store landing pages.
+
+3. Strengthen category hubs.
+   - Prioritize Beauty & Health, Electronics, Hosting, Travel, Food, and Fashion when
+     sufficient merchants and offers are available.
+   - Add a short useful introduction, featured merchants, current deal summary, and
+     links to relevant store pages.
+   - Avoid indexing empty or near-empty category pages.
+
+4. Improve internal linking.
+   - Link priority store pages from the homepage and relevant category pages.
+   - Link related merchants to one another using descriptive anchors.
+   - Ensure every indexable page is reachable within three clicks from the homepage.
+   - Stop promoting noindex or empty store pages from the homepage.
+
+5. Publish supporting content carefully.
+   - Create useful pages for first-order coupons, student offers, payment offers,
+     free shipping, and major seasonal sales only when verified data exists.
+   - Avoid mass-producing thin keyword variants.
+
+
+PHASE 4 — TRUST AND AUTHORITY (WEEKS 3–12)
+
+1. Add trust pages and signals.
+   - Publish a coupon verification policy and editorial policy.
+   - Expand the affiliate disclosure.
+   - Add real author or reviewer information.
+   - Explain how often offers are checked and how expired offers are handled.
+   - Replace generic social-network links with real CouponPush profiles or remove
+     them.
+
+2. Earn relevant backlinks.
+   - Publish original discount reports, price comparisons, and seasonal shopping
+     studies that other sites can reference.
+   - Pursue legitimate merchant, affiliate-network, publisher, and community
+     relationships.
+   - Avoid paid bulk links, automated directory submissions, and comment spam.
+
+
+PHASE 5 — PERFORMANCE AND USER EXPERIENCE (WEEKS 2–6)
+
+1. Reduce homepage weight.
+   - Display fewer repeated deal cards in the initial HTML.
+   - Load lower-priority collections after interaction or through pagination.
+   - Keep the most important merchants and offers visible and crawlable.
+
+2. Optimize images.
+   - Add explicit width and height attributes.
+   - Generate responsive image sizes.
+   - Compress images and use modern formats.
+   - Lazy-load only below-the-fold images; prioritize the main visible image.
+
+3. Reduce CSS and JavaScript.
+   - Remove unused Bootstrap, Material UI, and legacy CSS where practical.
+   - Avoid loading multiple overlapping design systems.
+   - Self-host essential fonts or use a system-font fallback.
+   - Replace the full icon library with the small icon subset actually used.
+
+4. Validate Core Web Vitals.
+   - LCP target: under 2.5 seconds.
+   - INP target: under 200 milliseconds.
+   - CLS target: under 0.1.
+   - Test important mobile templates using PageSpeed Insights and Search Console.
+
+
+MEASUREMENT PLAN
+
+Use Google Search Console as the main SEO source of truth and Semrush as a secondary
+competitive visibility tool.
+
+Track weekly:
+
+- Number of submitted and indexed sitemap URLs.
+- Unintended noindex pages.
+- Indexed pages receiving impressions.
+- Total impressions and clicks.
+- Non-branded keyword impressions.
+- Average position for priority store keywords.
+- Organic click-through rate.
+- Outbound merchant clicks and revenue/conversions.
+- Percentage of offers checked within the required freshness window.
+- Mobile Core Web Vitals pass rate.
+
+
+30/60/90-DAY ROADMAP
+
+First 30 days:
+- Repair build-time indexing and sitemap consistency.
+- Configure redirects and canonical URLs.
+- Rebuild the Cetaphil page for Indian search intent.
+- Submit and validate the sitemap in Search Console.
+- Complete five priority merchant pages.
+
+Days 31–60:
+- Complete the remaining priority merchant pages.
+- Improve the most valuable category hubs.
+- Strengthen internal links.
+- Implement verification timestamps and editorial trust pages.
+- Resolve major mobile performance issues.
+
+Days 61–90:
+- Refresh priority offers on a defined schedule.
+- Publish a small number of original, link-worthy resources.
+- Begin merchant and publisher outreach.
+- Review Search Console query/page data and improve pages that are gaining
+  impressions but have weak rankings or click-through rates.
+
+
+DEFINITION OF SUCCESS
+
+- Zero unintended noindex pages.
+- Sitemap URLs exactly match the intended indexable pages.
+- All canonical URL variants resolve through permanent redirects.
+- Priority pages are indexed and receiving impressions.
+- Cetaphil keywords first improve into the top 30, then compete for the top 10.
+- More store and category pages begin receiving non-branded impressions.
+- Organic merchant clicks and conversions grow, not just raw page count.
+
+Rankings cannot be guaranteed. The correct order of work is:
+
+1. Reliable crawling and indexation.
+2. Accurate, region-specific, search-intent-matched pages.
+3. Strong internal linking and topical coverage.
+4. Trust, freshness, performance, and earned authority.

@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/prepare-blog.mjs",
+    "prebuild:snapshot": "node scripts/prepare-blog.mjs",
+    "blog:prepare": "node scripts/prepare-blog.mjs",
+    "blog:check": "node scripts/check-blog.mjs",
+    "blog:preview": "node scripts/preview-blog.mjs",
     "dev": "next dev",
     "build": "node scripts/prepare-catalog.mjs --refresh && next build && python scripts/check-seo.py",
     "build:snapshot": "node scripts/prepare-catalog.mjs && next build && python scripts/check-seo.py",

@@ -1,0 +1,44 @@
+$ErrorActionPreference = 'Stop'
+$root = Split-Path $PSScriptRoot -Parent
+$storeHeader = (Get-Content (Join-Path $PSScriptRoot 'store-import-fix/templates/store-import-template.csv') -First 1).Split(',')
+$couponHeader = (Get-Content (Join-Path $root 'coupon-import-template.csv') -First 1).Split(',')
+$neoSource = 'https://www.axis.bank.in/docs/default-source/default-document-library/axis-bank-neo-power-of-10.pdf?sfvrsn=1efafb6e_3'
+$amexSource = 'https://www.axis.bank.in/offers/blinkit-offers/up-to-inr-150-off'
+$store = [ordered]@{
+    name = 'Blinkit'; slug = 'blinkit'; website_url = 'https://blinkit.com/'; affiliate_url = 'https://blinkit.com/'; category = 'Grocery'; logo_filename = 'blinkit-logo.jpg'
+    short_description = 'Compare Blinkit coupon codes and bank offers. Check minimum spend, eligible cards, exclusions and first-order conditions before checkout.'
+    description = 'Find Blinkit coupons for eligible grocery orders, including card-specific discounts. Compare the saving with your basket total and delivery charges. Bank offers require the named card; a first order alone does not make an account eligible.'
+    h1_suffix = 'Coupon Codes & Offers'
+    meta_title = 'Blinkit Coupon Codes & Bank Offers | CouponPush'
+    meta_description = 'Compare Blinkit coupon codes, bank offers and first-order eligibility. Check minimum spend, payment restrictions and exclusions before placing your grocery order.'
+    about_content = '<h2>Blinkit coupons and grocery offers</h2><p>Blinkit lets shoppers order groceries and everyday essentials for delivery in supported areas. Set your delivery address before comparing products and offers.</p><p>Choose a coupon by its eligible payment method, minimum spend and maximum saving. A percentage discount with a cap is not a flat discount on every basket. Compare the final payable amount, including delivery and other checkout charges.</p><h3>Is there a free coupon code for a Blinkit first order?</h3><p>No universal first-order code was confirmed in the sources reviewed for this page. Check promotions shown to your signed-in account. Read our <a href="/blog/blinkit-welcome-coupon.html">Blinkit welcome coupon guide</a> for help checking eligibility.</p><h3>Can existing users use Blinkit coupon codes?</h3><p>Check each offer rather than assuming it is restricted to new users. The bank offers listed here depend on the specified card and transaction conditions.</p><h3>How do I compare discounts?</h3><p>Keep the basket and pack sizes the same. Check the discount cap, excluded products and fees. Avoid adding unwanted items merely to qualify for a coupon.</p><p>Explore more <a href="/category/grocery/">grocery offers</a> or browse <a href="/stores/">all stores</a>.</p>'
+    howto_content = '<ol><li>Open Blinkit and set your delivery address.</li><li>Add the products you need and check the offer minimum.</li><li>Review card eligibility, excluded categories and usage limits.</li><li>Enter the listed code in the checkout coupon or bank-offer field.</li><li>Select the eligible payment card and confirm the discount and final total before paying.</li></ol><h3>Why is my Blinkit coupon not working?</h3><p>Check the code spelling, card type, minimum transaction value, excluded products and whether you already used the monthly allowance. A day-specific offer will not apply on other days. If the discount still does not appear, check the live terms or contact Blinkit through the app.</p><h3>Does a coupon guarantee free delivery?</h3><p>No. Review delivery and other charges separately in the order summary.</p>'
+    terms_content = '<p>Sources reviewed 8 September 2026. These offers were checked against bank-published information, not tested in a customer checkout. Availability can change.</p><ul><li>Bank offers require the specified eligible card and may have minimum spend, category exclusions and monthly limits.</li><li>Check the offer dates and eligible day before ordering. An unspecified expiry does not mean a permanent offer.</li><li>Do not assume coupons can be combined. Cancelled or refunded purchases may lose promotional benefits.</li><li>First-order promotions depend on the individual campaign; no universal welcome discount is promised.</li></ul><p>Sources: <a href="https://www.axis.bank.in/cards/credit-card/axis-bank-neo-credit-card">Axis Bank NEO benefits</a>, <a href="https://www.axis.bank.in/offers/blinkit-offers/up-to-inr-150-off">Axis Bank AMEX Blinkit offer</a> and <a href="https://blinkit.com/terms">Blinkit promotional terms</a>.</p>'
+    rating = '4.7'; is_featured = '0'; is_popular = '0'; status = '1'
+}
+$store.about_content += '<p>Rating source: 4.7/5 for the Blinkit iPhone app on the <a href="https://apps.apple.com/in/app/blinkit-groceries-more/id960335206?see-all=reviews">India App Store</a>, checked 8 September 2026. This is an external app rating, not a CouponPush customer-review score.</p>'
+$offers = @(
+    @{title='Blinkit: 10% off up to Rs.250 with Axis Bank NEO'; description='Use AXISNEO on eligible orders of Rs.750 or more and pay with an Axis Bank NEO credit card. Once per card per month. Source-checked 8 September 2026; not checkout-tested.'; code='AXISNEO'; discount_type='percentage'; discount_value='10'; start_date=''; expiry_date=''; terms_conditions="Axis Bank NEO credit card only; full payment required. Maximum Rs.250 per card per month. Carts containing milk, tobacco, cigarettes or baby needs are excluded. Partial refunds adjust the discount proportionately. No end date is stated for this Blinkit benefit. Source: $neoSource"},
+    @{title='Blinkit: Up to Rs.150 off on Saturdays with Axis AMEX'; description='Apply AMEXWEEKEND on orders of Rs.1500 or more using an eligible Axis Bank credit card on the American Express network. Once per user per month. Source-checked 8 September 2026; not checkout-tested.'; code='AMEXWEEKEND'; discount_type='flat'; discount_value='150'; start_date='2026-07-01'; expiry_date='2026-09-30'; terms_conditions="Saturdays only; maximum saving Rs.150; minimum spend Rs.1500; once per user per month. Axis Bank AMEX credit cards only. Corporate/commercial cards and RuPay UPI transactions excluded. GST/business invoice customers are excluded from cashback under the published terms. Offers cannot be combined. Valid 1 July to 30 September 2026. Source: $amexSource"}
+)
+$offers += @{title='Blinkit: 5% CashPoints with HDFC PIXEL Play Grocery pack'; description='Earn 5% CashPoints on eligible Blinkit payments with HDFC Bank PIXEL Play when Grocery is one of your selected merchant packs. No coupon code required. Source-checked 8 September 2026; not checkout-tested.'; code=''; discount_type='percentage'; discount_value='5'; start_date=''; expiry_date=''; terms_conditions='This is a card reward, not an instant checkout discount. Select the Grocery merchant pack and pay using HDFC Bank PIXEL Play. The selected-pack benefit is capped at 500 CashPoints per month across the chosen packs. Rewards are redeemed through PayZapp subject to bank redemption rules. EMI, wallet and other excluded transactions do not qualify; do not assume the same reward for UPI payments. No end date is published for this card benefit. Sources: https://www.hdfc.bank.in/credit-cards/pixel-play-credit-card and https://www.hdfc.bank.in/content/dam/hdfcbankpws/in/en/personal-banking/discover-products/cards/credit-cards/pixel-play-credit-card/terms-and-conditions-pixel-play-credit-card-16122025.pdf'}
+$couponRows = foreach ($offer in $offers) {
+    $row = [ordered]@{}
+    foreach ($column in $couponHeader) { $row[$column] = '' }
+    foreach ($key in $offer.Keys) { $row[$key] = $offer[$key] }
+    $row.coupon_type=if ($row.code) {'code'} else {'deal'}; $row.store='Blinkit'; $row.store_url='https://blinkit.com/'; $row.category='Grocery'; $row.affiliate_link='https://blinkit.com/'
+    if (!$row.code) { $row.discount_type='cashback'; $row.discount_value='' }
+    $row.is_featured='0'; $row.is_verified='0'; $row.is_exclusive='0'; $row.status='1'
+    [pscustomobject]$row
+}
+function Write-TemplateCsv($file, $header, $rows) {
+    $lines = @($rows | Select-Object $header | ConvertTo-Csv -NoTypeInformation)
+    $lines[0] = $header -join ','
+    [System.IO.File]::WriteAllLines($file, $lines, [System.Text.UTF8Encoding]::new($false))
+    $actual = @(Import-Csv $file)
+    if ($actual.Count -ne @($rows).Count) { throw "CSV row count mismatch: $file" }
+    if ((Get-Content $file -First 1) -cne ($header -join ',')) { throw "CSV header mismatch: $file" }
+}
+Write-TemplateCsv (Join-Path $PSScriptRoot 'blinkit-store-import.csv') $storeHeader @([pscustomobject]$store)
+Write-TemplateCsv (Join-Path $PSScriptRoot 'blinkit-coupons-import.csv') $couponHeader $couponRows
+Write-Output 'Validated exact template headers and CSV round-trip: 1 store, 2 coupon codes, 1 no-code reward deal.'

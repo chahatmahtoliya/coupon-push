@@ -117,6 +117,7 @@ export function Header() {
                             </div>
                         </div>
                         <Link href="/deals" className="nav-link-v2">Deals</Link>
+                        <a href="/blog/" className="nav-link-v2">Blog</a>
                     </nav>
 
                     <button ref={menuButtonRef} className={`hamburger-btn cp-menu-button ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation-dialog" aria-haspopup="dialog" type="button">
@@ -152,6 +153,9 @@ export function Header() {
                             <i className={`fas ${item.icon}`} aria-hidden="true" /><span>{item.label}</span><i className="fas fa-chevron-right arrow" aria-hidden="true" />
                         </Link>
                     ))}
+                    <a href="/blog/" className="mobile-menu-item" onClick={() => setMenuOpen(false)} style={{ animationDelay: '0.2s' }}>
+                        <i className="fas fa-book-open" aria-hidden="true" /><span>Blog</span><i className="fas fa-chevron-right arrow" aria-hidden="true" />
+                    </a>
                 </nav>
             </aside>
         </>

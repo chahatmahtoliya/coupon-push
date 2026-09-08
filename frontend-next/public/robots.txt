@@ -4,3 +4,4 @@ Disallow: /admin/
 Allow: /
 
 Sitemap: https://couponpush.com/sitemap.xml
+Sitemap: https://couponpush.com/blog/sitemap.xml

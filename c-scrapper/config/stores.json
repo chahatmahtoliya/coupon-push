@@ -29,7 +29,7 @@
       "https://www.cetaphil.in/jointheclub.html"
     ],
     "scraper": "cetaphil_special",
-    "notes": "Official Cetaphil India - codes New5 (extra 5% on 50% sitewide), BESTSELLER10 (10% no min), extra5 (5% on 1499+), verified Aug 30 2026 on GrabOn."
+    "notes": "No official sitewide codes - retailer deals only (Amazon/Moglix/Apollo). Do not invent codes. Verified Sep 2026."
   },
   {
     "slug": "redbus",
@@ -184,5 +184,105 @@
       "title": "h3",
       "code": ".code"
     }
+  },
+  {
+    "slug": "foxtale",
+    "name": "Foxtale",
+    "domain": "foxtale.in",
+    "website_url": "https://foxtale.in",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://foxtale.in{path}",
+    "offer_urls": ["https://foxtale.in/pages/rewards-and-referral"],
+    "notes": "Official codes GLOW15 (15% off), FOX699 (2 @ 699). Verified Sep 2026."
+  },
+  {
+    "slug": "dotandkey",
+    "name": "Dot & Key",
+    "domain": "dotandkey.com",
+    "website_url": "https://www.dotandkey.com",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://www.dotandkey.com{path}",
+    "offer_urls": ["https://www.dotandkey.com/pages/offers"],
+    "notes": "Official code COMBO25 (25% off combos), upto 20% sitewide, gifts above 799/1049, 5% prepaid. Verified live Sep 2026."
+  },
+  {
+    "slug": "minimalist",
+    "name": "Minimalist",
+    "domain": "beminimalist.co",
+    "website_url": "https://beminimalist.co",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://beminimalist.co{path}",
+    "offer_urls": ["https://beminimalist.co/pages/minimalist-b2g1-offer"],
+    "notes": "Official B2G1 + kits upto 33% off, free shipping. No public code. Verified Sep 2026."
+  },
+  {
+    "slug": "snitch",
+    "name": "Snitch",
+    "domain": "snitch.com",
+    "website_url": "https://www.snitch.com",
+    "category": "Fashion & Lifestyle",
+    "affiliate_template": "https://www.snitch.com{path}",
+    "offer_urls": ["https://www.snitch.co.in/pages/snitch-discounts"],
+    "notes": "Official codes FLAT20/FLAT15/FLAT10 tiers + APP10 app. Verified Sep 2026."
+  },
+  {
+    "slug": "plum",
+    "name": "Plum",
+    "domain": "plumgoodness.com",
+    "website_url": "https://plumgoodness.com",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://plumgoodness.com{path}",
+    "offer_urls": ["https://plumgoodness.com/collections/plum-welcome-offer"],
+    "notes": "Official code PLUMFIRST, 30% off combos, gifts above 999. Verified Sep 2026."
+  },
+  {
+    "slug": "dermaco",
+    "name": "The Derma Co",
+    "domain": "thedermaco.com",
+    "website_url": "https://thedermaco.com",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://thedermaco.com{path}",
+    "offer_urls": ["https://thedermaco.com/collections/offer-page"],
+    "notes": "Official codes FLAT30, GET50, B2G2, B3P2, 2FREEBIE. Verified Sep 2026."
+  },
+  {
+    "slug": "pilgrim",
+    "name": "Pilgrim",
+    "domain": "discoverpilgrim.com",
+    "website_url": "https://discoverpilgrim.com",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://discoverpilgrim.com{path}",
+    "offer_urls": ["https://discoverpilgrim.com/collections/upto-35-off"],
+    "notes": "Official code B1G1 (FAQ-confirmed) + upto 35% off collection. Verified Sep 2026."
+  },
+  {
+    "slug": "newme",
+    "name": "NEWME",
+    "domain": "newme.asia",
+    "website_url": "https://newme.asia",
+    "category": "Fashion & Lifestyle",
+    "affiliate_template": "https://newme.asia{path}",
+    "offer_urls": ["https://newme.asia/"],
+    "notes": "App-led brand. No confirmed public code - app deals only. Do not invent codes."
+  },
+  {
+    "slug": "hyphen",
+    "name": "Hyphen",
+    "domain": "letshyphen.com",
+    "website_url": "https://letshyphen.com",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://letshyphen.com{path}",
+    "offer_urls": ["https://letshyphen.com/collections/b2g1"],
+    "notes": "Official codes HYP15, BUY799, BUY1149 on product pages. Verified live Sep 2026."
+  },
+  {
+    "slug": "deconstruct",
+    "name": "Deconstruct",
+    "domain": "thedeconstruct.in",
+    "website_url": "https://thedeconstruct.in",
+    "category": "Beauty & Health",
+    "affiliate_template": "https://thedeconstruct.in{path}",
+    "offer_urls": ["https://thedeconstruct.in/collections/big-skincare-fest"],
+    "notes": "Official code FLAT25, B1G1 sunscreen auto, Buy2@599/Buy3@899. Verified live Sep 2026."
   }
 ]

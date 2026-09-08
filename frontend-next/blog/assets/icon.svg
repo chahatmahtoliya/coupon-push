@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CouponPush CP">
+  <defs>
+    <linearGradient id="brand" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff7a2a"/>
+      <stop offset="1" stop-color="#e85b12"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="#07162c"/>
+  <path d="M8 32a24 24 0 0 1 24-24h8v11h-8a13 13 0 1 0 0 26h8v11h-8A24 24 0 0 1 8 32Z" fill="url(#brand)"/>
+  <path d="M34 8h9.5a16.5 16.5 0 0 1 0 33H34V30h9.5a5.5 5.5 0 0 0 0-11H34V8Z" fill="#fff"/>
+</svg>

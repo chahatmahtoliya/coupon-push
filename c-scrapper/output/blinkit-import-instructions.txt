@@ -1,0 +1,16 @@
+BLINKIT IMPORT PACKAGE
+
+1. Extract this ZIP on your computer.
+2. Admin > Store Import: select blinkit-store-import.csv and blinkit-logo.jpg together. Validate, then import.
+3. Admin > Coupon Import: select blinkit-coupons-import.csv. Validate, then import.
+
+Includes one Grocery store with SEO title, description, FAQs, redemption guide and terms; two coupon codes; one no-code HDFC PIXEL Play CashPoints deal.
+
+Offers are source-checked, not checkout-tested, so is_verified remains 0. The HDFC reward percentage is in the title/description; numeric discount_value is blank because the template cannot distinguish percentage cashback from rupee cashback.
+
+Rating 4.7 is attributed in the store content to the India App Store, checked 8 September 2026. It is not a CouponPush review rating.
+
+AXISNEO has no published end date. AMEXWEEKEND is Saturdays only and ends 30 September 2026. HDFC PIXEL Play requires the selected Grocery pack; rewards are not an instant discount. Review full conditions in each row.
+
+No affiliate tracking ID has been added. Links lead to Blinkit directly.
+The public static website requires a catalog refresh and rebuild after admin import before /store/blinkit/ appears.

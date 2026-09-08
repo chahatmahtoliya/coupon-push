@@ -103,10 +103,10 @@ def extract_discount(text):
         m = re.search(r'(?:rs\.?|₹)\s*([\d,]+).*cashback', t, re.I)
         if m:
             return "cashback", m.group(1).replace(",", "")
-    # freebie
+    # freebie (DB requires numeric discount_value: 0 = no stated amount, see title/desc)
     if any(k in t for k in ["free", "buy 1 get", "bogo", "freebie"]):
-        return "freebie", clean(text)[:50]
-    return "percentage", ""
+        return "freebie", "0"
+    return "percentage", "0"
 
 def extract_prices(text):
     """Extract original/sale prices from text snippet. Returns (original, sale) as strings."""
@@ -471,7 +471,7 @@ def scrape_hostinger(affiliate_id="", base_url="https://www.hostinger.in"):
         orig = fmt_price(orig)
         sale = fmt_price(sale)
         if disc == "Free":
-            dtype, dval = "freebie", "Free Domain"
+            dtype, dval = "freebie", "0"
         else:
             dtype, dval = "percentage", str(disc).replace("%","").strip()
 
