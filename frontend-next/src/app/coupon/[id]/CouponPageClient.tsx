@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import { couponsApi, trackClick } from '@/services/api';
 import type { Coupon } from '@/types';
 import { getStorePath } from '@/lib/routes';

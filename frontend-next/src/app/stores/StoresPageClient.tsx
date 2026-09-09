@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import { useEffect, useState } from 'react';
 import { storesApi } from '@/services/api';
 import { getStorePath, isCanonicalStoreSlug } from '@/lib/routes';

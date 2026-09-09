@@ -3,7 +3,7 @@
 import { CouponDescription } from '@/components/common/CouponDescription';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import type { SeasonalOffer, Coupon } from '@/types';
 import { seasonalOffersApi } from '@/services/api';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';

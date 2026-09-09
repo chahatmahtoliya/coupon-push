@@ -2,7 +2,7 @@
 
 import { CouponDescription } from '@/components/common/CouponDescription';
 
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import { useEffect, useMemo, useState } from 'react';
 import { CouponModal } from '@/components/common';
 import { getStorePath } from '@/lib/routes';

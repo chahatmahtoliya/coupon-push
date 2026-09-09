@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import type { Deal } from '@/types';
 import { trackClick } from '@/services/api';
 import { getStorePath } from '@/lib/routes';

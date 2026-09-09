@@ -3,7 +3,7 @@
 import { CouponDescription } from '@/components/common/CouponDescription';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import type { Coupon } from '@/types';
 import { CouponModal } from '@/components/common/CouponModal';
 import { getStorePath } from '@/lib/routes';

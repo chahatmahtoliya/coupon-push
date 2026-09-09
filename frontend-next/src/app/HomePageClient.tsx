@@ -2,7 +2,7 @@
 
 import type { TouchEvent } from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import type { Coupon, Deal, HeroSlide, SeasonalOffer, Store } from '@/types';
 import { couponsApi, dealsApi, heroSlidesApi, seasonalOffersApi, storesApi, trackClick } from '@/services/api';
 import { SeasonalBanner } from '@/components/features/SeasonalBanner';
