@@ -31,3 +31,40 @@
     outline: 2px solid #2563eb;
     outline-offset: 3px;
 }
+
+.disclosure summary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: #1d4ed8;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+}
+
+.disclosure summary::-webkit-details-marker {
+    display: none;
+}
+
+.disclosure summary:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+}
+
+.disclosure .less,
+.disclosure[open] .more {
+    display: none;
+}
+
+.disclosure[open] .less {
+    display: inline;
+}
+
+.disclosure[open] p {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    overflow-wrap: anywhere;
+    margin: 0 0 8px;
+}
