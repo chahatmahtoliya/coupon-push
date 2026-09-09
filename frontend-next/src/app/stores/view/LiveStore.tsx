@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import { useSearchParams } from 'next/navigation';
 import { storesApi } from '@/services/api';
 import type { StorePageData } from '@/types';

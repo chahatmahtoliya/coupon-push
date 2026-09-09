@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import type { SeasonalOffer, Coupon } from '@/types';
 import { CouponModal } from '@/components/common/CouponModal';
 import { getCouponCtaLabel } from '@/utils/coupon';

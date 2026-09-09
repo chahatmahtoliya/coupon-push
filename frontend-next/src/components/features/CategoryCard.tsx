@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import type { Category } from '@/types';
 
 interface CategoryCardProps {

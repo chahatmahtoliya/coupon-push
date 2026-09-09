@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import { useEffect, useMemo, useState } from 'react';
 import { CouponCard, FilterSidebar } from '@/components/features';
 import { categoriesApi, couponsApi, storesApi } from '@/services/api';

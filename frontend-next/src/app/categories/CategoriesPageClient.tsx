@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/common/SiteLink';
 import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { categoriesApi } from '@/services/api';
 import type { Category } from '@/types';

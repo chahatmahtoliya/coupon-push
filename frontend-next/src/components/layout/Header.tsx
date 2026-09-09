@@ -1,8 +1,8 @@
 'use client';
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import Link from '@/components/common/SiteLink';
+import { usePathname } from 'next/navigation';
 import { categoriesApi } from '@/services/api';
 import type { Category } from '@/types';
 
@@ -14,7 +14,6 @@ export function Header() {
     const drawerRef = useRef<HTMLElement>(null);
     const closeButtonRef = useRef<HTMLButtonElement>(null);
     const menuWasOpen = useRef(false);
-    const router = useRouter();
     const pathname = usePathname();
     const isHomepage = pathname === '/';
 
@@ -84,7 +83,7 @@ export function Header() {
         event.preventDefault();
         const trimmed = query.trim();
         if (!trimmed) return;
-        router.push(`/search?q=${encodeURIComponent(trimmed)}`);
+        window.location.assign(`/search/?q=${encodeURIComponent(trimmed)}`);
         setMenuOpen(false);
     };
 
