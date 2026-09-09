@@ -37,8 +37,10 @@ if (refresh) {
         pages[store.slug] = page;
     }
     const deals = assertList(await request('deals.php'), 'deals');
-    const hero = assertList(await request('hero-slides.php?active=true'), 'hero slides');
-    const seasonal = assertList(await request('seasonal-offers.php?active=true'), 'seasonal offers');
+    // Catalog-only repairs can retain the current promotion creatives explicitly.
+    const preservePromotions = process.argv.includes('--preserve-promotions');
+    const hero = assertList(preservePromotions ? snapshot.homepage.initialHeroSlides : await request('hero-slides.php?active=true'), 'hero slides');
+    const seasonal = assertList(preservePromotions ? snapshot.homepage.initialSeasonalOffers : await request('seasonal-offers.php?active=true'), 'seasonal offers');
     const categoryPages = {};
     for (const category of categories.filter(c => c.coupon_count > 0)) {
         categoryPages[category.slug] = { coupons: assertList(await request(`coupons.php?category=${encodeURIComponent(category.slug)}`), category.slug) };

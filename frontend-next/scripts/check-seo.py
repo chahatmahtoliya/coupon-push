@@ -35,8 +35,31 @@ class Page(HTMLParser):
 
 def check():
     errors, rows, indexable = [], [], set()
+    titles, descriptions = {}, {}
     snapshot = json.loads((ROOT / 'src/data/deployed-snapshot.json').read_text(encoding='utf-8'))
-    urls = [item.text for item in ET.parse(OUT / 'sitemap.xml').findall('.//{*}loc')]
+    # Validate every sitemap advertised to crawlers, including the standalone blog.
+    robots = (OUT / 'robots.txt').read_text(encoding='utf-8')
+    pending = [line.split(':', 1)[1].strip() for line in robots.splitlines() if line.lower().startswith('sitemap:')]
+    urls, visited = [], set()
+    while pending:
+        sitemap_url = pending.pop()
+        if sitemap_url in visited: continue
+        visited.add(sitemap_url)
+        parsed = urlparse(sitemap_url)
+        if parsed.scheme != 'https' or parsed.netloc != 'couponpush.com':
+            errors.append(f'Unexpected sitemap origin: {sitemap_url}')
+            continue
+        sitemap_file = (OUT / parsed.path.lstrip('/')).resolve()
+        if not sitemap_file.is_relative_to(OUT.resolve()):
+            errors.append(f'Invalid sitemap path: {sitemap_url}')
+            continue
+        try:
+            document = ET.parse(sitemap_file).getroot()
+            locations = [item.text for item in document.findall('.//{*}loc')]
+            if document.tag.endswith('sitemapindex'): pending.extend(locations)
+            else: urls.extend(locations)
+        except (OSError, ET.ParseError) as error:
+            errors.append(f'Cannot read sitemap {sitemap_url}: {error}')
     if len(urls) != len(set(urls)): errors.append('Duplicate sitemap URL')
     for file in OUT.rglob('*.html'):
         relative = file.relative_to(OUT).as_posix()
@@ -47,6 +70,8 @@ def check():
         canonical = 'https://couponpush.com' + route
         if not page.noindex:
             indexable.add(canonical)
+            titles.setdefault(page.title.strip(), []).append(route)
+            descriptions.setdefault(page.description.strip(), []).append(route)
             if page.canonicals != [canonical]: errors.append(f'{route}: missing/incorrect canonical')
             if page.h1 != 1: errors.append(f'{route}: expected one H1, found {page.h1}')
             if not page.title or not page.description: errors.append(f'{route}: missing metadata')
@@ -66,9 +91,25 @@ def check():
             elif route.startswith('/category/'):
                 reason = 'fewer than three active offers; intentionally excluded'
         rows.append({'url': canonical, 'status': 'noindex' if page.noindex else 'indexable', 'reason': reason, 'title': page.title})
+    for label, values in [('title', titles), ('description', descriptions)]:
+        for value, routes in values.items():
+            if value and len(routes) > 1: errors.append(f'Duplicate {label}: {", ".join(routes)}')
     for url in urls:
         if url not in indexable: errors.append(f'Sitemap URL is missing or noindex: {url}')
     for url in indexable - set(urls): errors.append(f'Indexable URL missing from sitemap: {url}')
+    redirect_file = OUT / '_redirects'
+    if not redirect_file.is_file():
+        errors.append('Missing exported legacy redirects')
+    else:
+        sources = set()
+        for line in redirect_file.read_text(encoding='utf-8').splitlines():
+            if not line.strip() or line.startswith('#'): continue
+            source, target, status = line.split()
+            if source in sources or source == target or status != '301':
+                errors.append(f'Invalid legacy redirect: {line}')
+            sources.add(source)
+            target_file = OUT / target.lstrip('/') / 'index.html'
+            if not target_file.is_file(): errors.append(f'Redirect target missing: {target}')
     cetaphil = (OUT / 'store/cetaphil-coupon-code/index.html').read_text(encoding='utf-8')
     for forbidden in ('$21', '$22', 'Walmart', 'Target USA', 'Save up to 60%'):
         if forbidden in cetaphil: errors.append(f'Cetaphil contains removed claim: {forbidden}')

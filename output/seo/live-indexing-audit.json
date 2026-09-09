@@ -1,0 +1,763 @@
+{
+  "checked_at": "2026-09-09T06:46:27.603655+00:00",
+  "robots": {
+    "url": "https://couponpush.com/robots.txt",
+    "status": 200,
+    "final_url": "https://couponpush.com/robots.txt",
+    "type": "text/plain; charset=utf-8",
+    "x_robots_tag": "",
+    "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: CloudflareBrowserRenderingCrawler\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\n# END Cloudflare Managed Content\n\nUser-agent: *\nDisallow: /api/\nDisallow: /admin/\nAllow: /\n\nSitemap: https://couponpush.com/sitemap.xml\nSitemap: https://couponpush.com/blog/sitemap.xml\n"
+  },
+  "sitemaps": [
+    "https://couponpush.com/blog/sitemap.xml",
+    "https://couponpush.com/sitemap.xml"
+  ],
+  "sitemap_errors": [],
+  "pages": [
+    {
+      "url": "https://couponpush.com/",
+      "status": 200,
+      "final_url": "https://couponpush.com/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "CouponPush - Best Coupons, Promo Codes & Deals 2026",
+      "description": "Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.",
+      "canonicals": [
+        "https://couponpush.com/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/about/",
+      "status": 200,
+      "final_url": "https://couponpush.com/about/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "About Us | CouponPush",
+      "description": "Learn how CouponPush finds and verifies coupon codes, promotions and online deals.",
+      "canonicals": [
+        "https://couponpush.com/about/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Shopping smarter starts here | CouponPush Blog",
+      "description": "Coupon guides, first-order offer explainers and a savings calculator from CouponPush. Understand the fine print before you check out.",
+      "canonicals": [
+        "https://couponpush.com/blog/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/ajio-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/ajio-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "AJIO Welcome Coupon: Codes & Eligibility | CouponPush",
+      "description": "Check AJIO welcome coupons for new users, including website and app codes, eligibility, product exclusions and redemption steps.",
+      "canonicals": [
+        "https://couponpush.com/blog/ajio-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/amazon-welcome-offers-india.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/amazon-welcome-offers-india",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Amazon Welcome Offers for New Users | CouponPush",
+      "description": "Understand Amazon India welcome offers, product coupons, Prime membership promotions and why there is no universal first-order shopping code.",
+      "canonicals": [
+        "https://couponpush.com/blog/amazon-welcome-offers-india.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/articles/myntra-first-order-coupon/",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/articles/myntra-first-order-coupon/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Myntra First-Order Coupon: Eligibility and Steps | CouponPush",
+      "description": "Learn how Myntra first-order coupons work, including eligibility, minimum order requirements, app restrictions and redemption steps.",
+      "canonicals": [
+        "https://couponpush.com/blog/articles/myntra-first-order-coupon/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/bigbasket-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/bigbasket-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "BigBasket Welcome Coupon: First-Order Guide | CouponPush",
+      "description": "Check current BigBasket first-purchase offers and avoid expired welcome codes, with guidance on city, category and cashback conditions.",
+      "canonicals": [
+        "https://couponpush.com/blog/bigbasket-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/blinkit-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/blinkit-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Blinkit Welcome Coupon: Limits & Rules | CouponPush",
+      "description": "Check how Blinkit welcome promotions work, including minimum order, category, location, cancellation and cashback conditions.",
+      "canonicals": [
+        "https://couponpush.com/blog/blinkit-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/category/coupon-guides/",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/category/coupon-guides/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Coupon guides | CouponPush Blog",
+      "description": "Browse CouponPush guides by store or shopping category. Check welcome offers, coupon eligibility and checkout restrictions.",
+      "canonicals": [
+        "https://couponpush.com/blog/category/coupon-guides/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/embed/",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/embed/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Share CouponPush | CouponPush Blog",
+      "description": "Add a simple CouponPush link to your website and help readers find shopping guides.",
+      "canonicals": [
+        "https://couponpush.com/blog/embed/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/firstcry-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/firstcry-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "FirstCry Welcome Coupon: Eligibility | CouponPush",
+      "description": "Understand FirstCry welcome coupon eligibility, household limits, excluded baby-care categories and coupon stacking rules.",
+      "canonicals": [
+        "https://couponpush.com/blog/firstcry-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/flipkart-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/flipkart-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Flipkart Welcome Coupon: New-User Offers | CouponPush",
+      "description": "Learn how Flipkart new-user offers work, where personalized coupons appear and how product, payment and account rules affect eligibility.",
+      "canonicals": [
+        "https://couponpush.com/blog/flipkart-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/makemytrip-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/makemytrip-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "MakeMyTrip Welcome Coupon: First-Booking Rules | CouponPush",
+      "description": "Understand MakeMyTrip welcome coupons by booking type, including route, account, minimum value, cancellation and non-stacking rules.",
+      "canonicals": [
+        "https://couponpush.com/blog/makemytrip-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/meesho-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/meesho-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Meesho Welcome Coupon: First-Order Offers | CouponPush",
+      "description": "Check how Meesho first-purchase discounts appear, what affects eligibility and why the live app offer should be verified before ordering.",
+      "canonicals": [
+        "https://couponpush.com/blog/meesho-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/nykaa-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/nykaa-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Nykaa Welcome Coupon: New-User Offers | CouponPush",
+      "description": "Compare Nykaa welcome coupons for first website and app orders, with platform rules, exclusions and steps to choose the better offer.",
+      "canonicals": [
+        "https://couponpush.com/blog/nykaa-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/research/india-coupon-report-2026.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/research/india-coupon-report-2026",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Understanding coupon savings | CouponPush Blog",
+      "description": "A CouponPush guide to comparing coupon discounts, caps, eligible baskets and checkout totals.",
+      "canonicals": [
+        "https://couponpush.com/blog/research/india-coupon-report-2026.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/stores/",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/stores/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Explore stores | CouponPush Blog",
+      "description": "Find shopping guides and coupon pages for stores covered by CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/blog/stores/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/swiggy-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/swiggy-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Swiggy Welcome Coupon: First-Order Terms | CouponPush",
+      "description": "Learn how Swiggy first-order and referral offers work, including restaurant, location, payment and coupon-stacking restrictions.",
+      "canonicals": [
+        "https://couponpush.com/blog/swiggy-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/tools/savings-calculator.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/tools/savings-calculator",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Savings calculator | CouponPush Blog",
+      "description": "Compare your coupon discount, maximum cap, minimum spend and fees to estimate the final checkout price.",
+      "canonicals": [
+        "https://couponpush.com/blog/tools/savings-calculator.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/zepto-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/zepto-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Zepto Welcome Coupon: New-User Offer | CouponPush",
+      "description": "Learn how Zepto new-user offers vary by account and location, where to verify a welcome coupon and why it may fail at checkout.",
+      "canonicals": [
+        "https://couponpush.com/blog/zepto-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/blog/zomato-welcome-coupon.html",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/zomato-welcome-coupon",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Zomato Welcome Coupon: New-User Rules | CouponPush",
+      "description": "Understand Zomato new-user coupon rules, including personalized eligibility, restaurant participation, minimum order and payment restrictions.",
+      "canonicals": [
+        "https://couponpush.com/blog/zomato-welcome-coupon.html"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/categories/",
+      "status": 200,
+      "final_url": "https://couponpush.com/categories/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Coupon Categories | CouponPush",
+      "description": "Browse verified coupon codes and online deals by category.",
+      "canonicals": [
+        "https://couponpush.com/categories/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/category/beauty-health/",
+      "status": 200,
+      "final_url": "https://couponpush.com/category/beauty-health/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Best Beauty & Health Coupons & Offers | CouponPush",
+      "description": "Browse 3 active beauty & health coupon codes and discount offers from verified stores on CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/category/beauty-health/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/category/bus-tickets/",
+      "status": 200,
+      "final_url": "https://couponpush.com/category/bus-tickets/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Best Bus Tickets Coupons & Offers | CouponPush",
+      "description": "Browse 31 active bus tickets coupon codes and discount offers from verified stores on CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/category/bus-tickets/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/category/electronics/",
+      "status": 200,
+      "final_url": "https://couponpush.com/category/electronics/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Best Electronics Coupons & Offers | CouponPush",
+      "description": "Browse 36 active electronics coupon codes and discount offers from verified stores on CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/category/electronics/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/category/smart-tvs/",
+      "status": 200,
+      "final_url": "https://couponpush.com/category/smart-tvs/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Best Smart TVs Coupons & Offers | CouponPush",
+      "description": "Browse 3 active smart tvs coupon codes and discount offers from verified stores on CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/category/smart-tvs/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/contact/",
+      "status": 200,
+      "final_url": "https://couponpush.com/contact/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Contact Us | CouponPush",
+      "description": "Contact CouponPush with questions, corrections or partnership enquiries.",
+      "canonicals": [
+        "https://couponpush.com/contact/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/deals/",
+      "status": 200,
+      "final_url": "https://couponpush.com/deals/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Today's Best Deals & Offers | CouponPush",
+      "description": "Browse the latest featured shopping deals and verified offers on CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/deals/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/offers/",
+      "status": 200,
+      "final_url": "https://couponpush.com/offers/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Seasonal Sales and Coupon Offers | CouponPush",
+      "description": "Browse active festival sales, seasonal coupon campaigns, and limited-time offers on CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/offers/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/privacy-policy/",
+      "status": 200,
+      "final_url": "https://couponpush.com/privacy-policy/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Privacy Policy | CouponPush",
+      "description": "Read the CouponPush privacy policy.",
+      "canonicals": [
+        "https://couponpush.com/privacy-policy/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/ajio/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/ajio/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Ajio Coupon Codes & Offers | CouponPush",
+      "description": "Get the latest Ajio coupon codes, discount coupons and offers on CouponPush. Save big on men's, women's and kids' fashion plus home, dining and kitchen products.",
+      "canonicals": [
+        "https://couponpush.com/store/ajio/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/amazon/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/amazon/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Amazon Coupon Codes & Offers | CouponPush",
+      "description": "Amazon Great Summer Sale 2026  is live",
+      "canonicals": [
+        "https://couponpush.com/store/amazon/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/boat-lifestyle/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/boat-lifestyle/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "boAt Lifestyle Coupon Codes & Offers | CouponPush",
+      "description": "Browse 8 active boAt Lifestyle offers, including 8 coupon codes and 0 online deals. Check current terms and expiry dates.",
+      "canonicals": [
+        "https://couponpush.com/store/boat-lifestyle/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/cetaphil-coupon-code/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/cetaphil-coupon-code/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Cetaphil Offers & Deals in India | CouponPush",
+      "description": "Check Cetaphil India promotions, email club information and ways to compare retailer offers. No public coupon code is currently confirmed on this page.",
+      "canonicals": [
+        "https://couponpush.com/store/cetaphil-coupon-code/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/derma-co-coupon-code/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/derma-co-coupon-code/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "derma co Coupon Codes & Offers | CouponPush",
+      "description": "The Derma Co Sale is LIVE! Get Up To 35% OFF (Code: REDEEM35). Buy dermatologically designed skin & bodycare products. Offer valid for Orders over Rs. 799.",
+      "canonicals": [
+        "https://couponpush.com/store/derma-co-coupon-code/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/flipkart/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/flipkart/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Flipkart Coupon Codes & Offers | CouponPush",
+      "description": "Browse 5 active Flipkart offers, including 1 coupon code and 4 online deals. Check current terms and expiry dates.",
+      "canonicals": [
+        "https://couponpush.com/store/flipkart/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/hostinger/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/hostinger/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Hostinger Coupon Code: Up to 81% Off",
+      "description": "Compare 5 Hostinger coupon codes and deals for web, WordPress, and VPS hosting. Check eligibility, billing terms, and renewal pricing before checkout.",
+      "canonicals": [
+        "https://couponpush.com/store/hostinger/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/store/redbus/",
+      "status": 200,
+      "final_url": "https://couponpush.com/store/redbus/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "redBus Coupon Codes & Offers | CouponPush",
+      "description": "Browse 31 active redBus offers, including 30 coupon codes and 1 online deal. Check current terms and expiry dates.",
+      "canonicals": [
+        "https://couponpush.com/store/redbus/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/stores/",
+      "status": 200,
+      "final_url": "https://couponpush.com/stores/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "All Coupon Stores | CouponPush",
+      "description": "Browse all coupon stores on CouponPush and find verified deals, promo codes, and offers by brand.",
+      "canonicals": [
+        "https://couponpush.com/stores/"
+      ],
+      "noindex": false,
+      "h1": 1
+    },
+    {
+      "url": "https://couponpush.com/terms/",
+      "status": 200,
+      "final_url": "https://couponpush.com/terms/",
+      "type": "text/html",
+      "x_robots_tag": "",
+      "title": "Terms of Service | CouponPush",
+      "description": "Read the terms governing use of CouponPush.",
+      "canonicals": [
+        "https://couponpush.com/terms/"
+      ],
+      "noindex": false,
+      "h1": 1
+    }
+  ],
+  "images": [
+    {
+      "url": "https://api.couponpush.com/uploads/stores/blinkit-store.svg",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/dominos-store.svg",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69e48e7a17886_1776586362.webp",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69e4ba1f27925_1776597535.jpg",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69e4ba4b4ff7e_1776597579.png",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69e4ba71bfb09_1776597617.png",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69e4ba9d88080_1776597661.png",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69e4babb04063_1776597691.webp",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69ece295d7151_1777132181.webp",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69f3495629f0d_1777551702.webp",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69f3497c6747c_1777551740.webp",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69f746d35bb6a_1777813203.webp",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69fac7d6a2612_1778042838.jpg",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69ff7718e8028_1778349848.png",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69ff7723a24bc_1778349859.png",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_69ff772dccd8c_1778349869.png",
+      "status": 404
+    },
+    {
+      "url": "https://api.couponpush.com/uploads/stores/store_6a412f82d98ce_1782656898.png",
+      "status": 404
+    },
+    {
+      "url": "https://couponpush.com/assets/home-ui/logo-transparent.png",
+      "status": 200,
+      "final_url": "https://couponpush.com/assets/home-ui/logo-transparent.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://couponpush.com/assets/home-ui/newsletter-percent.png",
+      "status": 200,
+      "final_url": "https://couponpush.com/assets/home-ui/newsletter-percent.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://couponpush.com/assets/home-ui/stores-shopping-creative.webp",
+      "status": 200,
+      "final_url": "https://couponpush.com/assets/home-ui/stores-shopping-creative.webp",
+      "type": "image/webp",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://couponpush.com/blog/assets/images/couponpush-logo.png",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/assets/images/couponpush-logo.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://couponpush.com/blog/assets/images/couponpush-shopping-desk.webp",
+      "status": 200,
+      "final_url": "https://couponpush.com/blog/assets/images/couponpush-shopping-desk.webp",
+      "type": "image/webp",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://couponpush.com/placeholder-store.png",
+      "status": 200,
+      "final_url": "https://couponpush.com/placeholder-store.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://m.media-amazon.com/images/G/31/Prime_Day/2026/pdp/PD26_Logo._CB563229066_.png",
+      "status": 404
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/coupons/coupon_1769884479_697e4b3fe6395.jpg",
+      "status": 404
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/coupons/coupon_1773771453_69b99abd3261e.webp",
+      "status": 404
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/coupons/coupon_1778391224_6a0018b82d243.jpg",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/coupons/coupon_1778391224_6a0018b82d243.jpg",
+      "type": "image/jpeg",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/coupons/coupon_1778391259_6a0018db86bac.jpg",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/coupons/coupon_1778391259_6a0018db86bac.jpg",
+      "type": "image/jpeg",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/coupons/coupon_1778393571_6a0021e3aedf0.jpg",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/coupons/coupon_1778393571_6a0021e3aedf0.jpg",
+      "type": "image/jpeg",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/deals/deal_695bf1db04cdd_1767633371.webp",
+      "status": 404
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/deals/deal_696693aa1d955_1768330154.webp",
+      "status": 404
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/deals/deal_69830bc52f7c9_1770195909.jpg",
+      "status": 404
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/deals/deal_69ff7838dd048_1778350136.png",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/deals/deal_69ff7838dd048_1778350136.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/hero/hero_1778337694_69ff479ef410e.png",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/hero/hero_1778337694_69ff479ef410e.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/hero/hero_1778395358_6a0028deb0a1c.webp",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/hero/hero_1778395358_6a0028deb0a1c.webp",
+      "type": "image/webp",
+      "x_robots_tag": ""
+    },
+    {
+      "url": "https://media.couponpush.com/uploads/hero/hero_1779522607_6a115c2f1531e.png",
+      "status": 200,
+      "final_url": "https://media.couponpush.com/uploads/hero/hero_1779522607_6a115c2f1531e.png",
+      "type": "image/png",
+      "x_robots_tag": ""
+    }
+  ]
+}

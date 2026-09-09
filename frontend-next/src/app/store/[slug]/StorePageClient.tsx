@@ -8,6 +8,7 @@ import { CouponModal } from '@/components/common';
 import { getStorePath } from '@/lib/routes';
 import { getStorePseoContent } from '@/lib/store-pseo';
 import { getActiveCoupons } from '@/lib/indexability';
+import { sanitizeStoreHtml } from '@/lib/store-html';
 import { storesApi } from '@/services/api';
 import type { Coupon, Store, StorePageData } from '@/types';
 import { getCouponCtaLabel, isCodeCoupon } from '@/utils/coupon';
@@ -25,7 +26,7 @@ function escapeHtml(value: string): string {
 function formatStoreContent(content?: string | null): string {
     const value = content?.trim();
     if (!value) return '';
-    if (HTML_TAG_PATTERN.test(value)) return value;
+    if (HTML_TAG_PATTERN.test(value)) return sanitizeStoreHtml(value);
     return value.replace(/\r\n?/g, '\n').split(/\n{2,}/).map((block) => block.trim()).filter(Boolean).map((block) => {
         const lines = block.split('\n').map((line) => line.trim()).filter(Boolean);
         if (!lines.length) return '';

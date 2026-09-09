@@ -3,9 +3,12 @@
   RewriteBase /
 
   # Force the public site onto one HTTPS origin, including behind Cloudflare.
-  RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{HTTP:X-Forwarded-Proto} ^$
   RewriteCond %{HTTPS} !=on
-  RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L]
+  RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L,NE]
 
   RewriteCond %{HTTP_HOST} ^www\.couponpush\.com$ [NC]
   RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L,NE]

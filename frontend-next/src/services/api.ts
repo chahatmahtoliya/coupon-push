@@ -12,10 +12,11 @@ import type {
 } from '@/types';
 
 import { readCatalogSnapshot } from '@/lib/snapshot-api';
+import { getMissingImageFallback } from '@/lib/missing-images';
 
 const SERVER_API_BASE = process.env.API_URL || 'https://api.couponpush.com/api';
 const MEDIA_BASE = (process.env.NEXT_PUBLIC_MEDIA_URL || 'https://media.couponpush.com').replace(/\/$/, '');
-const STORE_MEDIA_BASE = (process.env.NEXT_PUBLIC_STORE_MEDIA_URL || 'https://api.couponpush.com').replace(/\/$/, '');
+const STORE_MEDIA_BASE = (process.env.NEXT_PUBLIC_STORE_MEDIA_URL || MEDIA_BASE).replace(/\/$/, '');
 const IMAGE_FIELDS = new Set(['logo', 'store_logo', 'image', 'banner_image', 'mobile_banner_image']);
 
 function uploadBase(pathname: string): string {
@@ -64,13 +65,15 @@ function decodeHTMLInData(value: unknown): unknown {
 
 function normalizeAssetUrl(value: string): string {
     if (!value || value.startsWith('data:')) return value;
+    const fallback = getMissingImageFallback(value);
+    if (fallback) return fallback;
     if (/\/uploads\/stores\/placeholder\.png(?:[?#].*)?$/i.test(value)) return '/placeholder-store.png';
     if (value.startsWith('//')) return `https:${value}`;
 
     if (/^https?:\/\//i.test(value)) {
         try {
             const url = new URL(value);
-            if ((url.hostname === 'couponpush.com' || url.hostname === 'www.couponpush.com')
+            if (['couponpush.com', 'www.couponpush.com', 'api.couponpush.com'].includes(url.hostname)
                 && url.pathname.startsWith('/uploads/')) {
                 return `${uploadBase(url.pathname)}${url.pathname}${url.search}`;
             }
@@ -82,6 +85,7 @@ function normalizeAssetUrl(value: string): string {
 
     if (value.startsWith('/uploads/')) return `${uploadBase(value)}${value}`;
     if (value.startsWith('uploads/')) return `${uploadBase(`/${value}`)}/${value}`;
+    if (value.startsWith('/')) return value;
 
     try {
         const base = new URL(SERVER_API_BASE);

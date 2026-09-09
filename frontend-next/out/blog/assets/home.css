@@ -298,10 +298,18 @@ img {
   padding-bottom: 12px;
 }
 
-/* Featured Story Section */
+/* Featured Story Section — simple centered hero */
 .featured-section {
-  padding: 48px 0 32px;
+  padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-color);
+}
+
+.featured-simple-inner {
+  max-width: 640px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .featured-grid {
@@ -336,11 +344,20 @@ img {
   letter-spacing: -0.02em;
 }
 
+.featured-simple .featured-title {
+  margin-bottom: 12px;
+}
+
 .featured-desc {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-muted);
   margin-bottom: 32px;
+}
+
+.featured-simple .featured-desc {
+  margin-bottom: 0;
+  max-width: 52ch;
 }
 
 .author-block {

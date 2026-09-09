@@ -9,8 +9,9 @@
     "blog:check": "node scripts/check-blog.mjs",
     "blog:preview": "node scripts/preview-blog.mjs",
     "dev": "next dev",
-    "build": "node scripts/prepare-catalog.mjs --refresh && next build && python scripts/check-seo.py",
-    "build:snapshot": "node scripts/prepare-catalog.mjs && next build && python scripts/check-seo.py",
+    "build": "node scripts/prepare-catalog.mjs --refresh && node scripts/prepare-redirects.mjs && next build && python scripts/check-seo.py",
+    "build:snapshot": "node scripts/prepare-catalog.mjs && node scripts/prepare-redirects.mjs && next build && python scripts/check-seo.py",
+    "catalog:refresh-only": "node scripts/prepare-catalog.mjs --refresh --preserve-promotions",
     "seo:check": "python scripts/check-seo.py",
     "catalog:refresh": "node scripts/prepare-catalog.mjs --refresh",
     "start": "next start",
@@ -23,12 +24,14 @@
     "@mui/material": "^9.4.0",
     "next": "^16.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sanitize-html": "^2.17.7"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/sanitize-html": "^2.16.1",
     "typescript": "^5.8.2"
   }
 }

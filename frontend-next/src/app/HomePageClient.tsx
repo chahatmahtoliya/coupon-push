@@ -50,6 +50,7 @@ function imageUrl(value?: string | null): string | null {
     }
     if (value.startsWith('/uploads/')) return `${mediaBase}${value}`;
     if (value.startsWith('uploads/')) return `${mediaBase}/${value}`;
+    if (value.startsWith('/')) return value;
     try {
         const api = new URL(process.env.NEXT_PUBLIC_API_URL || 'https://api.couponpush.com/api');
         return `${api.origin}${value.startsWith('/') ? value : `/${value}`}`;
