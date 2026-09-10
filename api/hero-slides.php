@@ -11,6 +11,7 @@ header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, max-age=0');
+header('X-CouponPush-Hero-Version: 2026-09-10-2');
 
 function respondHeroSlides($data, $status = 200, $message = null)
 {
@@ -52,6 +53,14 @@ try {
 
     foreach ($slides as &$slide) {
         $image = trim((string) ($slide['image'] ?? ''));
+        // New admin uploads live on this backend. Older media assets may only
+        // exist on the media host, so retain that fallback for historical rows.
+        $imagePath = parse_url($image, PHP_URL_PATH);
+        if (is_string($imagePath) && preg_match('#^/?uploads/hero/([a-zA-Z0-9_.-]+)$#', $imagePath, $uploadMatch)
+            && (!parse_url($image, PHP_URL_HOST) || in_array(strtolower(parse_url($image, PHP_URL_HOST)), ['couponpush.com', 'www.couponpush.com', 'api.couponpush.com', 'media.couponpush.com'], true))
+            && is_file(dirname(__DIR__) . '/uploads/hero/' . $uploadMatch[1])) {
+            $image = 'https://api.couponpush.com/uploads/hero/' . $uploadMatch[1];
+        }
         if ($image !== '') {
             if (strpos($image, '/uploads/') === 0) {
                 $image = 'https://media.couponpush.com' . $image;

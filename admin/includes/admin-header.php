@@ -338,7 +338,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
             </nav>
 
             <div class="sidebar-footer">
-                <a href="<?php echo SITE_URL; ?>" target="_blank" class="btn btn-outline-light btn-sm w-100">
+                <a href="https://couponpush.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-sm w-100">
                     <i class="fas fa-external-link-alt me-2"></i> View Site
                 </a>
             </div>
