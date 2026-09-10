@@ -303,6 +303,13 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $currentPage === 'hero-slides' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/hero-slides.php">
+                            <i class="fas fa-images"></i>
+                            <span>Hero Slider</span>
+                        </a>
+                    </li>
+
                     <li class="nav-section">Communication</li>
 
                     <li class="nav-item">
