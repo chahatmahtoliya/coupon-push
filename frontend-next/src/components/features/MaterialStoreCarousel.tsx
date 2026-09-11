@@ -8,7 +8,6 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import type { Coupon } from '@/types';
 import { TrendingProductCard } from './TrendingProductCard';
 import { CouponModal } from '@/components/common/CouponModal';
-import { getStorePath } from '@/lib/routes';
 
 interface MaterialStoreCarouselProps {
     title: string;
@@ -69,7 +68,7 @@ export function MaterialStoreCarousel({
         return null;
     }
 
-    const targetViewAll = viewAllUrl || (storeSlug ? getStorePath(storeSlug) : '/deals');
+    const targetViewAll = viewAllUrl || (storeSlug ? `/coupons/?store=${encodeURIComponent(storeSlug)}` : '/coupons/');
 
     return (
         <Box

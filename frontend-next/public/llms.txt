@@ -11,6 +11,7 @@ Use the linked merchant pages for current offer details. Availability, prices an
 - [Stores](https://couponpush.com/stores/): Merchant directory and links to store offer pages.
 - [Categories](https://couponpush.com/categories/): Browse offers by shopping category.
 - [Deals](https://couponpush.com/deals/): Browse deals.
+- [All coupons](https://couponpush.com/coupons/): Browse coupon codes and deals with store, category and offer-type filters.
 - [Offers](https://couponpush.com/offers/): Browse promotional offers.
 
 ## Merchant pages

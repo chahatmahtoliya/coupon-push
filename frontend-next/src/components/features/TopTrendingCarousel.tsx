@@ -22,7 +22,7 @@ interface TopTrendingCarouselProps {
 export function TopTrendingCarousel({
     coupons,
     title = 'Top trending',
-    viewAllLink = '/deals',
+    viewAllLink = '/coupons/?sort=popular',
     showPromoBanner = true,
     showRanks = true,
 }: TopTrendingCarouselProps) {
@@ -312,7 +312,7 @@ export function TopTrendingCarousel({
                             </Box>
                         </Box>
 
-                        <Link href="/deals" style={{ textDecoration: 'none', flexShrink: 0 }}>
+                        <Link href={viewAllLink} style={{ textDecoration: 'none', flexShrink: 0 }}>
                             <Button
                                 variant="contained"
                                 endIcon={<ArrowForwardRoundedIcon sx={{ fontSize: 16 }} />}

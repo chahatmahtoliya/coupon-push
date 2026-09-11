@@ -17,6 +17,8 @@ The category directory at https://couponpush.com/categories/ groups shopping cat
 
 The site sitemap at https://couponpush.com/sitemap.xml and blog sitemap at https://couponpush.com/blog/sitemap.xml provide URL inventories. They do not establish that a search engine has indexed a URL.
 
+The complete coupon catalog at https://couponpush.com/coupons/ supports search, store and category filters, coupon codes versus no-code deals, discount type, and sorting by newest, most clicked or ending soon. Filter URLs point back to the canonical catalog page.
+
 ## Beauty merchant entry points
 
 - Foxtale: https://couponpush.com/store/foxtale/

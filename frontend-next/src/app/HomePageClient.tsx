@@ -248,7 +248,7 @@ export default function HomePageClient(props: HomePageClientProps) {
             <TopTrendingCarousel
                 coupons={recentlyAddedCoupons}
                 title="Newly added coupons"
-                viewAllLink="/offers"
+                viewAllLink="/coupons/?sort=latest"
                 showPromoBanner={false}
                 showRanks={false}
             />
@@ -259,7 +259,7 @@ export default function HomePageClient(props: HomePageClientProps) {
             <TopTrendingCarousel
                 coupons={trendingCoupons}
                 title="Top trending"
-                viewAllLink="/deals"
+                viewAllLink="/coupons/?sort=popular"
                 showPromoBanner={true}
             />
         )}

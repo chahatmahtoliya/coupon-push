@@ -115,6 +115,7 @@ export function Header() {
                                 ))}
                             </div>
                         </div>
+                        <Link href="/coupons" className="nav-link-v2">Coupons</Link>
                         <Link href="/deals" className="nav-link-v2">Deals</Link>
                         <a href="/blog/" className="nav-link-v2">Blog</a>
                     </nav>
@@ -146,6 +147,7 @@ export function Header() {
                     {[
                         { href: '/stores', label: 'Stores', icon: 'fa-store' },
                         { href: '/categories', label: 'Categories', icon: 'fa-border-all' },
+                        { href: '/coupons', label: 'Coupons', icon: 'fa-tags' },
                         { href: '/deals', label: 'Deals', icon: 'fa-bolt' },
                     ].map((item, index) => (
                         <Link key={item.href} href={item.href} className="mobile-menu-item" onClick={() => setMenuOpen(false)} style={{ animationDelay: `${0.05 * (index + 1)}s` }}>

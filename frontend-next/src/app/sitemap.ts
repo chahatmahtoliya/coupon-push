@@ -13,7 +13,7 @@ const baseUrl = 'https://couponpush.com';
 export const dynamic = 'force-static';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const staticRoutes = ['', '/stores', '/categories', '/deals', '/offers', '/about', '/contact', '/privacy-policy', '/terms'];
+    const staticRoutes = ['', '/stores', '/categories', '/coupons', '/deals', '/offers', '/about', '/contact', '/privacy-policy', '/terms'];
     const entries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
         url: `${baseUrl}${path}/`,
         changeFrequency: path === '' ? 'daily' : 'weekly',
