@@ -46,7 +46,8 @@
     max-width: none;
     height: 100%;
     min-height: 0;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
     transform: none;
 }
 
@@ -66,7 +67,7 @@
 }
 
 .cp-live-hero-card.has-image:hover > img {
-    transform: scale(1.018);
+    transform: none;
 }
 
 .cp-promo-tile .cp-live-hero-overlay {
@@ -295,7 +296,7 @@
         width: 100%;
         height: 100%;
         min-height: 0;
-        object-fit: cover;
+        object-fit: contain;
         transform: none;
     }
 
