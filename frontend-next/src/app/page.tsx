@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import HomePageClient from './HomePageClient';
-import { couponsApi, dealsApi, heroSlidesApi, seasonalOffersApi, storesApi } from '@/services/api';
+import { couponsApi, dealsApi, seasonalOffersApi, storesApi } from '@/services/api';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 
 export const metadata: Metadata = {
@@ -34,7 +34,6 @@ export default async function HomePage() {
         amazon,
         flipkart,
         ajio,
-        initialHeroSlides,
         initialSeasonalOffers,
     ] = await Promise.all([
         safely(couponsApi.getFeatured(8), recovered?.initialFeaturedCoupons || []),
@@ -44,7 +43,6 @@ export default async function HomePage() {
         safely(storesApi.getBySlug('amazon'), deployedSnapshot.stores.amazon || null),
         safely(storesApi.getBySlug('flipkart'), deployedSnapshot.stores.flipkart || null),
         safely(storesApi.getBySlug('ajio'), deployedSnapshot.stores.ajio || null),
-        safely(heroSlidesApi.getActive(), recovered?.initialHeroSlides || []),
         safely(seasonalOffersApi.getActive(), recovered?.initialSeasonalOffers || []),
     ]);
 
@@ -57,7 +55,6 @@ export default async function HomePage() {
             initialAmazonCoupons={amazon?.coupons || recovered?.initialAmazonCoupons || []}
             initialFlipkartCoupons={flipkart?.coupons || recovered?.initialFlipkartCoupons || []}
             initialAjioCoupons={ajio?.coupons || recovered?.initialAjioCoupons || []}
-            initialHeroSlides={initialHeroSlides}
             initialSeasonalOffers={initialSeasonalOffers}
         />
     );

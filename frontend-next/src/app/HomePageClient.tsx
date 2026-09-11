@@ -8,8 +8,7 @@ import { couponsApi, dealsApi, heroSlidesApi, seasonalOffersApi, storesApi, trac
 import { SeasonalBanner } from '@/components/features/SeasonalBanner';
 import { TopTrendingCarousel } from '@/components/features/TopTrendingCarousel';
 import { MaterialStoreCarousel } from '@/components/features/MaterialStoreCarousel';
-import { getCouponPath, getStorePath } from '@/lib/routes';
-import { getCouponCtaLabel, isCodeCoupon } from '@/utils/coupon';
+import { getStorePath } from '@/lib/routes';
 
 interface HomePageClientProps {
     initialFeaturedCoupons: Coupon[];
@@ -19,7 +18,6 @@ interface HomePageClientProps {
     initialAmazonCoupons: Coupon[];
     initialFlipkartCoupons: Coupon[];
     initialAjioCoupons: Coupon[];
-    initialHeroSlides: HeroSlide[];
     initialSeasonalOffers: SeasonalOffer[];
 }
 
@@ -59,65 +57,12 @@ function imageUrl(value?: string | null): string | null {
     }
 }
 
-function discountLabel(coupon: Coupon): string {
-    if (coupon.discount_value && Number(coupon.discount_value) !== 0) {
-        if (coupon.discount_type === 'percentage') return `${Number(coupon.discount_value)}% OFF`;
-        if (coupon.discount_type === 'fixed' || (coupon.discount_type as string) === 'flat') return `Rs.${Number(coupon.discount_value).toLocaleString('en-IN')} OFF`;
-        return 'DEAL';
-    }
-    return isCodeCoupon(coupon) ? 'CODE' : 'DEAL';
-}
-
-function couponTarget(coupon: Coupon): string {
-    if (coupon.code?.trim()) return getCouponPath(coupon.id);
-    return coupon.affiliate_link || coupon.store_website_url || getStorePath(coupon.store_slug);
-}
-
 function isExternal(url: string): boolean {
     return /^https?:\/\//i.test(url);
 }
 
-function BrandIdentity({ name, logo, slug, compact = false }: { name: string; logo?: string | null; slug?: string; compact?: boolean }) {
-    const key = `${slug || ''} ${name || ''}`.toLowerCase();
-    const brand = key.includes('boat') ? 'boat' : key.includes('amazon') ? 'amazon' : key.includes('ajio') ? 'ajio' : key.includes('flipkart') ? 'flipkart' : key.includes('myntra') ? 'myntra' : key.includes('zomato') ? 'zomato' : key.includes('swiggy') ? 'swiggy' : key.includes('kapiva') ? 'kapiva' : '';
-    const normalizedLogo = imageUrl(logo);
-    return (
-        <span className={`cp-brand-identity ${compact ? 'compact' : ''}`}>
-            {normalizedLogo && brand !== 'flipkart' ? (
-                <>
-                    <img src={normalizedLogo} alt={name} loading="lazy" decoding="async" onError={(event) => {
-                        event.currentTarget.style.display = 'none';
-                        const fallback = event.currentTarget.nextElementSibling as HTMLElement | null;
-                        if (fallback) fallback.style.display = 'inline-flex';
-                    }} />
-                    <span className={`cp-brand-mark ${brand}`} style={{ display: 'none' }}>{name}</span>
-                </>
-            ) : <span className={`cp-brand-mark ${brand}`}>{name}</span>}
-        </span>
-    );
-}
-
 function EmptyState({ label }: { label: string }) {
     return <div className="cp-empty-state"><i className="fas fa-circle-info" aria-hidden="true" /><span>{label}</span></div>;
-}
-
-function CouponHeroCard({ coupon, large = false }: { coupon: Coupon; large?: boolean }) {
-    const target = couponTarget(coupon);
-    const visual = imageUrl(coupon.image);
-    return (
-        <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`${large ? 'cp-hero-main' : 'cp-promo-tile'} cp-live-hero-card`} aria-label={`${coupon.store_name}: ${coupon.title} (${discountLabel(coupon)})`} onClick={() => void trackClick('coupon', coupon.id)}>
-            <div className="cp-live-hero-copy">
-                <span>{coupon.is_featured ? 'Featured Deal' : coupon.is_verified ? 'Verified Deal' : 'Listed Deal'}</span>
-                <h2>{large ? discountLabel(coupon) : coupon.store_name}</h2>
-                <h3>{coupon.title}</h3>
-                <p>{coupon.description || `Latest offer from ${coupon.store_name}`}</p>
-                <strong>{getCouponCtaLabel(coupon)} <i className="fas fa-arrow-right" aria-hidden="true" /></strong>
-            </div>
-            <div className="cp-live-hero-visual">
-                {visual ? <img src={visual} alt={`${coupon.store_name} offer: ${coupon.title}`} /> : <BrandIdentity name={coupon.store_name} logo={coupon.store_logo} slug={coupon.store_slug} compact />}
-            </div>
-        </a>
-    );
 }
 
 function SlideHeroCard({ slide, large = false, onImageError }: { slide: HeroSlide; large?: boolean; onImageError: (url: string) => void }) {
@@ -141,10 +86,10 @@ function SlideHeroCard({ slide, large = false, onImageError }: { slide: HeroSlid
     );
 }
 
-type HeroItem = { key: string; kind: 'slide'; slide: HeroSlide } | { key: string; kind: 'coupon'; coupon: Coupon };
+type HeroItem = { key: string; kind: 'slide'; slide: HeroSlide };
 
 function HeroItemCard({ item, large = false, onImageError }: { item: HeroItem; large?: boolean; onImageError: (url: string) => void }) {
-    return item.kind === 'slide' ? <SlideHeroCard slide={item.slide} large={large} onImageError={onImageError} /> : <CouponHeroCard coupon={item.coupon} large={large} />;
+    return <SlideHeroCard slide={item.slide} large={large} onImageError={onImageError} />;
 }
 
 function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, isRotationPaused, onNavigate, onSelect, onTogglePause, onImageError }: { items: HeroItem[]; activeIndex: number; totalItems: number; canNavigate: boolean; isPaused: boolean; isRotationPaused: boolean; onNavigate: (direction: number) => void; onSelect: (index: number) => void; onTogglePause: () => void; onImageError: (url: string) => void }) {
@@ -205,7 +150,7 @@ export default function HomePageClient(props: HomePageClientProps) {
     const [stores, setStores] = useState(props.initialFeaturedStores);
     const [deals, setDeals] = useState(props.initialFeaturedDeals);
     const [storeCoupons, setStoreCoupons] = useState<Record<StoreKey, Coupon[]>>({ amazon: props.initialAmazonCoupons, flipkart: props.initialFlipkartCoupons, ajio: props.initialAjioCoupons });
-    const [heroSlides, setHeroSlides] = useState(props.initialHeroSlides);
+    const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
     const [seasonalOffers, setSeasonalOffers] = useState(props.initialSeasonalOffers);
     const [heroIndex, setHeroIndex] = useState(0);
     const [heroPaused, setHeroPaused] = useState(false);
@@ -217,11 +162,17 @@ export default function HomePageClient(props: HomePageClientProps) {
 
     useEffect(() => {
         let active = true;
+        heroSlidesApi.getActiveFresh().then((data) => {
+            if (active) setHeroSlides(data);
+        }).catch((error) => {
+            if (active) setHeroSlides([]);
+            console.error('Failed to load hero slides:', error);
+        });
         seasonalOffersApi.getActiveFresh().then((data) => active && setSeasonalOffers(data)).catch((error) => console.error('Failed to refresh seasonal offers:', error));
         Promise.allSettled([
             couponsApi.getFeaturedFresh(16), couponsApi.getLatestFresh(16), storesApi.getAllFresh(), dealsApi.getFeaturedFresh(4),
-            storesApi.getBySlugFresh('amazon'), storesApi.getBySlugFresh('flipkart'), storesApi.getBySlugFresh('ajio'), heroSlidesApi.getActiveFresh(),
-        ]).then(([featured, latest, allStores, featuredDeals, amazon, flipkart, ajio, slides]) => {
+            storesApi.getBySlugFresh('amazon'), storesApi.getBySlugFresh('flipkart'), storesApi.getBySlugFresh('ajio'),
+        ]).then(([featured, latest, allStores, featuredDeals, amazon, flipkart, ajio]) => {
             if (!active) return;
             if (featured.status === 'fulfilled') setFeaturedCoupons(featured.value);
             if (latest.status === 'fulfilled') setLatestCoupons(latest.value);
@@ -232,7 +183,6 @@ export default function HomePageClient(props: HomePageClientProps) {
                 flipkart: flipkart.status === 'fulfilled' ? flipkart.value.coupons : current.flipkart,
                 ajio: ajio.status === 'fulfilled' ? ajio.value.coupons : current.ajio,
             }));
-            if (slides.status === 'fulfilled') setHeroSlides(slides.value);
         });
         return () => { active = false; };
     }, []);
@@ -266,9 +216,8 @@ export default function HomePageClient(props: HomePageClientProps) {
         return picked;
     }, [featuredCoupons, latestCoupons, recentlyAddedIds]);
 
-    const heroFallbackCoupons = useMemo(() => trendingCoupons.slice(0, 3), [trendingCoupons]);
-    const validHeroSlides = useMemo(() => heroSlides.filter((slide) => { const url = imageUrl(slide.image); return !url || !failedHeroImages.has(url); }), [failedHeroImages, heroSlides]);
-    const heroItems = useMemo<HeroItem[]>(() => validHeroSlides.length > 0 ? validHeroSlides.map((slide) => ({ key: `slide-${slide.id}`, kind: 'slide', slide })) : heroFallbackCoupons.map((coupon) => ({ key: `coupon-${coupon.id}`, kind: 'coupon', coupon })), [heroFallbackCoupons, validHeroSlides]);
+    const validHeroSlides = useMemo(() => heroSlides.filter((slide) => { const url = imageUrl(slide.image); return url && !failedHeroImages.has(url); }), [failedHeroImages, heroSlides]);
+    const heroItems = useMemo<HeroItem[]>(() => validHeroSlides.map((slide) => ({ key: `slide-${slide.id}`, kind: 'slide', slide })), [validHeroSlides]);
     const visibleHeroItems = useMemo(() => heroItems.length === 0 ? [] : Array.from({ length: Math.min(3, heroItems.length) }, (_, offset) => heroItems[(heroIndex + offset) % heroItems.length]), [heroIndex, heroItems]);
     const storePages = useMemo(() => chunks(stores.filter((store) => Boolean(imageUrl(store.logo))), storesPerPage), [stores, storesPerPage]);
     const maxStorePage = Math.max(0, storePages.length - 1);
