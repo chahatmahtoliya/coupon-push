@@ -36,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     return (
         <html lang="en" data-scroll-behavior="smooth">
             <head>
+                <link rel="describedby" href="/llms.txt" type="text/plain" />
                 <link rel="dns-prefetch" href="https://api.fontshare.com" />
                 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
                 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />

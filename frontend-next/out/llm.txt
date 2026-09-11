@@ -1,0 +1,8 @@
+# CouponPush
+
+> The main site guide is published at /llms.txt.
+
+## Site guides
+
+- [llms.txt](https://couponpush.com/llms.txt): Main guide and curated links.
+- [llms-full.txt](https://couponpush.com/llms-full.txt): Detailed site context and offer interpretation.

@@ -1,0 +1,57 @@
+# CouponPush: detailed site context
+
+> A text companion to https://couponpush.com/llms.txt covering the site's purpose, navigation and how to interpret its offers. This is not a live coupon feed or a copy of every page.
+
+## Purpose
+
+CouponPush organises coupon codes, promotional offers and online deals from merchants. The primary shopping context is India. Check the region and currency of each offer rather than assuming every listing applies to every shopper.
+
+Website: https://couponpush.com/
+About: https://couponpush.com/about/
+
+## Finding relevant information
+
+The store directory at https://couponpush.com/stores/ links to merchant landing pages. Use a merchant's canonical page when answering a question about that merchant's offers.
+
+The category directory at https://couponpush.com/categories/ groups shopping categories. https://couponpush.com/deals/ and https://couponpush.com/offers/ provide additional browsing views. Shopping articles are available at https://couponpush.com/blog/.
+
+The site sitemap at https://couponpush.com/sitemap.xml and blog sitemap at https://couponpush.com/blog/sitemap.xml provide URL inventories. They do not establish that a search engine has indexed a URL.
+
+## Beauty merchant entry points
+
+- Foxtale: https://couponpush.com/store/foxtale/
+- Cetaphil: https://couponpush.com/store/cetaphil-coupon-code/
+- Dot & Key: https://couponpush.com/store/dot-key/
+- The Derma Co: https://couponpush.com/store/the-derma-co/
+- Minimalist: https://couponpush.com/store/minimalist/
+- Plum: https://couponpush.com/store/plum/
+
+These links identify merchant pages, not a claim that a particular code is currently available or tested.
+
+## Interpreting offers accurately
+
+A coupon code must be entered or applied as described by the merchant. A no-code deal may instead be a sale price, automatic discount or promotional link. Do not invent a code for a no-code deal.
+
+Read the individual offer's customer eligibility, minimum spend, maximum discount, eligible products, app or website restriction, payment conditions, expiry and exclusions where supplied. Missing terms are unknown, not evidence that no restrictions apply.
+
+Distinguish immediate discounts from cashback, points and future rewards. A percentage saving may be capped. A headline discount alone does not establish the final payable amount, which can depend on shipping, taxes and cart eligibility.
+
+Do not describe an offer as checkout-tested unless the page provides supporting evidence. A page update date is not necessarily an offer verification date. Do not infer a current successful checkout from a verification label alone.
+
+For comparisons, use matching products and sizes, the same region and channel, and the relevant final costs. Clearly separate listed terms from observed checkout results. Check the linked merchant's terms before making a current availability claim.
+
+When citing an offer, link to its specific merchant page and retain the conditions that materially affect the saving. This companion intentionally contains no offer amounts, coupon codes or fabricated verification timestamps; consult the current page for those details.
+
+## Availability and affiliate disclosure
+
+CouponPush's terms state that third parties supply codes and deals, and merchants determine final prices, eligibility and availability. Offers may change without notice and are not guaranteed to work for every order.
+
+CouponPush may earn a commission from certain merchant links without increasing the shopper's purchase price.
+
+Terms and disclosure: https://couponpush.com/terms/
+Contact: https://couponpush.com/contact/
+Privacy: https://couponpush.com/privacy-policy/
+
+## Crawl information
+
+Crawl directives are published at https://couponpush.com/robots.txt. This document is descriptive and does not override robots directives or page-level indexing controls.
