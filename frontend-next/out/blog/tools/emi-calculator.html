@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product &amp; Credit Card EMI Calculator | CouponPush</title>
+<meta name="description" content="Calculate product or credit-card EMI, interest, fees and GST. Compare the total with paying upfront, view a repayment schedule and embed the calculator on your website.">
+<link rel="canonical" href="https://couponpush.com/blog/tools/emi-calculator.html">
+<meta property="og:title" content="Product &amp; Credit Card EMI Calculator | CouponPush">
+<meta property="og:description" content="See monthly EMI, total charges and the cost difference versus paying upfront.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://couponpush.com/blog/tools/emi-calculator.html">
+<meta property="og:site_name" content="CouponPush">
+<meta property="og:image" content="https://couponpush.com/blog/assets/images/couponpush-shopping-desk.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=clash-display@500,600,700&display=swap">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/brand.css">
+<link rel="stylesheet" href="../assets/emi-calculator.css">
+<script src="../assets/script.js" defer></script>
+<script src="../assets/emi-math.js" defer></script>
+<script src="../assets/emi-calculator.js" defer></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CouponPush Product & Credit Card EMI Calculator","url":"https://couponpush.com/blog/tools/emi-calculator.html","description":"Estimate monthly EMI, interest, fees and taxes and compare financing with paying upfront.","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"publisher":{"@type":"Organization","name":"CouponPush","url":"https://couponpush.com/"}}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="container header-inner">
+<a class="header-logo" href="../index.html" aria-label="CouponPush Blog home"><img src="../assets/images/couponpush-logo.png" width="160" height="38" alt="CouponPush"><span class="logo-section">Blog</span></a>
+<nav class="desktop-nav" aria-label="Primary navigation"><a href="../index.html">Blog</a><a href="savings-calculator.html">Savings calculator</a><a href="emi-calculator.html">EMI calculator</a><a href="/stores/">Stores</a></nav>
+<div class="header-actions"><a class="header-cta" href="/coupons/">Browse coupons</a><button class="menu-trigger" type="button" aria-expanded="false" aria-controls="blog-mobile-nav" aria-label="Open navigation" data-menu-button>Menu</button></div>
+</div>
+<nav id="blog-mobile-nav" class="mobile-nav" aria-label="Mobile navigation" data-mobile-nav><a href="../index.html">Blog</a><a href="savings-calculator.html">Savings calculator</a><a href="emi-calculator.html">EMI calculator</a><a href="/coupons/">Browse coupons</a></nav>
+</header>
+<main id="main">
+<section class="container emi-heading">
+<nav class="emi-breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Blog</a> / <span aria-current="page">EMI calculator</span></nav>
+<h1>Product &amp; credit card EMI calculator</h1>
+<p>Look beyond the monthly payment. Add your offer’s terms to compare the full EMI cost with paying upfront.</p>
+</section>
+<div class="container emi-workspace">
+<form class="emi-form" data-emi-form novalidate>
+<h2>Your purchase and EMI terms</h2>
+<label for="emi-mode">Financing type<select id="emi-mode" name="mode"><option value="card">Credit card EMI</option><option value="loan">Product loan EMI</option></select><small>Switching type changes the interest-tax default. Check the lender’s actual terms.</small></label>
+<div class="emi-fields">
+<label for="emi-price">Product price (₹)<input id="emi-price" name="price" type="number" min="0.01" max="100000000" step="0.01" value="30000" required><small>Before the discounts entered below; include applicable product taxes.</small></label>
+<label for="emi-months">Tenure (months)<input id="emi-months" name="months" type="number" min="1" max="360" step="1" value="6" required></label>
+<label for="emi-rate">Annual interest rate (%)<input id="emi-rate" name="annualRate" type="number" min="0" max="100" step="0.01" value="15" required><small>Nominal yearly reducing-balance rate, not a monthly or flat rate.</small></label>
+<label for="emi-down">Down payment (₹)<input id="emi-down" name="down" type="number" min="0" step="0.01" value="0" required><small>Paid separately; excluded from the financed amount.</small></label>
+<label for="emi-discount">Upfront EMI discount (₹)<input id="emi-discount" name="emiDiscount" type="number" min="0" step="0.01" value="0" required><small>Include a merchant’s no-cost-EMI subsidy only if it reduces the financed price.</small></label>
+<label for="emi-cash-discount">Pay-now discount (₹)<input id="emi-cash-discount" name="cashDiscount" type="number" min="0" step="0.01" value="0" required><small>The total discount available when paying in full instead.</small></label>
+</div>
+<details open>
+<summary>Fees, taxes and cashback</summary>
+<div class="emi-fields">
+<label for="emi-fee">One-time processing fee (₹)<input id="emi-fee" name="fee" type="number" min="0" step="0.01" value="199" required><small>Before GST; treated as paid upfront, not financed.</small></label>
+<label for="emi-gst">GST rate on selected charges (%)<input id="emi-gst" name="gstRate" type="number" min="0" max="100" step="0.01" value="18" required><small>Editable assumption. Apply only to the charges selected below.</small></label>
+<label for="emi-cashback">Later EMI cashback (₹)<input id="emi-cashback" name="cashback" type="number" min="0" step="0.01" value="0" required><small>Optional, conditional benefit. It does not reduce the monthly bill.</small></label>
+</div>
+<div class="emi-checks"><label class="emi-check"><input name="interestGst" type="checkbox" checked>Include GST on EMI interest</label><label class="emi-check"><input name="feeGst" type="checkbox" checked>Include GST on the processing fee</label></div>
+</details>
+<div class="emi-actions"><button class="button" type="submit">Calculate EMI</button><button class="emi-reset" type="button" data-emi-reset>Reset example</button></div>
+<p class="form-error" data-emi-error role="status"></p>
+<p class="emi-help">The starting values are an illustration, not a lender quote. Your inputs stay in this page and are not submitted to CouponPush.</p>
+<noscript><p>Enable JavaScript to calculate your EMI. The formula and assumptions are explained below.</p></noscript>
+</form>
+<section class="emi-results" data-emi-result aria-label="EMI estimate" aria-live="polite" hidden>
+<h2>Estimated monthly EMI</h2>
+<output class="emi-main-value" data-value="emi"></output>
+<p data-value="tenure"></p>
+<dl class="emi-breakdown">
+<div><dt>Financed amount</dt><dd data-value="principal"></dd></div>
+<div><dt>Total interest</dt><dd data-value="interest"></dd></div>
+<div><dt>GST on interest</dt><dd data-value="interestTax"></dd></div>
+<div><dt>Processing fee</dt><dd data-value="fee"></dd></div>
+<div><dt>GST on fee</dt><dd data-value="feeTax"></dd></div>
+<div><dt>Down payment + fee + fee GST</dt><dd data-value="upfront"></dd></div>
+<div><dt>First EMI + interest GST</dt><dd data-value="firstPayment"></dd></div>
+<div class="emi-total"><dt>Total paid before cashback</dt><dd data-value="total"></dd></div>
+<div><dt>Pay-in-full comparison price</dt><dd data-value="cashTotal"></dd></div>
+</dl>
+<div class="emi-comparison" data-value="difference"></div>
+<p>Includes the down payment, all installments and selected charges. Interest GST can vary each month; actual statement timing may differ.</p>
+<details><summary>See the cashback comparison</summary><dl class="emi-breakdown"><div><dt>Later cashback entered</dt><dd data-value="cashback"></dd></div><div><dt>Net cost if received</dt><dd data-value="net"></dd></div></dl><p data-value="netDifference"></p><p class="emi-help">Conditional cashback is separate from the amount you must pay. Reward points, investment returns and the time value of money are not included.</p></details>
+<details><summary>Monthly repayment schedule</summary><div class="emi-table-wrap" tabindex="0" role="region" aria-label="Scrollable EMI repayment schedule"><table class="emi-table"><caption>Estimates in INR. Down payment and processing charges are separate.</caption><thead><tr><th scope="col">Month</th><th scope="col">Principal</th><th scope="col">Interest</th><th scope="col">Interest GST</th><th scope="col">Total payment</th><th scope="col">Balance</th></tr></thead><tbody data-emi-schedule></tbody></table></div><button class="button" type="button" data-emi-download>Download schedule CSV</button></details>
+<p class="emi-credit">Calculator by <a href="https://couponpush.com/blog/tools/emi-calculator.html" target="_blank" rel="noopener">CouponPush</a></p>
+</section>
+</div>
+<section class="container emi-info">
+<h2>How the estimate works</h2>
+<p>The financed amount is the product price minus the upfront EMI discount and down payment. For a monthly rate <var>r</var> and <var>n</var> installments, EMI = <var>P</var> × <var>r</var> ÷ (1 − (1 + <var>r</var>)<sup>−n</sup>). The monthly rate is the annual percentage divided by 1,200. At 0% interest, EMI is simply the financed amount divided by the number of months. This follows the reducing-balance approach described in <a href="https://www.axis.bank.in/calculators/emi-calculator">Axis Bank’s EMI formula</a>.</p>
+<p>Payments are assumed to occur monthly, with the first payment after one month. Calculations retain precision internally and display two decimals. A lender’s rounding, first-period interest, billing dates or tax timing may produce a different schedule. Flat-rate loans, late fees, foreclosure and other unentered charges are not included.</p>
+<h2>Is no-cost EMI always cheaper?</h2>
+<p>Compare the offer’s full repayment cost with the price you can pay today. If the lender charges interest and the merchant gives an upfront subsidy, enter the quoted interest rate and that subsidy in “Upfront EMI discount.” Do not also set the rate to zero unless the lender actually charges 0%.</p>
+<p>Processing fees and applicable taxes can still affect the total. For example, <a href="https://www.hdfc.bank.in/easyemi/credit-card">HDFC Bank’s EasyEMI terms</a> describe processing charges and tax billing. The calculator does not fetch any bank’s current rates: use your own offer and lender terms. The difference shown is a nominal cost comparison, not a recommendation to borrow.</p>
+<h2>Embed this calculator on your website</h2>
+<p>Copy the HTML below into a custom HTML block. It includes a responsive-width calculator and a visible CouponPush attribution link. The iframe can scroll on smaller screens; increase its height to suit your layout.</p>
+<pre class="code-block" id="emi-embed-code">&lt;iframe src="https://couponpush.com/blog/tools/emi-calculator.html?embed=1" title="CouponPush product and credit card EMI calculator" width="100%" height="1400" loading="lazy" style="border:0;max-width:100%;"&gt;&lt;/iframe&gt;
+&lt;p&gt;EMI calculator by &lt;a href="https://couponpush.com/blog/tools/emi-calculator.html" target="_blank" rel="noopener"&gt;CouponPush&lt;/a&gt;&lt;/p&gt;</pre>
+<button class="button" type="button" data-copy-target="emi-embed-code">Copy embed code</button><p data-copy-status role="status"></p>
+<p><a href="emi-calculator.html?embed=1" target="_blank" rel="noopener">Preview the embedded calculator</a> · <a href="savings-calculator.html">Try the coupon savings calculator</a> · <a href="/coupons/">Browse coupons</a></p>
+</section>
+</main>
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-intro"><a class="footer-brand" href="/" aria-label="CouponPush home"><img src="../assets/images/couponpush-logo.png" width="160" height="38" alt="CouponPush"></a><p>A little know-how. A better checkout.</p></div><div><h2 class="footer-heading">Explore</h2><div class="footer-links"><a href="savings-calculator.html">Savings calculator</a><a href="emi-calculator.html">EMI calculator</a><a href="/coupons/">All coupons</a></div></div><div><h2 class="footer-heading">CouponPush</h2><div class="footer-links"><a href="/about/">About us</a><a href="/contact/">Contact</a><a href="/privacy-policy/">Privacy policy</a><a href="/terms/">Terms of use</a></div></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> CouponPush.</span><span>Check the lender’s final terms before you pay.</span></div></div></footer>
+</body>
+</html>
