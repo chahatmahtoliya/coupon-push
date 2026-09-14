@@ -7,6 +7,7 @@ import Link from '@/components/common/SiteLink';
 import type { Coupon } from '@/types';
 import { CouponModal } from '@/components/common/CouponModal';
 import { getStorePath } from '@/lib/routes';
+import { isCheckoutTested } from '@/lib/offer-evidence';
 
 interface CouponCardProps {
     coupon: Coupon;
@@ -40,8 +41,8 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
     };
 
     const getBadge = (): { text: string; class: string } | null => {
-        if (coupon.is_verified) {
-            return { text: '✓ VERIFIED', class: 'badge-verified' };
+        if (isCheckoutTested(coupon)) {
+            return { text: 'Checkout tested', class: 'badge-verified' };
         }
         if (coupon.is_featured) {
             return { text: '🔥 HOT', class: 'badge-hot' };

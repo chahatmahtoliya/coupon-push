@@ -53,11 +53,11 @@ export async function generateMetadata(
     const dealCount = Math.max(offerCount - codeCount, 0);
     const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(data.store.meta_description) ? data.store.meta_description!.trim() : '';
-    const description = customDescription || pseo?.metaDescription || storeDescription(storeName, offerCount, codeCount, data.store.description);
+    const description = pseo?.metaDescription || customDescription || storeDescription(storeName, offerCount, codeCount, data.store.description);
     const customTitle = cleanCustomTitle(data.store.meta_title);
-    const title = customTitle && customTitle.toLowerCase().includes(storeName.toLowerCase()) && /(coupon|offer|deal|promo)/i.test(customTitle)
+    const title = pseo?.metaTitle || (customTitle && customTitle.toLowerCase().includes(storeName.toLowerCase()) && /(coupon|offer|deal|promo)/i.test(customTitle)
         ? customTitle
-        : pseo?.metaTitle || `${storeName} Coupon Codes & Offers`;
+        : `${storeName} ${codeCount ? 'Coupon Codes & Offers' : 'Offers & Deals'}`);
 
     return {
         title: pseo ? { absolute: title } : title,
@@ -93,13 +93,13 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     const dealCount = Math.max(offerCount - codeCount, 0);
     const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';
-    const description = customDescription || pseo?.metaDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
+    const description = pseo?.metaDescription || customDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
     const dateModified = getLatestContentUpdate(initialData.store, ...coupons);
     const structuredData = [
         {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: pseo?.h1 || `${storeName} Coupon Codes & Offers`,
+            name: pseo?.h1 || `${storeName} ${codeCount ? 'Coupon Codes & Offers' : 'Offers & Deals'}`,
             description,
             url: canonical,
             isPartOf: { '@type': 'WebSite', name: 'CouponPush', url: 'https://couponpush.com/' },

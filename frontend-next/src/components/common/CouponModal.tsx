@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import type { Coupon } from '@/types';
 import { trackClick } from '@/services/api';
 import { getStorePath } from '@/lib/routes';
+import { OfferEvidence } from './OfferEvidence';
 
 interface CouponModalProps {
     coupon: Coupon | null;
@@ -74,12 +75,7 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
                         />
                         <div className="modal-store-details">
                             <h4 className="modal-store-name">{coupon.store_name}</h4>
-                            {coupon.is_verified && (
-                                <span className="modal-verified-badge">
-                                    <i className="fas fa-check-circle"></i>
-                                    Verified Offer
-                                </span>
-                            )}
+                            <OfferEvidence coupon={coupon} />
                         </div>
                     </div>
                     <button className="modal-close-btn" onClick={onClose}>
@@ -92,7 +88,7 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
                     <span className="modal-exclusive-badge">{coupon.code ? 'COUPON CODE' : 'LISTED OFFER'}</span>
                     <h2 className="modal-title-new">{coupon.title}</h2>
                     <p className="modal-description-new">
-                        {coupon.description || 'Use this code at checkout to save on your purchase. Valid on all categories.'}
+                        {coupon.description || 'Check eligible products, minimum spend and customer restrictions on the merchant site before checkout.'}
                     </p>
 
                     {hasCode ? (

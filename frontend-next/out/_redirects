@@ -59,9 +59,13 @@
 /pilgrim/ /store/pilgrim/ 301
 /decathlon-coupon-code /store/decathlon-coupon-code/ 301
 /decathlon-coupon-code/ /store/decathlon-coupon-code/ 301
-/derma-co-coupon-code /store/derma-co-coupon-code/ 301
-/derma-co-coupon-code/ /store/derma-co-coupon-code/ 301
 /lenovo /store/lenovo/ 301
 /lenovo/ /store/lenovo/ 301
-/dot-key-coupon-codes /store/dot-key-coupon-codes/ 301
-/dot-key-coupon-codes/ /store/dot-key-coupon-codes/ 301
+/store/derma-co-coupon-code /store/the-derma-co/ 301
+/store/derma-co-coupon-code/ /store/the-derma-co/ 301
+/derma-co-coupon-code /store/the-derma-co/ 301
+/derma-co-coupon-code/ /store/the-derma-co/ 301
+/store/dot-key-coupon-codes /store/dot-key/ 301
+/store/dot-key-coupon-codes/ /store/dot-key/ 301
+/dot-key-coupon-codes /store/dot-key/ 301
+/dot-key-coupon-codes/ /store/dot-key/ 301

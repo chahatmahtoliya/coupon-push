@@ -1,4 +1,5 @@
 import snapshotJson from '@/data/deployed-snapshot.json';
+import { normalizeCatalog } from './catalog-normalization';
 import { getMissingImageFallback } from './missing-images';
 import type { Category, Coupon, Deal, HeroSlide, SeasonalOffer, Store, StorePageData } from '@/types';
 
@@ -70,4 +71,4 @@ function normalizeSnapshotMedia(value: unknown): unknown {
     return value;
 }
 
-export const deployedSnapshot = normalizeSnapshotMedia(snapshotJson) as DeployedSnapshot;
+export const deployedSnapshot = normalizeCatalog(normalizeSnapshotMedia(snapshotJson)) as DeployedSnapshot;

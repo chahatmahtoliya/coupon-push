@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         template: '%s | CouponPush',
     },
     description:
-        'Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.',
+        'Compare coupon codes and shopping offers in India. Browse stores, check offer conditions and find savings for your next order.',
     applicationName: 'CouponPush',
     authors: [{ name: 'CouponPush' }],
     keywords: ['coupon codes', 'promo codes', 'discount codes', 'deals', 'offers', 'coupons India'],

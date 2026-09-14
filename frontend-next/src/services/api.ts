@@ -12,6 +12,8 @@ import type {
 } from '@/types';
 
 import { readCatalogSnapshot } from '@/lib/snapshot-api';
+import { normalizeCatalog } from '@/lib/catalog-normalization';
+import { getCanonicalStoreSlug } from '@/lib/routes';
 import { getMissingImageFallback } from '@/lib/missing-images';
 
 const SERVER_API_BASE = process.env.API_URL || 'https://api.couponpush.com/api';
@@ -136,7 +138,7 @@ async function fetchApi<T>(endpoint: string, fresh = false): Promise<T> {
         throw new Error(payload.message || 'API request failed');
     }
 
-    return normalizeAssetsInData(decodeHTMLInData(payload.data)) as T;
+    return normalizeCatalog(normalizeAssetsInData(decodeHTMLInData(payload.data))) as T;
 }
 
 export const storesApi = {
@@ -144,8 +146,8 @@ export const storesApi = {
     getAllFresh: () => fetchApi<Store[]>('/stores.php', true),
     getFeatured: (limit = 8) => fetchApi<Store[]>(`/stores.php?featured=1&limit=${limit}`),
     getFeaturedFresh: (limit = 8) => fetchApi<Store[]>(`/stores.php?featured=1&limit=${limit}`, true),
-    getBySlug: (slug: string) => fetchApi<StorePageData>(`/store.php?slug=${encodeURIComponent(slug)}`),
-    getBySlugFresh: (slug: string) => fetchApi<StorePageData>(`/store.php?slug=${encodeURIComponent(slug)}`, true),
+    getBySlug: (slug: string) => fetchApi<StorePageData>(`/store.php?slug=${encodeURIComponent(getCanonicalStoreSlug(slug))}`),
+    getBySlugFresh: (slug: string) => fetchApi<StorePageData>(`/store.php?slug=${encodeURIComponent(getCanonicalStoreSlug(slug))}`, true),
     getByCategory: (categorySlug: string) =>
         fetchApi<Store[]>(`/stores.php?category=${encodeURIComponent(categorySlug)}`),
     getByCategoryFresh: (categorySlug: string) =>

@@ -6,6 +6,7 @@ import { Box, Typography, IconButton, Container } from '@mui/material';
 import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import type { Coupon } from '@/types';
+import { getStorePath } from '@/lib/routes';
 import { TrendingProductCard } from './TrendingProductCard';
 import { CouponModal } from '@/components/common/CouponModal';
 
@@ -68,7 +69,7 @@ export function MaterialStoreCarousel({
         return null;
     }
 
-    const targetViewAll = viewAllUrl || (storeSlug ? `/coupons/?store=${encodeURIComponent(storeSlug)}` : '/coupons/');
+    const targetViewAll = viewAllUrl || (storeSlug ? getStorePath(storeSlug) : '/coupons/');
 
     return (
         <Box

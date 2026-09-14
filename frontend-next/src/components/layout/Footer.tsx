@@ -9,12 +9,7 @@ export function Footer() {
                         <img src="/assets/home-ui/logo-transparent.png" alt="CouponPush" className="cp-footer-logo-image" width="164" height="38" />
                     </Link>
                     <p>Your one-stop destination for the best coupons, deals & offers from top brands. Save more, shop smart!</p>
-                    <div className="cp-social-row">
-                        <a href="https://facebook.com" aria-label="CouponPush on Facebook"><i className="fab fa-facebook-f" aria-hidden="true" /></a>
-                        <a href="https://twitter.com" aria-label="CouponPush on Twitter"><i className="fab fa-twitter" aria-hidden="true" /></a>
-                        <a href="https://instagram.com" aria-label="CouponPush on Instagram"><i className="fab fa-instagram" aria-hidden="true" /></a>
-                        <a href="https://youtube.com" aria-label="CouponPush on YouTube"><i className="fab fa-youtube" aria-hidden="true" /></a>
-                    </div>
+                    <Link href="/about/#offer-checks">How we label offers</Link>
                 </div>
                 <div className="cp-footer-col">
                     <h2>Quick Links</h2>

@@ -6,6 +6,7 @@ const root = process.cwd();
 const file = path.join(root, 'src/data/deployed-snapshot.json');
 const refresh = process.argv.includes('--refresh');
 const snapshot = JSON.parse(await fs.readFile(file, 'utf8'));
+const aliases = JSON.parse(await fs.readFile(path.join(root, 'src/data/store-redirects.json'), 'utf8'));
 const reportDir = path.join(root, '../output/seo');
 await fs.mkdir(reportDir, { recursive: true });
 
@@ -92,17 +93,23 @@ Object.assign(cetaphil.store, {
 });
 
 // Rebuild every catalog surface from the same store records, including old coupon URLs.
-const canonicalStores = Object.entries(snapshot.stores).filter(([slug]) => !['cetaphil', 'amazon-prime-day-sale-2026'].includes(slug));
+// Keep legacy source records for editorial review; never silently import their
+// unverified offers into the maintained merchant page.
+const legacyPages = Object.fromEntries(Object.entries(snapshot.stores).filter(([slug]) => aliases[slug]));
+if (Object.keys(legacyPages).length) {
+    await fs.writeFile(path.join(reportDir, `legacy-store-review-${Date.now()}.json`), JSON.stringify(legacyPages, null, 2));
+}
+const legacyStoreIds = new Set(Object.values(legacyPages).map(page => page.store.id));
+const canonicalStores = Object.entries(snapshot.stores).filter(([slug]) => !aliases[slug]);
 for (const [slug, page] of canonicalStores) {
     page.store.coupon_count = page.coupons.length;
     page.coupons = page.coupons.map(c => ({ ...c, coupon_type: c.code?.trim() ? 'code' : 'deal' }));
     const category = snapshot.categoriesPage.initialCategories.find(c => c.id === page.store.category_id);
     if (category) Object.assign(page.store, { category_slug: category.slug, category_name: category.name });
 }
-delete snapshot.stores.cetaphil;
-delete snapshot.stores['amazon-prime-day-sale-2026'];
-snapshot.storesPage.initialStores = snapshot.storesPage.initialStores.filter(s => !['cetaphil', 'amazon-prime-day-sale-2026'].includes(s.slug)).map(s => snapshot.stores[s.slug]?.store || s);
-const categoryExtras = Object.values(snapshot.categories).flatMap(c => c.coupons || []).filter(c => c.store_id !== cetaphil.store.id);
+for (const alias of Object.keys(aliases)) delete snapshot.stores[alias];
+snapshot.storesPage.initialStores = snapshot.storesPage.initialStores.filter(s => !aliases[s.slug]).map(s => snapshot.stores[s.slug]?.store || s);
+const categoryExtras = Object.values(snapshot.categories).flatMap(c => c.coupons || []).filter(c => c.store_id !== cetaphil.store.id && !legacyStoreIds.has(c.store_id) && !aliases[c.store_slug]);
 const coupons = [...new Map([...categoryExtras, ...canonicalStores.flatMap(([, page]) => page.coupons)].map(c => [c.id, c])).values()];
 const couponMap = Object.fromEntries(coupons.map(c => [c.id, c]));
 snapshot.coupons = Object.fromEntries([...new Set([...Object.keys(snapshot.coupons || {}), ...Object.keys(couponMap)])].map(id => [id, couponMap[id] || null]));

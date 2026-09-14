@@ -1,4 +1,5 @@
 import type { Coupon } from '../types/index';
+import { isCheckoutTested } from './offer-evidence';
 
 export type CatalogCoupon = Coupon & { categorySlugs: string[] };
 export type CouponFilters = {
@@ -51,7 +52,7 @@ export function filterCoupons(coupons: CatalogCoupon[], filters: CouponFilters, 
             && (!filters.categories.length || coupon.categorySlugs.some(slug => filters.categories.includes(slug)))
             && (filters.type === 'all' || (filters.type === 'code' ? hasCode : !hasCode))
             && (filters.discount === 'all' || discount === filters.discount)
-            && (!filters.verified || Boolean(coupon.is_verified))
+            && (!filters.verified || isCheckoutTested(coupon))
             && (!filters.expiring || expiry <= now + 7 * 86400000);
     }).sort((a, b) => {
         if (filters.sort === 'popular') return (Number(b.click_count) || 0) - (Number(a.click_count) || 0) || b.id - a.id;

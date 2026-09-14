@@ -23,6 +23,9 @@ export interface Store {
 
 // Coupon interface
 export interface Coupon {
+    source_url?: string | null;
+    checked_at?: string | null;
+    verification_method?: 'merchant_advertised' | 'checkout_tested' | string | null;
     id: number;
     store_id: number;
     store_name: string;

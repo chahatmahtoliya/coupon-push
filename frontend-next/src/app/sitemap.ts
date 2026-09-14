@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import type { Coupon } from '@/types';
-import { getStorePath } from '@/lib/routes';
+import { getStorePath, isCanonicalStoreSlug } from '@/lib/routes';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { getLatestContentUpdate } from '@/lib/content-dates';
 import {
@@ -21,7 +21,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
 
     const indexableStores = Object.values(deployedSnapshot.stores)
-        .filter(hasIndexableStoreContent).map(data => ({ store: data.store, data }));
+        .filter((data) => isCanonicalStoreSlug(data.store.slug) && hasIndexableStoreContent(data))
+        .map(data => ({ store: data.store, data }));
     const indexableCategories = (deployedSnapshot.categoriesPage?.initialCategories || [])
         .map(category => ({ category, data: deployedSnapshot.categories[category.slug] as { coupons?: Coupon[] } }))
         .filter(({ data }) => hasIndexableCategoryContent(data));

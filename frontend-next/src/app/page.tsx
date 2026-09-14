@@ -5,13 +5,13 @@ import { deployedSnapshot } from '@/lib/deployed-snapshot';
 
 export const metadata: Metadata = {
     title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
-    description: 'Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.',
+    description: 'Compare coupon codes and shopping offers in India. Browse stores, check offer conditions and find savings for your next order.',
     alternates: { canonical: 'https://couponpush.com/' },
     openGraph: {
         type: 'website',
         url: 'https://couponpush.com/',
         title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
-        description: 'Find verified coupon codes, exclusive deals, and promo codes for top stores including Amazon, Flipkart, Myntra, and Zomato.',
+        description: 'Compare coupon codes and shopping offers in India. Browse stores, check offer conditions and find savings for your next order.',
     },
 };
 
@@ -47,6 +47,11 @@ export default async function HomePage() {
     ]);
 
     return (
+        <>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
+            { '@context': 'https://schema.org', '@type': 'WebSite', '@id': 'https://couponpush.com/#website', name: 'CouponPush', url: 'https://couponpush.com/' },
+            { '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://couponpush.com/#organization', name: 'CouponPush', url: 'https://couponpush.com/', logo: 'https://couponpush.com/assets/home-ui/logo-transparent.png' },
+        ]).replace(/</g, '\\u003c') }} />
         <HomePageClient
             initialFeaturedCoupons={initialFeaturedCoupons}
             initialLatestCoupons={initialLatestCoupons}
@@ -57,5 +62,6 @@ export default async function HomePage() {
             initialAjioCoupons={ajio?.coupons || recovered?.initialAjioCoupons || []}
             initialSeasonalOffers={initialSeasonalOffers}
         />
+        </>
     );
 }

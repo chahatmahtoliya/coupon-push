@@ -1,6 +1,8 @@
 'use client';
 
 import { CouponDescription } from '@/components/common/CouponDescription';
+import { OfferEvidence } from '@/components/common/OfferEvidence';
+import { isCheckoutTested } from '@/lib/offer-evidence';
 
 import Link from '@/components/common/SiteLink';
 import { useEffect, useMemo, useState } from 'react';
@@ -140,7 +142,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     const codeCount = coupons.filter(isCodeCoupon).length;
     const offerCount = coupons.length;
     const dealCount = Math.max(offerCount - codeCount, 0);
-    const verifiedCount = coupons.filter((coupon) => coupon.is_verified).length;
+    const verifiedCount = coupons.filter(isCheckoutTested).length;
     const pseo = getStorePseoContent({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount });
     const factualSummary = offerCount
         ? `${offerCount} active ${displayName} offers are listed: ${codeCount} coupon ${codeCount === 1 ? 'code' : 'codes'} and ${dealCount} online ${dealCount === 1 ? 'deal' : 'deals'}.`
@@ -161,7 +163,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
         { question: `How many ${displayName} coupons and offers are active?`, answer: factualSummary },
         {
             question: `Are there verified ${displayName} coupon codes?`,
-            answer: codeCount ? `${codeCount} active ${displayName} coupon ${codeCount === 1 ? 'code is' : 'codes are'} listed. ${verifiedCount} of all current offers ${verifiedCount === 1 ? 'is' : 'are'} marked as verified.` : `No code-based ${displayName} coupons are listed at the moment; the current listings are online deals that do not require a code.`,
+            answer: codeCount ? `${codeCount} active ${displayName} coupon ${codeCount === 1 ? 'code is' : 'codes are'} listed. ${verifiedCount} of all current offers ${verifiedCount === 1 ? 'is' : 'are'} recorded as checkout tested. A past test does not guarantee account eligibility.` : `No code-based ${displayName} coupons are listed at the moment; the current listings are online deals that do not require a code.`,
         },
         {
             question: `Which ${displayName} offer should I check first?`,
@@ -206,7 +208,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
                     {!filteredCoupons.length ? <div className="store-ui-empty-offers"><i className="fa-solid fa-ticket" aria-hidden="true" /><h3>{coupons.length ? 'No offers match this filter' : `No active ${displayName} offers`}</h3><p>{coupons.length ? 'Choose All to see every active offer.' : `Check ${displayName}'s official site for current promotions.`}</p>{!!coupons.length && <button type="button" onClick={() => setFilter('all')}>Show all offers</button>}</div> : <div className="store-ui-coupon-list">{filteredCoupons.map((coupon) => {
                         const style = offerStyle(coupon);
                         const isSaved = saved.has(coupon.id);
-                        return <article className="store-ui-coupon-card" key={coupon.id}><div className={`store-ui-coupon-visual store-ui-tone-${style.tone}`}><span>{style.label}</span><strong>{visualDiscount(coupon)}</strong>{isCodeCoupon(coupon) && <><small>Code hidden</small><i className="store-ui-ticket-notch store-ui-ticket-left" aria-hidden="true" /><i className="store-ui-ticket-notch store-ui-ticket-right" aria-hidden="true" /></>}</div><div className="store-ui-coupon-details"><h3>{coupon.title}</h3><CouponDescription previewLines={2}>{coupon.description || 'Open this offer to review its current checkout terms.'}</CouponDescription><div className="store-ui-coupon-meta"><span><i className="fa-regular fa-clock" aria-hidden="true" /> {expiryLabel(coupon.expiry_date)}</span>{coupon.is_verified && <span className="store-ui-success"><i className="fa-solid fa-circle-check" aria-hidden="true" /> Verified offer</span>}</div></div><div className="store-ui-coupon-actions"><button type="button" className="store-ui-action-button" onClick={() => setActiveCoupon(coupon)}><span className="store-ui-action-label">{getCouponCtaLabel(coupon)} <i className="fa-solid fa-arrow-right" aria-hidden="true" /></span><span className="store-ui-action-reveal" aria-hidden="true" /><span className="store-ui-action-shine" aria-hidden="true" /></button><div className="store-ui-card-links"><button type="button" aria-label={isSaved ? 'Remove saved offer' : 'Save offer'} className={isSaved ? 'active' : ''} onClick={() => toggleSaved(coupon.id)}><i className={`${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart`} aria-hidden="true" /></button></div></div></article>;
+                        return <article className="store-ui-coupon-card" key={coupon.id}><div className={`store-ui-coupon-visual store-ui-tone-${style.tone}`}><span>{style.label}</span><strong>{visualDiscount(coupon)}</strong>{isCodeCoupon(coupon) && <><small>Code hidden</small><i className="store-ui-ticket-notch store-ui-ticket-left" aria-hidden="true" /><i className="store-ui-ticket-notch store-ui-ticket-right" aria-hidden="true" /></>}</div><div className="store-ui-coupon-details"><h3>{coupon.title}</h3><CouponDescription previewLines={2}>{coupon.description || 'Open this offer to review its current checkout terms.'}</CouponDescription><div className="store-ui-coupon-meta"><span><i className="fa-regular fa-clock" aria-hidden="true" /> {expiryLabel(coupon.expiry_date)}</span></div><OfferEvidence coupon={coupon} /></div><div className="store-ui-coupon-actions"><button type="button" className="store-ui-action-button" onClick={() => setActiveCoupon(coupon)}><span className="store-ui-action-label">{getCouponCtaLabel(coupon)} <i className="fa-solid fa-arrow-right" aria-hidden="true" /></span><span className="store-ui-action-reveal" aria-hidden="true" /><span className="store-ui-action-shine" aria-hidden="true" /></button><div className="store-ui-card-links"><button type="button" aria-label={isSaved ? 'Remove saved offer' : 'Save offer'} className={isSaved ? 'active' : ''} onClick={() => toggleSaved(coupon.id)}><i className={`${isSaved ? 'fa-solid' : 'fa-regular'} fa-heart`} aria-hidden="true" /></button></div></div></article>;
                     })}</div>}
                 </section>
 
@@ -214,7 +216,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
 
                 {!!contentPanels.length && <section className="store-ui-content-stack" aria-label={`${displayName} coupon guide`}>{contentPanels.map((panel) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${panel.id}`} key={panel.id}><header><i className={`fa-solid ${panel.icon}`} aria-hidden="true" /><h2>{panel.title}</h2></header><div dangerouslySetInnerHTML={{ __html: panel.html }} /></article>)}</section>}
 
-                {!!pseo?.sections.length && <section className="store-ui-content-stack" aria-label={`${displayName} hosting deal guide`}>{pseo.sections.map((section) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${section.id}`} key={section.id}><header><i className={`fa-solid ${section.icon}`} aria-hidden="true" /><h2>{section.title}</h2></header><div>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{!!section.items?.length && <ul className="store-ui-pseo-list">{section.items.map((item) => <li key={item.title}><strong>{item.title}</strong><span>{item.description}</span></li>)}</ul>}</div></article>)}</section>}
+                {!!pseo?.sections.length && <section className="store-ui-content-stack" aria-label={`${displayName} offer guide`}>{pseo.sections.map((section) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${section.id}`} key={section.id}><header><i className={`fa-solid ${section.icon}`} aria-hidden="true" /><h2>{section.title}</h2></header><div>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{!!section.items?.length && <ul className="store-ui-pseo-list">{section.items.map((item) => <li key={item.title}><strong>{item.title}</strong><span>{item.description}</span></li>)}</ul>}</div></article>)}</section>}
 
                 {!!relatedStores.length && <section className="store-ui-related" id="store-ui-related"><div className="store-ui-section-heading"><h2>More Stores in {categoryName}</h2></div><div className="store-ui-related-grid">{relatedStores.map((related) => {
                     const relatedName = cleanStoreName(related.name);

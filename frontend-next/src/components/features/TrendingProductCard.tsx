@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from '@/components/common/SiteLink';
 import { Box, Typography, IconButton, Paper } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -8,6 +9,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import LocalFireDepartmentRoundedIcon from '@mui/icons-material/LocalFireDepartmentRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import type { Coupon } from '@/types';
+import { isCheckoutTested } from '@/lib/offer-evidence';
 import { trackClick } from '@/services/api';
 import { getCouponPath, getStorePath } from '@/lib/routes';
 import { isCodeCoupon } from '@/utils/coupon';
@@ -114,29 +116,8 @@ export function TrendingProductCard({
 
     // Trust / Social proof text
     const trustBadge = React.useMemo(() => {
-        const storeLower = (coupon.store_name || '').toLowerCase();
-        if (storeLower.includes('amazon')) {
-            if (rank === 1 || rank === 2 || rank === 3) return { text: 'Best Seller on Amazon', icon: 'amazon' };
-            if (rank && rank % 2 === 0) return { text: "Amazon's Choice", icon: 'check' };
-            return { text: 'Top Seller on Amazon', icon: 'amazon' };
-        }
-        if (storeLower.includes('flipkart')) {
-            return { text: 'Top Seller on Flipkart', icon: 'check' };
-        }
-        if (storeLower.includes('ajio')) {
-            return { text: 'Top Rated on AJIO', icon: 'star' };
-        }
-        if (storeLower.includes('myntra')) {
-            return { text: 'Trending on Myntra', icon: 'star' };
-        }
-        if (coupon.is_verified) {
-            return { text: `Verified on ${coupon.store_name}`, icon: 'check' };
-        }
-        if (coupon.click_count && coupon.click_count > 0) {
-            return { text: `${coupon.click_count > 999 ? (coupon.click_count / 1000).toFixed(1) + 'k' : coupon.click_count} shoppers used`, icon: 'star' };
-        }
-        return { text: `Listed on ${coupon.store_name || 'Store'}`, icon: 'tag' };
-    }, [coupon, rank]);
+        return { text: isCheckoutTested(coupon) ? `Checkout tested: ${coupon.store_name}` : `Listed on ${coupon.store_name || 'Store'}`, icon: isCheckoutTested(coupon) ? 'check' : 'tag' };
+    }, [coupon]);
 
     const handleCardClick = (e: React.MouseEvent) => {
         // Don't trigger if clicked on favorite button
@@ -590,7 +571,7 @@ export function TrendingProductCard({
                         lineHeight: 1.2,
                     }}
                 >
-                    {trustBadge.text}
+                    <Link href={getStorePath(coupon.store_slug)} onClick={(event) => event.stopPropagation()}>{trustBadge.text}</Link>
                 </Typography>
             </Box>
         </Paper>

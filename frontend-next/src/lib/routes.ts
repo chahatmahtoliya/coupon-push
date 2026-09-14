@@ -1,9 +1,7 @@
+import storeRedirects from '@/data/store-redirects.json';
 import snapshot from '@/data/deployed-snapshot.json';
 
-const STORE_SLUG_REDIRECTS: Readonly<Record<string, string>> = {
-    'amazon-prime-day-sale-2026': 'amazon',
-    cetaphil: 'cetaphil-coupon-code',
-};
+const STORE_SLUG_REDIRECTS: Readonly<Record<string, string>> = storeRedirects;
 
 export function getCanonicalStoreSlug(slug?: string | null): string {
     if (!slug) return '';
