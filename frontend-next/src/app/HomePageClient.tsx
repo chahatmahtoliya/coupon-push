@@ -18,6 +18,7 @@ interface HomePageClientProps {
     initialAmazonCoupons: Coupon[];
     initialFlipkartCoupons: Coupon[];
     initialAjioCoupons: Coupon[];
+    initialHeroSlides: HeroSlide[];
     initialSeasonalOffers: SeasonalOffer[];
 }
 
@@ -150,7 +151,7 @@ export default function HomePageClient(props: HomePageClientProps) {
     const [stores, setStores] = useState(props.initialFeaturedStores);
     const [deals, setDeals] = useState(props.initialFeaturedDeals);
     const [storeCoupons, setStoreCoupons] = useState<Record<StoreKey, Coupon[]>>({ amazon: props.initialAmazonCoupons, flipkart: props.initialFlipkartCoupons, ajio: props.initialAjioCoupons });
-    const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
+    const [heroSlides, setHeroSlides] = useState(props.initialHeroSlides);
     const [seasonalOffers, setSeasonalOffers] = useState(props.initialSeasonalOffers);
     const [heroIndex, setHeroIndex] = useState(0);
     const [heroPaused, setHeroPaused] = useState(false);
@@ -165,7 +166,6 @@ export default function HomePageClient(props: HomePageClientProps) {
         heroSlidesApi.getActiveFresh().then((data) => {
             if (active) setHeroSlides(data);
         }).catch((error) => {
-            if (active) setHeroSlides([]);
             console.error('Failed to load hero slides:', error);
         });
         seasonalOffersApi.getActiveFresh().then((data) => active && setSeasonalOffers(data)).catch((error) => console.error('Failed to refresh seasonal offers:', error));

@@ -24,7 +24,9 @@ for (const file of files) {
     const target = new URL(match[1], url);
     if (target.origin !== url.origin) continue;
     const relative = target.pathname.slice(1) + (target.pathname.endsWith('/') ? 'index.html' : '');
-    const candidates = target.pathname.startsWith('/blog/') ? [relative] : [path.join('public', relative), path.join('out', relative)];
+    const candidates = target.pathname.startsWith('/blog/')
+      ? [relative, `${relative}.html`]
+      : [path.join('public', relative), path.join('out', relative)];
     if (!candidates.some(candidate => fs.existsSync(candidate))) errors.push(`${file}: missing ${target.pathname}`);
   }
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {

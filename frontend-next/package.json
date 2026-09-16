@@ -6,6 +6,7 @@
     "prebuild": "node scripts/prepare-blog.mjs",
     "prebuild:snapshot": "node scripts/prepare-blog.mjs",
     "blog:prepare": "node scripts/prepare-blog.mjs",
+    "blog:normalize": "node scripts/normalize-blog-links.mjs",
     "blog:check": "node scripts/check-blog.mjs",
     "blog:preview": "node scripts/preview-blog.mjs",
     "dev": "next dev",
