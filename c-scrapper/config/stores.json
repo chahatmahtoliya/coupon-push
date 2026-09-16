@@ -39,10 +39,45 @@
     "category": "Travel & Hotels",
     "affiliate_template": "https://www.redbus.in{path}",
     "offer_urls": [
-      "https://www.redbus.in/offers"
+      "https://www.redbus.in/offers",
+      "https://www.grabon.in/redbus-coupons",
+      "https://www.coupondunia.in/redbus"
     ],
     "scraper": "redbus_special",
-    "notes": "Official redBus offers - FIRST (250 first user), GRAB500 (500), FREEDOM300, BUS300, bank codes IDFC500/RBLCC500/AXIS500, train SUPERB60 verified Sep 2026."
+    "verified_csv": "output/redbus-coupons-2026-09-14.csv",
+    "notes": "Official: redbus.in (MakeMyTrip Ltd, 5200+ operators). Verified Sep 14 2026: GRAB500 tested working (12% up to 250 + 12% cashback, new users, min 200, till Sep 30), FIRST, RED500, CDRB500, BUS300, FESTIVE300, GONEW500, SUPERHIT, PRIMODAY, IDFC500/RBLCC500/AXIS500/ICICI500/HDFC75/AUBUS200, TGSRTC, NUEGO5, REDSTAYS, NOFEE. Sources: grabon.in/redbus-coupons (31, tested) + coupondunia.in/redbus (23)."
+  },
+  {
+    "slug": "blinkit",
+    "name": "Blinkit",
+    "domain": "blinkit.com",
+    "website_url": "https://blinkit.com/",
+    "category": "Grocery",
+    "affiliate_template": "https://blinkit.com/{path}",
+    "offer_urls": [
+      "https://blinkit.com/",
+      "https://www.grabon.in/blinkit-coupons",
+      "https://www.coupondunia.in/blinkit-coupons"
+    ],
+    "scraper": "blinkit_verified",
+    "verified_csv": "output/blinkit-coupons-2026-09-14.csv",
+    "notes": "Official: blinkit.com (Blink Commerce Pvt Ltd, Gurugram, ex-Grofers, Eternal/Zomato). No public sitewide code - app + bank/wallet codes only. Verified Sep 14 2026: PAYTMUPI (80% + Rs200 cashback, min 199), AUCC30 (50% + 5% F&V, Yes Bank), BHIMRUPAYCC (Rs50 off, min 599), HSBC10, DIGISMART, BOB10, 50-73% category deals, B1G1, free delivery Rs199+, 25% app first order. Sources: grabon.in/blinkit-coupons (23, validated Sep 14) + coupondunia.in/blinkit-coupons (27)."
+  },
+  {
+    "slug": "abhibus",
+    "name": "AbhiBus",
+    "domain": "abhibus.com",
+    "website_url": "https://www.abhibus.com",
+    "category": "Travel & Hotels",
+    "affiliate_template": "https://www.abhibus.com{path}",
+    "offer_urls": [
+      "https://www.abhibus.com/bus-ticket-offers",
+      "https://www.grabon.in/abhibus-coupons/",
+      "https://www.coupondunia.in/abhibus"
+    ],
+    "scraper": "abhibus_verified",
+    "verified_csv": "output/abhibus-coupons-2026-09-14.csv",
+    "notes": "Official: abhibus.com (ixigo / Le Travenues, 6.5L+ routes, 6200+ partners). Official offers page lists 40+ live banners. Verified Sep 14 2026: GRAB400 (15% up to 150 + Rs150 cashback, 1st booking, min 400, private only, 654 uses), ABHIFIRST (up to Rs500), ABHI500, ADMABHI9, ABHIPARTY (Rs250 group), GET350, RTC codes APSRTC/TGSRTC/KSRTC/GSRTC/OSRTC/UPSRTC/HRTC/RSRTC(RJ100), bank codes RBL300/SBICAB/VISADC/VISACC/BUSAU200/ABHIZET/UPIMBK, operator codes PTC100/MAHA200/VRL10. Sources: abhibus.com/bus-ticket-offers (official) + grabon (71) + coupondunia (17)."
   },
   {
     "slug": "amazon",

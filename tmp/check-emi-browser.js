@@ -1,0 +1,37 @@
+async (page) => {
+  const check = (condition, message) => { if (!condition) throw new Error(message); };
+  await page.getByLabel('Annual interest rate (%)', { exact: false }).fill('0');
+  await page.getByLabel('One-time processing fee', { exact: false }).fill('0');
+  check(!(await page.getByRole('region', { name: 'EMI estimate', exact: true }).isVisible()), 'Old estimate remains visible after editing');
+  await page.getByRole('button', { name: 'Calculate EMI', exact: true }).click();
+  let result = page.getByRole('region', { name: 'EMI estimate', exact: true });
+  check((await result.innerText()).includes('₹5,000.00'), 'Zero-rate payment incorrect');
+  check((await result.innerText()).includes('Same cost as paying upfront'), 'Zero-rate comparison incorrect');
+  await page.getByLabel('Tenure (months)', { exact: true }).fill('0');
+  await page.getByRole('button', { name: 'Calculate EMI', exact: true }).click();
+  check(!(await result.isVisible()), 'Invalid input did not hide results');
+  check((await page.getByRole('status').allTextContents()).some(text => text.includes('1 to 360')), 'Validation message missing');
+  await page.getByRole('button', { name: 'Reset example', exact: true }).click();
+  await page.getByLabel('Financing type', { exact: false }).selectOption('loan');
+  check(!(await page.getByRole('checkbox', { name: 'Include GST on EMI interest', exact: true }).isChecked()), 'Product loan tax default incorrect');
+  await page.getByRole('button', { name: 'Calculate EMI', exact: true }).click();
+  await page.getByText('Monthly repayment schedule', { exact: true }).click();
+  check(await page.getByRole('table').getByRole('row').count() === 7, 'Six-month schedule missing rows');
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download schedule CSV', exact: true }).click();
+  check((await download).suggestedFilename() === 'couponpush-emi-schedule.csv', 'CSV export failed');
+  await page.getByRole('button', { name: 'Copy embed code', exact: true }).click();
+  check((await page.getByRole('status').allTextContents()).some(text => /Copied|Select and copy/.test(text)), 'Clipboard feedback missing');
+  await page.getByRole('button', { name: 'Reset example', exact: true }).click();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(() => window.scrollTo(0, 0));
+  check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Mobile page overflows horizontally');
+  await page.screenshot({ path: 'tmp/emi-mobile.png', fullPage: true });
+  await page.getByRole('link', { name: 'Preview the embedded calculator', exact: true }).getAttribute('href').then(async href => { await page.goto('http://127.0.0.1:8767/blog/tools/' + href); });
+  check(!(await page.getByRole('banner').isVisible()), 'Embed header visible');
+  check(!(await page.getByRole('contentinfo').isVisible()), 'Embed footer visible');
+  check(await page.getByRole('region', { name: 'EMI estimate', exact: true }).isVisible(), 'Embed calculator missing');
+  check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Embed overflows horizontally');
+  await page.screenshot({ path: 'tmp/emi-embed-mobile.png', fullPage: true });
+  console.log('PASS: zero rate, invalid input, reset, loan mode, schedule, CSV, copy feedback, mobile and embed.');
+}

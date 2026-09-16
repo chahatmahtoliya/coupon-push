@@ -55,6 +55,9 @@ CATEGORY_MAP = {
     "zomato": "Food & Dining",
     "swiggy": "Food & Dining",
     "makemytrip": "Travel & Hotels",
+    "redbus": "Travel & Hotels",
+    "abhibus": "Travel & Hotels",
+    "blinkit": "Grocery",
     "default": "Electronics"
 }
 

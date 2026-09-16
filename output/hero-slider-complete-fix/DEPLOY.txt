@@ -1,0 +1,10 @@
+Deploy backend files into the document root serving api.couponpush.com.
+The result must be api/hero-slides.php and admin/includes/admin-header.php.
+Do not extract inside an existing api/ directory (that would create api/api/).
+Preserve your production config and database credentials; this archive contains neither.
+Deploy the new frontend-next/out build separately to couponpush.com.
+Verify https://api.couponpush.com/api/hero-slides.php?active=true returns success:true.
+The endpoint response must include X-CouponPush-Hero-Version: 2026-09-10-2.
+If that header is missing, the updated PHP file is not being served; check the domain document root and hosting PHP cache.
+If the header is present but success is false, inspect the PHP error log before changing the database.
+Newly uploaded images are served from api.couponpush.com/uploads/hero/; historical media files retain their media host.

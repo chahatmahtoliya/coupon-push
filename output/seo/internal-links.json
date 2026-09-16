@@ -1,0 +1,2209 @@
+{
+  "indexable_pages": 59,
+  "broken_links": [
+    {
+      "source": "/store/dominos/",
+      "href": "/category/food-dining/"
+    },
+    {
+      "source": "/store/swiggy/",
+      "href": "/category/food-dining/"
+    },
+    {
+      "source": "/store/zomato/",
+      "href": "/category/food-dining/"
+    }
+  ],
+  "noncanonical_links": [
+    {
+      "source": "/",
+      "href": "/store/amazon",
+      "canonical": "/store/amazon/"
+    },
+    {
+      "source": "/",
+      "href": "/store/amazon",
+      "canonical": "/store/amazon/"
+    },
+    {
+      "source": "/",
+      "href": "/store/amazon",
+      "canonical": "/store/amazon/"
+    },
+    {
+      "source": "/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/about/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/ajio-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/amazon-welcome-offers-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/bigbasket-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/blinkit-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/firstcry-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/flipkart-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/hostinger-coupon-code-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/hostinger-coupon-code-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/hostinger-coupon-code-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/hostinger-coupon-code-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/hostinger-coupon-code-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/hostinger-coupon-code-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "stores/index.html",
+      "canonical": "/blog/stores/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "stores/index.html",
+      "canonical": "/blog/stores/"
+    },
+    {
+      "source": "/blog/",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "stores/index.html",
+      "canonical": "/blog/stores/"
+    },
+    {
+      "source": "/blog/",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "stores/index.html",
+      "canonical": "/blog/stores/"
+    },
+    {
+      "source": "/blog/",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/",
+      "href": "stores/index.html",
+      "canonical": "/blog/stores/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/makemytrip-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/meesho-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/nykaa-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/swiggy-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/top-coupon-deals-websites-india.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zepto-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/zomato-welcome-coupon.html",
+      "href": "category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/categories/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/contact/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupons/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/deals/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/offers/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/privacy-policy/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/search/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/stores/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/terms/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/stores/view/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/ajio/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/amazon/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/blinkit/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/boat-lifestyle/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/cetaphil-coupon-code/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/decathlon-coupon-code/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/deconstruct/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/derma-co-coupon-code/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/dominos/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/dot-key/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/dot-key-coupon-codes/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/flipkart/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/foxtale/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/hostinger/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/hyphen/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/kapiva-coupon-code/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/lenovo/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/minimalist/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/myntra/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/newme/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/pilgrim/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/plum/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/redbus/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/snitch/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/swiggy/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/the-derma-co/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/store/zomato/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/12/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/14/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/15/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/166/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/167/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/168/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/169/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/170/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/171/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/172/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/173/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/174/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/175/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/176/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/177/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/178/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/179/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/18/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/180/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/181/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/182/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/183/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/184/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/185/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/19/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/20/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/21/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/210/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/22/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/23/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/24/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/25/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/26/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/262/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/263/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/264/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/265/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/266/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/267/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/268/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/269/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/27/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/270/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/271/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/272/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/273/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/274/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/275/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/276/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/277/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/278/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/279/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/280/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/281/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/282/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/283/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/284/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/285/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/286/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/287/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/288/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/289/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/290/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/291/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/292/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/30/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/32/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/33/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/34/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/341/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/342/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/343/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/345/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/347/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/348/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/349/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/35/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/350/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/351/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/352/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/355/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/356/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/357/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/358/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/359/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/361/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/362/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/363/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/364/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/365/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/366/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/367/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/368/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/369/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/37/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/370/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/371/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/372/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/373/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/374/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/375/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/376/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/377/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/378/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/379/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/380/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/381/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/382/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/383/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/384/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/385/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/386/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/387/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/388/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/389/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/39/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/390/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/391/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/392/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/393/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/394/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/395/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/396/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/397/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/398/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/399/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/40/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/400/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/401/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/402/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/403/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/404/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/405/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/406/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/407/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/408/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/409/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/41/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/410/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/411/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/412/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/413/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/414/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/415/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/416/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/417/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/418/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/419/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/42/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/420/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/421/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/422/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/423/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/424/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/425/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/426/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/427/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/428/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/429/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/43/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/430/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/431/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/432/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/433/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/434/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/435/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/436/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/437/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/438/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/439/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/44/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/440/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/441/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/442/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/443/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/444/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/445/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/446/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/447/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/448/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/449/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/45/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/coupon/46/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/beauty-health/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/bus-tickets/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/electronics/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/fashion-lifestyle/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/grocery/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/skincare-cleansers/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/category/smart-tvs/",
+      "href": "/privacy/",
+      "canonical": "/privacy-policy/"
+    },
+    {
+      "source": "/blog/embed/",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/embed/",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/embed/",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/embed/",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/embed/",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/embed/",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/research/india-coupon-report-2026.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/research/india-coupon-report-2026.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/research/india-coupon-report-2026.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/research/india-coupon-report-2026.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/research/india-coupon-report-2026.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/research/india-coupon-report-2026.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/stores/",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/tools/emi-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/emi-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/emi-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/emi-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/tools/savings-calculator.html",
+      "href": "../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "../../articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "../../articles/myntra-first-order-coupon/index.html",
+      "canonical": "/blog/articles/myntra-first-order-coupon/"
+    },
+    {
+      "source": "/blog/category/coupon-guides/",
+      "href": "index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../index.html",
+      "canonical": "/blog/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    },
+    {
+      "source": "/blog/articles/myntra-first-order-coupon/",
+      "href": "../../category/coupon-guides/index.html",
+      "canonical": "/blog/category/coupon-guides/"
+    }
+  ],
+  "orphan_pages": [
+    "/blog/embed/"
+  ],
+  "pages_beyond_three_clicks": {},
+  "depths": {
+    "/": 0,
+    "/about/": 1,
+    "/blog/": 1,
+    "/blog/ajio-welcome-coupon.html": 2,
+    "/blog/amazon-welcome-offers-india.html": 2,
+    "/blog/articles/myntra-first-order-coupon/": 2,
+    "/blog/bigbasket-welcome-coupon.html": 2,
+    "/blog/blinkit-welcome-coupon.html": 2,
+    "/blog/category/coupon-guides/": 2,
+    "/blog/embed/": null,
+    "/blog/firstcry-welcome-coupon.html": 2,
+    "/blog/flipkart-welcome-coupon.html": 2,
+    "/blog/hostinger-coupon-code-india.html": 2,
+    "/blog/makemytrip-welcome-coupon.html": 2,
+    "/blog/meesho-welcome-coupon.html": 2,
+    "/blog/nykaa-welcome-coupon.html": 2,
+    "/blog/research/india-coupon-report-2026.html": 2,
+    "/blog/stores/": 2,
+    "/blog/swiggy-welcome-coupon.html": 2,
+    "/blog/tools/emi-calculator.html": 2,
+    "/blog/tools/savings-calculator.html": 2,
+    "/blog/top-coupon-deals-websites-india.html": 2,
+    "/blog/zepto-welcome-coupon.html": 2,
+    "/blog/zomato-welcome-coupon.html": 2,
+    "/categories/": 1,
+    "/category/beauty-health/": 2,
+    "/category/bus-tickets/": 2,
+    "/category/electronics/": 2,
+    "/category/fashion-lifestyle/": 2,
+    "/category/grocery/": 2,
+    "/category/skincare-cleansers/": 2,
+    "/category/smart-tvs/": 2,
+    "/contact/": 1,
+    "/coupons/": 1,
+    "/deals/": 1,
+    "/offers/": 3,
+    "/privacy-policy/": 1,
+    "/store/ajio/": 1,
+    "/store/amazon/": 1,
+    "/store/blinkit/": 1,
+    "/store/boat-lifestyle/": 1,
+    "/store/cetaphil-coupon-code/": 1,
+    "/store/deconstruct/": 1,
+    "/store/derma-co-coupon-code/": 1,
+    "/store/dot-key/": 1,
+    "/store/flipkart/": 1,
+    "/store/foxtale/": 1,
+    "/store/hostinger/": 1,
+    "/store/hyphen/": 1,
+    "/store/kapiva-coupon-code/": 1,
+    "/store/minimalist/": 1,
+    "/store/newme/": 1,
+    "/store/pilgrim/": 1,
+    "/store/plum/": 1,
+    "/store/redbus/": 1,
+    "/store/snitch/": 1,
+    "/store/the-derma-co/": 1,
+    "/stores/": 1,
+    "/terms/": 1
+  }
+}

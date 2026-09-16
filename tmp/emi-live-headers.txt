@@ -1,0 +1,24 @@
+HTTP/1.1 307 Temporary Redirect
+Date: Sat, 12 Sep 2026 15:49:25 GMT
+Content-Length: 0
+Connection: keep-alive
+Location: /blog/tools/emi-calculator
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=HM7%2BR7BqlUldivNU8FMDGyAUG0Z%2FvPV7LMo17PWKEnX%2FtPM626E2peNxyWe%2BZSgY2fetlAxjsREZ1sAwDwgfVteLgoGTxVTfMW03ZuH13%2FnyxbOSz8e4BE2%2B1t2jFr%2B0v2Sh0WP2NEPWtsH8hw%3D%3D"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Server: cloudflare
+CF-RAY: a3a00fe52ba6ec6a-SIN
+alt-svc: h3=":443"; ma=86400
+
+HTTP/1.1 200 OK
+Date: Sat, 12 Sep 2026 15:49:26 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: keep-alive
+CF-Cache-Status: MISS
+Cache-Control: public, max-age=0, must-revalidate
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=p%2BN78hTTZbKsHCeBkDtsV6mcsBjqXfEq5iZGNK%2F5yuAQvvtuVCQTVEQ%2Fq0R7AAyw6dObOx7V%2BZicfIYSGX6UvZh8QMaajZ%2FVO3NBouPPVp%2BwUuibaI1g8mjc8fN3yn5qKpypTNQ7fWnDjIfTkw%3D%3D"}]}
+Server: cloudflare
+CF-RAY: a3a00fe60ea7ec6a-SIN
+alt-svc: h3=":443"; ma=86400
+

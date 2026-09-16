@@ -1,0 +1,37 @@
+# CouponPush
+
+> CouponPush helps shoppers discover coupon codes, promotional offers and online deals, with an India-focused shopping context.
+
+Use the linked merchant pages for current offer details. Availability, prices and eligibility are determined by the merchant and can change. A listed offer is not proof of a successful checkout. Distinguish codes from no-code deals, immediate discounts from future rewards, and confirmed terms from unknown conditions.
+
+## Site guide
+
+- [Detailed site context](https://couponpush.com/llms-full.txt): Plain-text guide to page types, offer interpretation and disclosures.
+- [Home](https://couponpush.com/): Main shopping entry point.
+- [Stores](https://couponpush.com/stores/): Merchant directory and links to store offer pages.
+- [Categories](https://couponpush.com/categories/): Browse offers by shopping category.
+- [Deals](https://couponpush.com/deals/): Browse deals.
+- [Offers](https://couponpush.com/offers/): Browse promotional offers.
+
+## Merchant pages
+
+- [Foxtale](https://couponpush.com/store/foxtale/): Foxtale offers and listed conditions.
+- [Cetaphil](https://couponpush.com/store/cetaphil-coupon-code/): Cetaphil offers; check whether an entry requires a code.
+- [Dot & Key](https://couponpush.com/store/dot-key/): Dot & Key offers.
+- [The Derma Co](https://couponpush.com/store/the-derma-co/): The Derma Co offers.
+- [Minimalist](https://couponpush.com/store/minimalist/): Minimalist offers.
+- [Plum](https://couponpush.com/store/plum/): Plum offers.
+
+## Policies and contact
+
+- [About CouponPush](https://couponpush.com/about/): Site purpose and approach.
+- [Terms and affiliate disclosure](https://couponpush.com/terms/): Offer availability, merchant responsibility and affiliate commissions.
+- [Contact](https://couponpush.com/contact/): Contact information.
+- [Privacy policy](https://couponpush.com/privacy-policy/): Privacy information.
+
+## Optional
+
+- [Blog](https://couponpush.com/blog/): Shopping articles.
+- [Site sitemap](https://couponpush.com/sitemap.xml): Indexable site URLs.
+- [Blog sitemap](https://couponpush.com/blog/sitemap.xml): Blog URLs.
+- [Robots rules](https://couponpush.com/robots.txt): Crawl directives.

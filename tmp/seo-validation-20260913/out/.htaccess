@@ -1,0 +1,46 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force the public site onto one HTTPS origin, including behind Cloudflare.
+  RewriteCond %{HTTP:X-Forwarded-Proto} =http
+  RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{HTTP:X-Forwarded-Proto} ^$
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L,NE]
+
+  RewriteCond %{HTTP_HOST} ^www\.couponpush\.com$ [NC]
+  RewriteRule ^ https://couponpush.com%{REQUEST_URI} [R=301,L,NE]
+
+  # Consolidate duplicate legacy URLs.
+  RewriteRule ^store/?$ /stores/ [R=301,L]
+  RewriteRule ^privacy/?$ /privacy-policy/ [R=301,L]
+  RewriteRule ^store/cetaphil/?$ /store/cetaphil-coupon-code/ [R=301,L,NE]
+  RewriteRule ^store/amazon-prime-day-sale-2026/?$ /store/amazon/ [R=301,L,NE]
+  RewriteRule ^cetaphil/?$ /store/cetaphil-coupon-code/ [R=301,L,NE]
+  RewriteRule ^amazon-prime-day-sale-2026/?$ /store/amazon/ [R=301,L,NE]
+  RewriteRule ^(flipkart|kapiva-coupon-code|ajio|myntra|zomato|swiggy|blinkit|dominos|redbus|cetaphil-coupon-code|amazon|boat-lifestyle|hostinger|amazon-prime-day-sale-2026|decathlon-coupon-code|derma-co-coupon-code|lenovo|dot-key-coupon-codes|cetaphil)/?$ /store/$1/ [R=301,L,NE]
+</IfModule>
+
+Options -Indexes
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Caching for assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+</IfModule>

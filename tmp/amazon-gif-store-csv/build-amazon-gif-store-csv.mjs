@@ -1,0 +1,102 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { Workbook } from "@oai/artifact-tool";
+
+const headers = [
+  "name", "slug", "website_url", "affiliate_url", "category", "logo_filename",
+  "short_description", "description", "h1_suffix", "meta_title",
+  "meta_description", "about_content", "howto_content", "terms_content",
+  "rating", "is_featured", "is_popular", "status",
+];
+
+const row = [
+  "Amazon Great Indian Festival Sale",
+  "amazon-great-indian-festival-sale",
+  "https://www.amazon.in/",
+  "https://www.amazon.in/events/greatindianfestival/",
+  "Electronics",
+  "amazon-logo.webp",
+  "Track Amazon Great Indian Festival sale deals across mobiles, laptops, TVs, appliances, home, fashion and daily essentials. Compare live prices, coupons, bank offers, exchange value and EMI costs before checkout.",
+  "Use this Amazon Great Indian Festival sale guide to compare live offers across popular shopping categories in India. Check the product price, on-page coupon, eligible bank discount, exchange value, EMI cost, delivery charge, seller and return terms before placing an order. Sale dates, prices and eligibility can change, so confirm every benefit in the Amazon order summary.",
+  "2026 Deals, Offers & Shopping Guide",
+  "Amazon Great Indian Festival Sale 2026 Deals | CouponPush",
+  "Compare Amazon Great Indian Festival Sale 2026 deals in India. Check mobiles, laptops, TVs, appliances, bank offers, coupons, exchange and EMI terms.",
+  `<h2>Amazon Great Indian Festival sale 2026 guide</h2>
+<p>The Amazon Great Indian Festival is a seasonal shopping event on Amazon India. This page is designed as an evergreen sale hub: use it before the event to plan a shortlist, during the event to compare live offers, and after the event to check whether a product has returned to its usual price. CouponPush does not assume that a date, discount or bank partnership is active until it appears in the current Amazon listing or checkout.</p>
+<p>Start with the product you actually need, not the largest advertised percentage. Record the model number, variant, seller, listed price and delivery date. Then compare the complete payable amount after any on-page coupon, eligible card discount, exchange value, EMI interest, processing fee and delivery charge. A high percentage shown against an MRP does not necessarily produce the lowest market price.</p>
+<h2>Amazon Great Indian Festival sale status and dates</h2>
+<p>Amazon can announce event dates, preview periods and Prime access rules close to the sale. Confirm the current schedule on the <a href=""https://www.amazon.in/events/greatindianfestival/"">official Amazon Great Indian Festival page</a>. If Amazon has not published the next schedule, treat dates reported elsewhere as provisional. Do not create urgency around an unconfirmed start or end date.</p>
+<h2>Popular Amazon Great Indian Festival categories</h2>
+<h3>Mobile phones and accessories</h3>
+<p>Compare the exact storage, colour and network variant. Check whether the displayed effective price depends on a bank card or exchange. Include charger availability, warranty, seller and delivery estimate. For exchange offers, enter the correct old-device condition and pincode before treating the quoted value as part of the saving.</p>
+<h3>Laptops, tablets and computer accessories</h3>
+<p>Match the processor generation, RAM, storage, display, graphics, operating system and warranty. A similarly named laptop can have materially different specifications. Compare the final price with the cost of any RAM, storage, software or accessories you would need to add later.</p>
+<h3>TVs, audio and electronics</h3>
+<p>For televisions, compare panel type, resolution, refresh rate, ports, operating system, installation and warranty. For headphones and speakers, check the model generation, codec support, battery claims, return eligibility and whether the seller is authorised. Avoid comparing two sizes or generations as if they were the same product.</p>
+<h3>Home and kitchen appliances</h3>
+<p>Check capacity, energy rating, installation, old-product pickup, accessory requirements and brand service coverage in your pincode. A low appliance price can be offset by installation kits, stands, pipes, filters or extended-warranty costs.</p>
+<h3>Home, furniture and daily essentials</h3>
+<p>Compare pack size, unit price, material, dimensions and delivery restrictions. Multipacks and Subscribe &amp; Save-style pricing should be evaluated separately from one-time sale prices. Buy only quantities you can use before their expiry or storage quality declines.</p>
+<h3>Fashion, beauty and personal care</h3>
+<p>Check size charts, shade or variant names, seller details, return restrictions and product expiry where relevant. A coupon may apply only to selected products or require a minimum basket. Compare the payable price for the exact size and quantity rather than the headline category discount.</p>
+<h2>How to find the best Amazon Great Indian Festival deal</h2>
+<ul><li><strong>Shortlist exact products:</strong> Save the model number or ASIN, required variant and acceptable alternatives before the sale.</li><li><strong>Set a reference price:</strong> Note a recent price from a reliable comparison period. Do not use MRP alone as your benchmark.</li><li><strong>Separate each benefit:</strong> List the base sale price, on-page coupon, bank saving, exchange value and future cashback separately.</li><li><strong>Calculate the final cost:</strong> Add delivery, EMI interest, processing fees, installation and required accessories.</li><li><strong>Check seller and fulfilment:</strong> Review the seller, delivery promise, warranty path, invoice availability and return conditions.</li><li><strong>Verify at checkout:</strong> The order summary is the final test. If a benefit is absent there, do not count it.</li></ul>
+<h2>Prime early access, bank offers, exchange and EMI</h2>
+<p>Prime members may receive event benefits or access windows when Amazon states them for the current sale. Bank offers require the named card, transaction type, minimum spend and other conditions. Exchange values depend on device model, condition, location and inspection. No-cost EMI can still include processing charges or taxes on interest. Read each live term and compare the total cost rather than combining every advertised benefit into one assumed discount.</p>
+<h2>Amazon Great Indian Festival sale FAQs</h2>
+<h3>When is the Amazon Great Indian Festival sale 2026?</h3><p>Use Amazon India's official event page for the current announcement. Until Amazon publishes the schedule, any date should be treated as unconfirmed.</p>
+<h3>Do Prime members get early access?</h3><p>Amazon may provide Prime access or other Prime benefits for a specific event. Check the live sale page and your signed-in account because timing and eligibility can change.</p>
+<h3>Can I combine an Amazon coupon with a bank offer?</h3><p>Sometimes separate benefits appear together, but stacking is not guaranteed. Apply the on-page coupon, select the eligible payment method and confirm both reductions in the order summary.</p>
+<h3>Is an exchange offer a guaranteed discount?</h3><p>No. The value depends on the old device, declared condition, pincode and inspection. Treat exchange as a separate conditional credit, not as a universal price cut.</p>
+<h3>How can I tell if a sale price is genuinely good?</h3><p>Compare the same model and variant against a recent reference price and other authorised sellers. Include fees, accessories, warranty and delivery, then judge the final payable cost.</p>
+<p>Continue with <a href=""/category/electronics/"">electronics offers</a>, browse <a href=""/stores/"">all stores</a>, or use the <a href=""/blog/tools/emi-calculator.html"">EMI calculator</a> before choosing a repayment plan.</p>`,
+  `<ol><li>Open the current Amazon Great Indian Festival page and confirm that the event or preview is live.</li><li>Sign in, set your delivery pincode and choose the exact product model and variant.</li><li>Check the seller, fulfilment method, delivery date, warranty and return conditions.</li><li>Tick any eligible on-page coupon shown on the product page.</li><li>Review the live bank-offer terms, including card network, minimum spend, discount cap, EMI requirement and usage limit.</li><li>If using exchange, enter the old device details and treat the quoted value as conditional until inspection.</li><li>Compare full-payment and EMI totals, including processing charges and taxes where shown.</li><li>At checkout, confirm every discount in the order summary and save the invoice after purchase.</li></ol>
+<h3>Why is my Amazon Great Indian Festival offer not applying?</h3>
+<p>Check the product variant, seller, pincode, minimum transaction value, payment method, coupon activation, account eligibility and offer period. A bank offer may require a specific card or EMI option and may have a per-card or per-account usage limit. Remove incompatible promotions and recheck the order summary. If the saving still does not appear, do not complete the purchase on the assumption that it will be credited later unless the live terms explicitly say so.</p>
+<h3>How should I compare an effective price?</h3>
+<p>Start with the amount charged today. Subtract only discounts visible in the checkout total. Show exchange value, delayed cashback and future rewards separately because they have additional conditions and may not reduce the immediate payment.</p>`,
+  `<p>This store page is an evergreen planning guide. It does not claim that the Amazon Great Indian Festival is live, that a particular 2026 date is confirmed, or that a specific discount is available. Prices, inventory, sellers, delivery estimates and promotion terms can change without notice.</p>
+<ul><li>Confirm the final product price and every discount in the Amazon order summary before paying.</li><li>On-page coupons can apply only to selected products, variants, sellers, accounts or quantities.</li><li>Bank offers can require a named card, network, payment mode, minimum transaction, discount cap and usage limit.</li><li>Exchange value is conditional on the device, location, declared condition and inspection.</li><li>EMI offers can include processing fees, taxes or interest. Compare the total repayment with the upfront price.</li><li>Prime access and benefits depend on the current event rules and an eligible active account.</li><li>Returns, replacements, warranties and installation vary by product and seller. Read the listing and policy shown for the item.</li><li>Do not assume coupons, bank offers, exchange and cashback can all be combined.</li></ul>
+<p>Official pages to verify before publication: <a href=""https://www.amazon.in/events/greatindianfestival/"">Amazon Great Indian Festival</a>, <a href=""https://www.amazon.in/gp/coupon/"">Amazon coupons</a> and <a href=""https://www.amazon.in/prime"">Amazon Prime</a>. Amazon and Great Indian Festival are trademarks of their respective owner. CouponPush is not Amazon and should identify affiliate links clearly where applicable.</p>`,
+  "4.0",
+  "1",
+  "1",
+  "1",
+];
+
+function csvCell(value) {
+  const text = String(value).replace(/href=""([^"]+)""/g, 'href="$1"');
+  return `"${text.replaceAll('"', '""').replace(/\r?\n/g, " ")}"`;
+}
+
+if (row.length !== headers.length) {
+  throw new Error(`Expected ${headers.length} fields, received ${row.length}`);
+}
+
+const maxLengths = { name: 100, slug: 100, website_url: 255, affiliate_url: 500, category: 100, logo_filename: 255, short_description: 255, h1_suffix: 150, meta_title: 255, meta_description: 320 };
+for (const [field, maximum] of Object.entries(maxLengths)) {
+  const value = row[headers.indexOf(field)];
+  if (!value || value.length > maximum) throw new Error(`${field} has ${value.length} characters; expected 1-${maximum}`);
+}
+if (!/^https?:\/\//.test(row[2]) || !/^https?:\/\//.test(row[3])) throw new Error("Store URLs must use HTTP or HTTPS");
+if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row[1])) throw new Error("Slug is not canonical");
+if (Number(row[14]) < 1 || Number(row[14]) > 5) throw new Error("Rating must be from 1 to 5");
+
+const csv = `${headers.join(",")}\n${row.map(csvCell).join(",")}\n`;
+const workbook = await Workbook.fromCSV(csv, { sheetName: "Amazon GIF Store" });
+const inspection = await workbook.inspect({
+  kind: "table",
+  range: "'Amazon GIF Store'!A1:R2",
+  include: "values",
+  tableMaxRows: 2,
+  tableMaxCols: 18,
+  tableMaxCellChars: 120,
+  maxChars: 6000,
+});
+
+const outputDir = path.resolve("..", "..", "c-scrapper", "output");
+await fs.mkdir(outputDir, { recursive: true });
+const outputPath = path.join(outputDir, "amazon-great-indian-festival-store-import.csv");
+await fs.writeFile(outputPath, csv, "utf8");
+console.log(inspection.ndjson);
+console.log(JSON.stringify({ outputPath, rows: 1, columns: headers.length, bytes: Buffer.byteLength(csv), titleLength: row[9].length, metaDescriptionLength: row[10].length }));
