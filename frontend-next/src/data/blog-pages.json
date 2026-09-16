@@ -6,6 +6,12 @@
     "noindex": false
   },
   {
+    "path": "/blog/amazon-great-indian-festival-sale",
+    "title": "Amazon Great Indian Festival Sale 2026: Expected Dates & Prep",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/amazon-welcome-offers-india",
     "title": "Amazon Welcome Offers: Coupons for New Users in India",
     "section": "blog",
@@ -14,6 +20,24 @@
   {
     "path": "/blog/articles/myntra-first-order-coupon/",
     "title": "Myntra first-order coupon: what new users should know",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/best-electronics-deals-diwali-2026",
+    "title": "Best Electronics Deals Diwali 2026: Laptops, TVs & Appliances",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/best-smartphone-deals-diwali-2026",
+    "title": "Best Smartphone Deals Diwali 2026: BBD & GIF Price Tracker",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/big-billion-days-vs-great-indian-festival",
+    "title": "Big Billion Days vs Great Indian Festival 2026: Where to Buy",
     "section": "blog",
     "noindex": false
   },
@@ -31,7 +55,25 @@
   },
   {
     "path": "/blog/category/coupon-guides/",
-    "title": "Coupon guides",
+    "title": "Coupon guides India: first-order coupons & checkout rules",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/diwali-bank-offers-2026",
+    "title": "Diwali Bank Offers 2026: Cards, Caps & Minimums Explained",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/diwali-fashion-sale-guide-2026",
+    "title": "Diwali Fashion Sale Guide 2026: Myntra, AJIO, Nykaa Compared",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/diwali-sale-coupon-guide-2026",
+    "title": "Diwali Sale Coupon Guide 2026: How Festival Offers Work in India",
     "section": "blog",
     "noindex": false
   },
@@ -42,8 +84,20 @@
     "noindex": false
   },
   {
+    "path": "/blog/first-order-coupons-india",
+    "title": "First-Order Coupons in India: 13 New-User Offers Compared",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/firstcry-welcome-coupon",
     "title": "FirstCry Welcome Coupon: New-User Eligibility and Savings",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/flipkart-big-billion-days-sale",
+    "title": "Flipkart Big Billion Days Sale 2026: Dates, Bank Offers & Deals",
     "section": "blog",
     "noindex": false
   },
@@ -61,7 +115,7 @@
   },
   {
     "path": "/blog/",
-    "title": "Shopping smarter starts here.",
+    "title": "Coupon guides & first-order offers in India",
     "section": "blog",
     "noindex": false
   },

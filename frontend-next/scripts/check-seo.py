@@ -65,6 +65,10 @@ def check():
         relative = file.relative_to(OUT).as_posix()
         if relative in ('404.html', '404/index.html') or relative.startswith('_not-found/'): continue
         route = '/' if relative == 'index.html' else '/' + relative.removesuffix('index.html')
+        if relative.startswith('blog/') and relative.endswith('.html') and '/index.html' not in relative:
+            # Blog pages use directory-style canonical URLs (see scripts/blog-pages.mjs):
+            # blog/foo.html is served and canonicalized as /blog/foo.
+            route = '/' + relative.removesuffix('.html')
         html = file.read_text(encoding='utf-8')
         page = Page(); page.feed(html)
         canonical = 'https://couponpush.com' + route
