@@ -321,5 +321,18 @@ export default function HomePageClient(props: HomePageClientProps) {
                 storeLogo={storeCoupons.ajio[0]?.store_logo}
             />
         )}
+
+        {/* Shopping guides: crawlable hub linking homepage authority into /blog/. */}
+        <section className="cp-section cp-shell" aria-label="CouponPush shopping guides">
+            <div className="cp-section-head cp-section-head-inline"><h2>Shopping guides &amp; first-order offers</h2><Link href="/blog/" className="cp-text-link">View all guides <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
+            <ul className="cp-guide-links">
+                <li><Link href="/blog/first-order-coupons-india">First-order coupons in India: 13 new-user offers compared</Link></li>
+                <li><Link href="/blog/diwali-sale-coupon-guide-2026">Diwali 2026 coupon guide: how festival offers stack</Link></li>
+                <li><Link href="/blog/flipkart-big-billion-days-sale">Flipkart Big Billion Days 2026: dates &amp; bank offers</Link></li>
+                <li><Link href="/blog/hostinger-coupon-code-india">Hostinger coupon code India: prices &amp; renewal rates</Link></li>
+                <li><Link href="/blog/tools/savings-calculator">Savings calculator: estimate your checkout total</Link></li>
+                <li><Link href="/blog/tools/emi-calculator">EMI calculator: compare financing vs paying upfront</Link></li>
+            </ul>
+        </section>
     </>;
 }

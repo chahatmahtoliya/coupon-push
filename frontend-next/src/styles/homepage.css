@@ -414,3 +414,41 @@
         top: 23px;
     }
 }
+
+/* Homepage guides module: crawlable internal links into /blog/ hubs and tools. */
+.cp-guide-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cp-guide-links a {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    border: 1px solid var(--cp-line);
+    border-radius: 12px;
+    background: #ffffff;
+    color: #101a2d;
+    font-size: 13.5px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-decoration: none;
+    padding: 14px 16px;
+    box-shadow: 0 10px 22px rgba(12, 25, 48, 0.05);
+}
+
+.cp-guide-links a:focus-visible,
+.cp-guide-links a:hover {
+    border-color: rgba(255, 107, 26, 0.4);
+    color: var(--cp-orange);
+}
+
+@media (max-width: 760px) {
+    .cp-guide-links {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,6 +1,5 @@
 import storeRedirects from '@/data/store-redirects.json';
 import snapshot from '@/data/deployed-snapshot.json';
-import storeRedirects from '@/data/store-redirects.json';
 
 const STORE_SLUG_REDIRECTS: Readonly<Record<string, string>> = storeRedirects;
 
