@@ -1,8 +1,10 @@
 # CouponPush
 
-> The main site guide is published at /llms.txt.
+> Find current offer pages and shopping guides. Check merchant terms before relying on a listed deal.
 
 ## Site guides
 
 - [llms.txt](https://couponpush.com/llms.txt): Main guide and curated links.
 - [llms-full.txt](https://couponpush.com/llms-full.txt): Detailed site context and offer interpretation.
+- [Blog](https://couponpush.com/blog/): Shopping guides and sale coverage.
+- [Blog sitemap](https://couponpush.com/blog/sitemap.xml): Full list of indexable blog pages.
