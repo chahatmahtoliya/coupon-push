@@ -328,6 +328,10 @@ export function TrendingProductCard({
                 minHeight: { xs: '310px', sm: '330px', md: '340px' },
                 display: 'flex',
                 flexDirection: 'column',
+                fontFamily: 'var(--font-primary)',
+                '& .MuiTypography-root': {
+                    fontFamily: 'inherit',
+                },
                 p: { xs: 1.25, sm: 1.5 },
                 bgcolor: '#FFFFFF',
                 borderRadius: '12px',
@@ -432,7 +436,7 @@ export function TrendingProductCard({
                 )}
             </Box>
 
-            {/* Discount & Promo Code Badge Row */}
+            {/* Discount */}
             <Box
                 sx={{
                     display: 'flex',
@@ -452,20 +456,6 @@ export function TrendingProductCard({
                     }}
                 >
                     {discountText}
-                </Typography>
-
-                <Typography
-                    sx={{
-                        fontSize: '0.72rem',
-                        fontWeight: 700,
-                        color: '#16A34A',
-                        letterSpacing: '0.4px',
-                        lineHeight: 1.2,
-                        textTransform: 'uppercase',
-                        whiteSpace: 'nowrap',
-                    }}
-                >
-                    {hasCode ? 'PROMO CODE' : 'DEAL'}
                 </Typography>
             </Box>
 

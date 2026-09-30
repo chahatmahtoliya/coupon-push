@@ -6,13 +6,13 @@ import StoresPageClient from './StoresPageClient';
 
 export const metadata: Metadata = {
     title: 'All Coupon Stores',
-    description: 'Browse all coupon stores on CouponPush and find verified deals, promo codes, and offers by brand.',
+    description: 'Browse stores on CouponPush and explore current coupons, promo codes, and deals by brand.',
     alternates: { canonical: 'https://couponpush.com/stores/' },
     openGraph: {
         type: 'website',
         url: 'https://couponpush.com/stores/',
         title: 'All Coupon Stores',
-        description: 'Browse all coupon stores on CouponPush and find verified deals, promo codes, and offers by brand.',
+        description: 'Browse stores on CouponPush and explore current coupons, promo codes, and deals by brand.',
     },
 };
 

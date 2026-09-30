@@ -5,13 +5,13 @@ import { deployedSnapshot } from '@/lib/deployed-snapshot';
 
 export const metadata: Metadata = {
     title: "Today's Best Deals & Offers",
-    description: 'Browse the latest featured shopping deals and verified offers on CouponPush.',
+    description: 'Browse current product deals and store offers on CouponPush. Check the merchant price and terms before buying.',
     alternates: { canonical: 'https://couponpush.com/deals/' },
     openGraph: {
         type: 'website',
         url: 'https://couponpush.com/deals/',
         title: "Today's Best Deals & Offers",
-        description: 'Browse the latest featured shopping deals and verified offers on CouponPush.',
+        description: 'Browse current product deals and store offers on CouponPush. Check the merchant price and terms before buying.',
     },
 };
 

@@ -329,6 +329,13 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                     <li class="nav-section">Settings</li>
 
                     <li class="nav-item">
+                        <a class="nav-link <?php echo $currentPage === 'search-console' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/search-console.php">
+                            <i class="fab fa-google"></i>
+                            <span>Search Console</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link <?php echo $currentPage === 'settings' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/settings.php">
                             <i class="fas fa-cog"></i>
                             <span>Settings</span>

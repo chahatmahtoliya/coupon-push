@@ -9,7 +9,7 @@ import { getCategoryPath } from '@/lib/routes';
 const COLORS = [
     { accent: '#ff6b1a', soft: '#fff3ed', deep: '#c2410c' },
     { accent: '#0ea5e9', soft: '#eef8ff', deep: '#075985' },
-    { accent: '#16a34a', soft: '#ecfdf3', deep: '#166534' },
+    { accent: '#1f2940', soft: '#eef1f6', deep: '#152035' },
     { accent: '#7c3aed', soft: '#f5f1ff', deep: '#5b21b6' },
     { accent: '#eab308', soft: '#fff8db', deep: '#854d0e' },
     { accent: '#ec4899', soft: '#fff1f8', deep: '#be185d' },

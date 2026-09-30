@@ -56,15 +56,12 @@ export default function CategoryPageClient({ initialData, slug }: { initialData:
     const stores = data?.stores || [];
     const name = data?.categoryName || titleFromSlug(slug);
     const description = data?.categoryDescription || `Browse active ${name} coupons, promo codes, and store deals in one place.`;
-    const icon = data?.categoryIcon?.replace(/^fas\s+/, '') || 'fa-tag';
-    const verified = coupons.filter((coupon) => coupon.is_verified).length;
-    const endingSoon = coupons.filter((coupon) => { if (!coupon.expiry_date) return false; const date = new Date(coupon.expiry_date); const now = new Date(); return date > now && date <= new Date(now.getTime() + 7 * 86400000); }).length;
     const activeFilters = selectedStores.length + discounts.length + types.length + Number(validity !== 'all');
     const filtered = useMemo(() => {
         let result = [...coupons];
         if (selectedStores.length) result = result.filter((coupon) => selectedStores.includes(coupon.store_slug));
         if (discounts.length) result = result.filter((coupon) => coupon.discount_type === 'percentage' && discounts.some((range) => range === 'under10' ? coupon.discount_value < 10 : range === '10-25' ? coupon.discount_value >= 10 && coupon.discount_value < 25 : range === '25-50' ? coupon.discount_value >= 25 && coupon.discount_value < 50 : range === '50-75' ? coupon.discount_value >= 50 && coupon.discount_value < 75 : coupon.discount_value >= 75));
-        if (types.length) result = result.filter((coupon) => (types.includes('percentage') && coupon.discount_type === 'percentage') || (types.includes('fixed') && coupon.discount_type === 'fixed') || (types.includes('freeshipping') && coupon.discount_type === 'freebie') || (types.includes('nocode') && !coupon.code));
+        if (types.length) result = result.filter((coupon) => (types.includes('code') && Boolean(coupon.code?.trim())) || (types.includes('percentage') && coupon.discount_type === 'percentage') || (types.includes('fixed') && coupon.discount_type === 'fixed') || (types.includes('freeshipping') && coupon.discount_type === 'freebie') || (types.includes('nocode') && !coupon.code));
         if (validity === 'new') result.sort((a, b) => b.id - a.id);
         if (validity === 'expiring') { const now = new Date(); const week = new Date(now.getTime() + 7 * 86400000); result = result.filter((coupon) => coupon.expiry_date && new Date(coupon.expiry_date) > now && new Date(coupon.expiry_date) <= week); }
         if (sort === 'newest') result.sort((a, b) => b.id - a.id);
@@ -76,11 +73,24 @@ export default function CategoryPageClient({ initialData, slug }: { initialData:
     const totalPages = Math.ceil(filtered.length / 12);
     const visible = filtered.slice((page - 1) * 12, page * 12);
 
-    return <>
-        <div className="category-header-dark category-detail-hero"><div className="container"><nav className="category-breadcrumb"><Link href="/">HOME</Link><i className="fas fa-chevron-right" /><Link href="/categories">CATEGORIES</Link><i className="fas fa-chevron-right" /><span>{name.toUpperCase()}</span></nav><div className="category-detail-hero-inner"><div className="category-detail-icon"><i className={`fas ${icon}`} aria-hidden="true" /></div><div className="category-detail-copy"><span className="category-hero-kicker"><i className="fas fa-tag" aria-hidden="true" />Category deals</span><h1 className="category-header-title">{name} deals</h1><p className="category-header-description">{description}</p></div></div></div></div>
-        <section className="category-page-section"><div className="container">
-            <div className="category-result-bar"><div><span className="category-result-eyebrow">Available now</span><h2><span>{filtered.length}</span>{filtered.length === 1 ? ' coupon found' : ' coupons found'}</h2></div><div className="category-result-chips"><span><i className="fas fa-store" aria-hidden="true" />{stores.length} {stores.length === 1 ? 'store' : 'stores'}</span><span><i className="fas fa-circle-check" aria-hidden="true" />{verified} verified</span><span><i className="fas fa-clock" aria-hidden="true" />{endingSoon} ending soon</span>{activeFilters > 0 && <span className="category-filter-chip-active"><i className="fas fa-sliders" aria-hidden="true" />{activeFilters} active {activeFilters === 1 ? 'filter' : 'filters'}</span>}</div></div>
-            <div className="category-page-layout"><FilterSidebar stores={stores} onSortChange={setSort} onStoreChange={setSelectedStores} onDiscountChange={setDiscounts} onTypeChange={setTypes} onValidityChange={setValidity} /><main className="category-main-content">{visible.length ? <><div className="coupon-grid-v2">{visible.map((coupon) => <CouponCard coupon={coupon} variant="category" key={coupon.id} />)}</div><Pagination currentPage={page} totalPages={totalPages} onPageChange={(next) => { setPage(next); window.scrollTo({ top: 0, behavior: 'smooth' }); }} /></> : <div className="empty-state"><i className="fas fa-ticket-alt" /><h3>No Coupons Found</h3><p>Try adjusting your filters or browse all coupons.</p><Link href="/" className="btn btn-primary">Browse All Coupons</Link></div>}</main></div>
-        </div></section>
-    </>;
+    return <div className="cp-category-page">
+        <div className="cp-category-shell">
+            <nav className="cp-category-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><Link href="/categories">Categories</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span>{name}</span></nav>
+            <header className="cp-category-heading"><h1>{name}</h1><p>{description}</p></header>
+            <div className="cp-category-toolbar">
+                <details className="cp-category-filter-menu">
+                    <summary><i className="fas fa-sliders" aria-hidden="true" /> Filters {activeFilters > 0 && <span className="cp-category-filter-count">{activeFilters}</span>}<i className="fas fa-chevron-down" aria-hidden="true" /></summary>
+                    <div className="cp-category-filter-panel"><FilterSidebar stores={stores} selectedStores={selectedStores} selectedDiscounts={discounts} selectedTypes={types} validity={validity} onStoreChange={setSelectedStores} onDiscountChange={setDiscounts} onTypeChange={setTypes} onValidityChange={setValidity} /></div>
+                </details>
+                <div className="cp-category-chips" aria-label="Quick filters">
+                    <button type="button" className={types.includes('code') ? 'active' : ''} aria-pressed={types.includes('code')} onClick={() => setTypes(types.includes('code') ? types.filter((type) => type !== 'code') : [...types, 'code'])}><i className="fas fa-tag" aria-hidden="true" />Promo code</button>
+                    {stores.slice(0, 8).map((store) => <button type="button" key={store.slug} className={selectedStores.includes(store.slug) ? 'active' : ''} aria-pressed={selectedStores.includes(store.slug)} onClick={() => setSelectedStores(selectedStores.includes(store.slug) ? [] : [store.slug])}>{store.name}</button>)}
+                </div>
+                <label className="cp-category-sort"><span className="visually-hidden">Sort offers</span><i className="fas fa-arrow-down-wide-short" aria-hidden="true" /><select value={sort} onChange={(event) => setSort(event.target.value)}><option value="popular">Sort by: Relevance</option><option value="newest">Newest first</option><option value="expiring">Expiring soon</option><option value="discount">Highest discount</option></select><i className="fas fa-chevron-down" aria-hidden="true" /></label>
+            </div>
+            <main className="cp-category-results"><p className="cp-category-count">{filtered.length} {filtered.length === 1 ? 'offer' : 'offers'} available{activeFilters ? ' with these filters' : ''}</p>
+                {visible.length ? <><div className="coupon-grid-v2">{visible.map((coupon) => <CouponCard coupon={coupon} variant="category" key={coupon.id} />)}</div><Pagination currentPage={page} totalPages={totalPages} onPageChange={(next) => { setPage(next); window.scrollTo({ top: 0, behavior: 'smooth' }); }} /></> : <div className="cp-category-empty"><i className="fas fa-ticket-alt" aria-hidden="true" /><h2>No offers match these filters</h2><p>Try another store or clear the filters to see all current offers.</p><button type="button" onClick={() => { setSelectedStores([]); setDiscounts([]); setTypes([]); setValidity('all'); }}>Clear filters</button></div>}
+            </main>
+        </div>
+    </div>;
 }

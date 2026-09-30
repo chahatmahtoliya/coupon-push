@@ -1,15 +1,4 @@
 /* Add to index.css or equivalent if necessary, but typically visually-hidden is a standard class or accessible utility */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
 /* Shared wayfinding for store resources and the human-readable site map. */
 .offer-evidence { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 13px; line-height: 1.5; color: #465568; overflow-wrap: anywhere; }
 .offer-evidence a { color: #234f80; text-decoration: underline; text-underline-offset: 3px; }

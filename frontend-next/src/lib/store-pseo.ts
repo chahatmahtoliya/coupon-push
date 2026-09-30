@@ -146,6 +146,44 @@ export function getStorePseoContent(context: StorePseoContext): StorePseoContent
     return null;
 }
 
+export function getStoreFallbackFaqs(context: StorePseoContext): StorePseoFaq[] {
+    const { storeName, coupons, offerCount, codeCount, dealCount } = context;
+    const listedOffer = coupons[0];
+    const nextExpiry = coupons
+        .filter((coupon) => coupon.expiry_date && !Number.isNaN(Date.parse(coupon.expiry_date)))
+        .sort((a, b) => Date.parse(a.expiry_date) - Date.parse(b.expiry_date))[0];
+
+    return [
+        {
+            question: `How many ${storeName} coupon codes and deals are listed?`,
+            answer: offerCount
+                ? `This page currently lists ${offerCount} ${storeName} offers: ${codeCount} coupon ${codeCount === 1 ? 'code' : 'codes'} and ${dealCount} online ${dealCount === 1 ? 'deal' : 'deals'}. Check each offer's terms before ordering.`
+                : `No active ${storeName} offers are listed right now. Check this page again or visit the merchant for current promotions.`,
+        },
+        codeCount ? {
+            question: `How do I use a ${storeName} coupon code?`,
+            answer: `Open a listed code offer, check its eligible products and customer conditions, then enter the code at ${storeName} checkout. Confirm the discount in the order total before paying.`,
+        } : {
+            question: `Do ${storeName} deals need a coupon code?`,
+            answer: dealCount
+                ? `The ${dealCount} listed online ${dealCount === 1 ? 'deal does' : 'deals do'} not require a code. Open the offer and confirm the price and eligibility at checkout.`
+                : `There is no active ${storeName} code or deal listed on this page. Check the merchant's current terms before ordering.`,
+        },
+        {
+            question: `What should I check before choosing a ${storeName} offer?`,
+            answer: listedOffer
+                ? `One listed offer is “${listedOffer.title}”. Check its eligible items, minimum spend, customer restrictions, delivery charges and final payable amount. A listing does not guarantee the offer will apply to your cart.`
+                : `Compare the merchant's current price, delivery charges and offer conditions when new ${storeName} promotions become available.`,
+        },
+        {
+            question: `When do ${storeName} offers expire?`,
+            answer: nextExpiry
+                ? `The earliest listed expiry is ${new Intl.DateTimeFormat('en-IN', { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(nextExpiry.expiry_date))} for “${nextExpiry.title}”. Other offers may end at different times; confirm availability before checkout.`
+                : `No active ${storeName} offer has a listed expiry date here. That does not guarantee continued availability; check the offer and merchant before checkout.`,
+        },
+    ];
+}
+
 type ShoppingProfile = { focus: string; items: NonNullable<StorePseoSection['items']>; faqs: StorePseoFaq[] };
 const shoppingProfiles: Record<string, ShoppingProfile> = {
     'kapiva-coupon-code': {

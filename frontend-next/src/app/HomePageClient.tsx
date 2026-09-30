@@ -101,9 +101,9 @@ function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, i
                 <button type="button" className="cp-hero-arrow cp-hero-arrow-next" aria-label="Next featured deals" onClick={() => onNavigate(1)}><i className="fas fa-chevron-right" aria-hidden="true" /></button>
             </>}
             <div className="cp-hero-motion-stage">
-                <div className="cp-hero-frame" key={`${activeIndex}-${items[0]?.key || 'empty'}`}>
+                <div className={`cp-hero-frame${items.length === 1 ? ' is-single-slide' : ''}`} key={`${activeIndex}-${items[0]?.key || 'empty'}`}>
                     {items[0] && <HeroItemCard item={items[0]} large onImageError={onImageError} />}
-                    <div className="cp-hero-side">{items.slice(1, 3).map((item) => <HeroItemCard key={item.key} item={item} onImageError={onImageError} />)}</div>
+                    {items.length > 1 && <div className="cp-hero-side">{items.slice(1, 3).map((item) => <HeroItemCard key={item.key} item={item} onImageError={onImageError} />)}</div>}
                 </div>
             </div>
             {canNavigate && <div className="cp-hero-toolbar">

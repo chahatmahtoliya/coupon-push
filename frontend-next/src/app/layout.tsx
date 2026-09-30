@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 import '@/styles/style.css';
 import '@/styles/homepage.css';
 import '@/styles/store-hero.css';
-import '@/styles/store-page-cleanup.css';
 import '@/styles/seo.css';
+import '@/styles/category-refresh.css';
 import { Footer, Header } from '@/components/layout';
 import { ScrollToTop } from '@/components/common';
 

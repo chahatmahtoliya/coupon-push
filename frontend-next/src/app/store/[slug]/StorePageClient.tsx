@@ -2,13 +2,12 @@
 
 import { CouponDescription } from '@/components/common/CouponDescription';
 import { OfferEvidence } from '@/components/common/OfferEvidence';
-import { isCheckoutTested } from '@/lib/offer-evidence';
 
 import Link from '@/components/common/SiteLink';
 import { useEffect, useMemo, useState } from 'react';
 import { CouponModal } from '@/components/common';
 import { getStorePath, getCategoryPath } from '@/lib/routes';
-import { getStorePseoContent } from '@/lib/store-pseo';
+import { getStoreFallbackFaqs, getStorePseoContent } from '@/lib/store-pseo';
 import { getActiveCoupons } from '@/lib/indexability';
 import { sanitizeStoreHtml } from '@/lib/store-html';
 import { storesApi } from '@/services/api';
@@ -103,9 +102,21 @@ function expiryLabel(value?: string): string {
 }
 
 function StoreLogo({ store, displayName }: { store: Store; displayName: string }) {
-    const [showImage, setShowImage] = useState(Boolean(store.logo));
-    useEffect(() => setShowImage(Boolean(store.logo)), [store.logo]);
-    if (showImage && store.logo) return <img src={store.logo} alt={`${displayName} logo`} loading="lazy" decoding="async" onError={() => setShowImage(false)} />;
+    const [logoSrc, setLogoSrc] = useState(store.logo || '');
+    useEffect(() => setLogoSrc(store.logo || ''), [store.logo]);
+    if (logoSrc) return <img src={logoSrc} alt={`${displayName} logo`} loading="lazy" decoding="async" onError={() => {
+        try {
+            const url = new URL(logoSrc);
+            if (url.hostname === 'media.couponpush.com' && url.pathname.startsWith('/uploads/stores/')) {
+                url.hostname = 'api.couponpush.com';
+                setLogoSrc(url.toString());
+                return;
+            }
+        } catch {
+            // An invalid logo URL should use the store initials below.
+        }
+        setLogoSrc('');
+    }} />;
     const initials = displayName.trim().split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase() || 'CP';
     return <span>{initials}</span>;
 }
@@ -142,16 +153,10 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     const codeCount = coupons.filter(isCodeCoupon).length;
     const offerCount = coupons.length;
     const dealCount = Math.max(offerCount - codeCount, 0);
-    const verifiedCount = coupons.filter(isCheckoutTested).length;
     const pseo = getStorePseoContent({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount });
-    const factualSummary = offerCount
-        ? `${offerCount} active ${displayName} offers are listed: ${codeCount} coupon ${codeCount === 1 ? 'code' : 'codes'} and ${dealCount} online ${dealCount === 1 ? 'deal' : 'deals'}.`
-        : `There are no active ${displayName} coupon codes or online offers listed right now.`;
     const description = hasContent(store.description) ? store.description.trim() : '';
     const categoryName = store.category_name || 'Stores';
     const categoryHref = getCategoryPath(store.category_slug);
-    const nearestExpiry = coupons.filter((coupon) => coupon.expiry_date && !Number.isNaN(new Date(coupon.expiry_date).getTime())).sort((a, b) => new Date(a.expiry_date).getTime() - new Date(b.expiry_date).getTime())[0];
-    const featuredCoupon = sortCoupons(coupons, 'popular')[0];
     const aboutHtml = hasContent(store.about_content) && normalizedText(store.about_content) !== normalizedText(description) ? formatStoreContent(store.about_content) : '';
     const couponArticle = /^[aeiou]/i.test(displayName) ? 'an' : 'a';
     const contentPanels = pseo ? [] : [
@@ -159,21 +164,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
         hasContent(store.howto_content) ? { id: 'how-to-use', icon: 'fa-ticket', title: `How to Use ${couponArticle} ${displayName} Coupon Code`, html: formatStoreContent(store.howto_content) } : null,
         hasContent(store.terms_content) ? { id: 'terms', icon: 'fa-file-contract', title: `${displayName} Coupon Terms`, html: formatStoreContent(store.terms_content) } : null,
     ].filter((panel): panel is ContentPanel => Boolean(panel?.html));
-    const faqItems = pseo?.faqs || [
-        { question: `How many ${displayName} coupons and offers are active?`, answer: factualSummary },
-        {
-            question: `Are there verified ${displayName} coupon codes?`,
-            answer: codeCount ? `${codeCount} active ${displayName} coupon ${codeCount === 1 ? 'code is' : 'codes are'} listed. ${verifiedCount} of all current offers ${verifiedCount === 1 ? 'is' : 'are'} recorded as checkout tested. A past test does not guarantee account eligibility.` : `No code-based ${displayName} coupons are listed at the moment; the current listings are online deals that do not require a code.`,
-        },
-        {
-            question: `Which ${displayName} offer should I check first?`,
-            answer: featuredCoupon ? `Start with "${featuredCoupon.title}". Review its eligibility, expiry information and final price before completing your order.` : `There is no active offer to recommend right now. Check the official ${displayName} site for current promotions.`,
-        },
-        {
-            question: `When do ${displayName} coupon codes expire?`,
-            answer: nearestExpiry ? `The nearest listed expiry is ${expiryLabel(nearestExpiry.expiry_date).toLowerCase()} for "${nearestExpiry.title}". Other offers may have different dates.` : `No current ${displayName} offer has a listed expiry date. Confirm availability on the offer page before checkout.`,
-        },
-    ];
+    const faqItems = pseo?.faqs || getStoreFallbackFaqs({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount });
 
     const toggleSaved = (id: number) => setSaved((current) => {
         const next = new Set(current);
@@ -212,7 +203,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
                     })}</div>}
                 </section>
 
-                <Card className="store-ui-faq-card" id="store-ui-faqs"><h2>{displayName} Coupon Code FAQs</h2><div className="store-ui-faq-list">{faqItems.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></Card>
+                <Card className="store-ui-faq-card" id="store-ui-faqs"><h2>{displayName} {codeCount ? 'Coupon Code' : 'Offers & Deals'} FAQs</h2><div className="store-ui-faq-list">{faqItems.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></Card>
 
                 {!!contentPanels.length && <section className="store-ui-content-stack" aria-label={`${displayName} coupon guide`}>{contentPanels.map((panel) => <article className="store-ui-content-panel store-info-body" id={`store-ui-${panel.id}`} key={panel.id}><header><i className={`fa-solid ${panel.icon}`} aria-hidden="true" /><h2>{panel.title}</h2></header><div dangerouslySetInnerHTML={{ __html: panel.html }} /></article>)}</section>}
 

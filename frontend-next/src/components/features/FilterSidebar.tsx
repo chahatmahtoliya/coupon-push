@@ -10,27 +10,28 @@ interface Store {
 
 interface FilterSidebarProps {
     stores?: Store[];
-    onSortChange?: (sort: string) => void;
-    onStoreChange?: (stores: string[]) => void;
-    onDiscountChange?: (discounts: string[]) => void;
-    onTypeChange?: (types: string[]) => void;
-    onValidityChange?: (validity: string) => void;
+    selectedStores: string[];
+    selectedDiscounts: string[];
+    selectedTypes: string[];
+    validity: string;
+    onStoreChange: (stores: string[]) => void;
+    onDiscountChange: (discounts: string[]) => void;
+    onTypeChange: (types: string[]) => void;
+    onValidityChange: (validity: string) => void;
 }
 
 export function FilterSidebar({
     stores = [],
-    onSortChange,
+    selectedStores,
+    selectedDiscounts,
+    selectedTypes,
+    validity,
     onStoreChange,
     onDiscountChange,
     onTypeChange,
     onValidityChange
 }: FilterSidebarProps) {
-    const [sortBy, setSortBy] = useState('popular');
     const [storeSearch, setStoreSearch] = useState('');
-    const [selectedStores, setSelectedStores] = useState<string[]>([]);
-    const [selectedDiscounts, setSelectedDiscounts] = useState<string[]>([]);
-    const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-    const [validity, setValidity] = useState('all');
 
     const discountOptions = [
         { value: 'under10', label: 'Under 10% Off' },
@@ -41,8 +42,9 @@ export function FilterSidebar({
     ];
 
     const typeOptions = [
+        { value: 'code', label: 'Promo Code' },
         { value: 'percentage', label: '% Off Discount' },
-        { value: 'fixed', label: '$ Off Discount' },
+        { value: 'fixed', label: '₹ Off Discount' },
         { value: 'freeshipping', label: 'Free Shipping' },
         { value: 'nocode', label: 'No Code Required' }
     ];
@@ -53,43 +55,33 @@ export function FilterSidebar({
         { value: 'all', label: 'All Active', badge: null }
     ];
 
-    const handleSortChange = (value: string) => {
-        setSortBy(value);
-        onSortChange?.(value);
-    };
-
     const handleStoreToggle = (slug: string) => {
         const newSelected = selectedStores.includes(slug)
             ? selectedStores.filter(s => s !== slug)
             : [...selectedStores, slug];
-        setSelectedStores(newSelected);
-        onStoreChange?.(newSelected);
+        onStoreChange(newSelected);
     };
 
     const handleDiscountToggle = (value: string) => {
         const newSelected = selectedDiscounts.includes(value)
             ? selectedDiscounts.filter(d => d !== value)
             : [...selectedDiscounts, value];
-        setSelectedDiscounts(newSelected);
-        onDiscountChange?.(newSelected);
+        onDiscountChange(newSelected);
     };
 
     const handleTypeToggle = (value: string) => {
         const newSelected = selectedTypes.includes(value)
             ? selectedTypes.filter(t => t !== value)
             : [...selectedTypes, value];
-        setSelectedTypes(newSelected);
-        onTypeChange?.(newSelected);
+        onTypeChange(newSelected);
     };
 
     const handleValidityChange = (value: string) => {
-        setValidity(value);
-        onValidityChange?.(value);
+        onValidityChange(value);
     };
 
     const resetStores = () => {
-        setSelectedStores([]);
-        onStoreChange?.([]);
+        onStoreChange([]);
     };
 
     const filteredStores = stores.filter(store =>
@@ -98,24 +90,6 @@ export function FilterSidebar({
 
     return (
         <aside className="filter-sidebar">
-            {/* Sort By */}
-            <div className="filter-section">
-                <h4 className="filter-section-title">SORT BY</h4>
-                <div className="filter-select-wrapper">
-                    <select
-                        className="filter-select"
-                        value={sortBy}
-                        onChange={(e) => handleSortChange(e.target.value)}
-                    >
-                        <option value="popular">Most Popular</option>
-                        <option value="newest">Newest First</option>
-                        <option value="expiring">Expiring Soon</option>
-                        <option value="discount">Highest Discount</option>
-                    </select>
-                    <i className="fas fa-chevron-down filter-select-icon"></i>
-                </div>
-            </div>
-
             {/* Stores Filter */}
             <div className="filter-section">
                 <div className="filter-section-header">

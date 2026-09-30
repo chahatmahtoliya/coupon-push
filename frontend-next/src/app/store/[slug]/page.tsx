@@ -6,7 +6,7 @@ import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { getLatestContentUpdate } from '@/lib/content-dates';
 import { getActiveCoupons, hasIndexableStoreContent } from '@/lib/indexability';
 import { getCanonicalStoreSlug, isCanonicalStoreSlug } from '@/lib/routes';
-import { getStorePseoContent } from '@/lib/store-pseo';
+import { getStoreFallbackFaqs, getStorePseoContent } from '@/lib/store-pseo';
 import { getStoreGuide } from '@/lib/site-navigation';
 import Link from '@/components/common/SiteLink';
 
@@ -97,6 +97,7 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';
     const description = pseo?.metaDescription || customDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
     const dateModified = getLatestContentUpdate(initialData.store, ...coupons);
+    const faqs = pseo?.faqs || getStoreFallbackFaqs({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const structuredData = [
         {
             '@context': 'https://schema.org',
@@ -116,15 +117,15 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
                 { '@type': 'ListItem', position: 3, name: `${storeName} Coupons`, item: canonical },
             ],
         },
-        ...(pseo ? [{
+        {
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: pseo.faqs.map((faq) => ({
+            mainEntity: faqs.map((faq) => ({
                 '@type': 'Question',
                 name: faq.question,
                 acceptedAnswer: { '@type': 'Answer', text: faq.answer },
             })),
-        }] : []),
+        },
     ];
 
     return <>

@@ -17,10 +17,15 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__()
         self.robots, self.canonicals, self.h1, self.title, self.description = [], [], 0, '', ''
-        self.in_title = False
+        self.in_title = self.in_json_ld = False
+        self.json_ld = []
+        self.json_ld_text = ''
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == 'title': self.in_title = True
+        if tag == 'script' and attrs.get('type') == 'application/ld+json':
+            self.in_json_ld = True
+            self.json_ld_text = ''
         if tag == 'h1': self.h1 += 1
         if tag == 'meta':
             if attrs.get('name') in ('robots', 'googlebot'): self.robots.append(attrs.get('content', '').lower())
@@ -28,8 +33,13 @@ class Page(HTMLParser):
         if tag == 'link' and attrs.get('rel') == 'canonical': self.canonicals.append(attrs.get('href'))
     def handle_endtag(self, tag):
         if tag == 'title': self.in_title = False
+        if tag == 'script' and self.in_json_ld:
+            try: self.json_ld.append(json.loads(self.json_ld_text))
+            except json.JSONDecodeError: self.json_ld.append(None)
+            self.in_json_ld = False
     def handle_data(self, data):
         if self.in_title: self.title += data
+        if self.in_json_ld: self.json_ld_text += data
     @property
     def noindex(self): return any('noindex' in item for item in self.robots)
 
@@ -72,6 +82,10 @@ def check():
         html = file.read_text(encoding='utf-8')
         page = Page(); page.feed(html)
         canonical = 'https://couponpush.com' + route
+        if route.startswith('/store/'):
+            schemas = [item for script in page.json_ld for item in (script if isinstance(script, list) else [script]) if isinstance(item, dict) and item.get('@type') == 'FAQPage']
+            if 'id="store-ui-faqs"' not in html or len(schemas) != 1 or len(schemas[0].get('mainEntity', [])) < 2:
+                errors.append(f'{route}: missing visible FAQ or FAQPage schema')
         if not page.noindex:
             indexable.add(canonical)
             titles.setdefault(page.title.strip(), []).append(route)
