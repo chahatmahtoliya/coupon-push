@@ -2,6 +2,7 @@
   "https://api.couponpush.com/uploads/hero/hero_6aa3bcdc6b898_1789115612.png": {
     "width": 1774,
     "height": 887,
+    "backgroundColor": "rgb(248, 248, 248)",
     "variants": [
       {
         "width": 480,
@@ -24,6 +25,7 @@
   "https://api.couponpush.com/uploads/hero/hero_6aa3be65960b1_1789116005.png": {
     "width": 1774,
     "height": 887,
+    "backgroundColor": "rgb(248, 248, 248)",
     "variants": [
       {
         "width": 480,
@@ -46,6 +48,7 @@
   "https://api.couponpush.com/uploads/hero/hero_6aa394489456e_1789105224.png": {
     "width": 2017,
     "height": 780,
+    "backgroundColor": "rgb(248, 104, 8)",
     "variants": [
       {
         "width": 480,

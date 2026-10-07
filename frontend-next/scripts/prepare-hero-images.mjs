@@ -16,7 +16,7 @@ for (const slide of snapshot.homepage.initialHeroSlides) {
     const url = slide.image;
     if (!url || !/^https?:\/\//i.test(url)) continue;
     const cached = previous[url];
-    if (cached && !process.argv.includes('--refresh') && (await Promise.all(cached.variants.map(v => fs.access(path.join(root, 'public', v.src)).then(() => true, () => false)))).every(Boolean)) {
+    if (cached?.backgroundColor && !process.argv.includes('--refresh') && (await Promise.all(cached.variants.map(v => fs.access(path.join(root, 'public', v.src)).then(() => true, () => false)))).every(Boolean)) {
         manifest[url] = cached;
         continue;
     }
@@ -36,7 +36,9 @@ for (const slide of snapshot.homepage.initialHeroSlides) {
             await sharp(original).rotate().resize({ width: size, withoutEnlargement: true }).webp({ quality: 82, effort: 5 }).toFile(path.join(root, 'public', src));
             variants.push({ width: size, src });
         }
-        manifest[url] = { width, height, variants };
+        const { dominant } = await sharp(original).stats();
+        const backgroundColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`;
+        manifest[url] = { width, height, backgroundColor, variants };
         const size = (await fs.stat(path.join(root, 'public', variants.at(-1).src))).size;
         console.log(`Hero ${slide.id}: ${original.length} -> ${size} bytes (largest variant)`);
     } catch (error) {

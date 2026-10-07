@@ -67,7 +67,7 @@ function EmptyState({ label }: { label: string }) {
     return <div className="cp-empty-state"><i className="fas fa-circle-info" aria-hidden="true" /><span>{label}</span></div>;
 }
 
-function SlideHeroCard({ slide, onImageError, onImageLoad }: { slide: HeroSlide; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
+function SlideHeroCard({ slide, priority = false, onImageError, onImageLoad }: { slide: HeroSlide; priority?: boolean; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
     const target = slide.cta_url || '/deals';
     const visual = imageUrl(slide.image);
     const [failedOptimizedUrl, setFailedOptimizedUrl] = useState<string | null>(null);
@@ -89,8 +89,8 @@ function SlideHeroCard({ slide, onImageError, onImageLoad }: { slide: HeroSlide;
     const hasOverlayContent = Boolean(slide.badge_text || title || description || cta);
     const ariaLabel = [slide.badge_text, slide.heading, slide.subheading].filter(Boolean).join(': ') || 'View featured CouponPush deal';
     return (
-        <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`cp-hero-main cp-live-hero-card${visual ? ' has-image' : ''}`} aria-label={ariaLabel}>
-            {visual && asset && <img ref={checkLoadedImage} src={useOriginal ? visual : asset.src} srcSet={useOriginal ? undefined : asset.srcSet} sizes={heroMainSizes} width={asset.width} height={asset.height} alt={slide.alt_text || ariaLabel} loading="eager" decoding="async" fetchPriority="high" onLoad={() => onImageLoad(visual)} onError={handleImageError} />}
+        <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`cp-hero-main cp-live-hero-card${visual ? ' has-image' : ''}`} style={{ backgroundColor: asset?.backgroundColor }} aria-label={ariaLabel}>
+            {visual && asset && <img ref={checkLoadedImage} src={useOriginal ? visual : asset.src} srcSet={useOriginal ? undefined : asset.srcSet} sizes={heroMainSizes} width={asset.width} height={asset.height} alt={slide.alt_text || ariaLabel} loading={priority ? 'eager' : 'lazy'} decoding="async" fetchPriority={priority ? 'high' : 'auto'} onLoad={() => onImageLoad(visual)} onError={handleImageError} />}
             {hasOverlayContent && <div className="cp-live-hero-overlay">
                 {slide.badge_text && <span>{slide.badge_text}</span>}
                 {title && <h2>{title}</h2>}
@@ -103,11 +103,11 @@ function SlideHeroCard({ slide, onImageError, onImageLoad }: { slide: HeroSlide;
 
 type HeroItem = { key: string; kind: 'slide'; slide: HeroSlide };
 
-function HeroItemCard({ item, onImageError, onImageLoad }: { item: HeroItem; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
-    return <SlideHeroCard slide={item.slide} onImageError={onImageError} onImageLoad={onImageLoad} />;
+function HeroItemCard({ item, priority, onImageError, onImageLoad }: { item: HeroItem; priority?: boolean; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
+    return <SlideHeroCard slide={item.slide} priority={priority} onImageError={onImageError} onImageLoad={onImageLoad} />;
 }
 
-function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, isRotationPaused, onNavigate, onSelect, onTogglePause, onImageError, onImageLoad }: { items: HeroItem[]; activeIndex: number; totalItems: number; canNavigate: boolean; isPaused: boolean; isRotationPaused: boolean; onNavigate: (direction: number) => void; onSelect: (index: number) => void; onTogglePause: () => void; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
+function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, isRotationPaused, onNavigate, onTogglePause, onImageError, onImageLoad }: { items: HeroItem[]; activeIndex: number; totalItems: number; canNavigate: boolean; isPaused: boolean; isRotationPaused: boolean; onNavigate: (direction: number) => void; onTogglePause: () => void; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
     const gesture = useRef<{ x: number; y: number } | null>(null);
     return (
         <div className="cp-hero-carousel" role="region" aria-roledescription="carousel" aria-label="Featured offers" onKeyDown={(event) => { if (canNavigate && ['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); onNavigate(event.key === 'ArrowRight' ? 1 : -1); } }}>
@@ -116,16 +116,11 @@ function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, i
                 <button type="button" className="cp-hero-arrow cp-hero-arrow-prev" aria-label="Previous featured deals" onClick={() => onNavigate(-1)}><i className="fas fa-chevron-left" aria-hidden="true" /></button>
                 <button type="button" className="cp-hero-arrow cp-hero-arrow-next" aria-label="Next featured deals" onClick={() => onNavigate(1)}><i className="fas fa-chevron-right" aria-hidden="true" /></button>
             </>}
-                <div className="cp-hero-frame is-single-slide" role="group" aria-roledescription="slide" aria-label={`${activeIndex + 1} of ${totalItems}`} aria-live={isRotationPaused ? 'polite' : 'off'}>
-                    {items[0] && <HeroItemCard key={items[0].key} item={items[0]} onImageError={onImageError} onImageLoad={onImageLoad} />}
+                <div className="cp-hero-frame cp-hero-row" role="group" aria-label={`Featured offers starting at ${activeIndex + 1} of ${totalItems}`} aria-live={isRotationPaused ? 'polite' : 'off'}>
+                    {items.map((item, index) => <HeroItemCard key={item.key} item={item} priority={index === 0} onImageError={onImageError} onImageLoad={onImageLoad} />)}
                 </div>
+                {canNavigate && <button type="button" className="cp-hero-pause" aria-label={isPaused ? 'Resume featured deals' : 'Pause featured deals'} aria-pressed={isPaused} onClick={onTogglePause}><i className={`fas ${isPaused ? 'fa-play' : 'fa-pause'}`} aria-hidden="true" /></button>}
             </div>
-            {canNavigate && <div className="cp-hero-toolbar">
-                <div className="cp-hero-pagination" role="group" aria-label="Choose featured deal">
-                    {Array.from({ length: totalItems }, (_, index) => <button key={index} type="button" className={index === activeIndex ? 'active' : ''} aria-label={`Show featured deal ${index + 1}`} aria-current={index === activeIndex ? 'true' : undefined} onClick={() => onSelect(index)} />)}
-                </div>
-                <button type="button" className="cp-hero-pause" aria-label={isPaused ? 'Resume featured deals' : 'Pause featured deals'} aria-pressed={isPaused} onClick={onTogglePause}><i className={`fas ${isPaused ? 'fa-play' : 'fa-pause'}`} aria-hidden="true" /></button>
-            </div>}
         </div>
     );
 }
@@ -232,7 +227,7 @@ export default function HomePageClient(props: HomePageClientProps) {
 
     const validHeroSlides = useMemo(() => heroSlides.filter((slide) => { const url = imageUrl(slide.image); return url && !failedHeroImages.has(url); }), [failedHeroImages, heroSlides]);
     const heroItems = useMemo<HeroItem[]>(() => validHeroSlides.map((slide) => ({ key: `slide-${slide.id}`, kind: 'slide', slide })), [validHeroSlides]);
-    const visibleHeroItems = useMemo(() => heroItems.length === 0 ? [] : [heroItems[heroIndex % heroItems.length]], [heroIndex, heroItems]);
+    const visibleHeroItems = useMemo(() => heroItems.length === 0 ? [] : Array.from({ length: Math.min(3, heroItems.length) }, (_, offset) => heroItems[(heroIndex + offset) % heroItems.length]), [heroIndex, heroItems]);
     const storePages = useMemo(() => chunks(stores.filter((store) => Boolean(imageUrl(store.logo))), storesPerPage), [stores, storesPerPage]);
     const maxStorePage = Math.max(0, storePages.length - 1);
 
@@ -278,7 +273,7 @@ export default function HomePageClient(props: HomePageClientProps) {
 
         {/* Hero Banner Carousel */}
         <section className="cp-hero cp-shell" aria-label="Featured deals" onMouseEnter={() => setHeroInteracting(true)} onMouseLeave={() => setHeroInteracting(false)} onFocusCapture={() => setHeroInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHeroInteracting(false); }}>
-            {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} totalItems={heroItems.length} canNavigate={heroItems.length > 1} isPaused={heroPaused || heroReducedMotion} isRotationPaused={heroRotationPaused} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onSelect={setHeroIndex} onTogglePause={() => { if (heroReducedMotion) setHeroReducedMotion(false); else setHeroPaused((paused) => !paused); }} onImageError={markHeroFailed} onImageLoad={markHeroLoaded} /> : <section className="cp-container"><p>Find offers from your favourite stores. Compare the terms before you shop.</p><Link href="/stores/">Browse stores and offers</Link></section>}
+            {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} totalItems={heroItems.length} canNavigate={heroItems.length > 1} isPaused={heroPaused || heroReducedMotion} isRotationPaused={heroRotationPaused} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onTogglePause={() => { if (heroReducedMotion) setHeroReducedMotion(false); else setHeroPaused((paused) => !paused); }} onImageError={markHeroFailed} onImageLoad={markHeroLoaded} /> : <section className="cp-container"><p>Find offers from your favourite stores. Compare the terms before you shop.</p><Link href="/stores/">Browse stores and offers</Link></section>}
         </section>
 
         {/* Newly added coupons use the same carousel without trending ranks. */}

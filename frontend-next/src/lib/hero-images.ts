@@ -1,6 +1,6 @@
 import manifest from '@/data/hero-images.json';
 
-type HeroImage = { width: number; height: number; variants: Array<{ width: number; src: string }> };
+type HeroImage = { width: number; height: number; backgroundColor?: string; variants: Array<{ width: number; src: string }> };
 
 export function getHeroImage(url: string) {
     const images = manifest as Record<string, HeroImage>;
@@ -20,8 +20,9 @@ export function getHeroImage(url: string) {
             }
         } catch { /* Unrecognized URLs retain the original image. */ }
     }
-    if (!image) return { src: url, srcSet: undefined, width: undefined, height: undefined };
+    if (!image) return { src: url, srcSet: undefined, width: undefined, height: undefined, backgroundColor: undefined };
     return {
+        backgroundColor: image.backgroundColor,
         src: image.variants.find(variant => variant.width >= 1200)?.src || image.variants.at(-1)!.src,
         srcSet: image.variants.map(variant => `${variant.src} ${variant.width}w`).join(', '),
         width: image.width,
@@ -29,4 +30,4 @@ export function getHeroImage(url: string) {
     };
 }
 
-export const heroMainSizes = '(max-width: 620px) calc(100vw - 28px), (max-width: 1260px) calc(100vw - 40px), 1220px';
+export const heroMainSizes = '(max-width: 620px) calc(88vw - 25px), (max-width: 1000px) calc(46vw - 12px), (max-width: 2000px) calc(30.667vw - 16px), calc(33.333vw - 70px)';

@@ -423,6 +423,60 @@
     background: #07162c;
 }
 
+/* Equal image cards in a simple horizontal rail. */
+.cp-hero.cp-shell {
+    width: 100%;
+    max-width: none;
+    padding-inline: clamp(20px, 4vw, 80px);
+}
+
+.cp-hero-frame.cp-hero-row {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    touch-action: pan-y;
+}
+
+.cp-hero-row > .cp-hero-main {
+    flex: 0 0 calc((100% - 48px) / 3);
+    width: calc((100% - 48px) / 3);
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 2 / 1;
+    border: 0;
+    border-radius: 24px;
+    box-shadow: none;
+    transform: none;
+}
+
+.cp-hero-motion-stage > .cp-hero-pause {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    z-index: 4;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, .9);
+    border-radius: 50%;
+}
+
+@media (max-width: 1000px) {
+    .cp-hero-row > .cp-hero-main {
+        flex-basis: calc((100% - 24px) / 2);
+        width: calc((100% - 24px) / 2);
+    }
+}
+
+@media (max-width: 620px) {
+    .cp-hero.cp-shell { padding-inline: 14px; }
+    .cp-hero-frame.cp-hero-row { gap: 14px; }
+    .cp-hero-row > .cp-hero-main {
+        flex-basis: 88%;
+        width: 88%;
+        border-radius: 16px;
+    }
+}
+
 .cp-store-card {
     display: inline-flex;
     aspect-ratio: 1/1;
