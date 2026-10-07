@@ -10,13 +10,14 @@
     "blog:check": "node scripts/check-blog.mjs",
     "blog:preview": "node scripts/preview-blog.mjs",
     "dev": "next dev",
-    "build": "node scripts/prepare-catalog.mjs --refresh && node scripts/prepare-redirects.mjs && next build && python scripts/check-seo.py",
-    "build:snapshot": "node scripts/prepare-catalog.mjs && node scripts/prepare-redirects.mjs && next build && python scripts/check-seo.py",
+    "build": "node scripts/prepare-catalog.mjs --refresh && node scripts/prepare-redirects.mjs && node scripts/prepare-hero-images.mjs && next build && python scripts/check-seo.py",
+    "build:snapshot": "node scripts/prepare-catalog.mjs && node scripts/prepare-redirects.mjs && node scripts/prepare-hero-images.mjs && next build && python scripts/check-seo.py",
     "catalog:refresh-only": "node scripts/prepare-catalog.mjs --refresh --preserve-promotions",
     "seo:check": "python scripts/check-seo.py",
     "catalog:refresh": "node scripts/prepare-catalog.mjs --refresh",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "hero:prepare": "node scripts/prepare-hero-images.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -26,7 +27,8 @@
     "next": "^16.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanitize-html": "^2.17.7"
+    "sanitize-html": "^2.17.7",
+    "sharp": "0.35.3"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",

@@ -1,0 +1,68 @@
+{
+  "https://api.couponpush.com/uploads/hero/hero_6aa3bcdc6b898_1789115612.png": {
+    "width": 1774,
+    "height": 887,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/hero/388a348def5fa498-480.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/hero/388a348def5fa498-800.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/hero/388a348def5fa498-1200.webp"
+      },
+      {
+        "width": 1774,
+        "src": "/assets/hero/388a348def5fa498-1774.webp"
+      }
+    ]
+  },
+  "https://api.couponpush.com/uploads/hero/hero_6aa3be65960b1_1789116005.png": {
+    "width": 1774,
+    "height": 887,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/hero/36f4b45cb0f41879-480.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/hero/36f4b45cb0f41879-800.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/hero/36f4b45cb0f41879-1200.webp"
+      },
+      {
+        "width": 1774,
+        "src": "/assets/hero/36f4b45cb0f41879-1774.webp"
+      }
+    ]
+  },
+  "https://api.couponpush.com/uploads/hero/hero_6aa394489456e_1789105224.png": {
+    "width": 2017,
+    "height": 780,
+    "variants": [
+      {
+        "width": 480,
+        "src": "/assets/hero/3580e7c1fac367ab-480.webp"
+      },
+      {
+        "width": 800,
+        "src": "/assets/hero/3580e7c1fac367ab-800.webp"
+      },
+      {
+        "width": 1200,
+        "src": "/assets/hero/3580e7c1fac367ab-1200.webp"
+      },
+      {
+        "width": 1800,
+        "src": "/assets/hero/3580e7c1fac367ab-1800.webp"
+      }
+    ]
+  }
+}
