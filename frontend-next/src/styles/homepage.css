@@ -743,7 +743,7 @@
 }
 
 .cp-hero-frame {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: stretch;
     gap: clamp(12px, 1.2vw, 16px);
 }
@@ -752,7 +752,8 @@
     height: auto;
     min-height: 0;
     aspect-ratio: 2 / 1;
-    border-radius: 12px;
+    border: 0;
+    border-radius: 0;
     box-shadow: none;
 }
 
@@ -807,7 +808,8 @@
     height: 44px;
     min-width: 44px;
     min-height: 44px;
-    box-shadow: 0 2px 8px rgba(12, 25, 48, .12);
+    border: 0;
+    box-shadow: none;
 }
 
 .cp-hero-motion-stage > .cp-hero-arrow-prev { left: 10px; }
@@ -824,12 +826,12 @@
 .cp-hero-main:focus-visible,
 .cp-promo-tile:focus-visible {
     outline: 3px solid rgba(255, 107, 26, 0.45);
-    outline-offset: 3px;
+    outline-offset: -3px;
 }
 
 .cp-hero-main:hover,
 .cp-promo-tile:hover {
-    transform: translateY(-2px);
+    transform: none;
 }
 
 .cp-live-hero-card.has-image > img {
@@ -859,7 +861,7 @@
 
 .cp-hero-toolbar {
     display: grid;
-    grid-template-columns: auto minmax(0, auto) minmax(36px, 1fr) 44px;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
     align-items: center;
     gap: 14px;
     min-height: 48px;
@@ -880,6 +882,8 @@
 }
 
 .cp-hero-pagination {
+    grid-column: 2;
+    justify-self: center;
     display: flex;
     align-items: center;
     gap: 0;
@@ -956,9 +960,10 @@
     justify-content: center;
     width: 44px;
     height: 44px;
-    border: 1px solid var(--cp-line);
+    grid-column: 3;
+    border: 0;
     border-radius: 12px;
-    background: #ffffff;
+    background: transparent;
     color: var(--cp-ink);
     box-shadow: none;
 }
@@ -978,7 +983,7 @@
 
 @media (max-width: 1100px) {
     .cp-hero-frame {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         gap: 14px;
     }
     .cp-hero-side {
@@ -1000,7 +1005,7 @@
         aspect-ratio: 2 / 1;
     }
     .cp-hero-toolbar {
-        grid-template-columns: auto minmax(0, auto) minmax(24px, 1fr) 44px;
+        grid-template-columns: 44px minmax(0, 1fr) 44px;
         gap: 10px;
     }
     .cp-hero-pause {
@@ -1023,7 +1028,7 @@
         width: 100%;
         height: auto;
         min-height: 0;
-        border-radius: 14px;
+        border-radius: 0;
     }
     .cp-hero-main.cp-live-hero-card:not(.has-image) {
         min-height: 238px;
@@ -1032,7 +1037,7 @@
         top: calc(50% - 24px);
     }
     .cp-hero-toolbar {
-        grid-template-columns: auto minmax(0, 1fr) 44px;
+        grid-template-columns: 44px minmax(0, 1fr) 44px;
     }
     .cp-hero-progress {
         display: none;

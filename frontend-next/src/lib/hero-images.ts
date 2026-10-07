@@ -29,5 +29,4 @@ export function getHeroImage(url: string) {
     };
 }
 
-export const heroMainSizes = '(max-width: 620px) calc(100vw - 28px), (max-width: 760px) calc(100vw - 40px), (max-width: 1260px) calc(66.667vw - 37px), 804px';
-export const heroSideSizes = '(max-width: 760px) calc(50vw - 26px), (max-width: 1260px) calc(33.333vw - 19px), 402px';
+export const heroMainSizes = '(max-width: 620px) calc(100vw - 28px), (max-width: 1260px) calc(100vw - 40px), 1220px';

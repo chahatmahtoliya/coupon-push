@@ -9,7 +9,7 @@ import { SeasonalBanner } from '@/components/features/SeasonalBanner';
 import { TopTrendingCarousel } from '@/components/features/TopTrendingCarousel';
 import { MaterialStoreCarousel } from '@/components/features/MaterialStoreCarousel';
 import { getStorePath } from '@/lib/routes';
-import { getHeroImage, heroMainSizes, heroSideSizes } from '@/lib/hero-images';
+import { getHeroImage, heroMainSizes } from '@/lib/hero-images';
 
 interface HomePageClientProps {
     initialFeaturedCoupons: Coupon[];
@@ -67,7 +67,7 @@ function EmptyState({ label }: { label: string }) {
     return <div className="cp-empty-state"><i className="fas fa-circle-info" aria-hidden="true" /><span>{label}</span></div>;
 }
 
-function SlideHeroCard({ slide, large = false, onImageError, onImageLoad }: { slide: HeroSlide; large?: boolean; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
+function SlideHeroCard({ slide, onImageError, onImageLoad }: { slide: HeroSlide; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
     const target = slide.cta_url || '/deals';
     const visual = imageUrl(slide.image);
     const [failedOptimizedUrl, setFailedOptimizedUrl] = useState<string | null>(null);
@@ -89,8 +89,8 @@ function SlideHeroCard({ slide, large = false, onImageError, onImageLoad }: { sl
     const hasOverlayContent = Boolean(slide.badge_text || title || description || cta);
     const ariaLabel = [slide.badge_text, slide.heading, slide.subheading].filter(Boolean).join(': ') || 'View featured CouponPush deal';
     return (
-        <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`${large ? 'cp-hero-main' : 'cp-promo-tile'} cp-live-hero-card${visual ? ' has-image' : ''}`} aria-label={ariaLabel}>
-            {visual && asset && <img ref={checkLoadedImage} src={useOriginal ? visual : asset.src} srcSet={useOriginal ? undefined : asset.srcSet} sizes={large ? heroMainSizes : heroSideSizes} width={asset.width} height={asset.height} alt={slide.alt_text || ariaLabel} loading={large ? 'eager' : 'lazy'} decoding="async" fetchPriority={large ? 'high' : 'low'} onLoad={() => onImageLoad(visual)} onError={handleImageError} />}
+        <a href={target} target={isExternal(target) ? '_blank' : undefined} rel={isExternal(target) ? 'noopener noreferrer' : undefined} className={`cp-hero-main cp-live-hero-card${visual ? ' has-image' : ''}`} aria-label={ariaLabel}>
+            {visual && asset && <img ref={checkLoadedImage} src={useOriginal ? visual : asset.src} srcSet={useOriginal ? undefined : asset.srcSet} sizes={heroMainSizes} width={asset.width} height={asset.height} alt={slide.alt_text || ariaLabel} loading="eager" decoding="async" fetchPriority="high" onLoad={() => onImageLoad(visual)} onError={handleImageError} />}
             {hasOverlayContent && <div className="cp-live-hero-overlay">
                 {slide.badge_text && <span>{slide.badge_text}</span>}
                 {title && <h2>{title}</h2>}
@@ -103,8 +103,8 @@ function SlideHeroCard({ slide, large = false, onImageError, onImageLoad }: { sl
 
 type HeroItem = { key: string; kind: 'slide'; slide: HeroSlide };
 
-function HeroItemCard({ item, large = false, onImageError, onImageLoad }: { item: HeroItem; large?: boolean; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
-    return <SlideHeroCard slide={item.slide} large={large} onImageError={onImageError} onImageLoad={onImageLoad} />;
+function HeroItemCard({ item, onImageError, onImageLoad }: { item: HeroItem; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
+    return <SlideHeroCard slide={item.slide} onImageError={onImageError} onImageLoad={onImageLoad} />;
 }
 
 function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, isRotationPaused, onNavigate, onSelect, onTogglePause, onImageError, onImageLoad }: { items: HeroItem[]; activeIndex: number; totalItems: number; canNavigate: boolean; isPaused: boolean; isRotationPaused: boolean; onNavigate: (direction: number) => void; onSelect: (index: number) => void; onTogglePause: () => void; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
@@ -116,17 +116,14 @@ function HeroCarousel({ items, activeIndex, totalItems, canNavigate, isPaused, i
                 <button type="button" className="cp-hero-arrow cp-hero-arrow-prev" aria-label="Previous featured deals" onClick={() => onNavigate(-1)}><i className="fas fa-chevron-left" aria-hidden="true" /></button>
                 <button type="button" className="cp-hero-arrow cp-hero-arrow-next" aria-label="Next featured deals" onClick={() => onNavigate(1)}><i className="fas fa-chevron-right" aria-hidden="true" /></button>
             </>}
-                <div className={`cp-hero-frame${items.length === 1 ? ' is-single-slide' : ''}${items.length === 2 ? ' has-two-slides' : ''}`}>
-                    {items[0] && <HeroItemCard key={items[0].key} item={items[0]} large onImageError={onImageError} onImageLoad={onImageLoad} />}
-                    {items.length > 1 && <div className="cp-hero-side">{items.slice(1, 3).map((item) => <HeroItemCard key={item.key} item={item} onImageError={onImageError} onImageLoad={onImageLoad} />)}</div>}
+                <div className="cp-hero-frame is-single-slide" role="group" aria-roledescription="slide" aria-label={`${activeIndex + 1} of ${totalItems}`} aria-live={isRotationPaused ? 'polite' : 'off'}>
+                    {items[0] && <HeroItemCard key={items[0].key} item={items[0]} onImageError={onImageError} onImageLoad={onImageLoad} />}
                 </div>
             </div>
             {canNavigate && <div className="cp-hero-toolbar">
-                <span className="cp-hero-counter" aria-live={isRotationPaused ? 'polite' : 'off'}>{String(activeIndex + 1).padStart(2, '0')} <span>/</span> {String(totalItems).padStart(2, '0')}</span>
                 <div className="cp-hero-pagination" role="group" aria-label="Choose featured deal">
                     {Array.from({ length: totalItems }, (_, index) => <button key={index} type="button" className={index === activeIndex ? 'active' : ''} aria-label={`Show featured deal ${index + 1}`} aria-current={index === activeIndex ? 'true' : undefined} onClick={() => onSelect(index)} />)}
                 </div>
-                <span className="cp-hero-progress" aria-hidden="true"><span key={`${activeIndex}-${isRotationPaused}`} className={isRotationPaused ? 'is-paused' : ''} /></span>
                 <button type="button" className="cp-hero-pause" aria-label={isPaused ? 'Resume featured deals' : 'Pause featured deals'} aria-pressed={isPaused} onClick={onTogglePause}><i className={`fas ${isPaused ? 'fa-play' : 'fa-pause'}`} aria-hidden="true" /></button>
             </div>}
         </div>
@@ -235,7 +232,7 @@ export default function HomePageClient(props: HomePageClientProps) {
 
     const validHeroSlides = useMemo(() => heroSlides.filter((slide) => { const url = imageUrl(slide.image); return url && !failedHeroImages.has(url); }), [failedHeroImages, heroSlides]);
     const heroItems = useMemo<HeroItem[]>(() => validHeroSlides.map((slide) => ({ key: `slide-${slide.id}`, kind: 'slide', slide })), [validHeroSlides]);
-    const visibleHeroItems = useMemo(() => heroItems.length === 0 ? [] : Array.from({ length: Math.min(3, heroItems.length) }, (_, offset) => heroItems[(heroIndex + offset) % heroItems.length]), [heroIndex, heroItems]);
+    const visibleHeroItems = useMemo(() => heroItems.length === 0 ? [] : [heroItems[heroIndex % heroItems.length]], [heroIndex, heroItems]);
     const storePages = useMemo(() => chunks(stores.filter((store) => Boolean(imageUrl(store.logo))), storesPerPage), [stores, storesPerPage]);
     const maxStorePage = Math.max(0, storePages.length - 1);
 
