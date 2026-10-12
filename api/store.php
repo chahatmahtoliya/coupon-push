@@ -41,7 +41,8 @@ try {
         FROM coupons cp
         JOIN stores s ON cp.store_id = s.id
         WHERE cp.store_id = ? 
-        AND cp.status = 1 
+        AND cp.status = 1
+        AND (cp.start_date IS NULL OR cp.start_date <= CURDATE())
         AND (cp.expiry_date IS NULL OR cp.expiry_date >= CURDATE())
         ORDER BY cp.is_featured DESC, cp.created_at DESC
     ", [$store['id']]);
@@ -62,8 +63,10 @@ try {
     // Transform store data
     $storeData = [
         'id' => (int)$store['id'],
+        'partner_revision' => isset($store['partner_revision']) ? (int)$store['partner_revision'] : null,
         'name' => $store['name'],
         'slug' => $store['slug'],
+        'short_description' => $store['short_description'] ?? '',
         'h1_suffix' => $store['h1_suffix'] ?? null,
         'logo' => getStoreLogoUrl($store['logo']),
         'website_url' => $store['website_url'],
@@ -93,6 +96,11 @@ try {
             'title' => $coupon['title'],
             'description' => $coupon['description'],
             'code' => $coupon['code'],
+            'source_url' => $coupon['source_url'] ?? null,
+            'checked_at' => $coupon['checked_at'] ?? null,
+            'verification_method' => $coupon['verification_method'] ?? null,
+            'start_date' => $coupon['start_date'] ?? null,
+            'status' => (bool)$coupon['status'],
             'coupon_type' => $coupon['coupon_type'] ?? null,
             'discount_type' => $coupon['discount_type'],
             'discount_value' => (float)$coupon['discount_value'],

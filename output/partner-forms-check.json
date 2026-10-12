@@ -1,0 +1,17 @@
+{
+  "passed": [
+    "Signup",
+    "Verification fragment link",
+    "Partial store save and resume",
+    "HTTPS field error",
+    "SVG rejection",
+    "PNG upload",
+    "Partial offer save",
+    "Submission error opens affected offer",
+    "No-code deal",
+    "Submit",
+    "Review lock recovery"
+  ],
+  "errors": [],
+  "transport": "Private file inbox; no external emails"
+}

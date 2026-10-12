@@ -82,6 +82,8 @@ def check():
         html = file.read_text(encoding='utf-8')
         page = Page(); page.feed(html)
         canonical = 'https://couponpush.com' + route
+        if len(page.canonicals) > 1:
+            errors.append(f'{route}: multiple canonical tags ({len(page.canonicals)})')
         if route.startswith('/store/'):
             schemas = [item for script in page.json_ld for item in (script if isinstance(script, list) else [script]) if isinstance(item, dict) and item.get('@type') == 'FAQPage']
             if 'id="store-ui-faqs"' not in html or len(schemas) != 1 or len(schemas[0].get('mainEntity', [])) < 2:

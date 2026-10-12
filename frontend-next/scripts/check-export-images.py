@@ -25,6 +25,10 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:
         if result.get('status') != 200 or not result.get('type', '').startswith('image/'):
             errors.append({k: v for k, v in result.items() if k != 'body'})
 report = {'unique_images': len(images), 'remote_images': len(remote), 'errors': errors}
-(root.parents[1] / 'output/seo/export-image-check.json').write_text(json.dumps(report, indent=2))
+report_file = root.parents[1] / 'output/seo/export-image-check.json'
+report_file.parent.mkdir(parents=True, exist_ok=True)
+if not images:
+    errors.append({'error': 'No exported images found; export is missing or incomplete'})
+report_file.write_text(json.dumps(report, indent=2), encoding='utf-8')
 print(json.dumps(report, indent=2))
 raise SystemExit(bool(errors))

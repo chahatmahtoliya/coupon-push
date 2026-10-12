@@ -7,6 +7,7 @@ import '@/styles/seo.css';
 import '@/styles/category-refresh.css';
 import { Footer, Header } from '@/components/layout';
 import { ScrollToTop } from '@/components/common';
+import { PartnerTracking } from '@/components/common/PartnerTracking';
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://couponpush.com'),
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             <body>
                 <div className="app">
                     <ScrollToTop />
+                    <PartnerTracking />
                     <Header />
                     <main className="main-content">{children}</main>
                     <Footer />

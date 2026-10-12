@@ -99,7 +99,7 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
     if (variant === 'category') {
         return (
             <>
-                <article className="coupon-card-v2">
+                <article className="coupon-card-v2" data-coupon-id={coupon.id}>
                     <div className="coupon-card-v2-visual">
                         {badge && <span className={`coupon-card-v2-badge ${badge.class}`}>{isCheckoutTested(coupon) ? 'Checkout tested' : 'Featured'}</span>}
                         <button type="button" className={`coupon-card-v2-favorite${isFavorite ? ' active' : ''}`} aria-label={`${isFavorite ? 'Remove' : 'Save'} ${coupon.title}`} aria-pressed={isFavorite} onClick={toggleFavorite}><i className={`${isFavorite ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /></button>
@@ -127,7 +127,7 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
     // Default variant
     return (
         <>
-            <div className="coupon-card">
+            <div className="coupon-card" data-coupon-id={coupon.id}>
                 {badge && (
                     <div className={`coupon-badge ${badge.class}`}>
                         {badge.text}

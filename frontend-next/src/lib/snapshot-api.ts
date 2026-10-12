@@ -13,7 +13,11 @@ export function readCatalogSnapshot(endpoint: string): unknown {
     const limit = Number(q.get('limit')) || undefined;
     const categoryStores = () => stores.filter(s => s.category_slug === q.get('category'));
     switch (url.pathname) {
-        case '/stores.php': return (q.has('category') ? categoryStores() : q.has('featured') ? stores.filter(s => s.is_featured) : stores).slice(0, limit);
+        case '/stores.php': {
+            const offset = Math.max(0, Number(q.get('offset')) || 0);
+            const list = q.has('category') ? categoryStores() : q.has('featured') ? stores.filter(s => s.is_featured) : stores;
+            return list.slice(offset, limit ? offset + limit : undefined);
+        }
         case '/store.php': {
             const data: StorePageData | undefined = snapshot.stores[q.get('slug') || ''];
             if (!data) throw new Error(`Store missing from release snapshot: ${q.get('slug')}`);

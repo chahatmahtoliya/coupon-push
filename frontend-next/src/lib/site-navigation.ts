@@ -3,6 +3,7 @@ import blogPages from '@/data/blog-pages.json';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { hasIndexableCategoryContent, hasIndexableStoreContent } from '@/lib/indexability';
 import { getLatestContentUpdate } from '@/lib/content-dates';
+import { partnersEnabled } from '@/lib/partners-feature';
 
 export const corePages = [
     { path: '/', title: 'Home' }, { path: '/coupons/', title: 'All coupons' },
@@ -11,6 +12,7 @@ export const corePages = [
     { path: '/about/', title: 'About CouponPush' }, { path: '/contact/', title: 'Contact' },
     { path: '/privacy-policy/', title: 'Privacy policy' }, { path: '/terms/', title: 'Terms and affiliate disclosure' },
     { path: '/site-map/', title: 'Site map' },
+    ...(partnersEnabled ? [{ path: '/list-a-store/', title: 'List your brand' }] : []),
 ];
 export function getSiteNavigation() {
     const stores = Object.values(deployedSnapshot.stores).filter(hasIndexableStoreContent).map(data => ({

@@ -1,0 +1,55 @@
+{
+  "errors": [],
+  "results": [
+    {
+      "url": "http://couponpush.com/store/kapiva-coupon-code/?ref=a%26b",
+      "status": 301,
+      "location": "https://couponpush.com/store/kapiva-coupon-code/?ref=a%26b"
+    },
+    {
+      "url": "https://www.couponpush.com/placeholder-deal.png",
+      "status": 301,
+      "location": "https://couponpush.com/placeholder-deal.png"
+    },
+    {
+      "url": "https://couponpush.com/",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://couponpush.com/store/kapiva-coupon-code/",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://couponpush.com/store/cetaphil/",
+      "status": 301,
+      "location": "/store/cetaphil-coupon-code/"
+    },
+    {
+      "url": "https://couponpush.com/store/derma-co-coupon-code/",
+      "status": 301,
+      "location": "/store/the-derma-co/"
+    },
+    {
+      "url": "https://couponpush.com/placeholder-deal.png",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://couponpush.com/sitemap.xml",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://couponpush.com/store/seo-audit-nonexistent-store/",
+      "status": 404,
+      "location": null
+    },
+    {
+      "url": "https://couponpush.com/canonical-origin.mjs",
+      "status": 404,
+      "location": null
+    }
+  ]
+}

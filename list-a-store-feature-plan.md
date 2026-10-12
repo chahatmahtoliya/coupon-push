@@ -2,7 +2,7 @@
 
 Date: 30 September 2026
 Project: CouponPush
-Status: Proposed plan; feature implementation has not started.
+Status: First release implemented locally on 12 October 2026. Production setup and deployment remain pending; see [backend and launch instructions](api/PARTNERS-DEPLOY.md). The sections below preserve the original planning context; they are not a completion checklist.
 
 ## 1. Goal
 

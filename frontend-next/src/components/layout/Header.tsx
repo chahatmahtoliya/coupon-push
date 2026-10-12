@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { categoriesApi } from '@/services/api';
 import type { Category } from '@/types';
 import { getCategoryPath } from '@/lib/routes';
+import { partnersEnabled } from '@/lib/partners-feature';
 
 export function Header() {
     const [query, setQuery] = useState('');
@@ -90,7 +91,7 @@ export function Header() {
 
     return (
         <>
-            <header className={`main-header-v2 cp-header ${isHomepage ? 'is-homepage' : ''}`}>
+            <header className={`main-header-v2 cp-header ${isHomepage ? 'is-homepage' : ''} ${partnersEnabled ? 'has-partners' : ''}`}>
                 <div className="cp-container cp-header-inner">
                     <Link className="header-logo cp-logo" href="/" aria-label="CouponPush home">
                         <img src="/assets/home-ui/logo-transparent.png" alt="CouponPush" className="logo-image" width="140" height="34" decoding="async" />
@@ -119,6 +120,7 @@ export function Header() {
                         <Link href="/coupons" className="nav-link-v2">Coupons</Link>
                         <Link href="/deals" className="nav-link-v2">Deals</Link>
                         <a href="/blog/" className="nav-link-v2">Blog</a>
+                        {partnersEnabled && <Link href="/list-a-store/" className="nav-link-v2 cp-partner-nav">List your brand</Link>}
                     </nav>
 
                     <button ref={menuButtonRef} className={`hamburger-btn cp-menu-button ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation-dialog" aria-haspopup="dialog" type="button">
@@ -158,6 +160,7 @@ export function Header() {
                     <a href="/blog/" className="mobile-menu-item" onClick={() => setMenuOpen(false)} style={{ animationDelay: '0.2s' }}>
                         <i className="fas fa-book-open" aria-hidden="true" /><span>Blog</span><i className="fas fa-chevron-right arrow" aria-hidden="true" />
                     </a>
+                    {partnersEnabled && <Link href="/list-a-store/" className="mobile-menu-item" onClick={() => setMenuOpen(false)}><i className="fas fa-store" aria-hidden="true" /><span>List your brand</span><i className="fas fa-chevron-right arrow" aria-hidden="true" /></Link>}
                 </nav>
             </aside>
         </>

@@ -1,4 +1,5 @@
 import Link from '@/components/common/SiteLink';
+import { partnersEnabled } from '@/lib/partners-feature';
 
 export function Footer() {
     return (
@@ -17,6 +18,7 @@ export function Footer() {
                 </div>
                 <div className="cp-footer-col">
                     <h2>Customer Support</h2>
+                    {partnersEnabled && <><Link href="/list-a-store/">List Your Brand</Link><Link href="/partners/">Brand Workspace</Link></>}
                     <Link href="/contact/">Help & Contact</Link><Link href="/about/">About CouponPush</Link><Link href="/blog/embed/">Publisher Resources</Link><Link href="/privacy-policy/">Privacy Policy</Link><Link href="/terms/">Terms & Disclosures</Link>
                 </div>
                 <div className="cp-footer-col cp-footer-updates">

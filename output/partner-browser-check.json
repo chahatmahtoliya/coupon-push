@@ -1,0 +1,16 @@
+{
+  "errors": [],
+  "screenshots": [
+    "dashboard-desktop.png",
+    "dashboard-mobile.png",
+    "landing-desktop.png",
+    "landing-mobile.png",
+    "offers-desktop.png",
+    "offers-mobile.png",
+    "signup-desktop.png",
+    "signup-mobile.png",
+    "store-desktop.png",
+    "store-mobile.png"
+  ],
+  "fixture": "Local SQLite test account; no production data or outgoing email."
+}

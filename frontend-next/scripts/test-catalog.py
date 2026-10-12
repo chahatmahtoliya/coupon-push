@@ -7,6 +7,7 @@ import subprocess
 import tempfile
 import threading
 import unittest
+from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / 'scripts/prepare-catalog.mjs'
@@ -26,6 +27,7 @@ class CatalogTests(unittest.TestCase):
         self.file = self.root / 'src/data/deployed-snapshot.json'
         self.file.parent.mkdir(parents=True)
         self.file.write_bytes((ROOT / 'src/data/deployed-snapshot.json').read_bytes())
+        (self.file.parent / 'store-redirects.json').write_bytes((ROOT / 'src/data/store-redirects.json').read_bytes())
     def tearDown(self): self.temp.cleanup()
     def run_prepare(self, *args, api=None):
         env = os.environ.copy()
@@ -60,5 +62,52 @@ class CatalogTests(unittest.TestCase):
         self.assertNotIn('Walmart USA', self.file.read_text(encoding='utf-8'))
         self.assertEqual(data['stores']['cetaphil-coupon-code']['coupons'][0]['code'], '')
         self.assertTrue(list((self.root.parent / 'output/seo').glob('cetaphil-quarantine-*.json')))
+
+    def paged_server(self, repeat=False):
+        snapshot = json.loads(self.file.read_text(encoding='utf-8'))
+        pages = dict(snapshot['stores'])
+        directory = [page['store'] for page in pages.values()]
+        next_id = max(store['id'] for store in directory) + 1
+        while len(directory) < 501:
+            store = dict(directory[0], id=next_id, slug=f'isolated-brand-{next_id}', name=f'Isolated Brand {next_id}')
+            directory.append(store); pages[store['slug']] = {'store': store, 'coupons': []}; next_id += 1
+        offsets = []
+        class PagedHandler(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                parsed = urlparse(self.path); query = parse_qs(parsed.query)
+                endpoint = parsed.path.rsplit('/', 1)[-1]
+                if endpoint == 'stores.php':
+                    offset = int(query.get('offset', ['0'])[0]); offsets.append(offset)
+                    data = directory[0:500] if repeat else directory[offset:offset + 500]
+                elif endpoint == 'store.php': data = pages[query['slug'][0]]
+                elif endpoint == 'categories.php': data = snapshot['categoriesPage']['initialCategories']
+                elif endpoint == 'coupons.php': data = snapshot['categories'].get(query['category'][0], {}).get('coupons', [])
+                elif endpoint == 'deals.php': data = snapshot['dealsPage']['initialDeals']
+                else: data = []
+                self.send_response(200); self.send_header('Content-Type', 'application/json'); self.end_headers()
+                self.wfile.write(json.dumps({'success': True, 'data': data}).encode())
+            def log_message(self, *args): pass
+        server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), PagedHandler)
+        thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()
+        self.addCleanup(thread.join); self.addCleanup(server.server_close); self.addCleanup(server.shutdown)
+        return f'http://127.0.0.1:{server.server_port}', offsets, directory[-1]['slug']
+
+    def test_refresh_includes_brand_beyond_first_directory_page(self):
+        api, offsets, last_slug = self.paged_server()
+        result = self.run_prepare('--refresh', '--preserve-promotions', api=api)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(offsets, [0, 500])
+        data = json.loads(self.file.read_text(encoding='utf-8'))
+        self.assertIn(last_slug, data['stores'])
+        self.assertTrue(any(store['slug'] == last_slug for store in data['storesPage']['initialStores']))
+
+    def test_repeated_directory_page_preserves_snapshot(self):
+        api, offsets, _ = self.paged_server(repeat=True)
+        before = self.file.read_bytes()
+        result = self.run_prepare('--refresh', '--preserve-promotions', api=api)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('pagination repeated', result.stderr)
+        self.assertEqual(offsets, [0, 500])
+        self.assertEqual(before, self.file.read_bytes())
 
 if __name__ == '__main__': unittest.main()

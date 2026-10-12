@@ -13,6 +13,9 @@ export default function TermsPage() {
             <p>By using CouponPush, you agree to use the website lawfully and understand that offers can change without notice.</p>
             <h2>Offer availability</h2>
             <p>Coupon codes and deals are supplied by third parties. Final prices, eligibility and availability are determined by the merchant.</p>
+            <h2>Brand submissions</h2>
+            <p>Submit a brand only if you own it or are authorized to represent it. You are responsible for the accuracy of your store details, destinations, offer dates and conditions, and for having permission to share submitted logos and content. Email verification confirms access to a mailbox; authorization is reviewed separately.</p>
+            <p>New listings and proposed changes require review. CouponPush may request clarification, decline submissions or remove misleading offers. Submission does not guarantee publication, featured placement or a review deadline. Dashboard views and clicks describe engagement and do not establish purchases or redemptions.</p>
             <h2>Affiliate disclosure</h2>
             <p>CouponPush may earn a commission when you follow certain merchant links, without increasing your purchase price.</p>
             <h2>Limitation of liability</h2>

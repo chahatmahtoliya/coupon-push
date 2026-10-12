@@ -1,0 +1,484 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T06:23:41.281Z",
+  "title": "Design System: CouponPush partner surfaces",
+  "extensions": {
+    "colorMeta": {
+      "partner-accent": {
+        "role": "primary",
+        "displayName": "Partner Accent",
+        "tonalRamp": [
+          "oklch(15.00% 0.1604 259.61)",
+          "oklch(26.43% 0.1604 259.61)",
+          "oklch(37.86% 0.1604 259.61)",
+          "oklch(49.29% 0.1604 259.61)",
+          "oklch(60.71% 0.1604 259.61)",
+          "oklch(72.14% 0.1604 259.61)",
+          "oklch(83.57% 0.1604 259.61)",
+          "oklch(95.00% 0.1604 259.61)"
+        ]
+      },
+      "partner-accent-hover": {
+        "role": "primary",
+        "displayName": "Partner Accent Hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.1344 259.17)",
+          "oklch(26.43% 0.1344 259.17)",
+          "oklch(37.86% 0.1344 259.17)",
+          "oklch(49.29% 0.1344 259.17)",
+          "oklch(60.71% 0.1344 259.17)",
+          "oklch(72.14% 0.1344 259.17)",
+          "oklch(83.57% 0.1344 259.17)",
+          "oklch(95.00% 0.1344 259.17)"
+        ]
+      },
+      "partner-ink": {
+        "role": "neutral",
+        "displayName": "Partner Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0529 259.72)",
+          "oklch(26.43% 0.0529 259.72)",
+          "oklch(37.86% 0.0529 259.72)",
+          "oklch(49.29% 0.0529 259.72)",
+          "oklch(60.71% 0.0529 259.72)",
+          "oklch(72.14% 0.0529 259.72)",
+          "oklch(83.57% 0.0529 259.72)",
+          "oklch(95.00% 0.0529 259.72)"
+        ]
+      },
+      "partner-muted": {
+        "role": "neutral",
+        "displayName": "Partner Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0444 255.73)",
+          "oklch(26.43% 0.0444 255.73)",
+          "oklch(37.86% 0.0444 255.73)",
+          "oklch(49.29% 0.0444 255.73)",
+          "oklch(60.71% 0.0444 255.73)",
+          "oklch(72.14% 0.0444 255.73)",
+          "oklch(83.57% 0.0444 255.73)",
+          "oklch(95.00% 0.0444 255.73)"
+        ]
+      },
+      "partner-line": {
+        "role": "neutral",
+        "displayName": "Partner Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0167 250.85)",
+          "oklch(26.43% 0.0167 250.85)",
+          "oklch(37.86% 0.0167 250.85)",
+          "oklch(49.29% 0.0167 250.85)",
+          "oklch(60.71% 0.0167 250.85)",
+          "oklch(72.14% 0.0167 250.85)",
+          "oklch(83.57% 0.0167 250.85)",
+          "oklch(95.00% 0.0167 250.85)"
+        ]
+      },
+      "workspace-bg": {
+        "role": "neutral",
+        "displayName": "Workspace Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0045 258.32)",
+          "oklch(26.43% 0.0045 258.32)",
+          "oklch(37.86% 0.0045 258.32)",
+          "oklch(49.29% 0.0045 258.32)",
+          "oklch(60.71% 0.0045 258.32)",
+          "oklch(72.14% 0.0045 258.32)",
+          "oklch(83.57% 0.0045 258.32)",
+          "oklch(95.00% 0.0045 258.32)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "process-bg": {
+        "role": "neutral",
+        "displayName": "Process Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0108 256.69)",
+          "oklch(26.43% 0.0108 256.69)",
+          "oklch(37.86% 0.0108 256.69)",
+          "oklch(49.29% 0.0108 256.69)",
+          "oklch(60.71% 0.0108 256.69)",
+          "oklch(72.14% 0.0108 256.69)",
+          "oklch(83.57% 0.0108 256.69)",
+          "oklch(95.00% 0.0108 256.69)"
+        ]
+      },
+      "field-line": {
+        "role": "neutral",
+        "displayName": "Field Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0302 252.98)",
+          "oklch(26.43% 0.0302 252.98)",
+          "oklch(37.86% 0.0302 252.98)",
+          "oklch(49.29% 0.0302 252.98)",
+          "oklch(60.71% 0.0302 252.98)",
+          "oklch(72.14% 0.0302 252.98)",
+          "oklch(83.57% 0.0302 252.98)",
+          "oklch(95.00% 0.0302 252.98)"
+        ]
+      },
+      "secondary-line": {
+        "role": "neutral",
+        "displayName": "Secondary Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0289 251.49)",
+          "oklch(26.43% 0.0289 251.49)",
+          "oklch(37.86% 0.0289 251.49)",
+          "oklch(49.29% 0.0289 251.49)",
+          "oklch(60.71% 0.0289 251.49)",
+          "oklch(72.14% 0.0289 251.49)",
+          "oklch(83.57% 0.0289 251.49)",
+          "oklch(95.00% 0.0289 251.49)"
+        ]
+      },
+      "secondary-hover": {
+        "role": "neutral",
+        "displayName": "Secondary Hover",
+        "tonalRamp": [
+          "oklch(15.00% 0.0114 252.09)",
+          "oklch(26.43% 0.0114 252.09)",
+          "oklch(37.86% 0.0114 252.09)",
+          "oklch(49.29% 0.0114 252.09)",
+          "oklch(60.71% 0.0114 252.09)",
+          "oklch(72.14% 0.0114 252.09)",
+          "oklch(83.57% 0.0114 252.09)",
+          "oklch(95.00% 0.0114 252.09)"
+        ]
+      },
+      "selected-bg": {
+        "role": "neutral",
+        "displayName": "Selected Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0195 260.17)",
+          "oklch(26.43% 0.0195 260.17)",
+          "oklch(37.86% 0.0195 260.17)",
+          "oklch(49.29% 0.0195 260.17)",
+          "oklch(60.71% 0.0195 260.17)",
+          "oklch(72.14% 0.0195 260.17)",
+          "oklch(83.57% 0.0195 260.17)",
+          "oklch(95.00% 0.0195 260.17)"
+        ]
+      },
+      "selected-ink": {
+        "role": "neutral",
+        "displayName": "Selected Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.1389 258.39)",
+          "oklch(26.43% 0.1389 258.39)",
+          "oklch(37.86% 0.1389 258.39)",
+          "oklch(49.29% 0.1389 258.39)",
+          "oklch(60.71% 0.1389 258.39)",
+          "oklch(72.14% 0.1389 258.39)",
+          "oklch(83.57% 0.1389 258.39)",
+          "oklch(95.00% 0.1389 258.39)"
+        ]
+      },
+      "status-bg": {
+        "role": "neutral",
+        "displayName": "Status Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0080 253.85)",
+          "oklch(26.43% 0.0080 253.85)",
+          "oklch(37.86% 0.0080 253.85)",
+          "oklch(49.29% 0.0080 253.85)",
+          "oklch(60.71% 0.0080 253.85)",
+          "oklch(72.14% 0.0080 253.85)",
+          "oklch(83.57% 0.0080 253.85)",
+          "oklch(95.00% 0.0080 253.85)"
+        ]
+      },
+      "status-ink": {
+        "role": "neutral",
+        "displayName": "Status Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0425 261.13)",
+          "oklch(26.43% 0.0425 261.13)",
+          "oklch(37.86% 0.0425 261.13)",
+          "oklch(49.29% 0.0425 261.13)",
+          "oklch(60.71% 0.0425 261.13)",
+          "oklch(72.14% 0.0425 261.13)",
+          "oklch(83.57% 0.0425 261.13)",
+          "oklch(95.00% 0.0425 261.13)"
+        ]
+      },
+      "active-bg": {
+        "role": "neutral",
+        "displayName": "Active Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0157 160.62)",
+          "oklch(26.43% 0.0157 160.62)",
+          "oklch(37.86% 0.0157 160.62)",
+          "oklch(49.29% 0.0157 160.62)",
+          "oklch(60.71% 0.0157 160.62)",
+          "oklch(72.14% 0.0157 160.62)",
+          "oklch(83.57% 0.0157 160.62)",
+          "oklch(95.00% 0.0157 160.62)"
+        ]
+      },
+      "active-ink": {
+        "role": "neutral",
+        "displayName": "Active Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0768 165.44)",
+          "oklch(26.43% 0.0768 165.44)",
+          "oklch(37.86% 0.0768 165.44)",
+          "oklch(49.29% 0.0768 165.44)",
+          "oklch(60.71% 0.0768 165.44)",
+          "oklch(72.14% 0.0768 165.44)",
+          "oklch(83.57% 0.0768 165.44)",
+          "oklch(95.00% 0.0768 165.44)"
+        ]
+      },
+      "review-bg": {
+        "role": "neutral",
+        "displayName": "Review Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0186 265.98)",
+          "oklch(26.43% 0.0186 265.98)",
+          "oklch(37.86% 0.0186 265.98)",
+          "oklch(49.29% 0.0186 265.98)",
+          "oklch(60.71% 0.0186 265.98)",
+          "oklch(72.14% 0.0186 265.98)",
+          "oklch(83.57% 0.0186 265.98)",
+          "oklch(95.00% 0.0186 265.98)"
+        ]
+      },
+      "review-ink": {
+        "role": "neutral",
+        "displayName": "Review Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.1440 263.62)",
+          "oklch(26.43% 0.1440 263.62)",
+          "oklch(37.86% 0.1440 263.62)",
+          "oklch(49.29% 0.1440 263.62)",
+          "oklch(60.71% 0.1440 263.62)",
+          "oklch(72.14% 0.1440 263.62)",
+          "oklch(83.57% 0.1440 263.62)",
+          "oklch(95.00% 0.1440 263.62)"
+        ]
+      },
+      "changes-bg": {
+        "role": "neutral",
+        "displayName": "Changes Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0336 86.31)",
+          "oklch(26.43% 0.0336 86.31)",
+          "oklch(37.86% 0.0336 86.31)",
+          "oklch(49.29% 0.0336 86.31)",
+          "oklch(60.71% 0.0336 86.31)",
+          "oklch(72.14% 0.0336 86.31)",
+          "oklch(83.57% 0.0336 86.31)",
+          "oklch(95.00% 0.0336 86.31)"
+        ]
+      },
+      "changes-ink": {
+        "role": "neutral",
+        "displayName": "Changes Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0828 72.36)",
+          "oklch(26.43% 0.0828 72.36)",
+          "oklch(37.86% 0.0828 72.36)",
+          "oklch(49.29% 0.0828 72.36)",
+          "oklch(60.71% 0.0828 72.36)",
+          "oklch(72.14% 0.0828 72.36)",
+          "oklch(83.57% 0.0828 72.36)",
+          "oklch(95.00% 0.0828 72.36)"
+        ]
+      },
+      "unavailable-bg": {
+        "role": "neutral",
+        "displayName": "Unavailable Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0167 3.65)",
+          "oklch(26.43% 0.0167 3.65)",
+          "oklch(37.86% 0.0167 3.65)",
+          "oklch(49.29% 0.0167 3.65)",
+          "oklch(60.71% 0.0167 3.65)",
+          "oklch(72.14% 0.0167 3.65)",
+          "oklch(83.57% 0.0167 3.65)",
+          "oklch(95.00% 0.0167 3.65)"
+        ]
+      },
+      "unavailable-ink": {
+        "role": "neutral",
+        "displayName": "Unavailable Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.1147 11.75)",
+          "oklch(26.43% 0.1147 11.75)",
+          "oklch(37.86% 0.1147 11.75)",
+          "oklch(49.29% 0.1147 11.75)",
+          "oklch(60.71% 0.1147 11.75)",
+          "oklch(72.14% 0.1147 11.75)",
+          "oklch(83.57% 0.1147 11.75)",
+          "oklch(95.00% 0.1147 11.75)"
+        ]
+      },
+      "ended-bg": {
+        "role": "neutral",
+        "displayName": "Ended Bg",
+        "tonalRamp": [
+          "oklch(15.00% 0.0074 260.73)",
+          "oklch(26.43% 0.0074 260.73)",
+          "oklch(37.86% 0.0074 260.73)",
+          "oklch(49.29% 0.0074 260.73)",
+          "oklch(60.71% 0.0074 260.73)",
+          "oklch(72.14% 0.0074 260.73)",
+          "oklch(83.57% 0.0074 260.73)",
+          "oklch(95.00% 0.0074 260.73)"
+        ]
+      },
+      "ended-ink": {
+        "role": "neutral",
+        "displayName": "Ended Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0398 265.72)",
+          "oklch(26.43% 0.0398 265.72)",
+          "oklch(37.86% 0.0398 265.72)",
+          "oklch(49.29% 0.0398 265.72)",
+          "oklch(60.71% 0.0398 265.72)",
+          "oklch(72.14% 0.0398 265.72)",
+          "oklch(83.57% 0.0398 265.72)",
+          "oklch(95.00% 0.0398 265.72)"
+        ]
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "button-state",
+        "value": "background-color 150ms, border-color 150ms",
+        "purpose": "Primary and secondary action state transitions; removed for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1050px"
+      },
+      {
+        "name": "stacked",
+        "value": "800px"
+      },
+      {
+        "name": "mobile-forms-and-rows",
+        "value": "540px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Save a draft or submit a completed review request.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Save offer draft</button>",
+      "css": ".ds-primary{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 19px;border-radius:8px;font-size:14px;font-weight:700;line-height:1.4;text-align:center;cursor:pointer;transition:background-color 150ms,border-color 150ms;border:1px solid var(--partner-accent,#235ebc);background:var(--partner-accent,#235ebc);color:#fff;}.ds-primary:hover{background:#174893;border-color:#174893}.ds-primary:focus-visible{outline:3px solid #759be7;outline-offset:4px;}.ds-primary:disabled{cursor:not-allowed;opacity:.58}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none}}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A visible alternative action, including returning to Overview.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">Open Overview</button>",
+      "css": ".ds-secondary{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 19px;border-radius:8px;font-size:14px;font-weight:700;line-height:1.4;text-align:center;cursor:pointer;transition:background-color 150ms,border-color 150ms;border:1px solid #bccbdc;background:#fff;color:var(--partner-ink,#192943)}.ds-secondary:hover{background:#edf3fa;border-color:#879eb9}.ds-secondary:focus-visible{outline:3px solid #759be7;outline-offset:4px;}.ds-secondary:disabled{cursor:not-allowed;opacity:.58}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "description": "Underlined links for small management actions.",
+      "html": "<button class=\"ds-text\" type=\"button\">Edit offer</button>",
+      "css": ".ds-text{font-family:var(--font-primary,\"Satoshi\",sans-serif);min-height:44px;padding:6px 0;border:0;background:transparent;color:var(--partner-accent,#235ebc);font-size:13px;font-weight:650;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.ds-text:focus-visible{outline:3px solid #759be7;outline-offset:4px;}.ds-text:hover{color:#174893}.ds-text:disabled{cursor:not-allowed;opacity:.58}"
+    },
+    {
+      "name": "Labeled field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Native control with a persistent label and described hint.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-store-name\">Store name <span>(required)</span></label><input id=\"ds-store-name\" aria-describedby=\"ds-store-hint\" type=\"text\" /><p id=\"ds-store-hint\">Complete required details before submitting for review.</p></div>",
+      "css": ".ds-field{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:grid;gap:8px;color:var(--partner-ink,#192943)}.ds-field label{font-size:14px;font-weight:650;line-height:1.5}.ds-field label span{font-size:12px;font-weight:400;color:var(--partner-muted,#52647c)}.ds-field input{font-family:var(--font-primary,\"Satoshi\",sans-serif);width:100%;min-height:46px;padding:11px 12px;border:1px solid #b9c8da;border-radius:7px;background:#fff;color:var(--partner-ink,#192943);font-size:15px;line-height:1.5}.ds-field input:focus-visible{outline:3px solid #759be7;outline-offset:4px;}.ds-field input[aria-invalid=\"true\"]{border-color:#af3d50}.ds-field p{margin:0;font-size:12px;line-height:1.65;color:var(--partner-muted,#52647c)}.ds-field input:disabled{cursor:not-allowed;background:#f5f7fb;color:#52647c}"
+    },
+    {
+      "name": "Workspace navigation",
+      "kind": "nav",
+      "description": "Text-led workspace destinations with a tinted current item.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Brand workspace\"><button type=\"button\" aria-current=\"page\">Overview</button><button type=\"button\">Store details</button><button type=\"button\">Coupons &amp; offers</button></nav>",
+      "css": ".ds-nav{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:grid;gap:5px;max-width:220px}.ds-nav button{font-family:var(--font-primary,\"Satoshi\",sans-serif);min-height:48px;padding:12px;border:0;border-radius:7px;background:transparent;color:#425773;font-size:14px;text-align:left;cursor:pointer}.ds-nav button:hover{background:#edf2f9}.ds-nav button[aria-current=\"page\"]{background:#e7effc;color:#1a509e;font-weight:750}.ds-nav button:focus-visible{outline:3px solid #759be7;outline-offset:4px;}@media(max-width:800px){.ds-nav{display:flex;max-width:100%;overflow-x:auto;gap:6px}.ds-nav button{flex-shrink:0;white-space:nowrap}}"
+    },
+    {
+      "name": "Review badge",
+      "kind": "chip",
+      "refersTo": "status",
+      "description": "A written review state in a small tinted rectangle.",
+      "html": "<span class=\"ds-status\">In review</span>",
+      "css": ".ds-status{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:inline-flex;align-items:center;padding:5px 9px;border-radius:5px;background:#eaf0fd;color:#345bb1;font-size:12px;line-height:1.4;font-weight:650;white-space:nowrap}"
+    },
+    {
+      "name": "Task panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "White workspace or authentication container separated by a thin border.",
+      "html": "<section class=\"ds-panel\"><h2>Introduce your store</h2><p>Authorization details stay private to you and our reviewers.</p></section>",
+      "css": ".ds-panel{font-family:var(--font-primary,\"Satoshi\",sans-serif);background:#fff;border:1px solid var(--partner-line,#dce5ef);border-radius:14px;padding:30px;color:var(--partner-ink,#192943)}.ds-panel h2{margin:0 0 8px;font-size:22px;font-weight:750;line-height:1.3;letter-spacing:-.015em}.ds-panel p{margin:0;color:var(--partner-muted,#52647c);font-size:14px;line-height:1.7}@media(max-width:540px){.ds-panel{padding:22px 16px;border-radius:10px}}"
+    },
+    {
+      "name": "Explained review lock",
+      "kind": "custom",
+      "description": "Explains disabled editing and offers an available next step.",
+      "html": "<div class=\"ds-lock\"><p><strong>This submission is in review.</strong>To make changes, withdraw the submission from Overview, edit your draft, then submit it again.</p><button class=\"ds-secondary\" type=\"button\">Open Overview</button></div>",
+      "css": ".ds-lock{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;margin-bottom:25px;border-block:1px solid var(--partner-line,#dce5ef)}.ds-lock p{margin:0;color:var(--partner-muted,#52647c);font-size:13px;line-height:1.7}.ds-lock strong{display:block;color:var(--partner-ink,#192943);margin-bottom:5px}.ds-lock button{flex-shrink:0}.ds-secondary{font-family:var(--font-primary,\"Satoshi\",sans-serif);display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:46px;padding:12px 19px;border-radius:8px;font-size:14px;font-weight:700;line-height:1.4;text-align:center;cursor:pointer;transition:background-color 150ms,border-color 150ms;border:1px solid #bccbdc;background:#fff;color:var(--partner-ink,#192943)}.ds-secondary:hover{background:#edf3fa;border-color:#879eb9}.ds-secondary:focus-visible{outline:3px solid #759be7;outline-offset:4px;}.ds-secondary:disabled{cursor:not-allowed;opacity:.58}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}@media(max-width:540px){.ds-lock{align-items:start;flex-direction:column;gap:12px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "CouponPush, extended",
+    "overview": "This document applies to the implemented partner workspace and list-your-brand landing page. Satoshi, navy text, blue actions, white panels and pale blue surfaces extend the incumbent product. The existing public Header, Footer, logo and global tokens retain their own authority.\n\nThe workspace favors readable forms and flat operational rows. Color supports an explicit state label; review feedback and publication progress belong beside the work they explain.",
+    "keyCharacteristics": [
+      "Familiar CouponPush typography and native controls.",
+      "One primary work area with persistent workspace navigation.",
+      "Flat offer and activity rows with explicit review states.",
+      "Forms and management actions remain usable on narrow screens."
+    ],
+    "rules": [
+      {
+        "name": "The Written State Rule",
+        "body": "Always display the status text; a colored badge alone does not communicate review or publication state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Separate Publication Rule",
+        "body": "Review approval and completion of a website update remain separate messages: “Website update pending” and “Approved version published.” A status badge never substitutes for publication progress.",
+        "section": "components"
+      },
+      {
+        "name": "The Explained Lock Rule",
+        "body": "Keep the reason and an available next step adjacent to disabled editing controls.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do inherit CouponPush typography, public navigation and logo assets.",
+      "Do pair semantic tint with explicit state text and actionable feedback.",
+      "Do preserve the mobile account-form-first order and visible offer actions.",
+      "Do explain disabled editing and distinguish review from publication.",
+      "Do keep native controls, named fields, written errors and visible focus."
+    ],
+    "donts": [
+      "Don't promote this scoped partner extension into a replacement site identity.",
+      "Don't use view/click figures as purchase or redemption claims.",
+      "Don't hide small-screen management actions behind horizontal table scrolling.",
+      "Don't add decorative raster imagery, traffic promises or fabricated social proof."
+    ]
+  }
+}

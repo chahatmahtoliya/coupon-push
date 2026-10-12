@@ -261,6 +261,15 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 
                     <li class="nav-section">Manage</li>
 
+                    <?php if (($currentUser['role'] ?? '') === 'admin'): ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo $currentPage === 'partners' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/partners.php">
+                            <i class="fas fa-store" aria-hidden="true"></i>
+                            <span>Brand Submissions</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
                         <a class="nav-link <?php echo $currentPage === 'coupons' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/coupons.php">
                             <i class="fas fa-ticket-alt"></i>
@@ -274,6 +283,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                             <span>Bulk Import</span>
                         </a>
                     </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link <?php echo $currentPage === 'stores' ? 'active' : ''; ?>" href="<?php echo SITE_URL; ?>/admin/stores.php">

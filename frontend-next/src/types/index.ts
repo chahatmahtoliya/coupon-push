@@ -1,5 +1,6 @@
 // Store interface
 export interface Store {
+    partner_revision?: number | null;
     id: number;
     name: string;
     slug: string;
@@ -23,6 +24,8 @@ export interface Store {
 
 // Coupon interface
 export interface Coupon {
+    start_date?: string | null;
+    status?: boolean | number;
     source_url?: string | null;
     checked_at?: string | null;
     verification_method?: 'merchant_advertised' | 'checkout_tested' | string | null;

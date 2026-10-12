@@ -14,19 +14,12 @@ require_once __DIR__ . '/config.php';
 $featured = isset($_GET['featured']) ? (bool)$_GET['featured'] : false;
 $category = isset($_GET['category']) ? sanitize($_GET['category']) : null;
 $limit = isset($_GET['limit']) ? max(1, min((int)$_GET['limit'], 500)) : 100;
+$offset = isset($_GET['offset']) ? max(0, min((int)$_GET['offset'], 1000000)) : 0;
 
 try {
     $sql = "
         SELECT 
-            s.id,
-            s.name,
-            s.slug,
-            s.logo,
-            s.website_url,
-            s.description,
-            s.rating,
-            s.is_featured,
-            s.category_id,
+            s.*,
             c.name as category_name,
             (SELECT COUNT(*) FROM coupons WHERE store_id = s.id AND status = 1 AND (expiry_date IS NULL OR expiry_date >= CURDATE())) as coupon_count
         FROM stores s
@@ -47,7 +40,8 @@ try {
 
     // Interpolate the already-clamped integer. Some production PDO/MySQL
     // combinations reject a string-bound placeholder in LIMIT.
-    $sql .= " ORDER BY s.is_featured DESC, coupon_count DESC LIMIT {$limit}";
+    // Catalog exports page by immutable IDs; shopper queries retain their usual ranking.
+    $sql .= isset($_GET['offset']) ? " ORDER BY s.id ASC LIMIT {$limit} OFFSET {$offset}" : " ORDER BY s.is_featured DESC, coupon_count DESC, s.id ASC LIMIT {$limit}";
 
     $stores = db()->fetchAll($sql, $params);
 
@@ -55,6 +49,7 @@ try {
     $stores = array_map(function ($store) {
         return [
             'id' => (int)$store['id'],
+            'partner_revision' => isset($store['partner_revision']) ? (int)$store['partner_revision'] : null,
             'name' => $store['name'],
             'slug' => $store['slug'],
             'logo' => getStoreLogoUrl($store['logo']),

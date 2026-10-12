@@ -77,7 +77,7 @@ function normalizeAssetUrl(value: string): string {
             const url = new URL(value);
             // The hero API resolves newly uploaded files on its own host.
             // Do not redirect these to the separate legacy media storage.
-            if (url.hostname === 'api.couponpush.com' && url.pathname.startsWith('/uploads/hero/')) {
+            if (url.hostname === 'api.couponpush.com' && (url.pathname.startsWith('/uploads/hero/') || url.pathname.startsWith('/uploads/partners/'))) {
                 return value;
             }
             if (['couponpush.com', 'www.couponpush.com', 'api.couponpush.com'].includes(url.hostname)
@@ -141,9 +141,22 @@ async function fetchApi<T>(endpoint: string, fresh = false): Promise<T> {
     return normalizeCatalog(normalizeAssetsInData(decodeHTMLInData(payload.data))) as T;
 }
 
+async function readFullStoreDirectory(): Promise<Store[]> {
+    const result: Store[] = [];
+    const seen = new Set<number>();
+    for (let offset = 0; ; offset += 500) {
+        const batch = await fetchApi<Store[]>(`/stores.php?limit=500&offset=${offset}`, true);
+        for (const store of batch) {
+            if (seen.has(store.id)) throw new Error('The store directory changed while loading. Please refresh.');
+            seen.add(store.id); result.push(store);
+        }
+        if (batch.length < 500) return result;
+    }
+}
+
 export const storesApi = {
     getAll: () => fetchApi<Store[]>('/stores.php'),
-    getAllFresh: () => fetchApi<Store[]>('/stores.php', true),
+    getAllFresh: readFullStoreDirectory,
     getFeatured: (limit = 8) => fetchApi<Store[]>(`/stores.php?featured=1&limit=${limit}`),
     getFeaturedFresh: (limit = 8) => fetchApi<Store[]>(`/stores.php?featured=1&limit=${limit}`, true),
     getBySlug: (slug: string) => fetchApi<StorePageData>(`/store.php?slug=${encodeURIComponent(getCanonicalStoreSlug(slug))}`),

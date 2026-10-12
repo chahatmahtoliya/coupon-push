@@ -3,6 +3,8 @@
 const missingImages: Record<string, string> = {
     '/uploads/coupons/coupon_1769884479_697e4b3fe6395.jpg': '/placeholder-deal.png',
     '/uploads/coupons/coupon_1773771453_69b99abd3261e.webp': '/placeholder-deal.png',
+    // Missing on all three first-party hosts when rechecked on 2026-10-12.
+    '/uploads/coupons/coupon_1771744195_699aabc3282ff.jpg': '/placeholder-deal.png',
     '/uploads/deals/deal_695bf1db04cdd_1767633371.webp': '/placeholder-deal.png',
     '/uploads/deals/deal_696693aa1d955_1768330154.webp': '/placeholder-deal.png',
     '/uploads/deals/deal_69830bc52f7c9_1770195909.jpg': '/placeholder-deal.png',

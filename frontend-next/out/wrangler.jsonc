@@ -2,8 +2,11 @@
   "name": "coupon-push",
   "compatibility_date": "2026-10-07",
   "keep_vars": true,
+  "main": "./canonical-origin.mjs",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": true,
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   }

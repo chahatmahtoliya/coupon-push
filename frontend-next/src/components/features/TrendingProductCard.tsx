@@ -319,6 +319,7 @@ export function TrendingProductCard({
 
     return (
         <Paper
+            data-coupon-id={coupon.id}
             elevation={0}
             onClick={handleCardClick}
             sx={{

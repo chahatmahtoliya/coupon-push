@@ -12,6 +12,8 @@ Update the existing stylesheet for the feature being changed. Avoid adding anoth
 
 Route-specific CSS Modules stay next to the stores and coupons pages. Component CSS Modules stay next to their components.
 
+The partner landing page, account forms, dashboard and editors share `src/app/partners/partners.module.css`. Partner entry points in the public header remain in `style.css`.
+
 Global styles are imported in `src/app/layout.tsx`: shared styles first, followed by page and resource styles. Keep responsive rules with their owning stylesheet. Preserve selector specificity, shorthand order, and media-query behavior when consolidating rules.
 
 `store-page-cleanup.css` was merged into `store-hero.css`. Homepage hero rules were moved out of the shared stylesheet into `homepage.css`. The shared `.visually-hidden` utility belongs in `style.css`.

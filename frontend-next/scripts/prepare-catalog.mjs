@@ -25,7 +25,16 @@ function assertList(value, label) {
 }
 
 if (refresh) {
-    const stores = assertList(await request('stores.php'), 'stores');
+    const stores = [];
+    const seen = new Set();
+    for (let offset = 0; ; offset += 500) {
+        const batch = assertList(await request(`stores.php?limit=500&offset=${offset}`), 'stores');
+        for (const store of batch) {
+            if (seen.has(store.id)) throw new Error('Catalog pagination repeated a store; check the API before publishing');
+            seen.add(store.id); stores.push(store);
+        }
+        if (batch.length < 500) break;
+    }
     const categories = assertList(await request('categories.php'), 'categories');
     if (!stores.length || !categories.length) throw new Error('Refusing empty catalog');
     const pages = {};
