@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "resend:check": "node --env-file=.env.local scripts/check-resend.mjs"
+  },
+  "dependencies": {
+    "resend": "^6.32.1"
+  }
+}

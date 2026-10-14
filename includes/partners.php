@@ -1,5 +1,7 @@
 <?php
 /** Merchant accounts and moderated catalog changes. Admin credentials are never reused. */
+require_once __DIR__.'/partner-mail.php';
+partnerLoadMailEnvironment();
 class PartnerError extends RuntimeException
 {
     public $status;
@@ -452,6 +454,13 @@ class PartnerService
             $this->mail($this->account($row['account_id'])['email'],'Your CouponPush website update is published','Your approved changes are now available: '.$url);
         });
     }
+    protected function resendTransport() { return new PartnerResendTransport(); }
+    protected function sendResendMail($mail)
+    {
+        // The same outbox event keeps its key across retries and stalled-job recovery.
+        $key = 'partner-mail/'.hash('sha256',$this->site.'|'.$mail['id'].'|'.$mail['created_at']);
+        return $this->resendTransport()->send($mail['recipient'],$mail['subject'],$mail['body'],$key);
+    }
     public function deliverMail($limit = 10)
     {
         $sent = 0;
@@ -464,17 +473,26 @@ class PartnerService
             });
             if (!$mail) continue;
             $ok = false;
-            if (getenv('PARTNER_MAIL_TRANSPORT') === 'file') {
+            $transport = getenv('PARTNER_MAIL_TRANSPORT') ?: (getenv('RESEND_API_KEY') ? 'resend' : 'mail');
+            if ($transport === 'file') {
                 $directory = getenv('PARTNER_MAIL_DIRECTORY');
                 if (!$directory) throw new RuntimeException('File mail requires a private directory.');
                 if (!is_dir($directory)) mkdir($directory,0700,true);
                 $file = rtrim($directory,'/\\').'/'.$mail['id'].'.json';
                 $ok = file_put_contents($file,json_encode($mail)) !== false;
                 if ($ok) chmod($file,0600);
-            } else {
+            } elseif ($transport === 'resend') {
+                $result = $this->sendResendMail($mail);
+                $ok = !$result['error'] && !empty($result['data']['id']);
+                if (!$ok) error_log('Partner mail '.$mail['id'].' failed: '.($result['error']['name'] ?? 'api_error').' ('.($result['error']['statusCode'] ?? 'no status').').');
+                // Pace each worker; provider 429 responses remain queued for retry.
+                usleep(125000);
+            } elseif ($transport === 'mail') {
                 $from = getenv('PARTNER_MAIL_FROM') ?: 'partners@couponpush.com';
                 if (!filter_var($from,FILTER_VALIDATE_EMAIL) || preg_match('/[\r\n]/',$from)) throw new RuntimeException('Invalid sender address.');
                 $ok = @mail($mail['recipient'],$mail['subject'],$mail['body'],"From: CouponPush Partners <$from>\r\nContent-Type: text/plain; charset=UTF-8\r\n");
+            } else {
+                error_log('Partner mail transport is not configured correctly.');
             }
             if ($ok) { $this->run('UPDATE partner_mail SET status = \'sent\',sent_at = ?,body = \'\' WHERE id = ?',[$this->now(),$mail['id']]); $sent++; }
             else $this->run('UPDATE partner_mail SET status = \'retry\',next_attempt_at = ? WHERE id = ?',[gmdate('Y-m-d H:i:s',time()+300),$mail['id']]);

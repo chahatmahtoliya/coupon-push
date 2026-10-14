@@ -93,7 +93,7 @@ Variables prefixed with `NEXT_PUBLIC_` are included in browser code. Use them fo
 
 ## Brand onboarding and partner workspace
 
-The local implementation adds `/list-a-store/`, a private `/partners/` workspace and an admin **Brand Submissions** queue. Brands can verify email, save store/offer drafts, follow reviews and publication, and see engagement counts. Verification and password-reset emails use hosting PHP mail with a retry queue.
+The local implementation adds `/list-a-store/`, a private `/partners/` workspace and an admin **Brand Submissions** queue. Brands can verify email, save store/offer drafts, follow reviews and publication, and see engagement counts. Verification and password-reset emails use the retry queue with a server-side Resend HTTPS transport when configured. See [Resend setup](RESEND-SETUP.md) for private environment settings and delivery checks.
 
 The frontend launch flag is off by default. Configure the backend and run the additive migration before setting `NEXT_PUBLIC_PARTNERS_ENABLED=true` and building/deploying the frontend. See [the complete setup and publication guide](api/PARTNERS-DEPLOY.md). This work has not migrated or deployed production.
 
