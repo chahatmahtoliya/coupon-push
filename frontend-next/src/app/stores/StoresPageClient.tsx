@@ -6,6 +6,7 @@ import { storesApi } from '@/services/api';
 import { getStorePath, isCanonicalStoreSlug } from '@/lib/routes';
 import type { Store } from '@/types';
 import s from './stores.module.css';
+import { festival2026 } from '@/data/amazon-festival-2026';
 
 function Logo({ store }: { store: Store }) {
     const logo = (store.logo || '/placeholder-store.png').replace(/^https?:\/\/(www\.)?couponpush.com\/uploads\//, 'https://media.couponpush.com/uploads/');
@@ -59,6 +60,7 @@ export default function StoresPageClient({ initialStores }: { initialStores: Sto
     return <div className={s.page}><div className={s.shell}>
         <nav className={s.breadcrumb} aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span>Stores</span></nav>
         <header className={s.heading}><h1>Stores</h1><p>Explore {stores.length} brands and find current coupons and deals.</p></header>
+        <Link href={festival2026.path} className="festival-directory-link"><span><strong>{festival2026.name}</strong><small>Explore early deals, SBI card offers and Prime benefits.</small></span><i className="fas fa-arrow-right" aria-hidden="true" /></Link>
         <div className={s.toolbar}>
             <label className={s.search}><i className="fas fa-search" aria-hidden="true" /><input aria-label="Search stores" placeholder="Search stores" value={query} onChange={event => setQuery(event.target.value)} />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery('')}><i className="fas fa-xmark" aria-hidden="true" /></button>}</label>
             <button type="button" className={s.saved} aria-pressed={onlySaved} onClick={() => setOnlySaved(!onlySaved)}><i className={`${onlySaved ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /> Saved ({saved.length})</button>

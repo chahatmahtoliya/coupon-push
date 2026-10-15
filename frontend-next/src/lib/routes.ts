@@ -1,5 +1,6 @@
 import storeRedirects from '@/data/store-redirects.json';
 import snapshot from '@/data/deployed-snapshot.json';
+import { festival2026 } from '@/data/amazon-festival-2026';
 
 const STORE_SLUG_REDIRECTS: Readonly<Record<string, string>> = storeRedirects;
 
@@ -15,6 +16,7 @@ export function isCanonicalStoreSlug(slug?: string | null): boolean {
 export function getStorePath(slug?: string | null): string {
     const canonicalSlug = getCanonicalStoreSlug(slug);
     if (!canonicalSlug) return '/stores/';
+    if (canonicalSlug === festival2026.slug) return festival2026.path;
     // Newly uploaded stores are usable immediately; a release gives them an SEO URL.
     return Object.hasOwn(snapshot.stores, canonicalSlug)
         ? `/store/${canonicalSlug}/`

@@ -36,3 +36,21 @@ for (const origin of ['https://couponpush.com', 'http://localhost:8787', 'https:
         }
     });
 }
+
+test('Published festival preview redirects permanently to its canonical store page', async () => {
+    for (const path of ['/stores/view/', '/stores/view']) {
+        const response = await worker.fetch(new Request(`https://couponpush.com${path}?slug=amazon-great-indian-festival-2026&ref=one%26two`), {
+            ASSETS: { fetch() { assert.fail('Published store preview must redirect before assets'); } },
+        });
+        assert.equal(response.status, 301);
+        assert.equal(response.headers.get('Location'), 'https://couponpush.com/store/amazon-great-indian-festival-2026/?ref=one%26two');
+    }
+});
+
+test('Other store previews and ambiguous slug parameters retain the existing response', async () => {
+    for (const query of ['', '?slug=another-new-store', '?slug=amazon-great-indian-festival-2026&slug=another-new-store']) {
+        const request = new Request('https://couponpush.com/stores/view/' + query);
+        const asset = new Response('Preview', { headers: { 'X-Robots-Tag': 'noindex' } });
+        assert.equal(await worker.fetch(request, { ASSETS: { fetch(received) { assert.equal(received, request); return asset; } } }), asset);
+    }
+});

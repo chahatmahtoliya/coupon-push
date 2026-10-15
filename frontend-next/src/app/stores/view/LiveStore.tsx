@@ -5,6 +5,7 @@ import Link from '@/components/common/SiteLink';
 import { useSearchParams } from 'next/navigation';
 import { storesApi } from '@/services/api';
 import type { StorePageData } from '@/types';
+import FestivalStoreTemplate from '@/components/features/festival/FestivalStoreTemplate';
 import StorePageClient from '../../store/[slug]/StorePageClient';
 
 export default function LiveStore() {
@@ -24,6 +25,6 @@ export default function LiveStore() {
         }).catch(() => { if (active) setError('We could not load this store. Please try again shortly.'); });
         return () => { active = false; };
     }, [attempt, slug]);
-    if (data) return <StorePageClient initialData={data} slug={slug} />;
+    if (data) return data.store.page_template === 'festival' ? <FestivalStoreTemplate initialData={data} slug={slug} /> : <StorePageClient initialData={data} slug={slug} />;
     return <section className="container" aria-live="polite"><h1>{error ? 'Store unavailable' : 'Loading store offers…'}</h1><p>{error || 'Getting the latest offers from this store.'}</p>{error && <button type="button" onClick={() => setAttempt(value => value + 1)}>Try again</button>}<p><Link href="/stores/">Browse stores</Link></p></section>;
 }

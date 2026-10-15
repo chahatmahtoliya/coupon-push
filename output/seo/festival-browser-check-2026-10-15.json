@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "width": 1440,
+      "h1": 1,
+      "canonical": true,
+      "indexable": true,
+      "offerCards": 18,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "h1": 1,
+      "canonical": true,
+      "indexable": true,
+      "offerCards": 18,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

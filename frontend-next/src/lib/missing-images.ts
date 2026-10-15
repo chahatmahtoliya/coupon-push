@@ -1,6 +1,8 @@
 // Confirmed missing on 2026-09-09. Keep a valid image in the initial HTML,
 // including for crawlers that never execute an img onError handler.
 const missingImages: Record<string, string> = {
+    // The festival store upload returns 404; use the existing Amazon brand asset.
+    '/uploads/stores/store_6ac61ea07bc7e_1791368864.png': '/assets/home-ui/amazon-round.png',
     '/uploads/coupons/coupon_1769884479_697e4b3fe6395.jpg': '/placeholder-deal.png',
     '/uploads/coupons/coupon_1773771453_69b99abd3261e.webp': '/placeholder-deal.png',
     // Missing on all three first-party hosts when rechecked on 2026-10-12.

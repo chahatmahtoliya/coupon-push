@@ -1,0 +1,63 @@
+[
+  {
+    "url": "https://couponpush.com/stores/view/?slug=amazon-great-indian-festival-2026",
+    "status": 200,
+    "final_url": "https://couponpush.com/stores/view/?slug=amazon-great-indian-festival-2026",
+    "x_robots_tag": null,
+    "robots": [
+      {
+        "name": "robots",
+        "content": "noindex, follow"
+      }
+    ],
+    "canonicals": [],
+    "title": "Store Offers | CouponPush",
+    "h1": []
+  },
+  {
+    "url": "https://couponpush.com/store/amazon-great-indian-festival-2026/",
+    "status": 404,
+    "final_url": "https://couponpush.com/store/amazon-great-indian-festival-2026/",
+    "x_robots_tag": null,
+    "robots": [
+      {
+        "name": "robots",
+        "content": "noindex"
+      },
+      {
+        "name": "robots",
+        "content": "index, follow"
+      }
+    ],
+    "canonicals": [],
+    "title": "CouponPush - Best Coupons, Promo Codes & Deals 2026",
+    "h1": [
+      "Page Not Found"
+    ]
+  },
+  {
+    "url": "https://couponpush.com/sitemap-stores.xml",
+    "status": 200,
+    "final_url": "https://couponpush.com/sitemap-stores.xml",
+    "x_robots_tag": null,
+    "robots": [],
+    "canonicals": [],
+    "title": "",
+    "h1": [],
+    "festival_in_sitemap": false
+  },
+  {
+    "url": "https://api.couponpush.com/api/store.php?slug=amazon-great-indian-festival-2026",
+    "status": 200,
+    "final_url": "https://api.couponpush.com/api/store.php?slug=amazon-great-indian-festival-2026",
+    "x_robots_tag": null,
+    "robots": [],
+    "canonicals": [],
+    "title": "",
+    "h1": [],
+    "api_success": true,
+    "api_message": null,
+    "store_slug": "amazon-great-indian-festival-2026",
+    "coupons": 8
+  }
+]

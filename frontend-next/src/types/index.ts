@@ -1,6 +1,14 @@
 // Store interface
 export interface Store {
     partner_revision?: number | null;
+    page_template?: 'standard' | 'festival';
+    short_description?: string;
+    banner_image?: string;
+    campaign_start_date?: string | null;
+    merchant_name?: string;
+    campaign_bank_offer?: string;
+    campaign_member_offer?: string;
+    campaign_source_url?: string;
     id: number;
     name: string;
     slug: string;
@@ -24,6 +32,11 @@ export interface Store {
 
 // Coupon interface
 export interface Coupon {
+    brand?: string;
+    coupon_label?: string;
+    includes_bank_offer?: boolean | number;
+    category_name?: string;
+    category_slug?: string;
     start_date?: string | null;
     status?: boolean | number;
     source_url?: string | null;

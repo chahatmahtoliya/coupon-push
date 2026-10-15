@@ -9,6 +9,7 @@ import { SeasonalBanner } from '@/components/features/SeasonalBanner';
 import { TopTrendingCarousel } from '@/components/features/TopTrendingCarousel';
 import { MaterialStoreCarousel } from '@/components/features/MaterialStoreCarousel';
 import { getStorePath } from '@/lib/routes';
+import { festival2026 } from '@/data/amazon-festival-2026';
 import { getHeroImage, heroMainSizes } from '@/lib/hero-images';
 
 interface HomePageClientProps {
@@ -297,6 +298,20 @@ export default function HomePageClient(props: HomePageClientProps) {
             />
         )}
 
+        <section className="cp-section cp-shell cp-amazon-festival" aria-labelledby="cp-amazon-festival-title">
+            <div className="cp-amazon-festival-panel">
+                <div className="cp-amazon-festival-copy">
+                    <div className="cp-amazon-festival-topline"><span className="cp-amazon-festival-merchant"><img src="/assets/home-ui/amazon-round.png" alt="" width="28" height="28" />Amazon India</span><span className="cp-amazon-festival-date"><i className="far fa-calendar" aria-hidden="true" />Started <time dateTime={festival2026.startDate}>8 October</time></span></div>
+                    <p className="cp-amazon-festival-eyebrow">YOUR FESTIVE SHOPPING STARTS HERE</p>
+                    <h2 id="cp-amazon-festival-title">Amazon Great Indian Festival <span>2026</span></h2>
+                    <p className="cp-amazon-festival-intro">A bigger wishlist. A little more saving. Explore festival deals, coupon offers and the details that make a difference at checkout.</p>
+                    <div className="cp-amazon-festival-categories" aria-label="Festival shopping categories"><span>Mobiles &amp; tech</span><span>Home essentials</span><span>Beauty &amp; more</span></div>
+                    <div className="cp-amazon-festival-actions"><Link href={festival2026.path} className="cp-amazon-festival-cta">Explore festival offers <i className="fas fa-arrow-right" aria-hidden="true" /></Link><Link href={`${festival2026.path}#store-ui-faqs`} className="cp-amazon-festival-details">Dates &amp; offer details <i className="fas fa-arrow-up-right-from-square" aria-hidden="true" /></Link></div>
+                </div>
+                <Link href={festival2026.path} className="cp-amazon-festival-art" aria-label="Browse Amazon Great Indian Festival 2026 offers"><img src={festival2026.banner} alt="Amazon Great Indian Festival — early deals revealed" width="2000" height="1125" loading="lazy" decoding="async" /></Link>
+            </div>
+        </section>
+
         {/* Amazon Promo Codes Carousel */}
         {storeCoupons.amazon.length > 0 && (
             <MaterialStoreCarousel
@@ -359,6 +374,7 @@ export default function HomePageClient(props: HomePageClientProps) {
         <section className="cp-section cp-shell" aria-label="CouponPush shopping guides">
             <div className="cp-section-head cp-section-head-inline"><h2>Shopping guides &amp; first-order offers</h2><Link href="/blog/" className="cp-text-link">View all guides <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
             <ul className="cp-guide-links">
+                <li><Link href={festival2026.path}>Amazon Great Indian Festival 2026: early deals &amp; bank offers</Link></li>
                 <li><Link href="/blog/first-order-coupons-india">First-order coupons in India: 13 new-user offers compared</Link></li>
                 <li><Link href="/blog/diwali-sale-coupon-guide-2026">Diwali 2026 coupon guide: how festival offers stack</Link></li>
                 <li><Link href="/blog/flipkart-big-billion-days-sale">Flipkart Big Billion Days 2026: dates &amp; bank offers</Link></li>

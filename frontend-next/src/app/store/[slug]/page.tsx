@@ -1,3 +1,6 @@
+import { festival2026 } from '@/data/amazon-festival-2026';
+import FestivalStoreTemplate from '@/components/features/festival/FestivalStoreTemplate';
+import { getFestivalCampaign } from '@/lib/festival-template';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { isCodeCoupon } from '@/utils/coupon';
@@ -35,7 +38,7 @@ function storeDescription(storeName: string, offerCount: number, codeCount: numb
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-    return Object.keys(deployedSnapshot.stores).filter(isCanonicalStoreSlug).map(slug => ({ slug }));
+    return Object.keys(deployedSnapshot.stores).filter(slug => isCanonicalStoreSlug(slug) && slug !== festival2026.slug).map(slug => ({ slug }));
 }
 
 export async function generateMetadata(
@@ -97,7 +100,7 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';
     const description = pseo?.metaDescription || customDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
     const dateModified = getLatestContentUpdate(initialData.store, ...coupons);
-    const faqs = pseo?.faqs || getStoreFallbackFaqs({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
+    const faqs = initialData.store.page_template === 'festival' ? getFestivalCampaign(initialData.store, slug).faqs : pseo?.faqs || getStoreFallbackFaqs({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const structuredData = [
         {
             '@context': 'https://schema.org',
@@ -130,7 +133,7 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
 
     return <>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
-        <StorePageClient initialData={initialData} slug={slug} />
+        {initialData.store.page_template === 'festival' ? <FestivalStoreTemplate initialData={initialData} slug={slug} /> : <StorePageClient initialData={initialData} slug={slug} />}
         <nav className="container site-related-links" aria-label="Related shopping resources">
             <h2>Plan your purchase</h2>
             <ul>

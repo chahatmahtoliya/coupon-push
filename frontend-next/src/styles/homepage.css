@@ -1,5 +1,49 @@
 /* Homepage layout, hero carousel, and top-store navigation. */
 
+/* Homepage entry into the dedicated Amazon festival store page. */
+.cp-amazon-festival { font-family: var(--font-primary); }
+.cp-amazon-festival-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); overflow: hidden; border: 1px solid #dfe8f1; border-radius: 16px; background: #f0f6fc; }
+.cp-amazon-festival-copy { align-self: center; padding: clamp(22px, 3vw, 40px); }
+.cp-amazon-festival-topline { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-bottom: 22px; }
+.cp-amazon-festival-merchant { display: inline-flex; align-items: center; gap: 8px; color: #192943; font-size: 13px; font-weight: 750; }
+.cp-amazon-festival-merchant img { object-fit: contain; }
+.cp-amazon-festival-date { display: inline-flex; align-items: center; gap: 6px; padding: 6px 9px; border: 1px solid #d9e5f0; border-radius: 6px; background: #fff; color: #435670; font-size: 11px; font-weight: 650; }
+.cp-amazon-festival-date i { color: #b54710; }
+.cp-amazon-festival-eyebrow { margin: 0 0 10px; color: #53677f; font-size: 10px; font-weight: 800; letter-spacing: .09em; }
+.cp-amazon-festival h2 { max-width: 25ch; margin: 0 0 14px; color: #192943; font-family: inherit; font-size: clamp(25px, 2.4vw, 34px); font-weight: 800; line-height: 1.12; letter-spacing: -.025em; }
+.cp-amazon-festival h2 span { color: #b54710; }
+.cp-amazon-festival-intro { max-width: 52ch; margin: 0 0 18px; color: #4d5f75; font-size: 14px; line-height: 1.65; }
+.cp-amazon-festival-categories { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.cp-amazon-festival-categories span { padding: 5px 9px; border: 1px solid #dce6ef; border-radius: 5px; background: #fff; color: #435670; font-size: 11px; font-weight: 600; }
+.cp-amazon-festival-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.cp-amazon-festival-cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 0 17px; border: 1px solid #ff914d; border-radius: 7px; background: #ff9d57; color: #192943; font-size: 13px; font-weight: 800; text-decoration: none; }
+.cp-amazon-festival-cta:hover { background: #ffb079; color: #192943; }
+.cp-amazon-festival-details { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #243d5e; font-size: 12px; font-weight: 700; text-decoration: none; }
+.cp-amazon-festival-details:hover { color: #b54710; text-decoration: underline; text-underline-offset: 3px; }
+.cp-amazon-festival-details i { font-size: 10px; }
+.cp-amazon-festival-art { display: grid; place-items: center; min-width: 0; background: #ff6800; }
+.cp-amazon-festival-art img { display: block; width: 100%; height: auto; }
+.cp-amazon-festival a:focus-visible { outline: 3px solid #192943; outline-offset: 4px; }
+@media (max-width: 1000px) {
+    .cp-amazon-festival-panel { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); }
+    .cp-amazon-festival-copy { padding: 24px; }
+    .cp-amazon-festival-topline { margin-bottom: 18px; }
+    .cp-amazon-festival-intro { font-size: 13px; }
+}
+@media (max-width: 680px) {
+    .cp-amazon-festival-panel { grid-template-columns: 1fr; border-radius: 12px; }
+    .cp-amazon-festival-copy { padding: 22px; }
+    .cp-amazon-festival h2 { max-width: 23ch; font-size: clamp(26px, 6vw, 32px); }
+    .cp-amazon-festival-topline { gap: 10px 14px; }
+    .cp-amazon-festival-categories { margin-bottom: 18px; }
+    .cp-amazon-festival-art { order: -1; }
+}
+@media (max-width: 380px) {
+    .cp-amazon-festival-copy { padding: 18px; }
+    .cp-amazon-festival-eyebrow { font-size: 9px; }
+    .cp-amazon-festival-cta { width: 100%; }
+}
+
 .cp-hero,
 .cp-hero-carousel {
     position: relative;
