@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { festival2026, festivalFaqs } from '@/data/amazon-festival-2026';
-import FestivalStoreTemplate from '@/components/features/festival/FestivalStoreTemplate';
+import AmazonFestivalPreview from '@/components/features/festival/AmazonFestivalPreview';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { hasIndexableStoreContent } from '@/lib/indexability';
 
@@ -27,5 +27,5 @@ export default function AmazonFestivalPage() {
         ] },
         { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: festivalFaqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) },
     ];
-    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} /><FestivalStoreTemplate initialData={initialData} slug={festival2026.slug} /></>;
+    return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} /><AmazonFestivalPreview initialData={initialData} /></>;
 }

@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { compareCouponsByNewest } from '../src/lib/coupon-order.ts';
 
 try {
 const root = process.cwd();
@@ -134,7 +135,7 @@ for (const [, page] of canonicalStores) page.related_stores = canonicalStores.ma
 snapshot.dealsPage.initialDeals = snapshot.dealsPage.initialDeals.filter(d => d.store_id !== cetaphil.store.id);
 Object.assign(snapshot.homepage, {
     initialFeaturedCoupons: coupons.filter(c => c.is_featured).slice(0, 8),
-    initialLatestCoupons: [...coupons].sort((a, b) => b.id - a.id).slice(0, 12),
+    initialLatestCoupons: [...coupons].sort(compareCouponsByNewest).slice(0, 18),
     initialFeaturedStores: canonicalStores.map(([, p]) => p.store),
     initialFeaturedDeals: snapshot.dealsPage.initialDeals.filter(d => d.is_featured).slice(0, 4),
     initialAmazonCoupons: snapshot.stores.amazon?.coupons || [], initialFlipkartCoupons: snapshot.stores.flipkart?.coupons || [], initialAjioCoupons: snapshot.stores.ajio?.coupons || [],

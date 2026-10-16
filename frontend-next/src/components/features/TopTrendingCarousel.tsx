@@ -17,6 +17,7 @@ interface TopTrendingCarouselProps {
     viewAllLink?: string;
     showPromoBanner?: boolean;
     showRanks?: boolean;
+    resetOnUpdate?: boolean;
 }
 
 export function TopTrendingCarousel({
@@ -25,6 +26,7 @@ export function TopTrendingCarousel({
     viewAllLink = '/coupons/?sort=popular',
     showPromoBanner = true,
     showRanks = true,
+    resetOnUpdate = false,
 }: TopTrendingCarouselProps) {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -42,6 +44,7 @@ export function TopTrendingCarousel({
     useEffect(() => {
         const container = scrollContainerRef.current;
         if (!container) return;
+        if (resetOnUpdate) container.scrollLeft = 0;
         updateScrollButtons();
         container.addEventListener('scroll', updateScrollButtons, { passive: true });
         window.addEventListener('resize', updateScrollButtons);
@@ -49,7 +52,7 @@ export function TopTrendingCarousel({
             container.removeEventListener('scroll', updateScrollButtons);
             window.removeEventListener('resize', updateScrollButtons);
         };
-    }, [coupons, updateScrollButtons]);
+    }, [coupons, resetOnUpdate, updateScrollButtons]);
 
     const handleScroll = (direction: 'left' | 'right') => {
         const container = scrollContainerRef.current;

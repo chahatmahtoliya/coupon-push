@@ -1,5 +1,6 @@
 import type { Coupon } from '../types/index';
 import { isCheckoutTested } from './offer-evidence';
+import { compareCouponsByNewest } from './coupon-order';
 
 export type CatalogCoupon = Coupon & { categorySlugs: string[] };
 export type CouponFilters = {
@@ -41,7 +42,6 @@ export function couponExpiry(coupon: Coupon): number {
 
 export function filterCoupons(coupons: CatalogCoupon[], filters: CouponFilters, now: number): CatalogCoupon[] {
     const query = filters.q.trim().toLocaleLowerCase();
-    const timestamp = (value?: string | null) => Date.parse((value || '').replace(' ', 'T')) || 0;
     return coupons.filter(coupon => {
         const expiry = couponExpiry(coupon);
         const hasCode = Boolean(coupon.code?.trim());
@@ -60,6 +60,6 @@ export function filterCoupons(coupons: CatalogCoupon[], filters: CouponFilters, 
             const aExpiry = couponExpiry(a), bExpiry = couponExpiry(b);
             if (aExpiry !== bExpiry) return aExpiry < bExpiry ? -1 : 1;
         }
-        return timestamp(b.created_at) - timestamp(a.created_at) || b.id - a.id;
+        return compareCouponsByNewest(a, b);
     });
 }

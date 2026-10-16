@@ -38,7 +38,7 @@ export default async function HomePage() {
         initialSeasonalOffers,
     ] = await Promise.all([
         safely(couponsApi.getFeatured(8), recovered?.initialFeaturedCoupons || []),
-        safely(couponsApi.getLatest(12), recovered?.initialLatestCoupons || []),
+        safely(couponsApi.getLatest(18), recovered?.initialLatestCoupons || []),
         safely(storesApi.getAll(), recovered?.initialFeaturedStores || []),
         safely(dealsApi.getFeatured(4), recovered?.initialFeaturedDeals || []),
         safely(storesApi.getBySlug('amazon'), deployedSnapshot.stores.amazon || null),

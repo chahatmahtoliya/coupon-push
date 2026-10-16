@@ -1,6 +1,7 @@
 import { deployedSnapshot as snapshot } from './deployed-snapshot';
 import type { Coupon, StorePageData } from '@/types';
 import { getActiveCoupons } from './indexability';
+import { compareCouponsByNewest } from './coupon-order';
 
 // Catalog HTML, metadata and client navigation share the same release data.
 // Search and click tracking remain API operations.
@@ -32,7 +33,7 @@ export function readCatalogSnapshot(endpoint: string): unknown {
                 result = getActiveCoupons((snapshot.categories[q.get('category') || ''] as { coupons?: Coupon[] })?.coupons);
             }
             if (q.has('featured')) result = result.filter(c => c.is_featured);
-            if (q.has('latest')) result = [...result].sort((a, b) => b.id - a.id);
+            if (q.has('latest')) result = [...result].sort(compareCouponsByNewest);
             return result.slice(0, limit);
         }
         case '/coupon.php': return snapshot.coupons[q.get('id') || ''] || null;

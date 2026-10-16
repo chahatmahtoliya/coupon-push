@@ -1,0 +1,8 @@
+Amazon brand mark
+Source: Font Awesome Free, brands/amazon.svg
+https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/amazon.svg
+Copyright Fonticons, Inc.
+License: Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+https://fontawesome.com/license/free
+Changes: original vector subpaths separated to color the letter black and the smile/arrow orange. Amazon is a trademark of its respective owner.

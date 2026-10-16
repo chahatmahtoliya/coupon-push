@@ -11,6 +11,7 @@ import { MaterialStoreCarousel } from '@/components/features/MaterialStoreCarous
 import { getStorePath } from '@/lib/routes';
 import { festival2026 } from '@/data/amazon-festival-2026';
 import { getHeroImage, heroMainSizes } from '@/lib/hero-images';
+import { compareCouponsByNewest } from '@/lib/coupon-order';
 
 interface HomePageClientProps {
     initialFeaturedCoupons: Coupon[];
@@ -173,6 +174,15 @@ export default function HomePageClient(props: HomePageClientProps) {
 
     useEffect(() => {
         let active = true;
+        let latestRequest = 0;
+        const refreshLatest = () => {
+            const request = ++latestRequest;
+            couponsApi.getLatestFresh(18).then((data) => {
+                if (active && request === latestRequest) setLatestCoupons(data);
+            }).catch((error) => console.error('Failed to refresh latest coupons:', error));
+        };
+        refreshLatest();
+        window.addEventListener('focus', refreshLatest);
         heroSlidesApi.getActiveFresh().then((data) => {
             if (active) setHeroSlides(data);
         }).catch((error) => {
@@ -180,12 +190,11 @@ export default function HomePageClient(props: HomePageClientProps) {
         });
         seasonalOffersApi.getActiveFresh().then((data) => active && setSeasonalOffers(data)).catch((error) => console.error('Failed to refresh seasonal offers:', error));
         Promise.allSettled([
-            couponsApi.getFeaturedFresh(16), couponsApi.getLatestFresh(16), storesApi.getAllFresh(), dealsApi.getFeaturedFresh(4),
+            couponsApi.getFeaturedFresh(16), storesApi.getAllFresh(), dealsApi.getFeaturedFresh(4),
             storesApi.getBySlugFresh('amazon'), storesApi.getBySlugFresh('flipkart'), storesApi.getBySlugFresh('ajio'),
-        ]).then(([featured, latest, allStores, featuredDeals, amazon, flipkart, ajio]) => {
+        ]).then(([featured, allStores, featuredDeals, amazon, flipkart, ajio]) => {
             if (!active) return;
             if (featured.status === 'fulfilled') setFeaturedCoupons(featured.value);
-            if (latest.status === 'fulfilled') setLatestCoupons(latest.value);
             if (allStores.status === 'fulfilled') setStores(allStores.value);
             if (featuredDeals.status === 'fulfilled') setDeals(featuredDeals.value);
             setStoreCoupons(current => ({
@@ -194,10 +203,10 @@ export default function HomePageClient(props: HomePageClientProps) {
                 ajio: ajio.status === 'fulfilled' ? ajio.value.coupons : current.ajio,
             }));
         });
-        return () => { active = false; };
+        return () => { active = false; window.removeEventListener('focus', refreshLatest); };
     }, []);
 
-    const recentlyAddedCoupons = useMemo(() => uniqueCoupons(latestCoupons).slice(0, 18), [latestCoupons]);
+    const recentlyAddedCoupons = useMemo(() => uniqueCoupons(latestCoupons).sort(compareCouponsByNewest).slice(0, 18), [latestCoupons]);
     const recentlyAddedIds = useMemo(() => new Set(recentlyAddedCoupons.map((coupon) => coupon.id)), [recentlyAddedCoupons]);
 
     // Ranked top trending coupons, excluding the separate recently-added feed.
@@ -285,6 +294,7 @@ export default function HomePageClient(props: HomePageClientProps) {
                 viewAllLink="/coupons/?sort=latest"
                 showPromoBanner={false}
                 showRanks={false}
+                resetOnUpdate
             />
         )}
 

@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T05:53:23.898Z",
+  "title": "Design System: CouponPush Amazon festival store trial",
+  "extensions": {
+    "colorMeta": {
+      "store-orange": {
+        "role": "primary",
+        "displayName": "Store Orange",
+        "tonalRamp": [
+          "oklch(15.00% 0.1764 61.12)",
+          "oklch(26.43% 0.1764 61.12)",
+          "oklch(37.86% 0.1764 61.12)",
+          "oklch(49.29% 0.1764 61.12)",
+          "oklch(60.71% 0.1764 61.12)",
+          "oklch(72.14% 0.1764 61.12)",
+          "oklch(83.57% 0.1764 61.12)",
+          "oklch(95.00% 0.1764 61.12)"
+        ]
+      },
+      "store-orange-dark": {
+        "role": "primary",
+        "displayName": "Warm Dark Orange",
+        "tonalRamp": [
+          "oklch(15.00% 0.1419 46.89)",
+          "oklch(26.43% 0.1419 46.89)",
+          "oklch(37.86% 0.1419 46.89)",
+          "oklch(49.29% 0.1419 46.89)",
+          "oklch(60.71% 0.1419 46.89)",
+          "oklch(72.14% 0.1419 46.89)",
+          "oklch(83.57% 0.1419 46.89)",
+          "oklch(95.00% 0.1419 46.89)"
+        ]
+      },
+      "store-ink": {
+        "role": "neutral",
+        "displayName": "Store Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0110 260.67)",
+          "oklch(26.43% 0.0110 260.67)",
+          "oklch(37.86% 0.0110 260.67)",
+          "oklch(49.29% 0.0110 260.67)",
+          "oklch(60.71% 0.0110 260.67)",
+          "oklch(72.14% 0.0110 260.67)",
+          "oklch(83.57% 0.0110 260.67)",
+          "oklch(95.00% 0.0110 260.67)"
+        ]
+      },
+      "store-muted": {
+        "role": "neutral",
+        "displayName": "Store Muted",
+        "tonalRamp": [
+          "oklch(15.00% 0.0294 263.17)",
+          "oklch(26.43% 0.0294 263.17)",
+          "oklch(37.86% 0.0294 263.17)",
+          "oklch(49.29% 0.0294 263.17)",
+          "oklch(60.71% 0.0294 263.17)",
+          "oklch(72.14% 0.0294 263.17)",
+          "oklch(83.57% 0.0294 263.17)",
+          "oklch(95.00% 0.0294 263.17)"
+        ]
+      },
+      "store-line": {
+        "role": "neutral",
+        "displayName": "Store Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.0080 253.85)",
+          "oklch(26.43% 0.0080 253.85)",
+          "oklch(37.86% 0.0080 253.85)",
+          "oklch(49.29% 0.0080 253.85)",
+          "oklch(60.71% 0.0080 253.85)",
+          "oklch(72.14% 0.0080 253.85)",
+          "oklch(83.57% 0.0080 253.85)",
+          "oklch(95.00% 0.0080 253.85)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "action-hover": {
+        "role": "primary",
+        "displayName": "Deeper Action Orange",
+        "tonalRamp": [
+          "oklch(15.00% 0.1150 47.06)",
+          "oklch(26.43% 0.1150 47.06)",
+          "oklch(37.86% 0.1150 47.06)",
+          "oklch(49.29% 0.1150 47.06)",
+          "oklch(60.71% 0.1150 47.06)",
+          "oklch(72.14% 0.1150 47.06)",
+          "oklch(83.57% 0.1150 47.06)",
+          "oklch(95.00% 0.1150 47.06)"
+        ]
+      },
+      "action-ink": {
+        "role": "neutral",
+        "displayName": "action-ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0102 268.22)",
+          "oklch(26.43% 0.0102 268.22)",
+          "oklch(37.86% 0.0102 268.22)",
+          "oklch(49.29% 0.0102 268.22)",
+          "oklch(60.71% 0.0102 268.22)",
+          "oklch(72.14% 0.0102 268.22)",
+          "oklch(83.57% 0.0102 268.22)",
+          "oklch(95.00% 0.0102 268.22)"
+        ]
+      },
+      "metadata": {
+        "role": "neutral",
+        "displayName": "metadata",
+        "tonalRamp": [
+          "oklch(15.00% 0.0278 259.80)",
+          "oklch(26.43% 0.0278 259.80)",
+          "oklch(37.86% 0.0278 259.80)",
+          "oklch(49.29% 0.0278 259.80)",
+          "oklch(60.71% 0.0278 259.80)",
+          "oklch(72.14% 0.0278 259.80)",
+          "oklch(83.57% 0.0278 259.80)",
+          "oklch(95.00% 0.0278 259.80)"
+        ]
+      },
+      "warm-state": {
+        "role": "neutral",
+        "displayName": "warm-state",
+        "tonalRamp": [
+          "oklch(15.00% 0.0248 75.28)",
+          "oklch(26.43% 0.0248 75.28)",
+          "oklch(37.86% 0.0248 75.28)",
+          "oklch(49.29% 0.0248 75.28)",
+          "oklch(60.71% 0.0248 75.28)",
+          "oklch(72.14% 0.0248 75.28)",
+          "oklch(83.57% 0.0248 75.28)",
+          "oklch(95.00% 0.0248 75.28)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Campaign identity",
+        "purpose": "Campaign name; source overrides at 850px and 599px."
+      },
+      "headline": {
+        "displayName": "Section heading",
+        "purpose": "Main section titles; 24px on mobile."
+      },
+      "price": {
+        "displayName": "Current price",
+        "purpose": "Tabular numerals; 18px on mobile."
+      },
+      "offer-action": {
+        "displayName": "Transparent offer action",
+        "purpose": "View offer and View deal use Manrope 800 at 14px desktop; product-card action is 12px on mobile."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "movement-curve",
+        "value": "cubic-bezier(.2,.65,.3,1)",
+        "purpose": "Shared hero, indicator, arrow, card and image movement easing."
+      },
+      {
+        "name": "hero-arrive",
+        "value": "heroArrive .45s cubic-bezier(.2,.65,.3,1) both",
+        "purpose": "Opacity .85 to 1 and translateY(6px) to 0."
+      },
+      {
+        "name": "active-filter-indicator",
+        "value": "transform .3s cubic-bezier(.2,.65,.3,1)",
+        "purpose": "1px base width, 2px height; ResizeObserver supplies active button translateX and scaleX dimensions."
+      },
+      {
+        "name": "offer-action-color",
+        "value": "color .18s ease",
+        "purpose": "Transparent action text changes from #a54600 to #7c3300."
+      },
+      {
+        "name": "offer-action-arrow",
+        "value": "transform .22s cubic-bezier(.2,.65,.3,1)",
+        "purpose": "Arrow shifts 4px on hover and visible focus."
+      },
+      {
+        "name": "card-category-hover",
+        "value": "transform .24s cubic-bezier(.2,.65,.3,1), border-color .24s ease",
+        "purpose": "Fine-pointer hover lifts cards/categories 3px. Categories also transition background-color .24s ease."
+      },
+      {
+        "name": "product-image-hover",
+        "value": "transform .32s cubic-bezier(.2,.65,.3,1)",
+        "purpose": "Fine-pointer hover translates product image up 2px and scales 1.035."
+      },
+      {
+        "name": "category-image-hover",
+        "value": "transform .28s cubic-bezier(.2,.65,.3,1)",
+        "purpose": "Fine-pointer hover translates image up 3px and rotates -2deg."
+      },
+      {
+        "name": "offer-row-hover",
+        "value": "border-color .22s ease, background-color .22s ease",
+        "purpose": "Fine-pointer hover warms border to #e3c7a2 and surface to #fffdfa."
+      },
+      {
+        "name": "rail-scroll",
+        "value": "smooth; instant JS behavior when prefers-reduced-motion: reduce",
+        "purpose": "Rail scrollBy and category scrollIntoView. Rail CSS declares scroll-behavior:smooth."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation:none !important; transition:none !important; scroll-behavior:auto !important",
+        "purpose": "Route, descendants and pseudo-elements remove motion. Hover transforms may still take their final state immediately."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1100px"
+      },
+      {
+        "name": "tablet",
+        "value": "850px"
+      },
+      {
+        "name": "mobile",
+        "value": "599px"
+      },
+      {
+        "name": "shared-header-route-only-lower-bound",
+        "value": "761px"
+      }
+    ],
+    "scope": {
+      "route": "/store/amazon-great-indian-festival-2026/",
+      "status": "Implemented local trial; not deployed; no pixel-identity certification.",
+      "authority": "Route-local record. Shared public shell remains incumbent.",
+      "headerException": "body:has(.page) narrows only the shared header grid from 761px through 1100px while this route is present."
+    },
+    "focus": {
+      "default": "outline: 3px solid #a54600; outline-offset: 4px",
+      "search": "outline: 2px solid #a54600; outline-offset: 2px on the label through focus-within"
+    },
+    "assetNotes": [
+      "Existing inventory imagery is reused; no generated raster was added.",
+      "Amazon mark is adapted from Font Awesome Free brands/amazon.svg. Shipped CC BY 4.0 attribution: public/assets/festival-2026/amazon-mark.LICENSE.txt.",
+      "new store ui.png is development-only visual reference and is not shipped.",
+      "Route typography self-hosts CouponPush Manrope normal variable weights 400–800 from public/fonts/manrope-variable.woff2 and manrope-latin-ext-variable.woff2, with Manrope-OFL.txt. Latin-ext includes the rupee character. Origin: D:/Cpush/tmp/manrope-font-origin.json.",
+      "Merchant identity adds a CSS dashed frame rotated -5deg and a decorative 16px inline SVG sparkle; no raster asset was generated."
+    ],
+    "evidence": [
+      "src/components/features/festival/AmazonFestivalPreview.tsx",
+      "src/components/features/festival/AmazonFestivalPreview.module.css",
+      "src/app/store/amazon-great-indian-festival-2026/page.tsx",
+      "D:/Cpush/.impeccable/review/amazon-store-png-final/page-1440.png",
+      "D:/Cpush/.impeccable/review/amazon-store-png-final/page-390.png",
+      "D:/Cpush/.impeccable/review/amazon-store-png-final/desktop-viewport.png",
+      "D:/Cpush/tmp/amazon-store-png-final-check.json",
+      "D:/Cpush/tmp/amazon-mark-origin.json",
+      "D:/Cpush/tmp/manrope-font-origin.json",
+      "D:/Cpush/tmp/amazon-store-polish-check.json",
+      "D:/Cpush/.impeccable/review/amazon-store-polish/"
+    ],
+    "previewNotes": [
+      "Snippets demonstrate visual states; no catalog content, filter persistence or API behavior is implemented by this sidecar.",
+      "The offer-row preview omits its decorative image column. Runtime four-column layout remains authoritative in DESIGN.md and the CSS Module.",
+      "Tonal ramps are synthesized OKLCH swatch-preview metadata, not source tokens or approved additional UI colors. The frontmatter alone owns the actual source palette.",
+      "The offer-type preview shows the real pre-measurement border fallback. Runtime uses ResizeObserver dimensions and a translateX/scaleX indicator; the static preview does not reproduce that JavaScript.",
+      "Preview text uses the route font family registered by the CSS Module. The arrow uses a self-contained SVG equivalent; runtime retains its incumbent icon delivery."
+    ],
+    "evidenceStatus": "Latest refinement verification: D:/Cpush/tmp/amazon-store-polish-check.json. No recorded errors or overflow at 1440, 810, 768, 390 and 320px. Checks cover measured indicator, loaded Manrope, transparent offer/deal actions, reduced motion, preserved interactions and unchanged regular store routes. Earlier amazon-store-png-final artifacts remain baseline history. This documentation pass did not run browser checks."
+  },
+  "components": [
+    {
+      "name": "Transparent offer action",
+      "kind": "button",
+      "refersTo": "button-offer",
+      "description": "View offer and View deal share transparent dark-orange text, with a shifting arrow on hover and focus.",
+      "html": "<a class=\"ds-offer-action\" href=\"#offer\">View offer<svg class=\"ds-action-arrow\" aria-hidden=\"true\" width=\"14\" height=\"14\" viewBox=\"0 0 16 16\"><path d=\"M2 8h12M9 3l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-offer-action{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:40px;padding:8px 16px;border:0;border-radius:6px;background:transparent;color:#a54600;text-decoration:none;font-size:14px;font-weight:800;line-height:1.3;transition:color .18s ease;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-offer-action:hover{background:transparent;color:#7c3300}.ds-offer-action:focus-visible{outline:3px solid #a54600;outline-offset:4px}.ds-action-arrow{transition:transform .22s cubic-bezier(.2,.65,.3,1)}.ds-offer-action:is(:hover,:focus-visible) .ds-action-arrow{transform:translateX(4px)}@media(max-width:599px){.ds-offer-action{min-height:44px}}@media(prefers-reduced-motion:reduce){.ds-offer-action,.ds-action-arrow{transition:none!important}}"
+    },
+    {
+      "name": "Merchant visit action",
+      "kind": "button",
+      "refersTo": "button-merchant",
+      "description": "Black capsule merchant navigation with an orange-independent visual role.",
+      "html": "<a class=\"ds-merchant-action\" href=\"#merchant\">Visit Amazon</a>",
+      "css": ".ds-merchant-action{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 24px;border-radius:24px;background:#111318;color:#fff;text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-merchant-action:hover{background:#303641;color:#fff}.ds-merchant-action:focus-visible{outline:3px solid #a54600;outline-offset:4px}"
+    },
+    {
+      "name": "Deal search",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Bounded search field with focus applied to the enclosing label.",
+      "html": "<label class=\"ds-search\"><input type=\"search\" aria-label=\"Search Amazon festival deals\" placeholder=\"Search a product or brand\"></label>",
+      "css": ".ds-search{display:inline-flex;align-items:center;width:min(320px,100%);min-height:42px;padding:0 12px;border:1px solid #e9edf2;border-radius:8px;color:#6a7483;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-search input{width:100%;min-width:0;min-height:40px;padding:0;border:0;background:transparent;outline:0;color:#14171c;font:inherit;font-size:13px}.ds-search input::placeholder{color:#667080;opacity:1}.ds-search:focus-within{outline:2px solid #a54600;outline-offset:2px}"
+    },
+    {
+      "name": "Offer-type navigation",
+      "kind": "nav",
+      "description": "Pressed buttons use the orange border fallback; the runtime replaces it with a measured gliding indicator.",
+      "html": "<nav class=\"ds-types\" aria-label=\"Filter Amazon festival offers\"><button type=\"button\" aria-pressed=\"true\">All offers</button><button type=\"button\" aria-pressed=\"false\">Coupon codes</button><a href=\"#about\">About</a></nav>",
+      "css": ".ds-types{display:flex;gap:28px;min-height:56px;border-top:1px solid #f5f6f8;border-bottom:1px solid #e9edf2;overflow-x:auto;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-types button,.ds-types a{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;min-height:55px;padding:0 12px;border:0;border-bottom:2px solid transparent;background:none;color:#535c6b;text-decoration:none;font:inherit;font-size:14px;font-weight:500;cursor:pointer}.ds-types [aria-pressed=true]{border-bottom-color:#ff9200;color:#14171c;font-weight:700}.ds-types :is(button,a):hover{color:#a54600}.ds-types :is(button,a):focus-visible{outline:3px solid #a54600;outline-offset:4px}"
+    },
+    {
+      "name": "Saved-only filter",
+      "kind": "chip",
+      "refersTo": "saved-filter",
+      "description": "Device-local shortlist filter; selected visual state follows aria-pressed.",
+      "html": "<button type=\"button\" class=\"ds-saved\" aria-pressed=\"true\">Saved (0)</button>",
+      "css": ".ds-saved{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border:1px solid #e9edf2;border-radius:8px;background:#fff;color:#454c58;font-size:13px;cursor:pointer;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-saved[aria-pressed=true]{background:#fff3e3;border-color:#d98830;color:#8f3f00}.ds-saved:focus-visible{outline:3px solid #a54600;outline-offset:4px}"
+    },
+    {
+      "name": "Offer-row container",
+      "kind": "card",
+      "refersTo": "offer-row",
+      "description": "Bank-offer summary and native full-condition disclosure; preview omits decorative image and icon delivery.",
+      "html": "<article class=\"ds-offer-row\"><div><span class=\"ds-bank-label\">Bank offer</span><h3>10% SBI instant discount</h3><p>Eligible SBI cards &amp; EMI</p></div><div class=\"ds-offer-description\">Check eligible cards, minimum spend, discount caps and product exclusions before paying.</div><div><a class=\"ds-row-action\" href=\"#offer\">View offer<svg class=\"ds-action-arrow\" aria-hidden=\"true\" width=\"14\" height=\"14\" viewBox=\"0 0 16 16\"><path d=\"M2 8h12M9 3l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a><details><summary>Show details</summary><p>Check eligible cards, minimum spend, discount caps and product exclusions before paying. Bank benefits are not automatically combined with every listed price.</p></details></div></article>",
+      "css": ".ds-offer-row{transition:border-color .22s ease,background-color .22s ease;display:grid;grid-template-columns:minmax(170px,1.2fr) minmax(150px,1fr) minmax(170px,.9fr);align-items:center;gap:22px;min-height:130px;padding:18px 22px;border:1px solid #e9edf2;border-radius:14px;background:#fff;color:#14171c;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-bank-label{display:inline-flex;margin-bottom:8px;padding:3px 6px;border-radius:5px;background:#edf4ff;color:#285cc1;font-size:11px;font-weight:600;line-height:1.2}.ds-offer-row h3{margin:0;font-size:22px;font-weight:800;line-height:1.2;letter-spacing:-.02em}.ds-offer-row p{margin:5px 0 0;color:#434b58;font-size:15px;line-height:1.4}.ds-offer-description{color:#535c6b;font-size:13px;line-height:1.5}.ds-row-action{display:flex;justify-content:center;align-items:center;gap:12px;min-height:40px;padding:8px 16px;border-radius:6px;background:transparent;color:#a54600;text-decoration:none;font-size:14px;font-weight:800;transition:color .18s ease}.ds-row-action:hover{background:transparent;color:#7c3300}.ds-action-arrow{transition:transform .22s cubic-bezier(.2,.65,.3,1)}.ds-row-action:is(:hover,:focus-visible) .ds-action-arrow{transform:translateX(4px)}.ds-offer-row summary{display:flex;align-items:center;min-height:34px;color:#3c4553;list-style:none;cursor:pointer;font-size:13px}.ds-offer-row details p{margin:4px 0 8px;color:#596273;font-size:12px;line-height:1.6}.ds-offer-row :is(a,summary):focus-visible{outline:3px solid #a54600;outline-offset:4px}@media(max-width:599px){.ds-offer-row{grid-template-columns:minmax(0,1fr);gap:12px;padding:16px}.ds-row-action,.ds-offer-row summary{min-height:44px}}@media(hover:hover) and (pointer:fine){.ds-offer-row:hover{border-color:#e3c7a2;background:#fffdfa}}@media(prefers-reduced-motion:reduce){.ds-offer-row,.ds-row-action,.ds-action-arrow{transition:none!important}}"
+    },
+    {
+      "name": "FAQ disclosure",
+      "kind": "custom",
+      "description": "Native disclosure with a fine outline and uncropped answer.",
+      "html": "<details class=\"ds-faq\"><summary>Does CouponPush sell these products?</summary><p>No. CouponPush helps you compare offers and sends you to Amazon India to buy. Amazon and the seller handle payment, delivery, returns and warranty. CouponPush is independent of Amazon.</p></details>",
+      "css": ".ds-faq{min-width:0;border:1px solid #e9edf2;border-radius:8px;font-family:\"CouponPush Manrope\",var(--font-primary,\"Satoshi\",-apple-system,BlinkMacSystemFont,sans-serif);}.ds-faq summary{display:flex;align-items:center;justify-content:space-between;min-height:50px;padding:12px 16px;color:#353d49;font-size:13px;line-height:1.5;list-style:none;cursor:pointer}.ds-faq p{margin:0;padding:0 16px 16px;color:#596273;font-size:14px;line-height:1.7}.ds-faq summary:focus-visible{outline:3px solid #a54600;outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The merchant offer shelf",
+    "overview": "This route records a white, compact merchant storefront derived from the supplied store PNG and implemented around the real Amazon festival inventory. Dark Manrope headings, fine gray borders, transparent dark-orange shopping actions and a black merchant link establish a clear scan from campaign identity to offers, products, categories and conditions.\n\nThis is an implemented local trial for /store/amazon-great-indian-festival-2026/, not a deployment record or a certified pixel-identical clone. The shared CouponPush navigation, footer and global brand assets remain incumbent; this document has no authority over other routes.",
+    "keyCharacteristics": [
+      "White surfaces and fine borders rather than raised cards.",
+      "Strong, compact headings above restrained gray supporting copy.",
+      "Transparent dark-orange offer actions, black merchant navigation and a gliding orange active-filter indicator.",
+      "Inventory-derived imagery, counts and categories with source terms available."
+    ],
+    "rules": [
+      {
+        "name": "The Action Hierarchy Rule",
+        "body": "Use transparent dark-orange text for View offer and View deal; retain orange fill for code-copy and recovery controls, orange for the active offer-type underline, and black for the merchant visit action.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Separate route surfaces with borders and pale fills; the route module declares no box shadows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Route Boundary Rule",
+        "body": "Apply this system only to the Amazon festival route. Preserve shared shell ownership and the data and behavior contracts.",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "Do preserve real inventory, source links, eligibility notes, fallback states and native disclosures.",
+      "Do keep the horizontal deal rail and expanded grid as two views of the same filtered inventory.",
+      "Do keep saved deals on this device and keep the removed wishlist collection absent.",
+      "Do retain route-scoped styles and the incumbent public navigation and footer.",
+      "Do reuse actual inventory images with contained sizing and an unavailable-image fallback."
+    ],
+    "donts": [
+      "Don't import illustrative coupon codes, ratings, verification claims, shopper totals or category counts from the reference PNG.",
+      "Don't ship the development reference PNG as page artwork or add generated raster replacements.",
+      "Don't promote this trial into a product-wide design system or claim deployment or certified pixel identity.",
+      "Don't combine exchange credits, future cashback and bank eligibility into an unconditional payable price."
+    ]
+  }
+}
