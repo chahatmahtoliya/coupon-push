@@ -421,6 +421,19 @@ function getCouponBadge($coupon)
  */
 function uploadImage($file, $destination, $prefix = '')
 {
+    $uploadError = $file['error'] ?? UPLOAD_ERR_NO_FILE;
+    if ($uploadError !== UPLOAD_ERR_OK) {
+        $messages = [
+            UPLOAD_ERR_INI_SIZE => 'The image exceeds the server upload limit (' . ini_get('upload_max_filesize') . '). Choose a smaller image.',
+            UPLOAD_ERR_FORM_SIZE => 'The image exceeds the form upload limit.',
+            UPLOAD_ERR_PARTIAL => 'The image was only partially uploaded. Please try again.',
+            UPLOAD_ERR_NO_FILE => 'No file uploaded.',
+            UPLOAD_ERR_NO_TMP_DIR => 'The server upload directory is unavailable. Contact the administrator.',
+            UPLOAD_ERR_CANT_WRITE => 'The server could not write the uploaded image. Contact the administrator.',
+            UPLOAD_ERR_EXTENSION => 'A server extension stopped the image upload. Contact the administrator.',
+        ];
+        return ['success' => false, 'message' => $messages[$uploadError] ?? 'The image upload failed. Please try again.'];
+    }
     if (!isset($file['tmp_name']) || empty($file['tmp_name'])) {
         return ['success' => false, 'message' => 'No file uploaded'];
     }
@@ -431,22 +444,24 @@ function uploadImage($file, $destination, $prefix = '')
     }
 
     // Check file type
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mimeType = finfo_file($finfo, $file['tmp_name']);
-    finfo_close($finfo);
+    $image = @getimagesize($file['tmp_name']);
+    $mimeType = $image['mime'] ?? '';
+    $extensions = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
 
-    if (!in_array($mimeType, ALLOWED_IMAGE_TYPES)) {
-        return ['success' => false, 'message' => 'Invalid file type'];
+    if (!isset($extensions[$mimeType]) || !in_array($mimeType, ALLOWED_IMAGE_TYPES, true)) {
+        return ['success' => false, 'message' => 'Upload a JPG, PNG, GIF or WebP image.'];
     }
 
     // Generate unique filename
-    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
-    $filename = $prefix . uniqid() . '_' . time() . '.' . strtolower($extension);
-    $filepath = $destination . $filename;
+    $filename = $prefix . bin2hex(random_bytes(16)) . '.' . $extensions[$mimeType];
+    $filepath = rtrim($destination, '/\\') . '/' . $filename;
 
     // Create directory if not exists
-    if (!is_dir($destination)) {
-        mkdir($destination, 0755, true);
+    if (!is_dir($destination) && !@mkdir($destination, 0755, true) && !is_dir($destination)) {
+        return ['success' => false, 'message' => 'Cannot create the image directory. Contact the administrator.'];
+    }
+    if (!is_writable($destination)) {
+        return ['success' => false, 'message' => 'The image directory is not writable. Contact the administrator.'];
     }
 
     // Move file
@@ -473,10 +488,29 @@ function deleteImage($path)
  */
 function getStoreLogo($logo)
 {
-    if (empty($logo)) {
+    $logo = trim((string) $logo);
+    if ($logo === '' || strtolower(basename($logo)) === 'placeholder.png') {
         return ASSETS_URL . 'images/store-placeholder.png';
     }
-    return STORE_LOGOS_URL . $logo;
+    $host = strtolower((string) parse_url($logo, PHP_URL_HOST));
+    $siteHost = strtolower((string) parse_url(SITE_URL, PHP_URL_HOST));
+    $backendUrl = in_array($siteHost, ['couponpush.com', 'www.couponpush.com'], true)
+        ? 'https://api.couponpush.com' : SITE_URL;
+    if ($host !== '' && !in_array($host, [$siteHost, 'couponpush.com', 'www.couponpush.com', 'api.couponpush.com', 'media.couponpush.com'], true)) {
+        return $logo;
+    }
+    $path = (string) parse_url($logo, PHP_URL_PATH);
+    if (preg_match('#^/?uploads/stores/([^/]+)$#', $path, $matches) || strpos($path, '/') === false) {
+        $filename = rawurldecode($matches[1] ?? $path);
+        if ($filename === '.' || $filename === '..' || basename($filename) !== $filename || strpos($filename, '\\') !== false) {
+            return ASSETS_URL . 'images/store-placeholder.png';
+        }
+        // New uploads live on this backend; historical files may exist only on media.
+        $origin = is_file(STORE_LOGOS_PATH . $filename) ? $backendUrl : 'https://media.couponpush.com';
+        return $origin . '/uploads/stores/' . rawurlencode($filename);
+    }
+    if ($host !== '') return $logo;
+    return $backendUrl . '/' . ltrim($logo, '/');
 }
 
 /**

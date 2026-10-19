@@ -68,10 +68,7 @@ function getStoreLogoUrl($logo)
     if ($logo === '' || strtolower(basename($logo)) === 'placeholder.png') {
         return 'https://couponpush.com/placeholder-store.png';
     }
-    if (preg_match('#^https?://#i', $logo)) return $logo;
-    if (strpos($logo, '/uploads/') === 0) return 'https://api.couponpush.com' . $logo;
-    if (strpos($logo, 'uploads/') === 0) return 'https://api.couponpush.com/' . $logo;
-    return 'https://api.couponpush.com/uploads/stores/' . rawurlencode(basename($logo));
+    return getStoreLogo($logo);
 }
 
 /**

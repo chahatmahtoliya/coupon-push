@@ -9,12 +9,18 @@ require_once 'includes/admin-header.php';
 
 $action = $_GET['action'] ?? 'list';
 $id = intval($_GET['id'] ?? 0);
+$error = '';
 
 // Get all categories for dropdown
 $categories = db()->fetchAll("SELECT id, name FROM categories WHERE status = 1 ORDER BY name");
 
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($_POST) && (int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
+        setFlash('error', 'The upload exceeds the server request limit (' . ini_get('post_max_size') . '). Choose a smaller logo.');
+        redirect(SITE_URL . '/admin/stores.php?action=' . ($action === 'add' ? 'add' : 'edit&id=' . $id));
+    }
+    if (!verifyCSRFToken($_POST[CSRF_TOKEN_NAME] ?? '')) { setFlash('error', 'Your session token expired. Please try again.'); redirect(SITE_URL . '/admin/stores.php'); }
     $data = [
         'name' => sanitize($_POST['name'] ?? ''),
         'slug' => createSlug($_POST['name'] ?? ''),
@@ -37,17 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle logo upload
     $logo = null;
-    if (!empty($_FILES['logo']['tmp_name'])) {
+    if (isset($_FILES['logo']) && ($_FILES['logo']['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE) {
         $upload = uploadImage($_FILES['logo'], STORE_LOGOS_PATH, 'store_');
         if ($upload['success']) {
             $logo = $upload['filename'];
+        } else {
+            $error = $upload['message'];
         }
     }
 
-    if ($action === 'add') {
+
+    if ($error === '' && $action === 'add') {
         $sql = "INSERT INTO stores (name, slug, h1_suffix, website_url, affiliate_url, short_description, 
                 description, about_content, howto_content, terms_content, category_id, meta_title, meta_description, rating, 
-                is_featured, is_popular, status" . ($logo ? ", logo" : "") . ") 
+                is_featured, is_popular, status" . ($logo ? ", logo" : "") . ")
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" . ($logo ? ", ?" : "") . ")";
         $params = array_values($data);
         if ($logo) $params[] = $logo;
@@ -58,9 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlash('success', 'Store added successfully!');
             redirect(SITE_URL . '/admin/stores.php');
         } else {
-            setFlash('error', 'Failed to add store.');
+            $error = 'Failed to add store.';
         }
-    } elseif ($action === 'edit' && $id > 0) {
+    } elseif ($error === '' && $action === 'edit' && $id > 0) {
         $sql = "UPDATE stores SET name = ?, slug = ?, h1_suffix = ?, website_url = ?, affiliate_url = ?, 
                 short_description = ?, description = ?, about_content = ?, howto_content = ?, terms_content = ?, 
                 category_id = ?, meta_title = ?, meta_description = ?, rating = ?, is_featured = ?, is_popular = ?, status = ?"
@@ -75,8 +84,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlash('success', 'Store updated successfully!');
             redirect(SITE_URL . '/admin/stores.php');
         } else {
-            setFlash('error', 'Failed to update store.');
+            $error = 'Failed to update store.';
         }
+    }
+    if ($error !== '' && $logo !== null) {
+        deleteImage(STORE_LOGOS_PATH . $logo);
     }
 }
 
@@ -95,7 +107,14 @@ if ($action === 'edit' && $id > 0) {
         redirect(SITE_URL . '/admin/stores.php');
     }
 }
+if ($error !== '' && isset($data)) {
+    $store = array_merge($store ?? [], $data, array_intersect_key($_POST, $data));
+}
 ?>
+
+<?php if ($error !== ''): ?>
+    <div class="alert alert-danger" role="alert"><?php echo sanitize($error); ?></div>
+<?php endif; ?>
 
 <?php if ($action === 'list'): ?>
     <!-- Stores List -->
@@ -186,6 +205,7 @@ if ($action === 'edit' && $id > 0) {
     <div class="card">
         <div class="card-body">
             <form method="POST" action="" enctype="multipart/form-data">
+                <?php echo csrfField(); ?>
                 <div class="row g-4">
                     <div class="col-md-8">
                         <div class="mb-3">
@@ -297,8 +317,8 @@ if ($action === 'edit' && $id > 0) {
                                         alt="Current Logo" style="max-width: 100px; border-radius: 8px;">
                                 </div>
                             <?php endif; ?>
-                            <input type="file" name="logo" class="form-control" accept="image/*">
-                            <small class="text-muted">Recommended: 200x200px, Max 5MB</small>
+                            <input type="file" name="logo" class="form-control" accept="image/jpeg,image/png,image/gif,image/webp">
+                            <small class="text-muted">JPG, PNG, GIF or WebP. Recommended: 200x200px, Max 5MB (server limits may be lower).</small>
                         </div>
 
                         <div class="mb-3">

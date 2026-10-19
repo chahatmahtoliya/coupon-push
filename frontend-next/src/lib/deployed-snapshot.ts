@@ -43,7 +43,7 @@ function normalizeSnapshotAsset(value: string): string {
     if (/^https?:\/\//i.test(value)) {
         try {
             const url = new URL(value);
-            if (url.hostname === 'api.couponpush.com' && url.pathname.startsWith('/uploads/partners/')) return value;
+            if (url.hostname === 'api.couponpush.com' && (url.pathname.startsWith('/uploads/partners/') || url.pathname.startsWith('/uploads/stores/'))) return value;
             if (['couponpush.com', 'www.couponpush.com', 'api.couponpush.com'].includes(url.hostname)
                 && url.pathname.startsWith('/uploads/')) {
                 return `${uploadBase(url.pathname)}${url.pathname}${url.search}`;

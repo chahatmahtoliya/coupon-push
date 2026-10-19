@@ -77,7 +77,7 @@ function normalizeAssetUrl(value: string): string {
             const url = new URL(value);
             // The hero API resolves newly uploaded files on its own host.
             // Do not redirect these to the separate legacy media storage.
-            if (url.hostname === 'api.couponpush.com' && (url.pathname.startsWith('/uploads/hero/') || url.pathname.startsWith('/uploads/partners/'))) {
+            if (url.hostname === 'api.couponpush.com' && (url.pathname.startsWith('/uploads/hero/') || url.pathname.startsWith('/uploads/partners/') || url.pathname.startsWith('/uploads/stores/'))) {
                 return value;
             }
             if (['couponpush.com', 'www.couponpush.com', 'api.couponpush.com'].includes(url.hostname)
