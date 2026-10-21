@@ -12,6 +12,8 @@ Update the existing stylesheet for the feature being changed. Avoid adding anoth
 
 Route-specific CSS Modules stay next to the stores, coupons, and search pages. `src/app/search/search.module.css` owns the search form, result filters, cards, and search states. Component CSS Modules stay next to their components.
 
+`src/components/features/savings/savings.module.css` owns the sourced-offer comparisons, savings hub, copy-code control and merchant source notices.
+
 The partner landing page, account forms, dashboard and editors share `src/app/partners/partners.module.css`. Partner entry points in the public header remain in `style.css`.
 
 Global styles are imported in `src/app/layout.tsx`: shared styles first, followed by page and resource styles. Keep responsive rules with their owning stylesheet. Preserve selector specificity, shorthand order, and media-query behavior when consolidating rules.

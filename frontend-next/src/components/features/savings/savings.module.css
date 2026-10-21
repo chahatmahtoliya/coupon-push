@@ -1,0 +1,63 @@
+.page { min-height: 65vh; padding: 24px 0 64px; color: #1f2940; background: #fff; font-family: var(--font-primary); }
+.shell { width: min(1320px, calc(100% - 64px)); margin: auto; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; color: #596579; font-size: 12px; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb i { align-self: center; font-size: 9px; }
+.heading { max-width: 76ch; margin-bottom: 28px; }
+.heading h1 { margin: 0 0 14px; color: #182335; font-size: clamp(28px, 3vw, 38px); font-weight: 800; line-height: 1.2; letter-spacing: -.025em; }
+.heading p { max-width: 70ch; margin: 0; color: #536174; font-size: 16px; line-height: 1.7; }
+.summary { margin: 16px 0 0; color: #536174; font-size: 13px; line-height: 1.6; }
+.notice { max-width: 78ch; padding: 18px 20px; border: 1px solid #f4d6c9; border-radius: 12px; background: #fff5f0; color: #713415; font-size: 14px; line-height: 1.7; }
+.notice p { margin: 0; }
+.notice a { color: inherit; text-underline-offset: 3px; }
+.navigation { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 32px; }
+.navigation a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border: 1px solid #e5e8ed; border-radius: 999px; color: #344054; font-size: 13px; font-weight: 700; text-decoration: none; }
+.navigation a:hover { border-color: #f4c9b9; background: #fff5f0; color: #a94017; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; align-items: start; gap: 40px; margin-top: 32px; }
+.content { min-width: 0; }
+.content > section + section { margin-top: 40px; }
+.content h2, .storeSection h2 { margin: 0 0 16px; color: #182335; font-size: 23px; font-weight: 800; line-height: 1.4; }
+.content > section > p { max-width: 72ch; margin: 0 0 16px; color: #536174; font-size: 15px; line-height: 1.8; }
+.aside { padding: 22px; border: 1px solid #e5e8ed; border-radius: 12px; }
+.aside h2 { margin: 0 0 16px; font-size: 18px; font-weight: 800; }
+.aside ul { margin: 0; padding-left: 20px; }
+.aside li { margin-bottom: 14px; color: #536174; font-size: 14px; line-height: 1.7; }
+.aside li:last-child { margin: 0; }
+.offerList { display: grid; gap: 16px; }
+.offer { min-width: 0; padding: 24px; border: 1px solid #e5e8ed; border-radius: 12px; background: #fff; scroll-margin-top: 110px; }
+.offerHeading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+.offerHeading > a { display: inline-flex; align-items: center; min-height: 36px; color: #a94017; font-size: 13px; font-weight: 700; text-decoration: none; }
+.offerHeading > span { padding: 5px 8px; border-radius: 6px; background: #f3f4f6; color: #475467; font-size: 11px; }
+.offer h3 { margin: 0 0 14px; color: #182335; font-size: 18px; font-weight: 800; line-height: 1.5; overflow-wrap: anywhere; }
+.offer > ul { max-width: 72ch; margin: 0 0 18px; padding-left: 20px; color: #536174; font-size: 14px; line-height: 1.75; }
+.offer li + li { margin-top: 8px; }
+.codeRow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 12px; }
+.codeRow code { padding: 8px 12px; border: 1px dashed #f0bda7; border-radius: 6px; background: #fff5f0; color: #81300f; font-size: 15px; overflow-wrap: anywhere; }
+.codeRow button { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; padding: 8px 0; border: 0; background: transparent; color: #a94017; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.codeRow button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.codeRow span { flex-basis: 100%; color: #536174; font-size: 12px; }
+.codeRow span:empty { display: none; }
+.noCode { margin: 0 0 14px; color: #596579; font-size: 13px; }
+.evidence { padding-top: 14px; border-top: 1px solid #edf0f4; }
+.evidence p { max-width: 70ch; margin: 0 0 8px; color: #596579; font-size: 12px; line-height: 1.7; }
+.evidence a { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; color: #a94017; font-size: 13px; font-weight: 700; text-decoration: none; }
+.evidence a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.faq { padding: 20px 0; border-top: 1px solid #e5e8ed; }
+.faq h3 { margin: 0 0 10px; color: #182335; font-size: 17px; font-weight: 700; line-height: 1.5; }
+.faq p { max-width: 72ch; margin: 0; color: #536174; font-size: 14px; line-height: 1.8; }
+.collections { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 32px 0 40px; }
+.collection { padding: 28px; border: 1px solid #e5e8ed; border-radius: 12px; }
+.collection h2 { margin: 0 0 12px; font-size: 23px; font-weight: 800; line-height: 1.4; }
+.collection p { max-width: 65ch; margin: 0 0 12px; color: #536174; font-size: 14px; line-height: 1.75; }
+.collection a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; color: #a94017; font-size: 14px; font-weight: 700; text-decoration: none; }
+.collection a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.method { max-width: 76ch; padding-top: 32px; border-top: 1px solid #e5e8ed; }
+.method h2 { margin: 0 0 16px; font-size: 23px; font-weight: 800; }
+.method p { color: #536174; font-size: 15px; line-height: 1.8; }
+.method a { color: #a94017; text-underline-offset: 3px; }
+.storeSection { padding-top: 32px; padding-bottom: 32px; }
+.storeSection > p { max-width: 76ch; color: #536174; font-size: 14px; line-height: 1.8; }
+.page :is(a, button):focus-visible, .offer :is(a, button):focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.page ::selection, .offer ::selection { background: #ffe5d8; color: #182335; }
+@media (max-width: 960px) { .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; } .aside { grid-row: 1; } }
+@media (max-width: 680px) { .page { padding: 16px 0 48px; } .shell { width: min(100% - 28px, 540px); } .heading p { font-size: 14px; } .heading h1 { font-size: 28px; } .collections { grid-template-columns: minmax(0, 1fr); gap: 16px; } .collection, .offer { padding: 20px; } .collection h2, .content h2, .storeSection h2 { font-size: 21px; } .layout { margin-top: 24px; } .offerHeading > a { min-height: 44px; } .notice { padding: 16px; } }

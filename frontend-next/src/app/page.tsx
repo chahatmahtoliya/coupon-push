@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import HomePageClient from './HomePageClient';
+import Link from '@/components/common/SiteLink';
+import { getSavingsPages } from '@/lib/savings-pages';
 import { couponsApi, dealsApi, heroSlidesApi, seasonalOffersApi, storesApi } from '@/services/api';
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 
@@ -65,6 +67,7 @@ export default async function HomePage() {
             initialHeroSlides={initialHeroSlides}
             initialSeasonalOffers={initialSeasonalOffers}
         />
+        {getSavingsPages().some(page => page.eligible) && <nav className="container site-related-links" aria-label="Compare sourced shopping offers"><h2>Compare offers by shopping need</h2><ul><li><Link href="/savings/">How our offer comparisons work</Link></li>{getSavingsPages().filter(page => page.eligible).map(page => <li key={page.slug}><Link href={page.path}>{page.title}</Link></li>)}</ul></nav>}
         </>
     );
 }

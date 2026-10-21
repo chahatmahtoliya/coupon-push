@@ -5,6 +5,7 @@ import { hasIndexableCategoryContent, hasIndexableStoreContent } from '@/lib/ind
 import { getLatestContentUpdate } from '@/lib/content-dates';
 import { partnersEnabled } from '@/lib/partners-feature';
 import { getStoreSeoUpdatedAt } from '@/lib/store-pseo';
+import { getSavingsPages } from '@/lib/savings-pages';
 
 export const corePages = [
     { path: '/', title: 'Home' }, { path: '/coupons/', title: 'All coupons' },
@@ -13,6 +14,7 @@ export const corePages = [
     { path: '/about/', title: 'About CouponPush' }, { path: '/contact/', title: 'Contact' },
     { path: '/privacy-policy/', title: 'Privacy policy' }, { path: '/terms/', title: 'Terms and affiliate disclosure' },
     { path: '/site-map/', title: 'Site map' },
+    ...(getSavingsPages().some(page => page.eligible) ? [{ path: '/savings/', title: 'Compare shopping offers' }] : []),
     ...(partnersEnabled ? [{ path: '/list-a-store/', title: 'List your brand' }] : []),
 ];
 export function getSiteNavigation() {
@@ -24,7 +26,8 @@ export function getSiteNavigation() {
         const data = deployedSnapshot.categories[category.slug] as { coupons?: Coupon[] } | undefined;
         return hasIndexableCategoryContent(data) ? [{ path: `/category/${category.slug}/`, title: category.name, lastModified: getLatestContentUpdate(category, ...(data?.coupons || [])) }] : [];
     }).sort((a, b) => a.title.localeCompare(b.title));
-    return { pages: corePages, stores, categories, blog: blogPages.filter(page => page.section === 'blog'), tools: blogPages.filter(page => page.section === 'tools') };
+    const savings = getSavingsPages().filter(page => page.eligible).map(page => ({ path: page.path, title: page.title, lastModified: page.lastModified }));
+    return { pages: [...corePages, ...savings], savings, stores, categories, blog: blogPages.filter(page => page.section === 'blog'), tools: blogPages.filter(page => page.section === 'tools') };
 }
 
 const storeGuides: Record<string, string> = {

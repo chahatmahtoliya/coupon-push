@@ -12,6 +12,9 @@ import { getCanonicalStoreSlug, isCanonicalStoreSlug } from '@/lib/routes';
 import { getStoreFallbackFaqs, getStorePseoContent, getStoreSeoUpdatedAt } from '@/lib/store-pseo';
 import { getStoreGuide } from '@/lib/site-navigation';
 import Link from '@/components/common/SiteLink';
+import { getReviewedOffers, getSavingsLinksForStore } from '@/lib/savings-pages';
+import { ReviewedOfferList } from '@/components/features/savings/ReviewedOfferList';
+import savingsStyles from '@/components/features/savings/savings.module.css';
 
 function cleanStoreName(name: string): string {
     return name
@@ -134,9 +137,11 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     return <>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
         {initialData.store.page_template === 'festival' ? <FestivalStoreTemplate initialData={initialData} slug={slug} /> : <StorePageClient initialData={initialData} slug={slug} />}
+        {getReviewedOffers().some(offer => offer.storeSlug === canonicalSlug) && <section className={`container ${savingsStyles.storeSection}`} aria-labelledby="merchant-source-offers"><h2 id="merchant-source-offers">Offers matched to the merchant’s advertising</h2><p>These notices were checked against the linked merchant page. They are separate from the imported catalog and are not checkout-tested. Review the stated conditions before ordering.</p><ReviewedOfferList offers={getReviewedOffers().filter(offer => offer.storeSlug === canonicalSlug)} /></section>}
         <nav className="container site-related-links" aria-label="Related shopping resources">
             <h2>Plan your purchase</h2>
             <ul>
+                {getSavingsLinksForStore(canonicalSlug).map(page => <li key={page.slug}><Link href={page.path}>{page.title}</Link></li>)}
                 {getStoreGuide(canonicalSlug) && <li><Link href={getStoreGuide(canonicalSlug)!.path}>{getStoreGuide(canonicalSlug)!.title}</Link></li>}
                 <li><Link href="/blog/tools/savings-calculator">Calculate your coupon savings</Link></li>
                 <li><Link href="/blog/tools/emi-calculator">Compare EMI with paying upfront</Link></li>

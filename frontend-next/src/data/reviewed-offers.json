@@ -1,0 +1,179 @@
+{
+  "checkedAt": "2026-10-21T09:42:03.828Z",
+  "offers": [
+    {
+      "id": "dot-key-sitewide",
+      "title": "Dot & Key: advertised 15% sitewide discount",
+      "code": "",
+      "types": [
+        "skincare"
+      ],
+      "conditions": [
+        "The merchant advertises a sitewide reduction. Confirm eligible products and the payable total in your cart.",
+        "Combining this with another promotion is not confirmed."
+      ],
+      "storeSlug": "dot-key",
+      "sourceUrl": "https://www.dotandkey.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "dot-key-gift-799",
+      "title": "Dot & Key: gift above Rs.799",
+      "code": "",
+      "types": [
+        "skincare",
+        "free-gifts"
+      ],
+      "minimumSpend": 799,
+      "conditions": [
+        "The banner says above Rs.799; an order exactly at the threshold may not qualify.",
+        "Check qualifying cart value, gift selection and stock before paying."
+      ],
+      "storeSlug": "dot-key",
+      "sourceUrl": "https://www.dotandkey.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "dot-key-gifts-1049",
+      "title": "Dot & Key: two gifts above Rs.1,049",
+      "code": "",
+      "types": [
+        "skincare",
+        "free-gifts"
+      ],
+      "minimumSpend": 1049,
+      "conditions": [
+        "The advertised threshold is above Rs.1,049. Check whether the amount is calculated after discounts.",
+        "Do not assume the lower gift tier is added to this tier."
+      ],
+      "storeSlug": "dot-key",
+      "sourceUrl": "https://www.dotandkey.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "dot-key-combo25",
+      "title": "Dot & Key: 25% off eligible combos",
+      "code": "COMBO25",
+      "types": [
+        "skincare",
+        "combo-deals"
+      ],
+      "conditions": [
+        "The offer is advertised for combos, not every individual product.",
+        "Enter COMBO25 and confirm the reduction on the eligible combination."
+      ],
+      "storeSlug": "dot-key",
+      "sourceUrl": "https://www.dotandkey.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "derma-flat30",
+      "title": "The Derma Co: advertised 30% skincare discount",
+      "code": "FLAT30",
+      "types": [
+        "skincare"
+      ],
+      "conditions": [
+        "The merchant's page title advertises FLAT30 for skincare products.",
+        "The reviewed headline does not specify exclusions, a discount cap or an end date. Confirm these at checkout."
+      ],
+      "storeSlug": "the-derma-co",
+      "sourceUrl": "https://thedermaco.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "derma-b2g2",
+      "title": "The Derma Co: buy two, get two on selected products",
+      "code": "B2G2",
+      "types": [
+        "skincare",
+        "combo-deals"
+      ],
+      "conditions": [
+        "Only selected products are included. Add the required eligible items and check which items become free.",
+        "This is a buy-two-get-two promotion; it is not a buy-one-get-one offer."
+      ],
+      "storeSlug": "the-derma-co",
+      "sourceUrl": "https://thedermaco.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "derma-redeem35",
+      "title": "The Derma Co: up to 35% off and two freebies above Rs.899",
+      "code": "REDEEM35",
+      "types": [
+        "skincare",
+        "free-gifts"
+      ],
+      "minimumSpend": 899,
+      "conditions": [
+        "The banner advertises up to 35% off, rather than 35% on every item, plus two freebies above Rs.899.",
+        "Confirm the qualifying amount, included gifts and whether the code applies to your basket."
+      ],
+      "storeSlug": "the-derma-co",
+      "sourceUrl": "https://thedermaco.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "plum-three-glow-kit",
+      "title": "Plum: three eligible products at 30% off with a glow kit",
+      "code": "",
+      "types": [
+        "skincare",
+        "free-gifts",
+        "combo-deals"
+      ],
+      "conditions": [
+        "The merchant advertises a three-product promotion with a complimentary glow kit.",
+        "Choose eligible products and check the kit in the cart. Its advertised retail value is not an additional cash discount."
+      ],
+      "storeSlug": "plum",
+      "sourceUrl": "https://plumgoodness.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "63a906a4f79481f6bbb2027c923258ac81917e3cb2dd4bc6272c1bd19e88a180",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    },
+    {
+      "id": "plum-tote-1599",
+      "title": "Plum: tote bag above Rs.1,599",
+      "code": "",
+      "types": [
+        "skincare",
+        "free-gifts"
+      ],
+      "minimumSpend": 1599,
+      "conditions": [
+        "The merchant advertises a tote bag above Rs.1,599. Confirm the qualifying cart amount and available stock.",
+        "The bag's quoted retail value should not be subtracted from the amount you pay."
+      ],
+      "storeSlug": "plum",
+      "sourceUrl": "https://plumgoodness.com/",
+      "status": "advertised",
+      "checkedAt": "2026-10-21T09:42:03.828Z",
+      "sourceHash": "63a906a4f79481f6bbb2027c923258ac81917e3cb2dd4bc6272c1bd19e88a180",
+      "updatedAt": "2026-10-21T09:35:18.395Z"
+    }
+  ]
+}

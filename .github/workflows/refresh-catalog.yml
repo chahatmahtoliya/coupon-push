@@ -1,0 +1,76 @@
+name: Refresh catalog and sourced offer pages
+
+on:
+  schedule:
+    - cron: '17 1 * * *' # 06:47 India time; avoid the busy top of the hour.
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/refresh-catalog.yml]
+
+permissions:
+  contents: write
+  checks: read
+
+concurrency:
+  group: catalog-publication
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    defaults:
+      run:
+        working-directory: frontend-next
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend-next/package-lock.json
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - run: npm ci
+      - name: Refresh, source-check and build
+        run: npm run build:refresh
+      - name: Verify comparison gates and crawl
+        run: |
+          npm run seo:pseo-test
+          node scripts/check-seo-audit.cjs
+          python -B scripts/audit-internal-links.py
+          npm run seo:readiness
+          python -B scripts/check-savings-export.py
+      - name: Commit validated export for Cloudflare Git deployment
+        id: publish
+        working-directory: .
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- frontend-next/src/data/deployed-snapshot.json frontend-next/src/data/reviewed-offers.json frontend-next/src/data/blog-pages.json frontend-next/public frontend-next/out
+          if git diff --cached --quiet; then
+            echo 'No publication changes.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -m 'Refresh validated catalog and merchant source checks'
+          git push origin HEAD:main
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Confirm Cloudflare deployment
+        if: steps.publish.outputs.sha != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.publish.outputs.sha }}
+        run: node scripts/wait-for-deployment.mjs
+      - name: Save readiness and validation reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: catalog-and-pseo-validation
+          path: output/seo/
+          retention-days: 14
