@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { compareCouponsByNewest } from '../src/lib/coupon-order.ts';
+import { getCouponCode } from '../src/utils/coupon.ts';
 
 try {
 const root = process.cwd();
@@ -13,7 +14,7 @@ await fs.mkdir(reportDir, { recursive: true });
 
 async function request(endpoint) {
     const base = (process.env.API_URL || 'https://api.couponpush.com/api').replace(/\/$/, '');
-    const response = await fetch(`${base}/${endpoint}`, { signal: AbortSignal.timeout(15000) });
+    const response = await fetch(`${base}/${endpoint}`, { headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(15000) });
     if (!response.ok) throw new Error(`${endpoint}: HTTP ${response.status}; existing snapshot unchanged`);
     const body = await response.json();
     if (!body.success || body.data == null) throw new Error(`${endpoint}: incomplete API response`);
@@ -111,15 +112,23 @@ if (Object.keys(legacyPages).length) {
 }
 const legacyStoreIds = new Set(Object.values(legacyPages).map(page => page.store.id));
 const canonicalStores = Object.entries(snapshot.stores).filter(([slug]) => !aliases[slug]);
+const placeholderOffers = canonicalStores.flatMap(([, page]) => page.coupons)
+    .filter(c => c.code?.trim() && !getCouponCode(c));
+if (placeholderOffers.length) {
+    await fs.writeFile(path.join(reportDir, `placeholder-offer-review-${Date.now()}.json`), JSON.stringify({
+        reason: 'Status labels are not coupon codes; review the merchant source and saving before republication', coupons: placeholderOffers,
+    }, null, 2));
+}
 for (const [slug, page] of canonicalStores) {
+    page.coupons = page.coupons.filter(c => !c.code?.trim() || getCouponCode(c))
+        .map(c => ({ ...c, code: getCouponCode(c), coupon_type: getCouponCode(c) ? 'code' : 'deal' }));
     page.store.coupon_count = page.coupons.length;
-    page.coupons = page.coupons.map(c => ({ ...c, coupon_type: c.code?.trim() ? 'code' : 'deal' }));
     const category = snapshot.categoriesPage.initialCategories.find(c => c.id === page.store.category_id);
     if (category) Object.assign(page.store, { category_slug: category.slug, category_name: category.name });
 }
 for (const alias of Object.keys(aliases)) delete snapshot.stores[alias];
 snapshot.storesPage.initialStores = snapshot.storesPage.initialStores.filter(s => !aliases[s.slug]).map(s => snapshot.stores[s.slug]?.store || s);
-const categoryExtras = Object.values(snapshot.categories).flatMap(c => c.coupons || []).filter(c => c.store_id !== cetaphil.store.id && !legacyStoreIds.has(c.store_id) && !aliases[c.store_slug]);
+const categoryExtras = Object.values(snapshot.categories).flatMap(c => c.coupons || []).filter(c => c.store_id !== cetaphil.store.id && !legacyStoreIds.has(c.store_id) && !aliases[c.store_slug] && (!c.code?.trim() || getCouponCode(c)));
 const coupons = [...new Map([...categoryExtras, ...canonicalStores.flatMap(([, page]) => page.coupons)].map(c => [c.id, c])).values()];
 const couponMap = Object.fromEntries(coupons.map(c => [c.id, c]));
 snapshot.coupons = Object.fromEntries([...new Set([...Object.keys(snapshot.coupons || {}), ...Object.keys(couponMap)])].map(id => [id, couponMap[id] || null]));

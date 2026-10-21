@@ -4,6 +4,7 @@ import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { hasIndexableCategoryContent, hasIndexableStoreContent } from '@/lib/indexability';
 import { getLatestContentUpdate } from '@/lib/content-dates';
 import { partnersEnabled } from '@/lib/partners-feature';
+import { getStoreSeoUpdatedAt } from '@/lib/store-pseo';
 
 export const corePages = [
     { path: '/', title: 'Home' }, { path: '/coupons/', title: 'All coupons' },
@@ -17,7 +18,7 @@ export const corePages = [
 export function getSiteNavigation() {
     const stores = Object.values(deployedSnapshot.stores).filter(hasIndexableStoreContent).map(data => ({
         path: `/store/${data.store.slug}/`, title: data.store.name,
-        lastModified: getLatestContentUpdate(data.store, ...data.coupons),
+        lastModified: getLatestContentUpdate(data.store, ...data.coupons, { updated_at: getStoreSeoUpdatedAt(data.store.slug) }),
     })).sort((a, b) => a.title.localeCompare(b.title));
     const categories = (deployedSnapshot.categoriesPage?.initialCategories || []).flatMap(category => {
         const data = deployedSnapshot.categories[category.slug] as { coupons?: Coupon[] } | undefined;

@@ -9,7 +9,7 @@ import { deployedSnapshot } from '@/lib/deployed-snapshot';
 import { getLatestContentUpdate } from '@/lib/content-dates';
 import { getActiveCoupons, hasIndexableStoreContent } from '@/lib/indexability';
 import { getCanonicalStoreSlug, isCanonicalStoreSlug } from '@/lib/routes';
-import { getStoreFallbackFaqs, getStorePseoContent } from '@/lib/store-pseo';
+import { getStoreFallbackFaqs, getStorePseoContent, getStoreSeoUpdatedAt } from '@/lib/store-pseo';
 import { getStoreGuide } from '@/lib/site-navigation';
 import Link from '@/components/common/SiteLink';
 
@@ -99,7 +99,7 @@ export default async function StorePage({ params }: { params: Promise<{ slug: st
     const pseo = getStorePseoContent({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const customDescription = hasContent(initialData.store.meta_description) ? initialData.store.meta_description!.trim() : '';
     const description = pseo?.metaDescription || customDescription || storeDescription(storeName, offerCount, codeCount, initialData.store.description);
-    const dateModified = getLatestContentUpdate(initialData.store, ...coupons);
+    const dateModified = getLatestContentUpdate(initialData.store, ...coupons, { updated_at: getStoreSeoUpdatedAt(canonicalSlug) });
     const faqs = initialData.store.page_template === 'festival' ? getFestivalCampaign(initialData.store, slug).faqs : pseo?.faqs || getStoreFallbackFaqs({ slug: canonicalSlug, storeName, coupons, offerCount, codeCount, dealCount });
     const structuredData = [
         {

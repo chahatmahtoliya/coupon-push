@@ -28,7 +28,7 @@ interface HomePageClientProps {
 type StoreKey = 'amazon' | 'flipkart' | 'ajio';
 
 const storeSections: Array<{ key: StoreKey; slug: string; fallbackName: string; title: string }> = [
-    { key: 'amazon', slug: 'amazon', fallbackName: 'Amazon', title: 'More ways to save: Amazon promo codes' },
+    { key: 'amazon', slug: 'amazon', fallbackName: 'Amazon', title: 'Amazon offers & deals' },
     { key: 'flipkart', slug: 'flipkart', fallbackName: 'Flipkart', title: "Today's Top Flipkart Deals" },
     { key: 'ajio', slug: 'ajio', fallbackName: 'AJIO', title: "Today's Top AJIO Deals" },
 ];
@@ -70,7 +70,7 @@ function EmptyState({ label }: { label: string }) {
 }
 
 function SlideHeroCard({ slide, priority = false, onImageError, onImageLoad }: { slide: HeroSlide; priority?: boolean; onImageError: (url: string) => void; onImageLoad: (url: string) => void }) {
-    const target = slide.cta_url || '/deals';
+    const target = slide.cta_url || '/deals/';
     const visual = imageUrl(slide.image);
     const [failedOptimizedUrl, setFailedOptimizedUrl] = useState<string | null>(null);
     const useOriginal = Boolean(visual && failedOptimizedUrl === visual);
@@ -279,7 +279,7 @@ export default function HomePageClient(props: HomePageClientProps) {
     };
 
     return <>
-        <h1 className="visually-hidden">CouponPush - Best Coupons, Promo Codes and Deals</h1>
+        <h1 className="visually-hidden">Coupon Codes, Deals and Offers in India</h1>
 
         {/* Hero Banner Carousel */}
         <section className="cp-hero cp-shell" aria-label="Featured deals" onMouseEnter={() => setHeroInteracting(true)} onMouseLeave={() => setHeroInteracting(false)} onFocusCapture={() => setHeroInteracting(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setHeroInteracting(false); }}>
@@ -384,6 +384,8 @@ export default function HomePageClient(props: HomePageClientProps) {
         <section className="cp-section cp-shell" aria-label="CouponPush shopping guides">
             <div className="cp-section-head cp-section-head-inline"><h2>Shopping guides &amp; first-order offers</h2><Link href="/blog/" className="cp-text-link">View all guides <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
             <ul className="cp-guide-links">
+                <li><Link href="/store/flipkart/#store-ui-earbuds-offers">Flipkart earbuds offers: compare coupons and bank prices</Link></li>
+                <li><Link href="/store/amazon/#store-ui-headphone-offers">Amazon headphone offers: product coupons and checkout terms</Link></li>
                 <li><Link href={festival2026.path}>Amazon Great Indian Festival 2026: early deals &amp; bank offers</Link></li>
                 <li><Link href="/blog/first-order-coupons-india">First-order coupons in India: 13 new-user offers compared</Link></li>
                 <li><Link href="/blog/diwali-sale-coupon-guide-2026">Diwali 2026 coupon guide: how festival offers stack</Link></li>

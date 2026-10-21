@@ -124,6 +124,11 @@ function buildHostingerProfile(context: StorePseoContext): StorePseoContent {
     };
 }
 
+// Editorial revision dates change when this copy is reviewed, never per build.
+export function getStoreSeoUpdatedAt(slug: string): string | undefined {
+    return ['amazon', 'flipkart', 'blinkit', 'the-derma-co'].includes(slug) ? '2026-10-21T00:00:00Z' : undefined;
+}
+
 export function getStorePseoContent(context: StorePseoContext): StorePseoContent | null {
     if (context.slug === 'hostinger') return buildHostingerProfile(context);
     const profile = shoppingProfiles[context.slug];
@@ -134,7 +139,7 @@ export function getStorePseoContent(context: StorePseoContext): StorePseoContent
             metaDescription: `Compare ${context.storeName} offers with ${context.codeCount} listed codes. Review ${profile.focus}, exclusions and final checkout costs before ordering.`,
             h1: heading,
             heroDescription: `Compare ${context.storeName} savings for your basket. Check ${profile.focus} before choosing an offer.`,
-            sections: [{ id: 'shopping-guide', icon: 'fa-list-check', title: `${context.storeName} offer checklist`, paragraphs: [
+            sections: [...(profile.sections || []), { id: 'shopping-guide', icon: 'fa-list-check', title: `${context.storeName} offer checklist`, paragraphs: [
                 context.offerCount ? `${context.offerCount} offers are listed, including ${context.codeCount} codes and ${context.dealCount} deals. Listed availability is not a guarantee that an offer applies to your account.` : 'No active offers are listed. Check the merchant for current availability.',
             ], items: profile.items }, { id: 'apply-code', icon: 'fa-ticket', title: `How to use a ${context.storeName} coupon code`, paragraphs: [
                 `Choose a listed offer and review its conditions. Add eligible products on ${context.storeName}, enter the code if one is required, and confirm the discount in your order summary. An automatic deal does not need a code.`,
@@ -184,8 +189,78 @@ export function getStoreFallbackFaqs(context: StorePseoContext): StorePseoFaq[] 
     ];
 }
 
-type ShoppingProfile = { focus: string; items: NonNullable<StorePseoSection['items']>; faqs: StorePseoFaq[] };
+type ShoppingProfile = { focus: string; sections?: StorePseoSection[]; items: NonNullable<StorePseoSection['items']>; faqs: StorePseoFaq[] };
 const shoppingProfiles: Record<string, ShoppingProfile> = {
+    amazon: {
+        focus: 'product coupons, headphone variants and payment eligibility',
+        sections: [{
+            id: 'headphone-offers', icon: 'fa-headphones', title: 'Amazon headphone offers: code, coupon or sale price?',
+            paragraphs: [
+                'For headphones and earbuds, compare the exact model, colour, seller and included accessories. A discount on a different variant is not a like-for-like saving. A crossed-out list price also does not establish the lowest recent selling price.',
+                'An Amazon product-page coupon and a checkout promo code are different types of offer. If a coupon is displayed on the selected listing, review and select it as instructed before checkout. Use a public code only when its terms include your item and account. This page does not confirm a universal headphone coupon code.',
+                'Compare the amount due for the same basket after delivery and any eligible payment offer. Keep an instant discount separate from cashback payable later, and do not assume a bank benefit combines with a product coupon.',
+            ],
+        }],
+        items: [
+            { title: 'Exact item and seller', description: 'Match the headphone model, variant, condition and seller before comparing prices. Review the listing warranty and return or replacement terms.' },
+            { title: 'Coupon versus promo code', description: 'Check whether the saving is a selectable product coupon, a public checkout code, a payment offer or a reduced selling price. Each has its own eligibility.' },
+            { title: 'Checkout total', description: 'Review minimum spend, discount cap, payment method, delivery charges and the actual amount due. A historical sale listing is not proof that the campaign is still running.' },
+        ],
+        faqs: [
+            { question: 'Is there an Amazon coupon code for headphones?', answer: 'No universal headphone code is confirmed by this guide. Check the exact headphone listing for a product coupon and use a public promo code only when its terms include that item. Confirm the final discount before paying.' },
+            { question: 'Do Amazon product coupons need a code?', answer: 'A product coupon may be selected on the eligible listing without typing a public code. A checkout promo code requires a usable code and matching terms. Follow the instructions shown for your selected item.' },
+            { question: 'Can an Amazon bank offer combine with a coupon?', answer: 'Read both promotions and check the order summary using the eligible payment method. Minimum spend, caps, card type and EMI requirements can change eligibility; this guide does not promise stacking.' },
+            { question: 'Is an old Amazon sale price still available?', answer: 'A previously listed sale price is not a live price check. Open the exact product and variant, review current availability and confirm the payable total before ordering.' },
+        ],
+    },
+    flipkart: {
+        focus: 'earbud models, seller terms and bank-offer restrictions',
+        sections: [{
+            id: 'earbuds-offers', icon: 'fa-headphones', title: 'Flipkart earbuds offers: how to compare the real saving',
+            paragraphs: [
+                'Start with the exact earbud model and variant you want. Compare the seller, warranty, delivery cost and return or replacement policy as well as the displayed price. A large percentage off list price does not establish the best price for that model.',
+                'Sale pricing, checkout coupons and bank offers are different savings. A bank price may depend on the card, minimum transaction amount, discount cap or EMI option. Check which benefit actually applies to your basket before comparing two offers.',
+                'Text such as “coupon code activated” is a status label, not a code to paste at checkout. This page does not confirm a universal earbuds code. Use a code only when it is explicitly listed with matching eligibility and the order summary shows the saving.',
+            ],
+        }],
+        items: [
+            { title: 'Match the earbud variant', description: 'Compare the same model, colour and product condition. Check the seller and included warranty rather than comparing unrelated starting prices.' },
+            { title: 'Separate payment benefits', description: 'Read the payment offer for card type, minimum spend, maximum saving and EMI requirements. Cashback earned later is different from money off the current order.' },
+            { title: 'Confirm the final price', description: 'Check delivery charges and the total at checkout. Do not assume a category-wide headline applies to every earbud or stacks with another promotion.' },
+        ],
+        faqs: [
+            { question: 'Is there a Flipkart coupon code for earbuds?', answer: 'This guide does not confirm a universal earbuds code. Compare current listings for the exact model and use a code only when its terms include your product and account. A product price reduction or bank offer may apply without a public code.' },
+            { question: 'Is “coupon code activated” a valid Flipkart coupon?', answer: 'It is a status label, not a usable checkout code. Do not paste it into the promo-code field. Review the merchant offer and confirm any saving in the final order total.' },
+            { question: 'Why is the Flipkart price higher at checkout?', answer: 'Compare the exact variant and seller, delivery charges and the conditions behind the advertised price. A price that includes a bank benefit may require an eligible card, transaction amount or payment option.' },
+            { question: 'Can existing users use a Flipkart earbuds offer?', answer: 'Customer eligibility depends on the specific promotion. Check whether it is limited to a new account, selected users, a payment method or certain products; do not assume a sale label is a first-order coupon.' },
+        ],
+    },
+    blinkit: {
+        focus: 'account eligibility, payment requirements and delivery charges',
+        items: [
+            { title: 'New or existing account', description: 'Review whether the promotion is public, first-order only or targeted to a particular account. Use the offer shown for your signed-in account and delivery location.' },
+            { title: 'Basket and payment rules', description: 'Check eligible products, minimum spend, discount cap and the required payment method. A reward credited later is not an instant reduction in this order.' },
+            { title: 'Final delivered cost', description: 'Include delivery, handling and any other checkout charges when comparing offers. Check the total again after changing the delivery address or basket.' },
+        ],
+        faqs: [
+            { question: 'Can existing users use a Blinkit coupon code?', answer: 'It depends on the offer and account. Check whether the terms specify new users, selected accounts or a required payment method, then confirm the saving in your signed-in checkout.' },
+            { question: 'Why does a Blinkit coupon not apply?', answer: 'Check minimum spend, excluded products, delivery location, expiry, customer eligibility and payment method. A code found elsewhere may be targeted or no longer offered to your account.' },
+            { question: 'Does a Blinkit discount cover delivery charges?', answer: 'Check the exact promotion and order breakdown. Do not assume an item discount also removes delivery or handling charges; compare the final delivered total.' },
+        ],
+    },
+    'the-derma-co': {
+        focus: 'buy-one-get-one terms, pack sizes and confirmed sale dates',
+        items: [
+            { title: 'Bundle eligibility', description: 'Check which products qualify and which item becomes free. Compare full-size packs separately from samples or gifts.' },
+            { title: 'Sale end date', description: 'Use a dated merchant announcement or the terms of the specific promotion. Do not infer an end date from a previous campaign or another coupon site.' },
+            { title: 'Coupon or bundle', description: 'Compare the payable amount for the same products and quantities. Confirm whether the bundle needs a code and whether another promotion can combine with it.' },
+        ],
+        faqs: [
+            { question: 'What is the last date of The Derma Co buy-one-get-one sale?', answer: 'No current buy-one-get-one end date is confirmed by this guide. Check the official promotion for its dates and eligible products before planning an order. An expired listing does not establish a new sale date.' },
+            { question: 'Can I use a Derma Co promo code with a buy-one-get-one offer?', answer: 'Read the terms for both offers and compare the final total for the same products. A bundle and a separate coupon may be alternatives; stacking is not confirmed here.' },
+            { question: 'Does every Derma Co product qualify for a bundle?', answer: 'Check the eligible product list, pack sizes, gift rules and stock availability for the specific promotion. A sale headline alone does not establish that every item qualifies.' },
+        ],
+    },
     'kapiva-coupon-code': {
         focus: 'pack size, subscriptions and minimum spend',
         items: [

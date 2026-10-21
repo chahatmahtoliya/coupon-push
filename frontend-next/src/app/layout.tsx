@@ -12,7 +12,7 @@ import { PartnerTracking } from '@/components/common/PartnerTracking';
 export const metadata: Metadata = {
     metadataBase: new URL('https://couponpush.com'),
     title: {
-        default: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
+        default: 'Coupon Codes, Deals & Offers in India | CouponPush',
         template: '%s | CouponPush',
     },
     description:

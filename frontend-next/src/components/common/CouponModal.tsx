@@ -6,6 +6,7 @@ import type { Coupon } from '@/types';
 import { trackClick } from '@/services/api';
 import { getStorePath } from '@/lib/routes';
 import { OfferEvidence } from './OfferEvidence';
+import { getCouponCode } from '@/utils/coupon';
 
 interface CouponModalProps {
     coupon: Coupon | null;
@@ -41,9 +42,10 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
     }, [coupon]);
 
     const handleCopyCode = async () => {
-        if (coupon?.code) {
+        const code = coupon ? getCouponCode(coupon) : '';
+        if (code) {
             try {
-                await navigator.clipboard.writeText(coupon.code);
+                await navigator.clipboard.writeText(code);
                 setCopied(true);
                 setTimeout(() => setCopied(false), 3000);
             } catch (err) {
@@ -60,7 +62,8 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
 
     if (!isOpen || !coupon || !mounted) return null;
 
-    const hasCode = coupon.code && coupon.code.trim() !== '';
+    const code = getCouponCode(coupon);
+    const hasCode = Boolean(code);
 
     return createPortal(
         <div className="modal-overlay-new" onClick={onClose}>
@@ -85,7 +88,7 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
 
                 {/* Body Content */}
                 <div className="modal-body-new">
-                    <span className="modal-exclusive-badge">{coupon.code ? 'COUPON CODE' : 'LISTED OFFER'}</span>
+                    <span className="modal-exclusive-badge">{hasCode ? 'COUPON CODE' : 'LISTED OFFER'}</span>
                     <h2 className="modal-title-new">{coupon.title}</h2>
                     <p className="modal-description-new">
                         {coupon.description || 'Check eligible products, minimum spend and customer restrictions on the merchant site before checkout.'}
@@ -94,7 +97,7 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
                     {hasCode ? (
                         <div className="modal-code-container">
                             <div className="modal-code-box">
-                                <span className="modal-code-text">{coupon.code}</span>
+                                <span className="modal-code-text">{code}</span>
                                 <button
                                     className={`modal-copy-btn ${copied ? 'copied' : ''}`}
                                     onClick={handleCopyCode}
@@ -106,8 +109,8 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
                     ) : (
                         <div className="modal-code-container">
                             <div className="modal-code-box modal-deal-activated">
-                                <span className="modal-code-text">DEAL ACTIVATED</span>
-                                <span className="modal-deal-check"><i className="fas fa-check"></i> Activated</span>
+                                <span className="modal-code-text">Check offer on store</span>
+                                <span className="modal-deal-check">Confirm at checkout</span>
                             </div>
                         </div>
                     )}
@@ -120,7 +123,7 @@ export function CouponModal({ coupon, isOpen, onClose }: CouponModalProps) {
                 {/* Footer */}
                 <div className="modal-footer-new">
                     <div className="modal-feedback-row">
-                        <span className="modal-feedback-text">Did this code work?</span>
+                        <span className="modal-feedback-text">{hasCode ? 'Did this code work?' : 'Was this offer available?'}</span>
                         <div className="modal-feedback-icons">
                             <button className="modal-feedback-icon yes" title="Yes">
                                 <i className="fas fa-thumbs-up"></i>

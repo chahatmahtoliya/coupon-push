@@ -4,13 +4,13 @@ import { couponsApi, dealsApi, heroSlidesApi, seasonalOffersApi, storesApi } fro
 import { deployedSnapshot } from '@/lib/deployed-snapshot';
 
 export const metadata: Metadata = {
-    title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
+    title: { absolute: 'Coupon Codes, Deals & Offers in India | CouponPush' },
     description: 'Compare coupon codes and shopping offers in India. Browse stores, check offer conditions and find savings for your next order.',
     alternates: { canonical: 'https://couponpush.com/' },
     openGraph: {
         type: 'website',
         url: 'https://couponpush.com/',
-        title: 'CouponPush - Best Coupons, Promo Codes & Deals 2026',
+        title: 'Coupon Codes, Deals & Offers in India | CouponPush',
         description: 'Compare coupon codes and shopping offers in India. Browse stores, check offer conditions and find savings for your next order.',
     },
 };

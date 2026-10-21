@@ -1,11 +1,24 @@
 import assert from 'node:assert/strict';
-import { couponExpiry, couponFilterQuery, defaultFilters, filterCoupons, readCouponFilters } from '../src/lib/coupon-filters.ts';
+import fs from 'node:fs';
+import { createRequire } from 'node:module';
+import ts from 'typescript';
+
+// Use the project's TS resolver in this test, including extensionless imports.
+// Node's native type stripping does not resolve the application's bundler paths.
+const require = createRequire(import.meta.url);
+require.extensions['.ts'] = (module, filename) => {
+    const output = ts.transpileModule(fs.readFileSync(filename, 'utf8'), {
+        compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, esModuleInterop: true },
+    });
+    module._compile(output.outputText, filename);
+};
+const { couponExpiry, couponFilterQuery, defaultFilters, filterCoupons, readCouponFilters } = require('../src/lib/coupon-filters.ts');
 
 const now = Date.parse('2026-09-11T12:00:00+05:30');
 const base = { store_name: 'Beauty Shop', description: 'First order offer', discount_type: 'percentage', discount_value: 10, expiry_date: null, is_verified: false, created_at: '2026-09-01 10:00:00', click_count: 0, categorySlugs: ['beauty'] };
 const coupons = [
     { ...base, id: 1, store_slug: 'alpha', title: 'Ten percent', code: 'SAVE10', click_count: 30 },
-    { ...base, id: 2, store_slug: 'beta', title: 'Sale deal', code: null, categorySlugs: ['fashion'], created_at: '2026-09-10 10:00:00', expiry_date: '2026-09-11', discount_type: 'flat', is_verified: true },
+    { ...base, id: 2, store_slug: 'beta', title: 'Sale deal', code: null, categorySlugs: ['fashion'], created_at: '2026-09-10 10:00:00', expiry_date: '2026-09-11', discount_type: 'flat', is_verified: true, source_url: 'https://merchant.example/offer', checked_at: '2026-09-10', verification_method: 'checkout_tested' },
     { ...base, id: 3, store_slug: 'alpha', title: 'Old offer', code: 'OLD', expiry_date: '2026-09-10' },
     { ...base, id: 4, store_slug: 'beta', title: 'Unknown date', code: '', expiry_date: 'invalid' },
 ];
