@@ -10,7 +10,7 @@ Update the existing stylesheet for the feature being changed. Avoid adding anoth
 | `category-refresh.css` | Category directory and category results |
 | `seo.css` | Offer evidence, site directory, and related-resource links |
 
-Route-specific CSS Modules stay next to the stores and coupons pages. Component CSS Modules stay next to their components.
+Route-specific CSS Modules stay next to the stores, coupons, and search pages. `src/app/search/search.module.css` owns the search form, result filters, cards, and search states. Component CSS Modules stay next to their components.
 
 The partner landing page, account forms, dashboard and editors share `src/app/partners/partners.module.css`. Partner entry points in the public header remain in `style.css`.
 
