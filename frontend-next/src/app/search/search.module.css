@@ -77,6 +77,8 @@
 .offerFooter > span { color: var(--search-muted); font-size: 12px; }
 .offerFooter button, .retry { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 10px 15px; border: 1px solid #ffd1be; border-radius: 8px; background: var(--search-tint); color: var(--search-accent); font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
 .offerFooter button:hover, .retry:hover { border-color: var(--primary); background: #ffe5d8; }
+.offerFooter button.viewDeal { padding-inline: 0; border: 0; background: transparent; }
+.offerFooter button.viewDeal:hover { background: transparent; color: #81300f; text-decoration: underline; text-underline-offset: 4px; }
 .termsNote { margin: 18px 0 0; color: var(--search-muted); font-size: 12px; line-height: 1.6; }
 
 .empty { display: flex; flex-direction: column; align-items: center; padding: 56px 20px; text-align: center; }

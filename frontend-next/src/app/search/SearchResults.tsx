@@ -65,7 +65,7 @@ function OfferCard({ coupon, onOpen }: { coupon: Coupon; onOpen: (coupon: Coupon
         {coupon.description && <CouponDescription className={styles.description} previewLines={2}>{coupon.description}</CouponDescription>}
         <div className={styles.offerFooter}>
             <span>{hasCode ? 'Apply at checkout' : 'No code needed'}</span>
-            <button type="button" onClick={() => onOpen(coupon)} aria-label={`${hasCode ? 'Get code' : 'View deal'}: ${coupon.title}`}>{hasCode ? 'Get code' : 'View deal'}<i className="fas fa-arrow-right" aria-hidden="true" /></button>
+            <button type="button" className={hasCode ? undefined : styles.viewDeal} onClick={() => onOpen(coupon)} aria-label={`${hasCode ? 'Get code' : 'View deal'}: ${coupon.title}`}>{hasCode ? 'Get code' : 'View deal'}<i className="fas fa-arrow-right" aria-hidden="true" /></button>
         </div>
     </article>;
 }
