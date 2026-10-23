@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-22T06:09:50.378Z",
+  "checkedAt": "2026-10-23T06:05:06.009Z",
   "offers": [
     {
       "id": "dot-key-sitewide",
@@ -14,10 +14,10 @@
       ],
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
-      "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
-      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
-      "updatedAt": "2026-10-21T09:35:18.395Z"
+      "status": "not-advertised",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
       "id": "dot-key-gift-799",
@@ -34,10 +34,10 @@
       ],
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
-      "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
-      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
-      "updatedAt": "2026-10-21T09:35:18.395Z"
+      "status": "not-advertised",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
       "id": "dot-key-gifts-1049",
@@ -54,10 +54,10 @@
       ],
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
-      "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
-      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
-      "updatedAt": "2026-10-21T09:35:18.395Z"
+      "status": "not-advertised",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
       "id": "dot-key-combo25",
@@ -73,10 +73,10 @@
       ],
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
-      "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
-      "sourceHash": "f2e0065b3b6303d82f10f4c8acaa0544ef1d508d19f474c3c5ff083577a820d8",
-      "updatedAt": "2026-10-21T09:35:18.395Z"
+      "status": "not-advertised",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
       "id": "derma-flat30",
@@ -92,7 +92,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -111,7 +111,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -131,7 +131,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -151,8 +151,8 @@
       "storeSlug": "plum",
       "sourceUrl": "https://plumgoodness.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
-      "sourceHash": "e4dc76495d1856633470cc1427faf673c935ec743187ddcba967fd8d15fa9b1f",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "sourceHash": "2795757ae5a7de2be97670463b8ead7d7ed4f53f7353377e4527ca0913e2928b",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
     {
@@ -171,8 +171,8 @@
       "storeSlug": "plum",
       "sourceUrl": "https://plumgoodness.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-22T06:09:50.378Z",
-      "sourceHash": "e4dc76495d1856633470cc1427faf673c935ec743187ddcba967fd8d15fa9b1f",
+      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "sourceHash": "2795757ae5a7de2be97670463b8ead7d7ed4f53f7353377e4527ca0913e2928b",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     }
   ]
