@@ -32,6 +32,7 @@ export function FilterSidebar({
     onValidityChange
 }: FilterSidebarProps) {
     const [storeSearch, setStoreSearch] = useState('');
+    const [showAllStores, setShowAllStores] = useState(false);
 
     const discountOptions = [
         { value: 'under10', label: 'Under 10% Off' },
@@ -103,12 +104,13 @@ export function FilterSidebar({
                     <input
                         type="text"
                         placeholder="Find a store..."
+                        aria-label="Find a store"
                         value={storeSearch}
                         onChange={(e) => setStoreSearch(e.target.value)}
                     />
                 </div>
                 <div className="filter-checkbox-list">
-                    {filteredStores.slice(0, 5).map(store => (
+                    {(showAllStores ? filteredStores : filteredStores.slice(0, 5)).map(store => (
                         <label key={store.slug} className="filter-checkbox-item">
                             <input
                                 type="checkbox"
@@ -121,6 +123,7 @@ export function FilterSidebar({
                         </label>
                     ))}
                 </div>
+                {filteredStores.length > 5 && <button type="button" className="filter-store-expand" aria-expanded={showAllStores} onClick={() => setShowAllStores(!showAllStores)}>{showAllStores ? 'Show less' : 'Show more'} <i className={`fas fa-chevron-${showAllStores ? 'up' : 'down'}`} aria-hidden="true" /></button>}
             </div>
 
             {/* Discount Percentage */}

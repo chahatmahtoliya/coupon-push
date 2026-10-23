@@ -55,7 +55,7 @@ if (refresh) {
     const seasonal = assertList(preservePromotions ? snapshot.homepage.initialSeasonalOffers : await request('seasonal-offers.php?active=true'), 'seasonal offers');
     const categoryPages = {};
     for (const category of categories.filter(c => c.coupon_count > 0)) {
-        categoryPages[category.slug] = { coupons: assertList(await request(`coupons.php?category=${encodeURIComponent(category.slug)}`), category.slug) };
+        categoryPages[category.slug] = { coupons: assertList(await request(`coupons.php?category=${encodeURIComponent(category.slug)}&limit=500`), category.slug) };
     }
     Object.assign(snapshot, {
         stores: pages, storesPage: { initialStores: stores }, categoriesPage: { initialCategories: categories },

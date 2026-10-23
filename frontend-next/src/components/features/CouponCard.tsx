@@ -47,9 +47,9 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
                 text: `${coupon.discount_value}% OFF`,
                 color: 'var(--primary)'
             };
-        } else if (coupon.discount_type === 'fixed') {
+        } else if (coupon.discount_type === 'fixed' || String(coupon.discount_type) === 'flat') {
             return {
-                text: `₹${coupon.discount_value} OFF`,
+                text: `₹${coupon.discount_value.toLocaleString('en-IN')} OFF`,
                 color: '#22C55E'
             };
         }
@@ -110,8 +110,7 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
                         {(coupon.original_price || coupon.sale_price) && <div className="coupon-price-display">{coupon.sale_price && <strong className="coupon-sale-price">₹{coupon.sale_price.toLocaleString('en-IN')}</strong>}{coupon.original_price && <span className="coupon-original-price">₹{coupon.original_price.toLocaleString('en-IN')}</span>}</div>}
                         <h3 className="coupon-card-v2-title">{coupon.title}</h3>
                         <Link href={getStorePath(coupon.store_slug)} className="coupon-card-v2-store">{coupon.store_name}</Link>
-                        {coupon.description && <CouponDescription className="coupon-card-v2-description">{coupon.description}</CouponDescription>}
-                        <div className="coupon-card-v2-footer"><span className="coupon-card-v2-expiry"><i className="far fa-clock" aria-hidden="true" /> {getExpiryText()}</span><button type="button" className="coupon-card-v2-action" onClick={handleClick}>{hasCode ? 'Get code' : 'View deal'} <i className="fas fa-arrow-right" aria-hidden="true" /></button></div>
+                        <div className="coupon-card-v2-footer">{coupon.expiry_date && <span className="coupon-card-v2-expiry"><i className="far fa-clock" aria-hidden="true" /> {getExpiryText()}</span>}<button type="button" className="coupon-card-v2-action" onClick={handleClick}>{hasCode ? 'Get code' : 'View deal'} <i className="fas fa-arrow-right" aria-hidden="true" /></button></div>
                     </div>
                 </article>
 

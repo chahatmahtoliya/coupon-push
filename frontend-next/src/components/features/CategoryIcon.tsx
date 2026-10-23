@@ -1,0 +1,72 @@
+import DevicesOtherOutlined from '@mui/icons-material/DevicesOtherOutlined';
+import HeadphonesOutlined from '@mui/icons-material/HeadphonesOutlined';
+import PhoneAndroidOutlined from '@mui/icons-material/PhoneAndroidOutlined';
+import LaptopMacOutlined from '@mui/icons-material/LaptopMacOutlined';
+import WatchOutlined from '@mui/icons-material/WatchOutlined';
+import BatteryChargingFullOutlined from '@mui/icons-material/BatteryChargingFullOutlined';
+import CableOutlined from '@mui/icons-material/CableOutlined';
+import SpeakerOutlined from '@mui/icons-material/SpeakerOutlined';
+import TvOutlined from '@mui/icons-material/TvOutlined';
+import KitchenOutlined from '@mui/icons-material/KitchenOutlined';
+import AcUnitOutlined from '@mui/icons-material/AcUnitOutlined';
+import LocalLaundryServiceOutlined from '@mui/icons-material/LocalLaundryServiceOutlined';
+import MicrowaveOutlined from '@mui/icons-material/MicrowaveOutlined';
+import SportsEsportsOutlined from '@mui/icons-material/SportsEsportsOutlined';
+import CheckroomOutlined from '@mui/icons-material/CheckroomOutlined';
+import DirectionsRunOutlined from '@mui/icons-material/DirectionsRunOutlined';
+import SpaOutlined from '@mui/icons-material/SpaOutlined';
+import FitnessCenterOutlined from '@mui/icons-material/FitnessCenterOutlined';
+import ChildCareOutlined from '@mui/icons-material/ChildCareOutlined';
+import RestaurantOutlined from '@mui/icons-material/RestaurantOutlined';
+import LocalGroceryStoreOutlined from '@mui/icons-material/LocalGroceryStoreOutlined';
+import WeekendOutlined from '@mui/icons-material/WeekendOutlined';
+import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
+import FlightTakeoffOutlined from '@mui/icons-material/FlightTakeoffOutlined';
+import DirectionsBusOutlined from '@mui/icons-material/DirectionsBusOutlined';
+import MovieOutlined from '@mui/icons-material/MovieOutlined';
+import MusicNoteOutlined from '@mui/icons-material/MusicNoteOutlined';
+import DnsOutlined from '@mui/icons-material/DnsOutlined';
+import LanguageOutlined from '@mui/icons-material/LanguageOutlined';
+import MailOutlineOutlined from '@mui/icons-material/MailOutlineOutlined';
+import CreditCardOutlined from '@mui/icons-material/CreditCardOutlined';
+import LocalOfferOutlined from '@mui/icons-material/LocalOfferOutlined';
+import SchoolOutlined from '@mui/icons-material/SchoolOutlined';
+import ShoppingBagOutlined from '@mui/icons-material/ShoppingBagOutlined';
+
+export default function CategoryIcon({ slug, className }: { slug: string; className?: string }) {
+    const Icon = /power-bank/.test(slug) ? BatteryChargingFullOutlined
+        : /charger|cable/.test(slug) ? CableOutlined
+        : /earbud|headphone|neckband|audio/.test(slug) ? HeadphonesOutlined
+        : /mobile|smartphone/.test(slug) ? PhoneAndroidOutlined
+        : /laptop|tablet/.test(slug) ? LaptopMacOutlined
+        : /watch/.test(slug) ? WatchOutlined
+        : /speaker|soundbar/.test(slug) ? SpeakerOutlined
+        : /tv|projector/.test(slug) ? TvOutlined
+        : /refrigerator|kitchen|dishwasher/.test(slug) ? KitchenOutlined
+        : /conditioner/.test(slug) ? AcUnitOutlined
+        : /washing/.test(slug) ? LocalLaundryServiceOutlined
+        : /microwave/.test(slug) ? MicrowaveOutlined
+        : /gaming|toys/.test(slug) ? SportsEsportsOutlined
+        : /sports|footwear/.test(slug) ? DirectionsRunOutlined
+        : /fashion|ethnic/.test(slug) ? CheckroomOutlined
+        : /baby/.test(slug) ? ChildCareOutlined
+        : /skin|beauty/.test(slug) ? SpaOutlined
+        : /protein|health/.test(slug) ? FitnessCenterOutlined
+        : /grocery|essentials/.test(slug) ? LocalGroceryStoreOutlined
+        : /food|dining/.test(slug) ? RestaurantOutlined
+        : /home|appliance/.test(slug) ? WeekendOutlined
+        : /books|kindle/.test(slug) ? MenuBookOutlined
+        : /(^|-)bus(?:-|$)/.test(slug) ? DirectionsBusOutlined
+        : /travel|hotel/.test(slug) ? FlightTakeoffOutlined
+        : /music/.test(slug) ? MusicNoteOutlined
+        : /video|entertainment/.test(slug) ? MovieOutlined
+        : /email/.test(slug) ? MailOutlineOutlined
+        : /hosting/.test(slug) ? DnsOutlined
+        : /website|domain/.test(slug) ? LanguageOutlined
+        : /bank|payment|emi/.test(slug) ? CreditCardOutlined
+        : /student/.test(slug) ? SchoolOutlined
+        : /offer|shipping|coupon|prime/.test(slug) ? LocalOfferOutlined
+        : /accessories/.test(slug) ? ShoppingBagOutlined
+        : DevicesOtherOutlined;
+    return <Icon className={className} fontSize="inherit" aria-hidden="true" />;
+}

@@ -21,6 +21,7 @@ export function getStorePageDescription(storeName: string, couponCount: number):
  * Generate SEO-optimized title for category pages
  */
 export function getCategoryPageTitle(categoryName: string): string {
+    if (categoryName.toLowerCase() === 'power banks') return 'Power Bank Deals & Offers in India';
     return `Best ${categoryName} Coupons & Offers`;
 }
 
@@ -28,6 +29,9 @@ export function getCategoryPageTitle(categoryName: string): string {
  * Generate SEO-optimized description for category pages
  */
 export function getCategoryPageDescription(categoryName: string, couponCount: number): string {
+    if (categoryName.toLowerCase() === 'power banks') {
+        return 'Compare power bank deals, prices and charging features from popular brands. Check store terms and availability before buying.';
+    }
     if (couponCount <= 0) {
         return `Browse ${categoryName.toLowerCase()} coupon codes and online offers on CouponPush.`;
     }

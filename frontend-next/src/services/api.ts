@@ -180,9 +180,9 @@ export const couponsApi = {
     getByStoreSlugFresh: (slug: string, limit = 12, latest = false) =>
         fetchApi<Coupon[]>(`/coupons.php?store_slug=${encodeURIComponent(slug)}&limit=${limit}${latest ? '&latest=1' : ''}`, true),
     getByCategory: (categorySlug: string) =>
-        fetchApi<Coupon[]>(`/coupons.php?category=${encodeURIComponent(categorySlug)}`),
+        fetchApi<Coupon[]>(`/coupons.php?category=${encodeURIComponent(categorySlug)}&limit=500`),
     getByCategoryFresh: (categorySlug: string) =>
-        fetchApi<Coupon[]>(`/coupons.php?category=${encodeURIComponent(categorySlug)}`, true),
+        fetchApi<Coupon[]>(`/coupons.php?category=${encodeURIComponent(categorySlug)}&limit=500`, true),
 };
 
 export const categoriesApi = {
