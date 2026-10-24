@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-23T06:05:06.009Z",
+  "checkedAt": "2026-10-24T05:58:08.412Z",
   "offers": [
     {
       "id": "dot-key-sitewide",
@@ -15,8 +15,8 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
-      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
+      "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
@@ -35,8 +35,8 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
-      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
+      "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
@@ -55,8 +55,8 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
-      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
+      "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
@@ -74,8 +74,8 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
-      "sourceHash": "271942766eae9f8cd0101205a18c53f3c069e31f2dc223d3493a584ad7e7517f",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
+      "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
     {
@@ -92,7 +92,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -111,7 +111,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -131,7 +131,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -151,8 +151,8 @@
       "storeSlug": "plum",
       "sourceUrl": "https://plumgoodness.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
-      "sourceHash": "2795757ae5a7de2be97670463b8ead7d7ed4f53f7353377e4527ca0913e2928b",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
+      "sourceHash": "830957e47335ca7516c7b73fdf79622cb77049ce93fb1d8290f08e430f24a4c9",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
     {
@@ -170,10 +170,10 @@
       ],
       "storeSlug": "plum",
       "sourceUrl": "https://plumgoodness.com/",
-      "status": "advertised",
-      "checkedAt": "2026-10-23T06:05:06.009Z",
-      "sourceHash": "2795757ae5a7de2be97670463b8ead7d7ed4f53f7353377e4527ca0913e2928b",
-      "updatedAt": "2026-10-21T09:35:18.395Z"
+      "status": "not-advertised",
+      "checkedAt": "2026-10-24T05:58:08.412Z",
+      "sourceHash": "830957e47335ca7516c7b73fdf79622cb77049ce93fb1d8290f08e430f24a4c9",
+      "updatedAt": "2026-10-24T05:58:08.412Z"
     }
   ]
 }
