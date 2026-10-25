@@ -38,6 +38,6 @@ export function PowerBankGuide({ offers, brands, onSelectBrand }: {
             <details><summary>What warranty should I look for when buying a discounted power bank?</summary><p>Look for a stated manufacturer warranty period and a seller invoice, then check how to request service. A discount alone does not establish warranty coverage. Read the return or replacement policy separately so you know what happens if the product arrives faulty.</p></details>
             <p>Charging references: <a href="https://www.anker.com/uk/blogs/power-banks/10000-vs-20000-power-bank">Anker’s capacity guide</a> and <a href="https://www.usb.org/sites/default/files/usb_type-c_language_product_and_packaging_guidelines_20230320.pdf">USB-IF’s USB-C guidance</a>.</p>
         </div>
-        <nav className="cp-power-bank-related" aria-label="Related shopping pages"><Link href="/category/electronics/">Explore electronics deals</Link><Link href="/deals/">Browse product deals</Link><Link href="/stores/">Find a store</Link></nav>
+        <nav className="cp-power-bank-related" aria-label="Related buying guides and shopping pages"><Link href="/blog/10000mah-vs-20000mah-power-bank-deals">10,000mAh vs 20,000mAh: which to choose?</Link><Link href="/blog/power-bank-deals-under-1000">Power bank deals under ₹1,000</Link><Link href="/blog/20w-vs-30w-fast-charging-power-bank-deals">20W vs 30W charging</Link><Link href="/category/electronics/">Explore electronics deals</Link><Link href="/deals/">Browse product deals</Link><Link href="/stores/">Find a store</Link></nav>
     </section>;
 }

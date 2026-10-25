@@ -1,5 +1,17 @@
 [
   {
+    "path": "/blog/10000mah-vs-20000mah-power-bank-deals",
+    "title": "10000 vs 20000 mAh Power Bank: Which One Should You Choose?",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/20w-vs-30w-fast-charging-power-bank-deals",
+    "title": "20W vs 30W Power Bank Deals: When Is More Worth Paying For?",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/ajio-welcome-coupon",
     "title": "AJIO Welcome Coupon: First-Order Eligibility and Limits",
     "section": "blog",
@@ -12,14 +24,32 @@
     "noindex": false
   },
   {
+    "path": "/blog/amazon-vs-flipkart-power-bank-deals",
+    "title": "Amazon vs Flipkart Power Bank Deals: Compare the Final Cost",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/amazon-welcome-offers-india",
     "title": "Amazon Welcome Offers: Coupons for New Users in India",
     "section": "blog",
     "noindex": false
   },
   {
+    "path": "/blog/anker-nano-30w-power-bank-review-deals",
+    "title": "Anker Nano 30W Power Bank Review: Is the Deal Worth It?",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/articles/myntra-first-order-coupon/",
     "title": "Myntra first-order coupon: what new users should know",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/best-and-worst-power-bank-deals",
+    "title": "Best and Worst Power Bank Deals: 7 Checks Before Buying",
     "section": "blog",
     "noindex": false
   },
@@ -150,6 +180,18 @@
     "noindex": false
   },
   {
+    "path": "/blog/power-bank-deals-under-1000",
+    "title": "Power Bank Deals Under ₹1000: A Budget Buying Checklist",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/power-bank-deals-under-2000",
+    "title": "Best Power Bank Deals Under ₹2000: What to Prioritise",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/research/india-coupon-report-2026",
     "title": "Look beyond the headline discount.",
     "section": "blog",
@@ -186,8 +228,26 @@
     "noindex": false
   },
   {
+    "path": "/blog/top-5-power-bank-deals-india",
+    "title": "Top 5 Power Banks to Compare for Deals in India",
+    "section": "blog",
+    "noindex": false
+  },
+  {
     "path": "/blog/top-coupon-deals-websites-india",
     "title": "Top 6 Best Coupon & Deals Websites in India",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/wireless-vs-wired-power-bank-deals",
+    "title": "Wireless vs Wired Power Bank Deals: Which Offers Better Value?",
+    "section": "blog",
+    "noindex": false
+  },
+  {
+    "path": "/blog/xiaomi-power-bank-4i-10000mah-review-deals",
+    "title": "Xiaomi Power Bank 4i 10000mAh Review: Deal Buying Guide",
     "section": "blog",
     "noindex": false
   },
