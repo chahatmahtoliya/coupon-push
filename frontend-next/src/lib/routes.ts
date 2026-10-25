@@ -28,6 +28,7 @@ export function getCouponPath(id?: number | string | null): string {
 }
 
 export function getCategoryPath(slug?: string | null): string {
+    if (slug === 'power-banks') return '/Power-Bank-Deals/';
     const data = slug ? (snapshot.categories as Record<string, { coupons?: unknown[] }>)[slug] : null;
     return data?.coupons?.length ? `/category/${slug}/` : '/categories/';
 }

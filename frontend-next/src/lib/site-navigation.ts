@@ -6,6 +6,7 @@ import { getLatestContentUpdate } from '@/lib/content-dates';
 import { partnersEnabled } from '@/lib/partners-feature';
 import { getStoreSeoUpdatedAt } from '@/lib/store-pseo';
 import { getSavingsPages } from '@/lib/savings-pages';
+import { getCategoryPath } from '@/lib/routes';
 
 export const corePages = [
     { path: '/', title: 'Home' }, { path: '/coupons/', title: 'All coupons' },
@@ -24,7 +25,7 @@ export function getSiteNavigation() {
     })).sort((a, b) => a.title.localeCompare(b.title));
     const categories = (deployedSnapshot.categoriesPage?.initialCategories || []).flatMap(category => {
         const data = deployedSnapshot.categories[category.slug] as { coupons?: Coupon[] } | undefined;
-        return hasIndexableCategoryContent(data) ? [{ path: `/category/${category.slug}/`, title: category.name, lastModified: getLatestContentUpdate(category, ...(data?.coupons || [])) }] : [];
+        return hasIndexableCategoryContent(data) ? [{ path: getCategoryPath(category.slug), title: category.slug === 'power-banks' ? 'Power Bank Deals' : category.name, lastModified: getLatestContentUpdate(category, ...(data?.coupons || [])) }] : [];
     }).sort((a, b) => a.title.localeCompare(b.title));
     const savings = getSavingsPages().filter(page => page.eligible).map(page => ({ path: page.path, title: page.title, lastModified: page.lastModified }));
     return { pages: [...corePages, ...savings], savings, stores, categories, blog: blogPages.filter(page => page.section === 'blog'), tools: blogPages.filter(page => page.section === 'tools') };

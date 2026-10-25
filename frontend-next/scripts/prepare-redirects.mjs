@@ -9,6 +9,8 @@ const redirects = new Map([
     ['/store/amazon-prime-day-sale-2026', '/store/amazon/'],
     ['/cetaphil', '/store/cetaphil-coupon-code/'],
     ['/amazon-prime-day-sale-2026', '/store/amazon/'],
+    ['/category/power-banks', '/Power-Bank-Deals/'],
+    ['/power-bank-deals', '/Power-Bank-Deals/'],
 ]);
 for (const slug of Object.keys(snapshot.stores)) {
     if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`Invalid store slug: ${slug}`);

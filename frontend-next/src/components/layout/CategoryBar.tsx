@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from '@/components/common/SiteLink';
 import type { Category } from '@/types';
 import { categoriesApi } from '@/services/api';
+import { getCategoryPath } from '@/lib/routes';
 
 export function CategoryBar() {
     const [categories, setCategories] = useState<Category[]>([]);
@@ -38,7 +39,7 @@ export function CategoryBar() {
                     {categories.map((category) => (
                         <Link
                             key={category.id}
-                            href={`/category/${category.slug}`}
+                            href={getCategoryPath(category.slug)}
                             className="category-item"
                         >
                             <i className={`fas ${category.icon || getIcon(category.slug)}`} aria-hidden="true"></i>

@@ -6,7 +6,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOG = ROOT / 'blog'
-HUB = 'https://couponpush.com/category/power-banks/'
+HUB = 'https://couponpush.com/Power-Bank-Deals/'
 ORIGIN = 'https://couponpush.com'
 DATE = '2026-10-25'
 SOURCES = {
@@ -324,7 +324,7 @@ Prepared 23 October 2026. Reviews use published specifications, not hands-on tes
 (out/'README.md').write_text('''# Power bank editorial cluster
 
 Ten distinct buying guides authored 23 October 2026 for CouponPush India.
-All link to https://couponpush.com/category/power-banks/ using the production domain.
+All link to https://couponpush.com/Power-Bank-Deals/ using the production domain.
 The category owns the broad commercial keyword; articles address narrower purchase questions.
 HTML source lives in frontend-next/blog/. The authoring script preserves the existing blog shell.
 Both blog entry points link to every article; each article links to two related guides.

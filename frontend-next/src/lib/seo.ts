@@ -21,7 +21,7 @@ export function getStorePageDescription(storeName: string, couponCount: number):
  * Generate SEO-optimized title for category pages
  */
 export function getCategoryPageTitle(categoryName: string): string {
-    if (categoryName.toLowerCase() === 'power banks') return 'Power Bank Deals & Offers in India';
+    if (categoryName.toLowerCase() === 'power banks') return 'Power Bank Deals in India';
     return `Best ${categoryName} Coupons & Offers`;
 }
 

@@ -54,3 +54,21 @@ test('Other store previews and ambiguous slug parameters retain the existing res
         assert.equal(await worker.fetch(request, { ASSETS: { fetch(received) { assert.equal(received, request); return asset; } } }), asset);
     }
 });
+
+test('Power bank legacy and case aliases redirect once to the exact requested URL', async () => {
+    for (const origin of ['http://couponpush.com', 'https://www.couponpush.com', 'https://couponpush.com']) {
+        for (const path of ['/category/power-banks', '/category/power-banks/', '/power-bank-deals', '/power-bank-deals/', '/Power-Bank-Deals']) {
+            const response = await worker.fetch(new Request(`${origin}${path}?ref=one%26two`), {
+                ASSETS: { fetch() { assert.fail('Category aliases must redirect before assets'); } },
+            });
+            assert.equal(response.status, 301);
+            assert.equal(response.headers.get('Location'), 'https://couponpush.com/Power-Bank-Deals/?ref=one%26two');
+        }
+    }
+});
+
+test('The canonical Power Bank Deals page is served without a redirect loop', async () => {
+    const request = new Request('https://couponpush.com/Power-Bank-Deals/?ref=one');
+    const asset = new Response('Power Bank Deals');
+    assert.equal(await worker.fetch(request, { ASSETS: { fetch(received) { assert.equal(received, request); return asset; } } }), asset);
+});

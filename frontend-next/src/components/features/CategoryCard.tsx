@@ -1,5 +1,6 @@
 import Link from '@/components/common/SiteLink';
 import type { Category } from '@/types';
+import { getCategoryPath } from '@/lib/routes';
 
 interface CategoryCardProps {
     category: Category;
@@ -26,7 +27,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
     };
 
     return (
-        <Link href={`/category/${category.slug}`} className="category-card">
+        <Link href={getCategoryPath(category.slug)} className="category-card">
             <div className="category-card-icon">
                 <i className={`fas ${category.icon || getIcon(category.slug)}`}></i>
             </div>

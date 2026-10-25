@@ -4,11 +4,15 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const publicHost = url.hostname === 'couponpush.com' || url.hostname === 'www.couponpush.com';
+        const powerBankAlias = /^\/category\/power-banks\/?$/i.test(url.pathname)
+            || (/^\/power-bank-deals\/?$/i.test(url.pathname) && url.pathname !== '/Power-Bank-Deals/');
+        if (powerBankAlias) url.pathname = '/Power-Bank-Deals/';
         if (publicHost && (url.protocol !== 'https:' || url.hostname !== 'couponpush.com')) {
             url.protocol = 'https:';
             url.host = 'couponpush.com';
             return Response.redirect(url.href, 301);
         }
+        if (powerBankAlias) return Response.redirect(url.href, 301);
         // This store now has a published static page. Retire only its preview URL;
         // other newly added stores still need the shared noindex preview route.
         if ((url.pathname === '/stores/view/' || url.pathname === '/stores/view')

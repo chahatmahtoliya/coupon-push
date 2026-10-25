@@ -111,7 +111,7 @@ export function Header() {
                             <Link href="/categories" className="nav-link-v2 dropdown-trigger">Categories <i className="fas fa-chevron-down" aria-hidden="true" /></Link>
                             <div className="dropdown-menu-v2">
                                 {topCategories.map((category) => (
-                                    <Link key={category.id} href={`/category/${category.slug}`} className="dropdown-item-v2">
+                                    <Link key={category.id} href={getCategoryPath(category.slug)} className="dropdown-item-v2">
                                         <i className={`fas ${category.icon?.replace(/^fas\s+/, '') || 'fa-tag'}`} aria-hidden="true" />{' '}{category.name}
                                     </Link>
                                 ))}

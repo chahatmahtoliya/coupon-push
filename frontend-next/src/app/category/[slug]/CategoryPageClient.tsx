@@ -80,7 +80,7 @@ export default function CategoryPageClient({ initialData, initialCategories = []
         return [...inventory.values()].filter((store) => store.count > 0).sort((a, b) => b.count - a.count);
     }, [data?.stores, coupons]);
     const shortcuts = categories.filter((category) => category.coupon_count > 0 && getCategoryPath(category.slug) !== '/categories/').slice(0, 6);
-    const name = data?.categoryName || titleFromSlug(slug);
+    const name = slug === 'power-banks' ? 'Power Bank Deals' : data?.categoryName || titleFromSlug(slug);
     const description = slug === 'power-banks'
         ? 'Compare power bank deals from popular brands. Find your next portable charger by price, capacity and charging speed.'
         : data?.categoryDescription || `Browse active ${name} coupons, promo codes, and store deals in one place.`;
