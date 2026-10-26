@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-25T06:13:07.601Z",
+  "checkedAt": "2026-10-26T06:20:21.828Z",
   "offers": [
     {
       "id": "dot-key-sitewide",
@@ -15,7 +15,7 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
@@ -35,7 +35,7 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
@@ -55,7 +55,7 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
@@ -74,7 +74,7 @@
       "storeSlug": "dot-key",
       "sourceUrl": "https://www.dotandkey.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "7bec83d8985bc4013646399fe49ec655b47e26a204a415a1157c6e6d26f61a2c",
       "updatedAt": "2026-10-23T06:05:06.009Z"
     },
@@ -92,7 +92,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -111,7 +111,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -131,7 +131,7 @@
       "storeSlug": "the-derma-co",
       "sourceUrl": "https://thedermaco.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
       "sourceHash": "50a067991c8b247ebcec7b2e2f25a00240fe2747530bbe57cdaf3a645eb579cc",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
@@ -151,8 +151,8 @@
       "storeSlug": "plum",
       "sourceUrl": "https://plumgoodness.com/",
       "status": "advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
-      "sourceHash": "830957e47335ca7516c7b73fdf79622cb77049ce93fb1d8290f08e430f24a4c9",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
+      "sourceHash": "66ecb79416636d028088dc0901e73e371068d62015dc63dd3ad89493f72ec8aa",
       "updatedAt": "2026-10-21T09:35:18.395Z"
     },
     {
@@ -171,8 +171,8 @@
       "storeSlug": "plum",
       "sourceUrl": "https://plumgoodness.com/",
       "status": "not-advertised",
-      "checkedAt": "2026-10-25T06:13:07.601Z",
-      "sourceHash": "830957e47335ca7516c7b73fdf79622cb77049ce93fb1d8290f08e430f24a4c9",
+      "checkedAt": "2026-10-26T06:20:21.828Z",
+      "sourceHash": "66ecb79416636d028088dc0901e73e371068d62015dc63dd3ad89493f72ec8aa",
       "updatedAt": "2026-10-24T05:58:08.412Z"
     }
   ]
