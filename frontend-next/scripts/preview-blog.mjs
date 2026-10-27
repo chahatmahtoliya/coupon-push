@@ -10,7 +10,7 @@ http.createServer(async (request, response) => {
     const url = new URL(request.url, 'http://localhost');
     const pathname = decodeURIComponent(url.pathname);
     const relative = pathname.replace(/^\/+/, '') + (pathname.endsWith('/') ? 'index.html' : '');
-    const candidates = pathname.startsWith('/blog/') ? [path.join(root, relative)] : [path.join(root, 'public', relative), path.join(root, 'out', relative)];
+    const candidates = pathname.startsWith('/blog/') ? [path.join(root, relative), path.join(root, `${relative}.html`)] : [path.join(root, 'public', relative), path.join(root, 'out', relative)];
     for (const file of candidates) {
       if (!file.startsWith(root + path.sep)) continue;
       try {

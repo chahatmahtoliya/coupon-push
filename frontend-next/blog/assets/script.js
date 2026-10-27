@@ -97,3 +97,20 @@ if (calculator) {
     output.append(headline, details, note);
   });
 }
+
+const revealItems = [...document.querySelectorAll('.reveal')];
+if (revealItems.length) {
+  document.documentElement.classList.add('js');
+  if (typeof IntersectionObserver === 'undefined') {
+    revealItems.forEach((item) => item.classList.add('is-in'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    revealItems.forEach((item) => observer.observe(item));
+  }
+}

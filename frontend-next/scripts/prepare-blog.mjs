@@ -2,8 +2,10 @@ import { cp, mkdir, writeFile } from 'node:fs/promises';
 import { readBlogPages, sitemapXml, origin } from './blog-pages.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { syncBlogShell } from './sync-blog-shell.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+await syncBlogShell({ allowMissingHomepage: true });
 const pages = (await readBlogPages()).filter(page => !page.noindex);
 await writeFile(path.join(root, 'src/data/blog-pages.json'), JSON.stringify(pages, null, 2) + '\n');
 await writeFile(path.join(root, 'blog/sitemap.xml'), sitemapXml(pages.filter(page => page.section === 'blog').map(page => origin + page.path)));

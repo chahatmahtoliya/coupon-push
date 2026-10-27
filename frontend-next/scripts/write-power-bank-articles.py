@@ -241,8 +241,8 @@ def body_html(text):
     return '\n'.join(result)
 
 shell = (BLOG / 'cetaphil-gentle-vs-oily-skin-cleanser.html').read_text(encoding='utf-8')
-header = re.search(r'<header class="site-header">[\s\S]*?</header>', shell).group()
-footer = re.search(r'<footer class="site-footer">[\s\S]*?</footer>', shell).group()
+header = re.search(r'<!-- site-header:start -->[\s\S]*?<!-- site-header:end -->|<header class="site-header">[\s\S]*?</header>', shell).group()
+footer = re.search(r'<!-- site-footer:start -->[\s\S]*?<!-- site-footer:end -->|<footer class="site-footer">[\s\S]*?</footer>', shell).group()
 manifest = []
 for i, a in enumerate(ARTICLES):
     url = f'{ORIGIN}/blog/{a["slug"]}'

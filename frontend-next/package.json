@@ -7,7 +7,7 @@
     "prebuild:snapshot": "node scripts/prepare-blog.mjs",
     "blog:prepare": "node scripts/prepare-blog.mjs",
     "blog:normalize": "node scripts/normalize-blog-links.mjs",
-    "blog:check": "node scripts/check-blog.mjs",
+    "blog:check": "node scripts/check-blog.mjs && node scripts/check-blog-shell.mjs",
     "blog:preview": "node scripts/preview-blog.mjs",
     "dev": "next dev",
     "build": "npm run build:refresh",
@@ -24,7 +24,9 @@
     "catalog:refresh": "node scripts/prepare-catalog.mjs --refresh",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "hero:prepare": "node scripts/prepare-hero-images.mjs"
+    "hero:prepare": "node scripts/prepare-hero-images.mjs",
+    "postbuild": "node scripts/sync-blog-shell.mjs --export",
+    "postbuild:snapshot": "node scripts/sync-blog-shell.mjs --export"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -44,6 +46,7 @@
     "@types/sanitize-html": "^2.16.1",
     "domutils": "^4.0.2",
     "htmlparser2": "^12.0.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "postcss": "^8.5.23"
   }
 }

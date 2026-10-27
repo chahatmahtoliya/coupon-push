@@ -16,3 +16,9 @@
     .cp-header.has-partners .cp-header-inner { grid-template-columns: 180px minmax(210px, 360px) 1fr; gap: 20px; }
     .cp-header.has-partners .cp-nav { gap: 17px; }
 }
+
+.cp-footer a,
+.cp-footer a:hover,
+.cp-footer a:focus-visible {
+    text-decoration: none;
+}
