@@ -161,3 +161,8 @@ button,.button,a{transition:color .28s var(--ease),background-color .28s var(--e
 @media (min-width: 961px) {
   .toc a::marker { content: ""; }
 }
+
+/* Topic-relevant cover image on every editorial article. */
+.article-cover { width: min(calc(100% - 48px), 1000px); margin: 0 auto 44px; }
+.article-cover img { display: block; width: 100%; height: auto; max-height: 500px; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--hairline); border-radius: 16px; }
+@media (max-width: 680px) { .article-cover { width: calc(100% - 32px); margin-bottom: 28px; } .article-cover img { border-radius: 12px; } }

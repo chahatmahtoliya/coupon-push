@@ -12,6 +12,17 @@ for (const file of files) {
   if (/class="feed-item"/.test(html) && !/<link\b[^>]*href="(?:\.\/)?assets\/home\.css"/.test(html)) {
     errors.push(`${file}: feed template is missing its home.css layout stylesheet`);
   }
+  if (/class="feed-item"/.test(html)) {
+    if (!html.includes('class="blog-featured-story"')) errors.push(`${file}: missing featured-article hero`);
+    for (const item of html.matchAll(/<article class="feed-item"[\s\S]*?<\/article>/g)) {
+      if (!item[0].includes('class="feed-item-image"')) errors.push(`${file}: article card is missing its cover image`);
+    }
+  }
+  const relativeBlogPath = path.relative(root, file).replaceAll('\\', '/');
+  if (!/^(?:tools|embed|stores|category)\//.test(relativeBlogPath) && /class="[^\"]*\barticle-header\b/.test(html)) {
+    if (!html.includes('class="article-cover"')) errors.push(`${file}: editorial article is missing its cover image`);
+    if (html.includes('class="author-dot"')) errors.push(`${file}: decorative author initials remain`);
+  }
   const url = new URL('/blog/' + path.relative(root, file).replaceAll('\\', '/'), 'https://couponpush.com');
   for (const marker of ['<h1', 'rel="canonical"', 'og:site_name', 'assets/brand.css']) {
     if (html.split(marker).length !== 2) errors.push(`${file}: expected one ${marker}`);

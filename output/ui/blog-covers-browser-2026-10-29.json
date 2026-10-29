@@ -1,0 +1,42 @@
+{
+  "base": "http://127.0.0.1:8767",
+  "articleCount": 38,
+  "results": [
+    {
+      "width": 1440,
+      "heroHeight": 394.078125,
+      "cardImages": 18,
+      "coversLoaded": true,
+      "filters": true,
+      "search": true,
+      "heroArticleLink": true,
+      "noAuthorInitials": true,
+      "errors": [],
+      "bad": []
+    },
+    {
+      "width": 900,
+      "heroHeight": 292.953125,
+      "cardImages": 18,
+      "coversLoaded": true,
+      "filters": true,
+      "search": true,
+      "heroArticleLink": true,
+      "noAuthorInitials": true,
+      "errors": [],
+      "bad": []
+    },
+    {
+      "width": 390,
+      "heroHeight": 554.421875,
+      "cardImages": 18,
+      "coversLoaded": true,
+      "filters": true,
+      "search": true,
+      "heroArticleLink": true,
+      "noAuthorInitials": true,
+      "errors": [],
+      "bad": []
+    }
+  ]
+}

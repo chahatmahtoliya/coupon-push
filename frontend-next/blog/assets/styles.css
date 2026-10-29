@@ -938,8 +938,8 @@ h1, h2, h3, h4 {
 }
 
 .article-cover {
-  display: none;
-  padding: 0 !important;
+  display: block;
+  padding: 0;
 }
 
 .article-layout {

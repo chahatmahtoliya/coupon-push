@@ -1060,3 +1060,35 @@ body.dark .search-dialog {
     gap: 32px;
   }
 }
+/* Featured article and photographic previews. */
+.blog-lead { padding-top: 36px; padding-bottom: 40px; }
+.blog-lead-heading { margin-bottom: 28px; }
+.blog-lead-heading h1 { margin: 0 0 8px; font-family: var(--font-sans); font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -.025em; }
+.blog-lead-heading > p { margin: 0; max-width: 70ch; color: #606978; font-size: 15px; line-height: 1.6; }
+.blog-featured-story { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: center; gap: 44px; }
+.blog-featured-story > * { min-width: 0; }
+.blog-featured-cover { display: block; overflow: hidden; border-radius: 16px; background: #f4eee7; }
+.blog-featured-cover img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.blog-featured-copy h2 { margin: 0 0 18px; font-family: var(--font-serif); font-size: clamp(28px, 3vw, 42px); line-height: 1.13; letter-spacing: -.025em; text-wrap: balance; }
+.blog-featured-copy h2 a { text-decoration: none; }
+.blog-featured-copy h2 a:hover { color: #b54710; }
+.blog-featured-copy > p { margin: 0 0 24px; color: #606978; font-size: 16px; line-height: 1.65; }
+.blog-featured-action { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 46px; padding: 10px 19px; border: 1px solid #152b43; border-radius: 8px; background: #152b43; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+.blog-featured-action:hover { background: #243e5c; color: #fff; }
+.blog-featured-byline { display: block; margin-top: 16px; color: #606978; font-size: 12px; }
+.feed-item-image-wrapper { overflow: hidden; border-radius: 12px; background: #f4f5f7; }
+.feed-item-image-wrapper a { display: block; width: 100%; height: 100%; }
+.feed-item-image { width: 100%; height: 100%; object-fit: cover; }
+.follow-avatar { object-fit: cover; }
+@media (max-width: 960px) {
+ .blog-featured-story { gap: 28px; }
+ .blog-featured-copy h2 { font-size: 30px; }
+ .blog-featured-copy > p { font-size: 14px; }
+}
+@media (max-width: 768px) {
+ .blog-lead { padding-top: 28px; padding-bottom: 12px; }
+ .blog-lead-heading { margin-bottom: 24px; }
+ .blog-featured-story { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+ .blog-featured-copy h2 { font-size: 30px; }
+ .blog-featured-copy > p { font-size: 15px; margin-bottom: 18px; }
+}
