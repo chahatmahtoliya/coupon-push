@@ -1,0 +1,79 @@
+[
+  {
+    "slug": "ambrane",
+    "website": "https://ambraneindia.com/",
+    "source": "https://ambraneindia.com/cdn/shop/files/Primary_logo_orange.svg?v=1731334099&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/ambrane.png"
+  },
+  {
+    "slug": "urbn",
+    "website": "https://urbnworld.com/",
+    "source": "https://urbnworld.com/cdn/shop/files/logo.svg?v=1687169082&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/urbn.png"
+  },
+  {
+    "slug": "portronics",
+    "website": "https://www.portronics.com/",
+    "source": "https://www.portronics.com/cdn/shop/files/Primary_logo_color_c380e550-7bba-4ab6-8129-f41d6e4e7c45_180x@2x.webp?v=1647798144",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/portronics.png"
+  },
+  {
+    "slug": "ptron",
+    "website": "https://ptron.in/",
+    "source": "https://ptron.in/cdn/shop/files/pTron_Symbol_CanaryYellow_1.png?v=1651229055",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/ptron.png"
+  },
+  {
+    "slug": "lapcare",
+    "website": "https://www.lapcare.com/",
+    "source": "https://www.lapcare.com/cdn/shop/files/Lapcare_logo_1.png?v=1747127441&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/lapcare.png"
+  },
+  {
+    "slug": "spigen",
+    "website": "https://spigen.in/",
+    "source": "https://spigen.in/cdn/shop/files/Spigen_logo_B_W.png?v=1732878166&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/spigen.png"
+  },
+  {
+    "slug": "stuffcool",
+    "website": "https://www.stuffcool.com/",
+    "source": "https://www.stuffcool.com/cdn/shop/files/Stuffcool_Logo_Small_d466a3c7-a95c-4b47-ad1d-a50b34941a0f.png?v=1724155394&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/stuffcool.png"
+  },
+  {
+    "slug": "ugreen",
+    "website": "https://www.ugreenindia.com/",
+    "source": "https://www.ugreenindia.com/cdn/shop/files/logo-16710693681.jpg?v=1718373793&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/ugreen.png"
+  },
+  {
+    "slug": "zebronics",
+    "website": "https://shop.zebronics.com/",
+    "source": "https://zebronics.com/cdn/shop/files/zebronics-logo_ad73b950-14df-4055-a3d3-2324ca6ec2f1.png?v=1659673623&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/zebronics.png"
+  },
+  {
+    "slug": "pebble",
+    "website": "https://www.pebblecart.com/",
+    "source": "https://www.pebblecart.com/cdn/shop/files/Pebble_Logo-2.png?v=1669287881&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/pebble.png"
+  },
+  {
+    "slug": "nu-republic",
+    "website": "https://www.nurepublic.co/",
+    "source": "https://www.nurepublic.co/cdn/shop/files/xcv.png?v=1791983682&width=600",
+    "checked_at": "2026-10-29",
+    "asset": "/assets/brands/power-banks/nu-republic.png"
+  }
+]

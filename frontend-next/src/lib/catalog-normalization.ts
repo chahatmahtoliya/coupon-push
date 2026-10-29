@@ -1,6 +1,7 @@
 import { parseDocument } from 'htmlparser2';
 import { textContent } from 'domutils';
 import aliases from '@/data/store-redirects.json';
+import { getStoreBrandLogo } from './store-brand-logos';
 import { getCouponCode } from '@/utils/coupon';
 
 const redirects: Record<string, string> = aliases;
@@ -29,7 +30,9 @@ export function normalizeCatalog(value: unknown): unknown {
         && typeof value.code === 'string' && value.code.trim() && !getCouponCode({ code: value.code })) return null;
     if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, item]) => [
         key,
-        key === 'code' && typeof item === 'string' ? getCouponCode({ code: item })
+        key === 'logo' && 'slug' in value && typeof value.slug === 'string' ? getStoreBrandLogo(value.slug, item)
+            : key === 'store_logo' && 'store_slug' in value && typeof value.store_slug === 'string' ? getStoreBrandLogo(value.store_slug, item)
+            : key === 'code' && typeof item === 'string' ? getCouponCode({ code: item })
             : key === 'store_slug' && typeof item === 'string' ? redirects[item] || item
             : textFields.has(key) && typeof item === 'string' ? decodeText(item)
                 : normalizeCatalog(item),
