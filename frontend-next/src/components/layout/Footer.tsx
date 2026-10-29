@@ -28,6 +28,11 @@ export function Footer() {
                         <input id="footer-email" type="email" placeholder="Enter your email" />
                         <button type="submit" aria-label="Subscribe"><i className="fas fa-paper-plane" aria-hidden="true" /></button>
                     </form>
+                    <nav className="cp-footer-social" aria-label="Follow CouponPush">
+                        <h3>Follow us</h3>
+                        <a href="https://x.com/couponpush" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" aria-hidden="true" />X / Twitter @couponpush</a>
+                        <a href="https://t.me/deal_push" target="_blank" rel="noopener noreferrer"><i className="fab fa-telegram" aria-hidden="true" />Telegram @deal_push</a>
+                    </nav>
                 </div>
             </div>
             <div className="cp-container cp-footer-bottom">

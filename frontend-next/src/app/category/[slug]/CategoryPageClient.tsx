@@ -6,6 +6,7 @@ import { CouponCard, FilterSidebar } from '@/components/features';
 import { PowerBankGuide } from '@/components/features/PowerBankGuide';
 import { categoriesApi, couponsApi, storesApi } from '@/services/api';
 import { getCategoryPath } from '@/lib/routes';
+import { rotateOffersByBrand } from '@/lib/brand-rotation';
 import type { Category, Coupon } from '@/types';
 
 export interface CategoryPageData {
@@ -96,8 +97,8 @@ export default function CategoryPageClient({ initialData, initialCategories = []
         else if (sort === 'expiring') result.sort((a, b) => a.expiry_date ? b.expiry_date ? new Date(a.expiry_date).getTime() - new Date(b.expiry_date).getTime() : -1 : 1);
         else if (sort === 'discount') result.sort((a, b) => b.discount_value - a.discount_value);
         else result.sort((a, b) => b.click_count - a.click_count);
-        return result;
-    }, [coupons, selectedStores, discounts, types, validity, sort]);
+        return slug === 'power-banks' && sort === 'popular' ? rotateOffersByBrand(result) : result;
+    }, [coupons, selectedStores, discounts, types, validity, sort, slug]);
     const totalPages = Math.ceil(filtered.length / 12);
     const currentPage = Math.min(page, Math.max(totalPages, 1));
     const visible = filtered.slice((currentPage - 1) * 12, currentPage * 12);

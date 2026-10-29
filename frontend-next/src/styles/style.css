@@ -22,3 +22,10 @@
 .cp-footer a:focus-visible {
     text-decoration: none;
 }
+
+/* Shared social links, including the standalone blog shell. */
+.cp-footer-social { display: grid; gap: 10px; margin-top: 20px; }
+.cp-footer-social h3 { margin: 0; color: inherit; font-size: 14px; font-weight: 700; }
+.cp-footer-social a { display: inline-flex; align-items: center; gap: 8px; width: fit-content; min-height: 44px; margin: 0; }
+
+.cp-footer-social a:focus-visible { outline: 2px solid #c4491b; outline-offset: 4px; }

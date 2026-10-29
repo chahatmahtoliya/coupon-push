@@ -286,6 +286,14 @@ export default function HomePageClient(props: HomePageClientProps) {
             {visibleHeroItems.length > 0 ? <HeroCarousel items={visibleHeroItems} activeIndex={heroIndex} totalItems={heroItems.length} canNavigate={heroItems.length > 1} isPaused={heroPaused || heroReducedMotion} isRotationPaused={heroRotationPaused} onNavigate={(direction) => setHeroIndex((index) => direction > 0 ? (index + 1) % heroItems.length : (index - 1 + heroItems.length) % heroItems.length)} onTogglePause={() => { if (heroReducedMotion) setHeroReducedMotion(false); else setHeroPaused((paused) => !paused); }} onImageError={markHeroFailed} onImageLoad={markHeroLoaded} /> : <section className="cp-container"><p>Find offers from your favourite stores. Compare the terms before you shop.</p><Link href="/stores/">Browse stores and offers</Link></section>}
         </section>
 
+        <nav className="cp-shell cp-home-deal-nav" aria-label="Explore deals">
+            <Link href="/Power-Bank-Deals/" className="cp-home-deal-link">
+                <i className="fas fa-battery-full" aria-hidden="true" />
+                <span><strong>Power Bank Deals</strong><small>Compare brands, capacity and price</small></span>
+                <i className="fas fa-arrow-right" aria-hidden="true" />
+            </Link>
+        </nav>
+
         {/* Newly added coupons use the same carousel without trending ranks. */}
         {recentlyAddedCoupons.length > 0 && (
             <TopTrendingCarousel

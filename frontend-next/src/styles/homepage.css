@@ -1281,3 +1281,12 @@
         grid-template-columns: 1fr;
     }
 }
+.cp-home-deal-nav { margin-top: 20px; }
+.cp-home-deal-link { display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 16px 20px; border: 1px solid #e4ebf3; border-radius: 12px; background: #fff; color: #152b43; text-decoration: none; }
+.cp-home-deal-link > i:first-child { color: #c4491b; font-size: 22px; }
+.cp-home-deal-link > i:last-child { margin-left: auto; }
+.cp-home-deal-link strong, .cp-home-deal-link small { display: block; }
+.cp-home-deal-link strong { font-size: 16px; }
+.cp-home-deal-link small { margin-top: 3px; color: #506078; font-size: 13px; }
+.cp-home-deal-link:hover { border-color: #c4491b; color: #a83b13; }
+.cp-home-deal-link:focus-visible { outline: 2px solid #c4491b; outline-offset: 4px; }

@@ -1,0 +1,54 @@
+{
+  "origin": "http://127.0.0.1:3238",
+  "results": [
+    {
+      "width": 1440,
+      "firstBrands": [
+        "Spigen",
+        "Ambrane",
+        "Pebble",
+        "Lapcare",
+        "Nu Republic",
+        "Portronics",
+        "pTron",
+        "Stuffcool",
+        "UGREEN",
+        "URBN",
+        "Zebronics",
+        "Spigen"
+      ],
+      "uniqueOpeningBrands": 11,
+      "paginationNoDuplicates": true,
+      "brandFilter": true,
+      "explicitSorts": true,
+      "socialLinks": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "firstBrands": [
+        "Spigen",
+        "Ambrane",
+        "Pebble",
+        "Lapcare",
+        "Nu Republic",
+        "Portronics",
+        "pTron",
+        "Stuffcool",
+        "UGREEN",
+        "URBN",
+        "Zebronics",
+        "Spigen"
+      ],
+      "uniqueOpeningBrands": 11,
+      "paginationNoDuplicates": true,
+      "brandFilter": true,
+      "explicitSorts": true,
+      "socialLinks": true,
+      "errors": []
+    },
+    {
+      "blogFooterLinks": true
+    }
+  ]
+}
