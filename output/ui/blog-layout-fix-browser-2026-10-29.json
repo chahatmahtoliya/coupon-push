@@ -1,0 +1,47 @@
+{
+  "base": "http://127.0.0.1:8767",
+  "results": [
+    {
+      "width": 1440,
+      "layout": {
+        "display": "grid",
+        "cols": 2
+      },
+      "search": true,
+      "filters": true,
+      "bookmarkPersistence": true,
+      "articleLink": true,
+      "socialLinks": true,
+      "errors": [],
+      "bad": []
+    },
+    {
+      "width": 900,
+      "layout": {
+        "display": "grid",
+        "cols": 2
+      },
+      "search": true,
+      "filters": true,
+      "bookmarkPersistence": true,
+      "articleLink": true,
+      "socialLinks": true,
+      "errors": [],
+      "bad": []
+    },
+    {
+      "width": 390,
+      "layout": {
+        "display": "grid",
+        "cols": 1
+      },
+      "search": true,
+      "filters": true,
+      "bookmarkPersistence": true,
+      "articleLink": true,
+      "socialLinks": true,
+      "errors": [],
+      "bad": []
+    }
+  ]
+}

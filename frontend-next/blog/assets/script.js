@@ -99,6 +99,32 @@ if (calculator) {
 }
 
 const revealItems = [...document.querySelectorAll('.reveal')];
+// The index already exposes save controls; retain their state across visits.
+const savedGuideKey = 'couponpush:saved-guides';
+let savedGuides = new Set();
+try {
+  const saved = JSON.parse(localStorage.getItem(savedGuideKey) || '[]');
+  if (Array.isArray(saved)) savedGuides = new Set(saved.filter(value => typeof value === 'string'));
+} catch { /* Storage can be disabled; saving still works for this page visit. */ }
+document.querySelectorAll('.bookmark').forEach(button => {
+  const link = button.closest('.feed-item')?.querySelector('.feed-item-title a');
+  if (!link) return;
+  const key = new URL(link.href).pathname;
+  const label = button.getAttribute('aria-label') || 'Save guide';
+  const update = () => {
+    const saved = savedGuides.has(key);
+    button.classList.toggle('is-saved', saved);
+    button.setAttribute('aria-pressed', String(saved));
+    button.setAttribute('aria-label', label.replace(/^(?:Save|Unsave)/, saved ? 'Unsave' : 'Save'));
+  };
+  update();
+  button.addEventListener('click', () => {
+    if (savedGuides.has(key)) savedGuides.delete(key);
+    else savedGuides.add(key);
+    update();
+    try { localStorage.setItem(savedGuideKey, JSON.stringify([...savedGuides])); } catch { /* Optional persistence. */ }
+  });
+});
 if (revealItems.length) {
   document.documentElement.classList.add('js');
   if (typeof IntersectionObserver === 'undefined') {

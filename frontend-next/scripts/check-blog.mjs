@@ -9,6 +9,9 @@ const files = walk(root).filter(file => file.endsWith('.html'));
 const errors = [];
 for (const file of files) {
   const html = fs.readFileSync(file, 'utf8');
+  if (/class="feed-item"/.test(html) && !/<link\b[^>]*href="(?:\.\/)?assets\/home\.css"/.test(html)) {
+    errors.push(`${file}: feed template is missing its home.css layout stylesheet`);
+  }
   const url = new URL('/blog/' + path.relative(root, file).replaceAll('\\', '/'), 'https://couponpush.com');
   for (const marker of ['<h1', 'rel="canonical"', 'og:site_name', 'assets/brand.css']) {
     if (html.split(marker).length !== 2) errors.push(`${file}: expected one ${marker}`);

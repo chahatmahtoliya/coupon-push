@@ -431,6 +431,7 @@ img {
 
 /* Left Feed Column */
 .feed-column {
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
@@ -1026,6 +1027,19 @@ body.dark .search-dialog {
     gap: 56px;
     padding: 32px 0;
   }
+
+  .feed-tabs {
+    gap: 20px;
+    overflow-x: auto;
+  }
+
+  .feed-tabs button {
+    flex: 0 0 auto;
+    min-height: 44px;
+    white-space: nowrap;
+  }
+
+  .feed-column .search-form input { min-width: 0; }
 
   .feed-item {
     gap: 20px;
