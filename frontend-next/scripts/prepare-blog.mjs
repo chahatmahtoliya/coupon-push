@@ -3,12 +3,15 @@ import { readBlogPages, sitemapXml, origin } from './blog-pages.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { syncBlogShell } from './sync-blog-shell.mjs';
+import { preparePowerBankPseo } from './prepare-power-bank-pseo.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const powerBankReview = await preparePowerBankPseo();
 await syncBlogShell({ allowMissingHomepage: true });
 const pages = (await readBlogPages()).filter(page => !page.noindex);
 await writeFile(path.join(root, 'src/data/blog-pages.json'), JSON.stringify(pages, null, 2) + '\n');
-await writeFile(path.join(root, 'blog/sitemap.xml'), sitemapXml(pages.filter(page => page.section === 'blog').map(page => origin + page.path)));
+const powerBankLastmods = Object.fromEntries(Object.entries(powerBankReview.page_facts).map(([slug, facts]) => [origin + '/blog/' + slug, facts.date_modified]));
+await writeFile(path.join(root, 'blog/sitemap.xml'), sitemapXml(pages.filter(page => page.section === 'blog').map(page => origin + page.path), powerBankLastmods));
 await writeFile(path.join(root, 'public/sitemap-tools.xml'), sitemapXml(pages.filter(page => page.section === 'tools').map(page => origin + page.path)));
 // Keep blog/ as the editable source; Next copies public assets into its static export.
 await mkdir(path.join(root, 'public/blog'), { recursive: true });

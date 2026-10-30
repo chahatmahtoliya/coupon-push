@@ -1,0 +1,97 @@
+{
+  "pages": [
+    {
+      "slug": "top-5-power-bank-deals-india",
+      "title": "Top 5 Power Banks: Specs & Deal Checks | CouponPush",
+      "description": "Compare 5 power-bank candidates by capacity, output and carry format using manufacturer specifications; check the seller total before buying.",
+      "answer_words": 52,
+      "tables": 1,
+      "outbound_references": 5
+    },
+    {
+      "slug": "10000mah-vs-20000mah-power-bank-deals",
+      "title": "10000 vs 20000mAh Power Banks: Compare | CouponPush",
+      "description": "Compare 10,000mAh and 20,000mAh specifications, plus capacity-group counts and listed prices from the dated CouponPush catalog.",
+      "answer_words": 55,
+      "tables": 1,
+      "outbound_references": 3
+    },
+    {
+      "slug": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "title": "Xiaomi Power Bank 4i 10000mAh Review | CouponPush",
+      "description": "Review Xiaomi 4i 10K manufacturer specifications: 10,000mAh, up to 22.5W and stated charging protocols, with a 20K comparison.",
+      "answer_words": 56,
+      "tables": 1,
+      "outbound_references": 2
+    },
+    {
+      "slug": "anker-nano-30w-power-bank-review-deals",
+      "title": "Anker Nano 30W Review & Deal Checks | CouponPush",
+      "description": "Review Anker Nano A1259H11: 10,000mAh, 30W bidirectional charging and a built-in USB-C cable, with a specification comparison.",
+      "answer_words": 56,
+      "tables": 1,
+      "outbound_references": 1
+    },
+    {
+      "slug": "power-bank-deals-under-1000",
+      "title": "Power Bank Deals Under Rs.1,000: Checks | CouponPush",
+      "description": "See the dated catalog count under Rs.1,000, compare product-page groups, and calculate delivery headroom before checking seller prices.",
+      "answer_words": 56,
+      "tables": 1,
+      "outbound_references": 1
+    },
+    {
+      "slug": "power-bank-deals-under-2000",
+      "title": "Power Bank Deals Under Rs.2,000: Compare | CouponPush",
+      "description": "Explore the dated catalog below Rs.2,000 by listing count, product-page group and delivery headroom; verify the final seller total.",
+      "answer_words": 57,
+      "tables": 1,
+      "outbound_references": 1
+    },
+    {
+      "slug": "20w-vs-30w-fast-charging-power-bank-deals",
+      "title": "20W vs 30W Power Banks: Output Guide | CouponPush",
+      "description": "Compare 20W and 30W output ceilings, exact catalog-label counts and phone/cable compatibility without promised charging-time claims.",
+      "answer_words": 57,
+      "tables": 1,
+      "outbound_references": 1
+    },
+    {
+      "slug": "wireless-vs-wired-power-bank-deals",
+      "title": "Wireless vs Wired Power Banks: Compare | CouponPush",
+      "description": "Compare wireless-title catalog coverage, cable convenience and Qi certification checks; distinguish magnetic mounting from charging compatibility.",
+      "answer_words": 56,
+      "tables": 1,
+      "outbound_references": 1
+    },
+    {
+      "slug": "amazon-vs-flipkart-power-bank-deals",
+      "title": "Amazon vs Flipkart Power Bank Deals | CouponPush",
+      "description": "Use a 6-field retailer comparison: exact variant, price, delivery, cable, payment conditions and support. Check current catalog coverage.",
+      "answer_words": 57,
+      "tables": 2,
+      "outbound_references": 0
+    },
+    {
+      "slug": "best-and-worst-power-bank-deals",
+      "title": "Power Bank Deals: 7 Quality Checks | CouponPush",
+      "description": "Apply 7 deal checks and inspect the dated catalog\u2019s price, source and verification coverage before trusting an advertised saving.",
+      "answer_words": 57,
+      "tables": 2,
+      "outbound_references": 0
+    }
+  ],
+  "contextual_inbound": {
+    "20w-vs-30w-fast-charging-power-bank-deals": 6,
+    "anker-nano-30w-power-bank-review-deals": 6,
+    "top-5-power-bank-deals-india": 6,
+    "power-bank-deals-under-2000": 6,
+    "10000mah-vs-20000mah-power-bank-deals": 6,
+    "best-and-worst-power-bank-deals": 6,
+    "wireless-vs-wired-power-bank-deals": 6,
+    "amazon-vs-flipkart-power-bank-deals": 6,
+    "xiaomi-power-bank-4i-10000mah-review-deals": 6,
+    "power-bank-deals-under-1000": 6
+  },
+  "errors": []
+}

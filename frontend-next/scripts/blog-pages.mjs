@@ -26,7 +26,7 @@ export async function readBlogPages() {
     return { path: pathname, title: textContent(title).trim(), section: pathname.startsWith('/blog/tools/') ? 'tools' : 'blog', noindex };
   }));
 }
-export function sitemapXml(urls) {
+export function sitemapXml(urls, lastmods = {}) {
   const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;');
-  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(url => `  <url><loc>${escape(url)}</loc></url>`).join('\n') + '\n</urlset>\n';
+  return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(url => `  <url><loc>${escape(url)}</loc>${lastmods[url] ? '<lastmod>' + escape(lastmods[url]) + '</lastmod>' : ''}</url>`).join('\n') + '\n</urlset>\n';
 }

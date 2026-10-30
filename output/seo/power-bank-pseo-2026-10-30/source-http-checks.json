@@ -1,0 +1,65 @@
+[
+  {
+    "id": "xiaomi-4i-10k",
+    "url": "https://www.mi.com/in/product/xiaomi-power-bank-4i-10000mah/",
+    "status": 200,
+    "final_url": "https://www.mi.com/in/product/xiaomi-power-bank-4i-10000mah/",
+    "fetched_at": "2026-10-30T06:21:10.367352+00:00",
+    "bytes": 101880,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  },
+  {
+    "id": "ambrane-line-10",
+    "url": "https://ambraneindia.com/products/line-10",
+    "status": 200,
+    "final_url": "https://ambraneindia.com/products/line-10",
+    "fetched_at": "2026-10-30T06:21:10.375529+00:00",
+    "bytes": 575607,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  },
+  {
+    "id": "anker-nano",
+    "url": "https://ankerindia.com/products/anker-nano-power-bank-30w-built-in-usb-c-cable.html",
+    "status": 200,
+    "final_url": "https://ankerindia.com/products/anker-nano-power-bank-30w-built-in-usb-c-cable.html",
+    "fetched_at": "2026-10-30T06:21:10.714735+00:00",
+    "bytes": 441912,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  },
+  {
+    "id": "samsung-eb-p4520",
+    "url": "https://www.samsung.com/in/mobile-accessories/battery-pack-20-000mah-beige-eb-p4520xuegin/",
+    "status": 200,
+    "final_url": "https://www.samsung.com/in/mobile-accessories/battery-pack-20-000mah-beige-eb-p4520xuegin/",
+    "fetched_at": "2026-10-30T06:21:10.511111+00:00",
+    "bytes": 861848,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  },
+  {
+    "id": "usb-pd",
+    "url": "https://www.usb.org/usb-charger-pd",
+    "status": 200,
+    "final_url": "https://www.usb.org/usb-charger-pd",
+    "fetched_at": "2026-10-30T06:21:10.838726+00:00",
+    "bytes": 43313,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  },
+  {
+    "id": "qi",
+    "url": "https://www.wirelesspowerconsortium.com/products/",
+    "status": 200,
+    "final_url": "https://www.wirelesspowerconsortium.com/products/",
+    "fetched_at": "2026-10-30T06:21:12.156658+00:00",
+    "bytes": 60710,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  },
+  {
+    "id": "anker-capacity",
+    "url": "https://www.anker.com/uk/blogs/power-banks/10000-vs-20000-power-bank",
+    "status": 200,
+    "final_url": "https://www.anker.com/uk/blogs/power-banks/10000-vs-20000-power-bank",
+    "fetched_at": "2026-10-30T06:21:12.543665+00:00",
+    "bytes": 921717,
+    "note": "Reachability only; a successful response is not verification of every factual claim."
+  }
+]

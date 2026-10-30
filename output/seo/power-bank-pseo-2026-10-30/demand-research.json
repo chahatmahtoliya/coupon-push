@@ -1,0 +1,34 @@
+{
+  "retrieved_at": "2026-10-30",
+  "database": "in",
+  "batch": {
+    "data": "Keyword;Search Volume;Keyword Difficulty Index;Intent\npower bank deals;2240000;26;\npower bank under 1000;2400;37;0\npower bank under 2000;320;37;0\n10000mah power bank;4400;21;1,0\n20000mah power bank;9900;40;\n10000mah vs 20000mah power bank;90;0;\namazon power bank deals;880;33;1,3\nbest power bank deals;140;26;0\nfast charging power bank;8100;25;0\nmagsafe power bank;60500;43;1,0\n",
+    "metadata": {
+      "format": "csv",
+      "url": "https://www.semrush.com/analytics/keywordoverview/?db=in&export_columns=keyword%2Cvolume%2Ckeyword_difficulty%2Cintent&q=power+bank+deals%3Bpower+bank+deals+under+1000%3Bpower+bank+under+1000%3Bpower+bank+deals+under+2000%3Bpower+bank+under+2000%3B10000mah+power+bank%3B20000mah+power+bank%3B10000mah+vs+20000mah+power+bank%3Bxiaomi+power+bank+4i+review%3Banker+nano+power+bank+review%3B20w+vs+30w+power+bank%3Bwireless+vs+wired+power+bank%3Bamazon+power+bank+deals%3Bflipkart+power+bank+offers%3Bbest+power+bank+deals%3Bfast+charging+power+bank%3Bmagsafe+power+bank",
+      "usage": {
+        "api_units": 100
+      }
+    }
+  },
+  "questions": {
+    "data": "Keyword;Search Volume;Keyword Difficulty Index\nis power bank allowed in flight;4400;22\ncan we carry power bank in flight;1600;26\nare power banks allowed in flights;1300;30\nare power banks allowed on flights;1300;27\ncan i carry power bank in flight;1000;30\nhow to switch off mi power bank;1000;39\nhow to turn off mi power bank;1000;30\nhow to off mi power bank;880;30\nis 20000mah power bank allowed in flight;880;20\nwhich power bank is best for iphone;880;24\nhow to open a power bank;720;27\nhow to open mi power bank;720;27\nhow to open power bank;720;28\nhow do you charge a power bank;590;23\nhow to charge power bank;590;18\n",
+    "metadata": {
+      "format": "csv",
+      "pagination": {
+        "limit": 15
+      },
+      "url": "https://www.semrush.com/analytics/keywordmagic/?db=in&display_limit=15&export_columns=keyword%2Cvolume%2Ckeyword_difficulty&q=power+bank",
+      "usage": {
+        "api_units": 700
+      }
+    }
+  },
+  "limitations": [
+    "Semrush returned 10 of 17 requested keyword rows; missing rows are unknown, not zero.",
+    "The head-term volume 2240000 is anomalous against adjacent terms and was also observed in prior research; exclude it from demand totals until independently validated.",
+    "No authenticated current Search Console export is available; historical screenshot has no reporting dates or filters.",
+    "Question report is Semrush keyword questions, not a verified Google People Also Ask scrape.",
+    "Existing articles are being improved; no new programmatic pages are authorized by this evidence."
+  ]
+}

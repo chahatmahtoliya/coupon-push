@@ -1,0 +1,185 @@
+{
+  "base": "http://127.0.0.1:8767",
+  "results": [
+    {
+      "slug": "top-5-power-bank-deals-india",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 52,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "10000mah-vs-20000mah-power-bank-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 55,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "anker-nano-30w-power-bank-review-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "power-bank-deals-under-1000",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "power-bank-deals-under-2000",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "20w-vs-30w-fast-charging-power-bank-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "wireless-vs-wired-power-bank-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "amazon-vs-flipkart-power-bank-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 2,
+      "noOverflow": true
+    },
+    {
+      "slug": "best-and-worst-power-bank-deals",
+      "width": 1440,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 2,
+      "noOverflow": true
+    },
+    {
+      "slug": "top-5-power-bank-deals-india",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 52,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "10000mah-vs-20000mah-power-bank-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 55,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "anker-nano-30w-power-bank-review-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "power-bank-deals-under-1000",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "power-bank-deals-under-2000",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "20w-vs-30w-fast-charging-power-bank-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "wireless-vs-wired-power-bank-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 56,
+      "tables": 1,
+      "noOverflow": true
+    },
+    {
+      "slug": "amazon-vs-flipkart-power-bank-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 2,
+      "noOverflow": true
+    },
+    {
+      "slug": "best-and-worst-power-bank-deals",
+      "width": 390,
+      "status": 200,
+      "cover": true,
+      "answerWords": 57,
+      "tables": 2,
+      "noOverflow": true
+    }
+  ]
+}

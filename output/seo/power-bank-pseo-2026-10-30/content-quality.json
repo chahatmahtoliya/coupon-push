@@ -1,0 +1,915 @@
+{
+  "reviewed_at": "2026-10-30",
+  "catalog_retrieved_at": "2026-10-30T06:19:56.967701+00:00",
+  "scope": "10 existing editorial articles; scale gate held",
+  "pages": 10,
+  "catalog_rows": 236,
+  "provenance": {
+    "source": "https://api.couponpush.com/api/coupons.php?category=power-banks&limit=500",
+    "sha256": "250f17164880be5055ea17aaab15307b66539a90d7a4681808938bf44d4b66a7",
+    "checkout_verified_rows": 0
+  },
+  "quality": {
+    "similarity_method": "Jaccard and directional containment of distinct five-word shingles, reported separately for full visible page (including common navigation/footer) and editorial body; data uses exact field/value facts rather than paraphrase counts",
+    "max_jaccard": 0.3041,
+    "min_body_unique_fraction": 0.5767,
+    "min_data_unique_fraction": 0,
+    "data_uniqueness_target": 0.6,
+    "data_overlap_expansion_holds": [
+      {
+        "a": "top-5-power-bank-deals-india",
+        "b": "xiaomi-power-bank-4i-10000mah-review-deals",
+        "a_unique": 0.6,
+        "b_unique": 0
+      },
+      {
+        "a": "top-5-power-bank-deals-india",
+        "b": "anker-nano-30w-power-bank-review-deals",
+        "a_unique": 0.6,
+        "b_unique": 0
+      },
+      {
+        "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+        "b": "anker-nano-30w-power-bank-review-deals",
+        "a_unique": 0.5,
+        "b_unique": 0.5
+      }
+    ],
+    "missing_capacity": 3,
+    "missing_output": 18,
+    "normalized_display_titles": 0
+  },
+  "page_facts": {
+    "top-5-power-bank-deals-india": {
+      "facts": [
+        [
+          "capacity_Xiaomi 4i 10K",
+          "10,000mAh"
+        ],
+        [
+          "output_Xiaomi 4i 10K",
+          "Up to 22.5W"
+        ],
+        [
+          "condition_Xiaomi 4i 10K",
+          "PD and Quick Charge 3.0 listed"
+        ],
+        [
+          "capacity_Ambrane Line 10",
+          "10,000mAh"
+        ],
+        [
+          "output_Ambrane Line 10",
+          "USB-A up to 22.5W; USB-C up to 22W"
+        ],
+        [
+          "condition_Ambrane Line 10",
+          "20W input is separate from output"
+        ],
+        [
+          "capacity_Anker Nano A1259H11",
+          "10,000mAh"
+        ],
+        [
+          "output_Anker Nano A1259H11",
+          "Up to 30W"
+        ],
+        [
+          "condition_Anker Nano A1259H11",
+          "Built-in USB-C cable; bidirectional charging"
+        ],
+        [
+          "capacity_Xiaomi 4i 20K",
+          "20,000mAh"
+        ],
+        [
+          "output_Xiaomi 4i 20K",
+          "Up to 33W"
+        ],
+        [
+          "condition_Xiaomi 4i 20K",
+          "33W class; confirm compatible device/port"
+        ],
+        [
+          "capacity_Samsung EB-P4520",
+          "20,000mAh"
+        ],
+        [
+          "output_Samsung EB-P4520",
+          "Up to 45W"
+        ],
+        [
+          "condition_Samsung EB-P4520",
+          "45W with one compatible device; 402g"
+        ]
+      ],
+      "insight": "Three candidates are advertised at 10K and two at 20K. Output ceilings range from 22.5W to 45W, but the 45W Samsung claim is conditional on one compatible device. The five rows are a use-case shortlist, not an ordered performance or live-price ranking.",
+      "template": "shortlist",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "10000mah-vs-20000mah-power-bank-deals": {
+      "facts": [
+        [
+          "capacity_10,000mAh_rows",
+          143
+        ],
+        [
+          "capacity_10,000mAh_groups",
+          103
+        ],
+        [
+          "capacity_10,000mAh_median",
+          "Rs.1,749"
+        ],
+        [
+          "capacity_20,000mAh_rows",
+          56
+        ],
+        [
+          "capacity_20,000mAh_groups",
+          36
+        ],
+        [
+          "capacity_20,000mAh_median",
+          "Rs.2,167"
+        ]
+      ],
+      "insight": "The recorded 10K group has 2.55 times as many listing variants as the 20K group. That describes this catalog’s assortment, not demand or quality. A 20K capacity label is twice 10K; it does not establish twice the usable phone recharges.",
+      "template": "capacity",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "xiaomi-power-bank-4i-10000mah-review-deals": {
+      "facts": [
+        [
+          "capacity_Xiaomi 4i 10K",
+          "10,000mAh"
+        ],
+        [
+          "output_Xiaomi 4i 10K",
+          "Up to 22.5W"
+        ],
+        [
+          "condition_Xiaomi 4i 10K",
+          "PD and Quick Charge 3.0 listed"
+        ],
+        [
+          "capacity_Xiaomi 4i 20K",
+          "20,000mAh"
+        ],
+        [
+          "output_Xiaomi 4i 20K",
+          "Up to 33W"
+        ],
+        [
+          "condition_Xiaomi 4i 20K",
+          "33W class; confirm compatible device/port"
+        ]
+      ],
+      "insight": "The listed 20K capacity is twice 10K, while the maximum output changes from 22.5W to 33W: a 46.7% ceiling increase, not a measured charging-speed improvement. Capacity and output are separate attributes, and neither alone establishes the better purchase for your phone.",
+      "template": "xiaomi-review",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "anker-nano-30w-power-bank-review-deals": {
+      "facts": [
+        [
+          "capacity_Anker Nano A1259H11",
+          "10,000mAh"
+        ],
+        [
+          "output_Anker Nano A1259H11",
+          "Up to 30W"
+        ],
+        [
+          "condition_Anker Nano A1259H11",
+          "Built-in USB-C cable; bidirectional charging"
+        ],
+        [
+          "capacity_Xiaomi 4i 10K",
+          "10,000mAh"
+        ],
+        [
+          "output_Xiaomi 4i 10K",
+          "Up to 22.5W"
+        ],
+        [
+          "condition_Xiaomi 4i 10K",
+          "PD and Quick Charge 3.0 listed"
+        ]
+      ],
+      "insight": "The Anker and Xiaomi comparison keeps advertised capacity at 10K while changing the cable format and output ceiling. 30W is 1.33 times 22.5W as a ceiling; it is not evidence of a 33% charging-time improvement. Match the A1259H11 SKU rather than borrowing specifications from another Nano generation.",
+      "template": "anker-review",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "power-bank-deals-under-1000": {
+      "facts": [
+        [
+          "budget_inr",
+          1000
+        ],
+        [
+          "eligible_rows",
+          25
+        ],
+        [
+          "product_page_groups",
+          21
+        ],
+        [
+          "merchant_count",
+          5
+        ],
+        [
+          "catalog_share_percent",
+          10.6
+        ]
+      ],
+      "insight": "25 of 236 catalog rows are below Rs.1,000, spanning 21 product-page groups and 5 merchants. This is 10.6% of the dated catalog. The headroom column is the ceiling minus the listed price; any extra charges must fit inside it.",
+      "template": "budget-1000",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "power-bank-deals-under-2000": {
+      "facts": [
+        [
+          "budget_inr",
+          2000
+        ],
+        [
+          "eligible_rows",
+          135
+        ],
+        [
+          "product_page_groups",
+          93
+        ],
+        [
+          "merchant_count",
+          10
+        ],
+        [
+          "catalog_share_percent",
+          57.2
+        ]
+      ],
+      "insight": "135 of 236 catalog rows are below Rs.2,000, spanning 93 product-page groups and 10 merchants. This is 57.2% of the dated catalog. The headroom column is the ceiling minus the listed price; any extra charges must fit inside it.",
+      "template": "budget-2000",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "20w-vs-30w-fast-charging-power-bank-deals": {
+      "facts": [
+        [
+          "label_20W_rows",
+          24
+        ],
+        [
+          "label_20W_groups",
+          20
+        ],
+        [
+          "label_20W_median",
+          "Rs.2,010"
+        ],
+        [
+          "label_30W_rows",
+          11
+        ],
+        [
+          "label_30W_groups",
+          4
+        ],
+        [
+          "label_30W_median",
+          "Rs.1,768"
+        ]
+      ],
+      "insight": "The mathematical ceiling difference is 10W, or 50% of 20W. It is not a measured time saving. Imported descriptions do not reliably resolve direction, shared-port limits or negotiated protocols; inspect the manufacturer output specification for each exact model.",
+      "template": "output",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "wireless-vs-wired-power-bank-deals": {
+      "facts": [
+        [
+          "wireless_title_rows",
+          28
+        ],
+        [
+          "wireless_title_groups",
+          25
+        ],
+        [
+          "unclassified_rows",
+          208
+        ],
+        [
+          "wireless_title_median",
+          "Rs.2,982"
+        ]
+      ],
+      "insight": "28 of 236 titles (11.9%) carry a wireless or magnetic keyword. The other rows are unclassified, not automatically wired-only. A keyword also does not prove a certification, charging rate or fit with a particular phone case.",
+      "template": "wireless",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "amazon-vs-flipkart-power-bank-deals": {
+      "facts": [
+        [
+          "amazon_rows",
+          0
+        ],
+        [
+          "flipkart_rows",
+          0
+        ],
+        [
+          "brand_store_rows",
+          236
+        ],
+        [
+          "brand_store_merchants",
+          11
+        ]
+      ],
+      "insight": "This source supports a brand-store assortment view, not a head-to-head retailer price ranking. Use the six-field comparison checklist below when you have matching offers from both retailers; neither zero count means that the retailer has no power banks for sale.",
+      "template": "retailer",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    },
+    "best-and-worst-power-bank-deals": {
+      "facts": [
+        [
+          "capacity_evidence_rows",
+          233
+        ],
+        [
+          "wattage_evidence_rows",
+          218
+        ],
+        [
+          "checkout_evidence_rows",
+          0
+        ],
+        [
+          "capacity_unknown_rows",
+          3
+        ],
+        [
+          "output_unknown_rows",
+          18
+        ]
+      ],
+      "insight": "3 rows have no capacity value in the title, and 18 have no parseable imported wattage. Missing fields should trigger investigation rather than a negative product score. The absence of checkout evidence is why a large advertised discount alone cannot earn a recommendation.",
+      "template": "quality",
+      "date_modified": "2026-10-30",
+      "inbound_context_links": 6
+    }
+  },
+  "similarity_pairs": [
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "10000mah-vs-20000mah-power-bank-deals",
+      "full_page_jaccard": 0.1769,
+      "full_page_unique_a": 0.6991,
+      "full_page_unique_b": 0.6997,
+      "body_jaccard": 0.1169,
+      "body_unique_a": 0.7903,
+      "body_unique_b": 0.7911,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "full_page_jaccard": 0.2223,
+      "full_page_unique_a": 0.6465,
+      "full_page_unique_b": 0.6254,
+      "body_jaccard": 0.1683,
+      "body_unique_a": 0.7221,
+      "body_unique_b": 0.7009,
+      "data_unique_a": 0.6,
+      "data_unique_b": 0
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "anker-nano-30w-power-bank-review-deals",
+      "full_page_jaccard": 0.2071,
+      "full_page_unique_a": 0.666,
+      "full_page_unique_b": 0.6471,
+      "body_jaccard": 0.1497,
+      "body_unique_a": 0.7481,
+      "body_unique_b": 0.7304,
+      "data_unique_a": 0.6,
+      "data_unique_b": 0
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "power-bank-deals-under-1000",
+      "full_page_jaccard": 0.1566,
+      "full_page_unique_a": 0.7215,
+      "full_page_unique_b": 0.7364,
+      "body_jaccard": 0.0905,
+      "body_unique_a": 0.8275,
+      "body_unique_b": 0.84,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "power-bank-deals-under-2000",
+      "full_page_jaccard": 0.1557,
+      "full_page_unique_a": 0.7225,
+      "full_page_unique_b": 0.7383,
+      "body_jaccard": 0.0878,
+      "body_unique_a": 0.8325,
+      "body_unique_b": 0.8443,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "20w-vs-30w-fast-charging-power-bank-deals",
+      "full_page_jaccard": 0.1617,
+      "full_page_unique_a": 0.7254,
+      "full_page_unique_b": 0.7177,
+      "body_jaccard": 0.0929,
+      "body_unique_a": 0.8325,
+      "body_unique_b": 0.8274,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.163,
+      "full_page_unique_a": 0.7225,
+      "full_page_unique_b": 0.7167,
+      "body_jaccard": 0.1007,
+      "body_unique_a": 0.8189,
+      "body_unique_b": 0.8152,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.1567,
+      "full_page_unique_a": 0.7196,
+      "full_page_unique_b": 0.7379,
+      "body_jaccard": 0.096,
+      "body_unique_a": 0.8176,
+      "body_unique_b": 0.8316,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "top-5-power-bank-deals-india",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.156,
+      "full_page_unique_a": 0.7186,
+      "full_page_unique_b": 0.7406,
+      "body_jaccard": 0.1009,
+      "body_unique_a": 0.8065,
+      "body_unique_b": 0.8259,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "full_page_jaccard": 0.1774,
+      "full_page_unique_a": 0.7075,
+      "full_page_unique_b": 0.6894,
+      "body_jaccard": 0.1217,
+      "body_unique_a": 0.7911,
+      "body_unique_b": 0.7744,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "anker-nano-30w-power-bank-review-deals",
+      "full_page_jaccard": 0.1688,
+      "full_page_unique_a": 0.7191,
+      "full_page_unique_b": 0.7027,
+      "body_jaccard": 0.1102,
+      "body_unique_a": 0.8084,
+      "body_unique_b": 0.7942,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "power-bank-deals-under-1000",
+      "full_page_jaccard": 0.2059,
+      "full_page_unique_a": 0.6492,
+      "full_page_unique_b": 0.6673,
+      "body_jaccard": 0.158,
+      "body_unique_a": 0.7169,
+      "body_unique_b": 0.7365,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "power-bank-deals-under-2000",
+      "full_page_jaccard": 0.2124,
+      "full_page_unique_a": 0.6395,
+      "full_page_unique_b": 0.6593,
+      "body_jaccard": 0.1559,
+      "body_unique_a": 0.7206,
+      "body_unique_b": 0.7393,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "20w-vs-30w-fast-charging-power-bank-deals",
+      "full_page_jaccard": 0.2158,
+      "full_page_unique_a": 0.6501,
+      "full_page_unique_b": 0.6396,
+      "body_jaccard": 0.1579,
+      "body_unique_a": 0.7318,
+      "body_unique_b": 0.7225,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.2178,
+      "full_page_unique_a": 0.6463,
+      "full_page_unique_b": 0.6382,
+      "body_jaccard": 0.1621,
+      "body_unique_a": 0.7244,
+      "body_unique_b": 0.7177,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.2057,
+      "full_page_unique_a": 0.6472,
+      "full_page_unique_b": 0.6697,
+      "body_jaccard": 0.1497,
+      "body_unique_a": 0.7293,
+      "body_unique_b": 0.7491,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "10000mah-vs-20000mah-power-bank-deals",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.2046,
+      "full_page_unique_a": 0.6463,
+      "full_page_unique_b": 0.6732,
+      "body_jaccard": 0.1551,
+      "body_unique_a": 0.7169,
+      "body_unique_b": 0.7444,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "anker-nano-30w-power-bank-review-deals",
+      "full_page_jaccard": 0.2169,
+      "full_page_unique_a": 0.6429,
+      "full_page_unique_b": 0.644,
+      "body_jaccard": 0.1607,
+      "body_unique_a": 0.7223,
+      "body_unique_b": 0.7238,
+      "data_unique_a": 0.5,
+      "data_unique_b": 0.5
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "power-bank-deals-under-1000",
+      "full_page_jaccard": 0.1631,
+      "full_page_unique_a": 0.7028,
+      "full_page_unique_b": 0.7346,
+      "body_jaccard": 0.1067,
+      "body_unique_a": 0.7917,
+      "body_unique_b": 0.8205,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "power-bank-deals-under-2000",
+      "full_page_jaccard": 0.1601,
+      "full_page_unique_a": 0.7069,
+      "full_page_unique_b": 0.7392,
+      "body_jaccard": 0.1001,
+      "body_unique_a": 0.8037,
+      "body_unique_b": 0.8304,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "20w-vs-30w-fast-charging-power-bank-deals",
+      "full_page_jaccard": 0.1624,
+      "full_page_unique_a": 0.7162,
+      "full_page_unique_b": 0.7247,
+      "body_jaccard": 0.0967,
+      "body_unique_a": 0.8198,
+      "body_unique_b": 0.8274,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.1584,
+      "full_page_unique_a": 0.7214,
+      "full_page_unique_b": 0.7316,
+      "body_jaccard": 0.0938,
+      "body_unique_a": 0.8238,
+      "body_unique_b": 0.8329,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.1527,
+      "full_page_unique_a": 0.7172,
+      "full_page_unique_b": 0.7507,
+      "body_jaccard": 0.0849,
+      "body_unique_a": 0.8304,
+      "body_unique_b": 0.8545,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "xiaomi-power-bank-4i-10000mah-review-deals",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.1477,
+      "full_page_unique_a": 0.7234,
+      "full_page_unique_b": 0.7594,
+      "body_jaccard": 0.0901,
+      "body_unique_a": 0.8184,
+      "body_unique_b": 0.8482,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "anker-nano-30w-power-bank-review-deals",
+      "b": "power-bank-deals-under-1000",
+      "full_page_jaccard": 0.1701,
+      "full_page_unique_a": 0.6924,
+      "full_page_unique_b": 0.7244,
+      "body_jaccard": 0.114,
+      "body_unique_a": 0.7795,
+      "body_unique_b": 0.809,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "anker-nano-30w-power-bank-review-deals",
+      "b": "power-bank-deals-under-2000",
+      "full_page_jaccard": 0.1664,
+      "full_page_unique_a": 0.6975,
+      "full_page_unique_b": 0.73,
+      "body_jaccard": 0.1073,
+      "body_unique_a": 0.7915,
+      "body_unique_b": 0.8189,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "anker-nano-30w-power-bank-review-deals",
+      "b": "20w-vs-30w-fast-charging-power-bank-deals",
+      "full_page_jaccard": 0.167,
+      "full_page_unique_a": 0.7099,
+      "full_page_unique_b": 0.7177,
+      "body_jaccard": 0.1051,
+      "body_unique_a": 0.8061,
+      "body_unique_b": 0.8133,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "anker-nano-30w-power-bank-review-deals",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.1615,
+      "full_page_unique_a": 0.7171,
+      "full_page_unique_b": 0.7266,
+      "body_jaccard": 0.0959,
+      "body_unique_a": 0.8207,
+      "body_unique_b": 0.8291,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "anker-nano-30w-power-bank-review-deals",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.1499,
+      "full_page_unique_a": 0.7222,
+      "full_page_unique_b": 0.7543,
+      "body_jaccard": 0.0811,
+      "body_unique_a": 0.838,
+      "body_unique_b": 0.8603,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "anker-nano-30w-power-bank-review-deals",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.1462,
+      "full_page_unique_a": 0.7263,
+      "full_page_unique_b": 0.7612,
+      "body_jaccard": 0.0827,
+      "body_unique_a": 0.8327,
+      "body_unique_b": 0.8594,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-1000",
+      "b": "power-bank-deals-under-2000",
+      "full_page_jaccard": 0.3041,
+      "full_page_unique_a": 0.5327,
+      "full_page_unique_b": 0.5344,
+      "body_jaccard": 0.2681,
+      "body_unique_a": 0.5777,
+      "body_unique_b": 0.5767,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-1000",
+      "b": "20w-vs-30w-fast-charging-power-bank-deals",
+      "full_page_jaccard": 0.218,
+      "full_page_unique_a": 0.6562,
+      "full_page_unique_b": 0.6266,
+      "body_jaccard": 0.1684,
+      "body_unique_a": 0.7261,
+      "body_unique_b": 0.6957,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-1000",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.2087,
+      "full_page_unique_a": 0.6673,
+      "full_page_unique_b": 0.6412,
+      "body_jaccard": 0.1593,
+      "body_unique_a": 0.7376,
+      "body_unique_b": 0.7114,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-1000",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.1954,
+      "full_page_unique_a": 0.671,
+      "full_page_unique_b": 0.6752,
+      "body_jaccard": 0.1378,
+      "body_unique_a": 0.7572,
+      "body_unique_b": 0.7583,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-1000",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.1848,
+      "full_page_unique_a": 0.6839,
+      "full_page_unique_b": 0.6921,
+      "body_jaccard": 0.1314,
+      "body_unique_a": 0.7641,
+      "body_unique_b": 0.7712,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-2000",
+      "b": "20w-vs-30w-fast-charging-power-bank-deals",
+      "full_page_jaccard": 0.2254,
+      "full_page_unique_a": 0.6474,
+      "full_page_unique_b": 0.6156,
+      "body_jaccard": 0.1779,
+      "body_unique_a": 0.7128,
+      "body_unique_b": 0.6816,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-2000",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.2166,
+      "full_page_unique_a": 0.6575,
+      "full_page_unique_b": 0.6292,
+      "body_jaccard": 0.1685,
+      "body_unique_a": 0.7243,
+      "body_unique_b": 0.6975,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-2000",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.2015,
+      "full_page_unique_a": 0.663,
+      "full_page_unique_b": 0.6661,
+      "body_jaccard": 0.1455,
+      "body_unique_a": 0.7451,
+      "body_unique_b": 0.7468,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "power-bank-deals-under-2000",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.1921,
+      "full_page_unique_a": 0.674,
+      "full_page_unique_b": 0.6813,
+      "body_jaccard": 0.136,
+      "body_unique_a": 0.7566,
+      "body_unique_b": 0.7645,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "20w-vs-30w-fast-charging-power-bank-deals",
+      "b": "wireless-vs-wired-power-bank-deals",
+      "full_page_jaccard": 0.2377,
+      "full_page_unique_a": 0.6146,
+      "full_page_unique_b": 0.6173,
+      "body_jaccard": 0.1909,
+      "body_unique_a": 0.6777,
+      "body_unique_b": 0.681,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "20w-vs-30w-fast-charging-power-bank-deals",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.2148,
+      "full_page_unique_a": 0.6286,
+      "full_page_unique_b": 0.6624,
+      "body_jaccard": 0.1614,
+      "body_unique_a": 0.7059,
+      "body_unique_b": 0.7365,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "20w-vs-30w-fast-charging-power-bank-deals",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.2006,
+      "full_page_unique_a": 0.6466,
+      "full_page_unique_b": 0.6831,
+      "body_jaccard": 0.1509,
+      "body_unique_a": 0.7187,
+      "body_unique_b": 0.7545,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "wireless-vs-wired-power-bank-deals",
+      "b": "amazon-vs-flipkart-power-bank-deals",
+      "full_page_jaccard": 0.2161,
+      "full_page_unique_a": 0.6282,
+      "full_page_unique_b": 0.6597,
+      "body_jaccard": 0.1695,
+      "body_unique_a": 0.6949,
+      "body_unique_b": 0.7239,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "wireless-vs-wired-power-bank-deals",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.208,
+      "full_page_unique_a": 0.6372,
+      "full_page_unique_b": 0.6724,
+      "body_jaccard": 0.1596,
+      "body_unique_a": 0.7063,
+      "body_unique_b": 0.7411,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    },
+    {
+      "a": "amazon-vs-flipkart-power-bank-deals",
+      "b": "best-and-worst-power-bank-deals",
+      "full_page_jaccard": 0.2106,
+      "full_page_unique_a": 0.6497,
+      "full_page_unique_b": 0.6544,
+      "body_jaccard": 0.1653,
+      "body_unique_a": 0.7125,
+      "body_unique_b": 0.7199,
+      "data_unique_a": 1,
+      "data_unique_b": 1
+    }
+  ],
+  "errors": []
+}

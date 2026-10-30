@@ -1,0 +1,84 @@
+{
+  "reviewed_at": "2026-10-30",
+  "method": "Primary manufacturer pages read for the listed facts. No hands-on tests, checkout tests, measured efficiency or universal phone compatibility claims.",
+  "products": [
+    {
+      "id": "xiaomi-4i-10k",
+      "source": "https://www.mi.com/in/product/xiaomi-power-bank-4i-10000mah/",
+      "facts": {
+        "advertised_capacity_mah": 10000,
+        "advertised_max_output_w": 22.5,
+        "protocols": [
+          "Power Delivery",
+          "Quick Charge 3.0"
+        ],
+        "advertised_device_outputs": 3,
+        "two_way_fast_charging": true
+      }
+    },
+    {
+      "id": "xiaomi-4i-20k",
+      "source": "https://www.mi.com/in/product/xiaomi-power-bank-4i-20000mah-33w-sonic-charge/",
+      "facts": {
+        "advertised_capacity_mah": 20000,
+        "advertised_max_output_w": 33
+      },
+      "note": "Correct URL discovered from the official Xiaomi power-bank range; the shorter /xiaomi-power-bank-4i-20000mah/ redirects to an error page."
+    },
+    {
+      "id": "ambrane-line-10",
+      "source": "https://ambraneindia.com/products/line-10",
+      "facts": {
+        "advertised_capacity_mah": 10000,
+        "advertised_max_usb_a_output_w": 22.5,
+        "advertised_max_usb_c_output_w": 22,
+        "advertised_max_input_w": 20,
+        "ports": 2
+      },
+      "note": "Marketing prose says up to 20W but the specification block separates 20W input and up to 22.5W output. State the port-specific figures and source conflict carefully."
+    },
+    {
+      "id": "anker-nano-a1259",
+      "source": "https://ankerindia.com/products/anker-nano-power-bank-30w-built-in-usb-c-cable.html",
+      "facts": {
+        "advertised_capacity_mah": 10000,
+        "advertised_max_output_w": 30,
+        "bidirectional_charging": true,
+        "built_in_usb_c_cable": true,
+        "sku": "A1259H11"
+      },
+      "note": "Different Nano generations exist; do not substitute the newer A1638 45W specs. Page badge and prose disagree on warranty duration; omit warranty claims unless separately resolved."
+    },
+    {
+      "id": "samsung-eb-p4520",
+      "source": "https://www.samsung.com/in/mobile-accessories/battery-pack-20-000mah-beige-eb-p4520xuegin/",
+      "facts": {
+        "advertised_capacity_mah": 20000,
+        "advertised_max_output_w": 45,
+        "protocols": [
+          "PD 3.0",
+          "PPS"
+        ],
+        "weight_g": 402,
+        "dimensions_mm": [
+          152,
+          76,
+          25.5
+        ],
+        "included_cable_length_cm": 30
+      },
+      "note": "45W applies with one connected compatible device; do not claim 45W per port simultaneously."
+    }
+  ],
+  "standards": [
+    {
+      "source": "https://www.usb.org/usb-charger-pd",
+      "use": "USB Power Delivery protocol guidance; connector shape alone does not establish negotiated charging performance."
+    },
+    {
+      "source": "https://www.wirelesspowerconsortium.com/products/",
+      "use": "Certification lookup; magnetic attachment alone does not establish Qi/Qi2 certification."
+    }
+  ],
+  "price_policy": "No price from these pages is certified as a checkout price. Catalog source has no per-offer checked_at/source_url verification."
+}

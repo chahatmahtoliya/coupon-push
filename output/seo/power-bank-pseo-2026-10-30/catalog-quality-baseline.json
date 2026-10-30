@@ -1,0 +1,54 @@
+{
+  "retrieved_at": "2026-10-30T06:19:56.967701+00:00",
+  "records": 236,
+  "merchant_count": 11,
+  "url_capacity_groups": 167,
+  "nulls": {
+    "capacity": 3,
+    "output": 18
+  },
+  "segments": {
+    "under1000": {
+      "records": 25,
+      "url_capacity_groups": 21,
+      "merchant_count": 5,
+      "min_listed_price_inr": 549
+    },
+    "under2000": {
+      "records": 135,
+      "url_capacity_groups": 93,
+      "merchant_count": 10,
+      "min_listed_price_inr": 549
+    },
+    "10000mah": {
+      "records": 143,
+      "url_capacity_groups": 103,
+      "merchant_count": 11,
+      "min_listed_price_inr": 549
+    },
+    "20000mah": {
+      "records": 56,
+      "url_capacity_groups": 36,
+      "merchant_count": 10,
+      "min_listed_price_inr": 1099
+    },
+    "20w": {
+      "records": 24,
+      "url_capacity_groups": 20,
+      "merchant_count": 7,
+      "min_listed_price_inr": 949
+    },
+    "30w": {
+      "records": 11,
+      "url_capacity_groups": 4,
+      "merchant_count": 1,
+      "min_listed_price_inr": 1279
+    },
+    "wireless_title": {
+      "records": 28,
+      "url_capacity_groups": 25,
+      "merchant_count": 4,
+      "min_listed_price_inr": 949
+    }
+  }
+}
