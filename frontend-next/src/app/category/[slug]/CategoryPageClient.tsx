@@ -3,6 +3,8 @@
 import Link from '@/components/common/SiteLink';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { CouponCard, FilterSidebar } from '@/components/features';
+import { PowerBankPicks } from '@/components/features/PowerBankPicks';
+import { capacity, withProductPhoto } from '@/lib/power-bank-shopping';
 import { PowerBankGuide } from '@/components/features/PowerBankGuide';
 import { categoriesApi, couponsApi, storesApi } from '@/services/api';
 import { getCategoryPath } from '@/lib/routes';
@@ -46,6 +48,9 @@ export default function CategoryPageClient({ initialData, initialCategories = []
     const [data, setData] = useState(initialData);
     const [categories, setCategories] = useState(initialCategories);
     const [page, setPage] = useState(1);
+    const [budget, setBudget] = useState('all');
+    const [size, setSize] = useState('all');
+    const isPowerBank = slug === 'power-banks';
     const [sort, setSort] = useState('popular');
     const [selectedStores, setSelectedStores] = useState<string[]>([]);
     const [discounts, setDiscounts] = useState<string[]>([]);
@@ -68,9 +73,9 @@ export default function CategoryPageClient({ initialData, initialCategories = []
         }).catch((error) => { if (active) setRefreshState('error'); console.error('Failed to refresh category data:', error); });
         return () => { active = false; };
     }, [slug, refreshAttempt]);
-    useEffect(() => setPage(1), [sort, selectedStores, discounts, types, validity, slug]);
+    useEffect(() => setPage(1), [sort, selectedStores, discounts, types, validity, slug, budget, size]);
 
-    const coupons = data?.coupons || [];
+    const coupons = useMemo(() => isPowerBank ? (data?.coupons || []).map(withProductPhoto) : data?.coupons || [], [data?.coupons, isPowerBank]);
     const stores = useMemo(() => {
         const inventory = new Map<string, { name: string; slug: string; count: number; logo?: string }>();
         for (const store of data?.stores || []) inventory.set(store.slug, { ...store, count: 0 });
@@ -85,35 +90,38 @@ export default function CategoryPageClient({ initialData, initialCategories = []
     const description = slug === 'power-banks'
         ? 'Compare power bank deals from popular brands. Find your next portable charger by price, capacity and charging speed.'
         : data?.categoryDescription || `Browse active ${name} coupons, promo codes, and store deals in one place.`;
-    const activeFilters = selectedStores.length + discounts.length + types.length + Number(validity !== 'all');
+    const activeFilters = selectedStores.length + discounts.length + types.length + Number(validity !== 'all') + Number(budget !== 'all') + Number(size !== 'all');
     const filtered = useMemo(() => {
         let result = [...coupons];
+        if (isPowerBank && budget !== 'all') result = result.filter(item => item.sale_price && item.sale_price < Number(budget));
+        if (isPowerBank && size !== 'all') result = result.filter(item => capacity(item) === Number(size));
         if (selectedStores.length) result = result.filter((coupon) => selectedStores.includes(coupon.store_slug));
         if (discounts.length) result = result.filter((coupon) => coupon.discount_type === 'percentage' && discounts.some((range) => range === 'under10' ? coupon.discount_value < 10 : range === '10-25' ? coupon.discount_value >= 10 && coupon.discount_value < 25 : range === '25-50' ? coupon.discount_value >= 25 && coupon.discount_value < 50 : range === '50-75' ? coupon.discount_value >= 50 && coupon.discount_value < 75 : coupon.discount_value >= 75));
         if (types.length) result = result.filter((coupon) => (types.includes('code') && Boolean(coupon.code?.trim())) || (types.includes('percentage') && coupon.discount_type === 'percentage') || (types.includes('fixed') && ['fixed', 'flat'].includes(coupon.discount_type)) || (types.includes('freeshipping') && coupon.discount_type === 'freebie') || (types.includes('nocode') && !coupon.code?.trim()));
         if (validity === 'new') result.sort((a, b) => b.id - a.id);
         if (validity === 'expiring') { const now = new Date(); const week = new Date(now.getTime() + 7 * 86400000); result = result.filter((coupon) => coupon.expiry_date && new Date(coupon.expiry_date) > now && new Date(coupon.expiry_date) <= week); }
-        if (sort === 'newest') result.sort((a, b) => b.id - a.id);
+        if (sort === 'price') result.sort((a, b) => (a.sale_price || Infinity) - (b.sale_price || Infinity));
+        else if (sort === 'newest') result.sort((a, b) => b.id - a.id);
         else if (sort === 'expiring') result.sort((a, b) => a.expiry_date ? b.expiry_date ? new Date(a.expiry_date).getTime() - new Date(b.expiry_date).getTime() : -1 : 1);
         else if (sort === 'discount') result.sort((a, b) => b.discount_value - a.discount_value);
         else result.sort((a, b) => b.click_count - a.click_count);
-        return slug === 'power-banks' && sort === 'popular' ? rotateOffersByBrand(result) : result;
-    }, [coupons, selectedStores, discounts, types, validity, sort, slug]);
+        return isPowerBank && sort === 'popular' ? rotateOffersByBrand(result) : result;
+    }, [coupons, selectedStores, discounts, types, validity, sort, budget, size, isPowerBank]);
     const totalPages = Math.ceil(filtered.length / 12);
     const currentPage = Math.min(page, Math.max(totalPages, 1));
     const visible = filtered.slice((currentPage - 1) * 12, currentPage * 12);
-    const clearFilters = () => { setSelectedStores([]); setDiscounts([]); setTypes([]); setValidity('all'); };
+    const clearFilters = () => { setSelectedStores([]); setDiscounts([]); setTypes([]); setValidity('all'); setBudget('all'); setSize('all'); };
     const promoCount = coupons.filter((coupon) => Boolean(coupon.code?.trim())).length;
 
-    return <div className="cp-category-page cp-category-explorer">
+    return <div className={`cp-category-page cp-category-explorer${isPowerBank ? ' pb-shopping' : ''}`}>
         <header className={`cp-category-hero${slug === 'power-banks' ? ' cp-power-bank-hero' : ''}`}>
             <div className="cp-category-shell">
                 <nav className="cp-category-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><Link href="/categories">Categories</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span aria-current="page">{name}</span></nav>
-                <div className="cp-category-heading"><h1>{slug === 'power-banks' ? 'Power Bank Deals' : name}</h1><p>{description}</p></div>
+                <div className="cp-category-heading"><h1>{slug === 'power-banks' ? 'Power Bank Deals' : name}</h1><p>{description}</p>{isPowerBank && <a className="pb-hero-cta" href="#pb-all-deals">Find your next power bank <i className="fas fa-arrow-right" aria-hidden="true" /></a>}</div>
                 <div className="cp-category-hero-facts">
                     <span><i className="fas fa-ticket" aria-hidden="true" /><span><strong>{coupons.length}</strong> offers available</span></span>
                     <span><i className="fas fa-store" aria-hidden="true" /><span><strong>{stores.length}</strong> Stores</span></span>
-                    <span><i className="fas fa-tag" aria-hidden="true" /><span><strong>{promoCount}</strong> Promo {promoCount === 1 ? 'code' : 'codes'}</span></span>
+                    {(!isPowerBank || promoCount > 0) && <span><i className="fas fa-tag" aria-hidden="true" /><span><strong>{promoCount}</strong> Promo {promoCount === 1 ? 'code' : 'codes'}</span></span>}
                 </div>
             </div>
         </header>
@@ -126,19 +134,22 @@ export default function CategoryPageClient({ initialData, initialCategories = []
                 <div className="cp-category-section-heading"><h2 id="category-stores-title">Popular stores</h2><Link href="/stores/">Browse stores <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
                 <div className="cp-category-store-list">{stores.slice(0, 8).map((store) => <button type="button" key={store.slug} className={selectedStores.includes(store.slug) ? 'active' : ''} aria-label={`Show ${store.count} ${store.count === 1 ? 'offer' : 'offers'} from ${store.name}`} aria-pressed={selectedStores.includes(store.slug)} onClick={() => setSelectedStores(selectedStores.includes(store.slug) ? [] : [store.slug])}><StoreMark name={store.name} logo={store.logo} /><span>{store.name}</span><small>{store.count} {store.count === 1 ? 'offer' : 'offers'}</small></button>)}</div>
             </section>}
+            {isPowerBank && <PowerBankPicks offers={coupons} />}
             <div className="cp-category-layout">
-                <aside className={`cp-category-sidebar${filtersOpen ? ' is-open' : ''}`} aria-label="Offer filters">
+                {!isPowerBank && <aside className={`cp-category-sidebar${filtersOpen ? ' is-open' : ''}`} aria-label="Offer filters">
                     <button type="button" className="cp-category-mobile-filters" aria-expanded={filtersOpen} aria-controls="category-filter-body" onClick={() => setFiltersOpen(!filtersOpen)}><i className="fas fa-sliders" aria-hidden="true" />Filters{activeFilters > 0 && <span className="cp-category-filter-count">{activeFilters}</span>}<i className={`fas fa-chevron-${filtersOpen ? 'up' : 'down'}`} aria-hidden="true" /></button>
                     <div className="cp-category-sidebar-body" id="category-filter-body">
                         <div className="cp-category-sidebar-heading"><h2>Filters {activeFilters > 0 && <span className="cp-category-filter-count">{activeFilters}</span>}</h2><button type="button" onClick={clearFilters} disabled={!activeFilters}>Clear filters</button></div>
                         <FilterSidebar stores={stores} selectedStores={selectedStores} selectedDiscounts={discounts} selectedTypes={types} validity={validity} onStoreChange={setSelectedStores} onDiscountChange={setDiscounts} onTypeChange={setTypes} onValidityChange={setValidity} />
                     </div>
-                </aside>
-                <section className="cp-category-results" ref={resultsRef} aria-label={`${name} offers`}>
-                    <div className="cp-category-discover" aria-label="Quick filters"><span><i className="fas fa-bolt" aria-hidden="true" />{name}</span><div><button type="button" className={!types.length ? 'active' : ''} aria-pressed={!types.length} onClick={() => setTypes([])}>All Active <small>{coupons.length}</small></button><button type="button" className={types.length === 1 && types[0] === 'code' ? 'active' : ''} aria-pressed={types.length === 1 && types[0] === 'code'} onClick={() => setTypes(['code'])}>Promo code <small>{promoCount}</small></button><button type="button" className={types.length === 1 && types[0] === 'nocode' ? 'active' : ''} aria-pressed={types.length === 1 && types[0] === 'nocode'} onClick={() => setTypes(['nocode'])}>Online deal <small>{coupons.length - promoCount}</small></button></div></div>
-                    <div className="cp-category-results-heading"><h2>{name} <span>({filtered.length})</span></h2><label className="cp-category-sort"><span className="visually-hidden">Sort offers</span><i className="fas fa-arrow-down-wide-short" aria-hidden="true" /><select value={sort} onChange={(event) => setSort(event.target.value)}><option value="popular">Sort by: Relevance</option><option value="newest">Newest first</option><option value="expiring">Expiring soon</option><option value="discount">Highest discount</option></select><i className="fas fa-chevron-down" aria-hidden="true" /></label></div>
+                </aside>}
+                <section id={isPowerBank ? "pb-all-deals" : undefined} className="cp-category-results" ref={resultsRef} aria-label={`${name} offers`}>
+                    {!isPowerBank && <div className="cp-category-discover" aria-label="Quick filters"><span><i className="fas fa-bolt" aria-hidden="true" />{name}</span><div><button type="button" className={!types.length ? 'active' : ''} aria-pressed={!types.length} onClick={() => setTypes([])}>All Active <small>{coupons.length}</small></button><button type="button" className={types.length === 1 && types[0] === 'code' ? 'active' : ''} aria-pressed={types.length === 1 && types[0] === 'code'} onClick={() => setTypes(['code'])}>Promo code <small>{promoCount}</small></button><button type="button" className={types.length === 1 && types[0] === 'nocode' ? 'active' : ''} aria-pressed={types.length === 1 && types[0] === 'nocode'} onClick={() => setTypes(['nocode'])}>Online deal <small>{coupons.length - promoCount}</small></button></div></div>
+                    }
+                    {isPowerBank && <div className="pb-filters" aria-label="Filter power banks"><label>Price<select value={budget} onChange={e => setBudget(e.target.value)}><option value="all">Any budget</option><option value="1000">Under ₹1,000</option><option value="2000">Under ₹2,000</option><option value="3000">Under ₹3,000</option></select></label><label>Capacity<select value={size} onChange={e => setSize(e.target.value)}><option value="all">Any capacity</option><option value="10000">10,000mAh</option><option value="20000">20,000mAh</option></select></label><label>Brand<select value={selectedStores[0] || "all"} onChange={e => setSelectedStores(e.target.value === "all" ? [] : [e.target.value])}><option value="all">All brands</option>{stores.map(store => <option key={store.slug} value={store.slug}>{store.name} ({store.count})</option>)}</select></label>{activeFilters > 0 && <button type="button" onClick={clearFilters}>Clear filters ({activeFilters})</button>}</div>}
+                    <div className="cp-category-results-heading"><h2>{name} <span>({filtered.length})</span></h2><label className="cp-category-sort"><span className="visually-hidden">Sort offers</span><i className="fas fa-arrow-down-wide-short" aria-hidden="true" /><select value={sort} onChange={(event) => setSort(event.target.value)}><option value="popular">Sort by: Relevance</option>{isPowerBank && <option value="price">Price: low to high</option>}<option value="newest">Newest first</option><option value="expiring">Expiring soon</option><option value="discount">Highest discount</option></select><i className="fas fa-chevron-down" aria-hidden="true" /></label></div>
                     <p className="cp-category-count" role="status" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'offer' : 'offers'} available{activeFilters ? ' with these filters' : ''}</p>
-                    {visible.length ? <><div className="coupon-grid-v2">{visible.map((coupon) => <CouponCard coupon={coupon} variant="category" key={coupon.id} />)}</div><div className="cp-category-pagination"><Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={(next) => { setPage(next); resultsRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }} /><p>{(currentPage - 1) * 12 + 1}–{Math.min(currentPage * 12, filtered.length)} of {filtered.length} offers</p></div></> : <div className="cp-category-empty" role="status"><i className="fas fa-ticket-alt" aria-hidden="true" /><h2>{activeFilters ? 'No offers match these filters' : refreshState === 'loading' ? 'Loading category offers…' : refreshState === 'error' ? 'Offers could not be loaded' : 'No offers listed yet'}</h2><p>{activeFilters ? 'Try another store or clear the filters to see all current offers.' : refreshState === 'loading' ? 'Checking the latest offers for this category.' : refreshState === 'error' ? 'Check your connection and try again.' : 'Check back for new offers, or explore another shopping category.'}</p>{activeFilters ? <button type="button" onClick={clearFilters}>Clear filters</button> : refreshState === 'error' ? <button type="button" onClick={() => setRefreshAttempt(value => value + 1)}>Try again</button> : refreshState === 'ready' ? <Link href="/categories/">Explore categories</Link> : null}</div>}
+                    {visible.length ? <><div className="coupon-grid-v2">{visible.map((coupon) => <CouponCard coupon={coupon} variant="category" shopping={isPowerBank} key={coupon.id} />)}</div><div className="cp-category-pagination"><Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={(next) => { setPage(next); resultsRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' }); }} /><p>{(currentPage - 1) * 12 + 1}–{Math.min(currentPage * 12, filtered.length)} of {filtered.length} offers</p></div></> : <div className="cp-category-empty" role="status"><i className="fas fa-ticket-alt" aria-hidden="true" /><h2>{activeFilters ? 'No offers match these filters' : refreshState === 'loading' ? 'Loading category offers…' : refreshState === 'error' ? 'Offers could not be loaded' : 'No offers listed yet'}</h2><p>{activeFilters ? 'Try another store or clear the filters to see all current offers.' : refreshState === 'loading' ? 'Checking the latest offers for this category.' : refreshState === 'error' ? 'Check your connection and try again.' : 'Check back for new offers, or explore another shopping category.'}</p>{activeFilters ? <button type="button" onClick={clearFilters}>Clear filters</button> : refreshState === 'error' ? <button type="button" onClick={() => setRefreshAttempt(value => value + 1)}>Try again</button> : refreshState === 'ready' ? <Link href="/categories/">Explore categories</Link> : null}</div>}
                 </section>
             </div>
             {slug === 'power-banks' && <PowerBankGuide offers={coupons} brands={stores} onSelectBrand={(brand) => { setSelectedStores([brand]); resultsRef.current?.scrollIntoView({ behavior: 'instant', block: 'start' }); }} />}

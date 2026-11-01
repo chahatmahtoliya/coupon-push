@@ -1,0 +1,91 @@
+/* Power bank shopping surface; other category layouts retain their existing styles. */
+.pb-shopping { background: #f8fafb; }
+.pb-shopping .cp-category-hero.cp-power-bank-hero { padding: 24px 0 40px; min-height: 390px; background-color: #fcf5ed; background-size: auto 100%; background-position: center; }
+.pb-shopping .cp-category-hero .cp-category-heading { max-width: 520px; margin: 36px 0 24px; }
+.pb-shopping .cp-category-heading h1 { max-width: 10ch; margin-bottom: 16px; font-size: clamp(38px, 4.5vw, 62px); line-height: 1.04; letter-spacing: -.035em; }
+.pb-shopping .cp-category-heading p { max-width: 43ch; color: #435168; font-size: 17px; line-height: 1.65; }
+.pb-hero-cta { display: inline-flex; align-items: center; gap: 24px; margin-top: 24px; padding: 13px 20px; border-radius: 9px; background: #172b43; color: #fff; font-size: 15px; font-weight: 700; }
+.pb-hero-cta:hover { background: #284663; color: #fff; }
+.pb-shopping .cp-category-hero-facts { gap: 24px; }
+.pb-shopping .cp-category-hero-facts > span { background: transparent; border: 0; padding: 0; }
+.pb-shopping .cp-category-shortcuts { margin-bottom: 28px; }
+.pb-shopping .cp-category-store-list { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.pb-shopping .cp-category-stores { padding-bottom: 12px; }
+.pb-shopping .cp-category-store-list > button { min-height: 152px; }
+.pb-shopping .cp-category-store-list > button > span:not(.cp-category-store-mark) { font-size: 17px; }
+.pb-picks { margin: 36px 0 48px; }
+.pb-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
+.pb-section-heading h2 { margin: 0 0 8px; font-size: clamp(25px, 2.7vw, 34px); letter-spacing: -.025em; }
+.pb-section-heading p { margin: 0; color: #5a687a; font-size: 15px; }
+.pb-section-heading > a { flex-shrink: 0; color: #273c56; font-size: 14px; font-weight: 700; }
+.pb-picks-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.pb-pick { overflow: hidden; border-radius: 16px; background: #fff; box-shadow: 0 6px 22px #1e34440b; }
+.pb-pick-heading { padding: 20px 22px; background: #172c45; color: #fff; }
+.pb-pick:nth-child(2) .pb-pick-heading { background: #244a48; }
+.pb-pick:nth-child(3) .pb-pick-heading { background: #33405d; }
+.pb-pick-heading h3 { margin: 0 0 6px; color: #fff; font-size: 18px; }
+.pb-pick-heading p { margin: 0; color: #e1e9f2; font-size: 13px; }
+.pb-shopping .pb-pick .coupon-card-v2 { border-radius: 0; box-shadow: none; }
+.pb-picks-note { margin: 16px 0 0; color: #5d6a7b; font-size: 12px; line-height: 1.6; }
+.pb-shopping .cp-category-layout { display: block; }
+.pb-filters { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin-bottom: 30px; padding: 20px 0; border-block: 1px solid #e1e6eb; }
+.pb-filters label { display: grid; gap: 7px; color: #48576a; font-size: 12px; font-weight: 700; }
+.pb-filters select { min-width: 180px; min-height: 44px; padding: 10px 32px 10px 13px; border: 1px solid #d9e0e7; border-radius: 8px; background: #fff; color: #1d3048; font: inherit; font-size: 14px; }
+.pb-filters button { min-height: 44px; padding: 10px; border: 0; background: transparent; color: #314a67; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+.pb-shopping .cp-category-results-heading > h2 { font-size: 26px; }
+.pb-shopping .cp-category-count { margin: 8px 0 24px; font-size: 14px; color: #5b6a7c; }
+.pb-shopping .coupon-grid-v2 { gap: 24px; }
+.pb-shopping .coupon-card-v2 { border: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 5px 20px #20354b0a; transition: transform .2s, box-shadow .2s; }
+.pb-shopping .coupon-card-v2:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #20354b14; }
+.pb-shopping .coupon-card-v2-visual { position: relative; height: 220px; background: #fff; }
+.pb-shopping .coupon-card-v2-visual .coupon-card-v2-image { position: absolute; inset: 0; width: 100%; height: 100%; padding: 20px; object-fit: contain; mix-blend-mode: normal; }
+.pb-shopping .coupon-card-v2-content { display: flex; flex-direction: column; padding: 18px 20px 20px; }
+.pb-shopping .coupon-price-display { order: -2; display: flex; flex-wrap: wrap; align-items: baseline; gap: 9px; margin: 0 0 9px; }
+.pb-shopping .coupon-sale-price { color: #172b43; font-size: 28px; font-weight: 800; line-height: 1.2; }
+.pb-shopping .coupon-original-price { color: #68778b; font-size: 14px; }
+.pb-shopping .coupon-card-v2-offer-label { order: -1; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.pb-shopping .coupon-card-v2-offer-label strong { padding: 4px 7px; border-radius: 5px; background: #eaf5ee; color: #256244; font-size: 12px; }
+.pb-shopping .coupon-card-v2-offer-label span { color: #677588; font-size: 11px; }
+.pb-shopping .coupon-card-v2-title { min-height: 44px; margin-bottom: 9px; font-size: 15px; line-height: 1.5; }
+.pb-shopping .coupon-card-v2-store { margin-bottom: 17px; color: #516277; font-size: 12px; }
+.pb-shopping .coupon-card-v2-store::before { display: none; }
+.pb-shopping .coupon-card-v2-action { min-height: 42px; padding: 10px 15px; border: 0; background: #cf491a; font-size: 13px; }
+.pb-shopping .coupon-card-v2-action:hover { background: #ac3912; }
+.pb-shopping .coupon-card-v2-art strong { color: #586879; font-size: 14px; }
+.pb-shopping :is(a, button, select):focus-visible { outline: 3px solid #347aab; outline-offset: 4px; }
+@media (max-width: 1100px) {
+    .pb-shopping .cp-category-store-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .pb-shopping .coupon-grid-v2 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pb-shopping .cp-category-heading p { max-width: 34ch; }
+    .pb-shopping .cp-category-hero.cp-power-bank-hero { background-position: 45% center; }
+}
+@media (max-width: 760px) {
+    .pb-shopping .cp-category-hero.cp-power-bank-hero { min-height: 0; padding-bottom: 215px; background-size: auto 230px; background-position: right bottom; }
+    .pb-shopping .cp-category-hero .cp-category-heading { margin: 22px 0; max-width: 100%; }
+    .pb-shopping .cp-category-heading h1 { max-width: 12ch; font-size: 42px; }
+    .pb-shopping .cp-category-heading p { max-width: 40ch; font-size: 15px; }
+    .pb-shopping .cp-category-store-list { display: flex; }
+    .pb-picks { margin: 28px 0 36px; }
+    .pb-section-heading { align-items: start; flex-direction: column; gap: 12px; }
+    .pb-picks-grid { grid-template-columns: 1fr; gap: 18px; }
+    .pb-shopping .pb-pick .coupon-card-v2 { display: grid; grid-template-columns: 38% minmax(0, 1fr); }
+    .pb-shopping .pb-pick .coupon-card-v2-visual { height: 100%; min-height: 240px; }
+    .pb-pick-heading { padding: 16px 18px; }
+    .pb-shopping .pb-pick .coupon-card-v2-content { padding: 16px 14px 18px; }
+    .pb-shopping .coupon-grid-v2 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .pb-shopping .coupon-card-v2-visual { height: 170px; }
+    .pb-shopping .coupon-card-v2-content { padding: 14px 12px; }
+    .pb-shopping .coupon-sale-price { font-size: 24px; }
+    .pb-shopping .coupon-card-v2-title { font-size: 14px; }
+    .pb-shopping .coupon-card-v2-action { width: 100%; justify-content: center; }
+    .pb-shopping .coupon-card-v2-footer { flex-wrap: wrap; }
+    .pb-shopping .coupon-card-v2-offer-label span { display: none; }
+    .pb-filters { gap: 10px; }
+    .pb-filters label { flex: 1 1 40%; min-width: 0; }
+    .pb-filters select { width: 100%; min-width: 0; max-width: 100%; font-size: 16px; }
+    .pb-shopping .cp-category-results-heading { align-items: start; flex-direction: column; gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .pb-shopping .coupon-card-v2 { transition: none; }
+    .pb-shopping .coupon-card-v2:hover { transform: none; }
+}

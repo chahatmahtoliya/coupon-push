@@ -12,9 +12,10 @@ import { isCheckoutTested } from '@/lib/offer-evidence';
 interface CouponCardProps {
     coupon: Coupon;
     variant?: 'default' | 'category';
+    shopping?: boolean;
 }
 
-export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
+export function CouponCard({ coupon, variant = 'default', shopping = false }: CouponCardProps) {
     const [showModal, setShowModal] = useState(false);
     const [clickCount, setClickCount] = useState(coupon.click_count);
     const [isFavorite, setIsFavorite] = useState(false);
@@ -94,6 +95,9 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
     const badge = getBadge();
     const hasCode = coupon.code && coupon.code.trim() !== '';
     const discount = formatDiscount();
+    const saving = coupon.original_price && coupon.sale_price && coupon.original_price > coupon.sale_price ? Math.round((1 - coupon.sale_price / coupon.original_price) * 100) : null;
+    const [imageFailed, setImageFailed] = useState(false);
+    useEffect(() => setImageFailed(false), [coupon.image]);
 
     // Category page variant
     if (variant === 'category') {
@@ -103,10 +107,10 @@ export function CouponCard({ coupon, variant = 'default' }: CouponCardProps) {
                     <div className="coupon-card-v2-visual">
                         {badge && <span className={`coupon-card-v2-badge ${badge.class}`}>{isCheckoutTested(coupon) ? 'Checkout tested' : 'Featured'}</span>}
                         <button type="button" className={`coupon-card-v2-favorite${isFavorite ? ' active' : ''}`} aria-label={`${isFavorite ? 'Remove' : 'Save'} ${coupon.title}`} aria-pressed={isFavorite} onClick={toggleFavorite}><i className={`${isFavorite ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /></button>
-                        {coupon.image ? <img className="coupon-card-v2-image" src={coupon.image} alt="" loading="lazy" decoding="async" /> : <div className="coupon-card-v2-art">{coupon.store_logo ? <img src={coupon.store_logo} alt="" loading="lazy" decoding="async" /> : <span>{coupon.store_name}</span>}<strong>{discount?.text || 'Current deal'}</strong></div>}
+                        {coupon.image && !imageFailed ? <img className="coupon-card-v2-image" src={coupon.image} alt={shopping ? coupon.title : ""} loading="lazy" decoding="async" onError={() => setImageFailed(true)} /> : <div className="coupon-card-v2-art">{coupon.store_logo ? <img src={coupon.store_logo} alt="" loading="lazy" decoding="async" /> : <span>{coupon.store_name}</span>}<strong>{shopping ? 'Product photo unavailable' : discount?.text || 'Current deal'}</strong></div>}
                     </div>
                     <div className="coupon-card-v2-content">
-                        <div className="coupon-card-v2-offer-label"><strong>{discount?.text || 'Offer'}</strong><span>{hasCode ? 'Promo code' : 'Online deal'}</span></div>
+                        <div className="coupon-card-v2-offer-label"><strong>{shopping && saving ? `${saving}% off` : discount?.text || 'Offer'}</strong><span>{hasCode ? 'Promo code' : 'Online deal'}</span></div>
                         {(coupon.original_price || coupon.sale_price) && <div className="coupon-price-display">{coupon.sale_price && <strong className="coupon-sale-price">₹{coupon.sale_price.toLocaleString('en-IN')}</strong>}{coupon.original_price && <span className="coupon-original-price">₹{coupon.original_price.toLocaleString('en-IN')}</span>}</div>}
                         <h3 className="coupon-card-v2-title">{coupon.title}</h3>
                         <Link href={getStorePath(coupon.store_slug)} className="coupon-card-v2-store">{coupon.store_name}</Link>

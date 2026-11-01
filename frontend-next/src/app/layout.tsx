@@ -5,6 +5,7 @@ import '@/styles/homepage.css';
 import '@/styles/store-hero.css';
 import '@/styles/seo.css';
 import '@/styles/category-refresh.css';
+import '@/styles/power-bank-shopping.css';
 import { Footer, Header } from '@/components/layout';
 import { ScrollToTop } from '@/components/common';
 import { PartnerTracking } from '@/components/common/PartnerTracking';
