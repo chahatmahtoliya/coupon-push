@@ -13,6 +13,10 @@ import { sanitizeStoreHtml } from '@/lib/store-html';
 import { storesApi } from '@/services/api';
 import type { Coupon, Store, StorePageData } from '@/types';
 import { getCouponCtaLabel, isCodeCoupon } from '@/utils/coupon';
+import '@/styles/store-ticket.css';
+
+// Stores that use the boarding-pass theme. Add a slug to roll it out.
+const TICKET_THEME_SLUGS = new Set(['redbus']);
 
 type Filter = 'all' | 'codes' | 'deals';
 type Sort = 'popular' | 'newest' | 'discount';
@@ -166,14 +170,34 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
     ].filter((panel): panel is ContentPanel => Boolean(panel?.html));
     const faqItems = pseo?.faqs || getStoreFallbackFaqs({ slug, storeName: displayName, coupons, offerCount, codeCount, dealCount });
 
+    const ticket = TICKET_THEME_SLUGS.has(store.slug);
     const toggleSaved = (id: number) => setSaved((current) => {
         const next = new Set(current);
         if (next.has(id)) next.delete(id); else next.add(id);
         return next;
     });
 
-    return <section className="store-ui-page" data-partner-store-slug={store.slug} data-partner-revision={store.partner_revision ?? undefined}>
+    return <section className={`store-ui-page${ticket ? ' store-ticket' : ''}`} data-partner-store-slug={store.slug} data-partner-revision={store.partner_revision ?? undefined}>
         <nav className="store-ui-breadcrumb store-ui-shell" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fa-solid fa-chevron-right" aria-hidden="true" /><Link href={categoryHref}>{categoryName}</Link><i className="fa-solid fa-chevron-right" aria-hidden="true" /><span>{displayName} Coupons</span></nav>
+        {ticket ? <div className="store-ui-shell">
+            <section className="tk-hero" aria-label={`${displayName} offer summary`}>
+                <div className="tk-main">
+                    <div className="tk-brand"><span className="tk-logo"><StoreLogo store={store} displayName={displayName} /></span><span className="tk-carrier">{categoryName}</span></div>
+                    <h1>{pseo?.h1 || `${displayName} ${codeCount ? 'Coupon Codes & Offers' : 'Offers & Deals'}`}</h1>
+                    {(pseo?.heroDescription || description) && <p className="tk-desc">{pseo?.heroDescription || description}</p>}
+                    <ol className="tk-route" aria-label="How to save">
+                        <li><span>Pick an offer</span></li>
+                        <li><span>Book on {displayName}</span></li>
+                        <li><span>Save at checkout</span></li>
+                    </ol>
+                </div>
+                <div className="tk-stub">
+                    <p className="tk-stub-count"><strong>{offerCount}</strong><span>live offers</span></p>
+                    <dl className="tk-stub-fields"><div><dt>Codes</dt><dd>{codeCount}</dd></div><div><dt>Deals</dt><dd>{dealCount}</dd></div></dl>
+                    {store.website_url && <a className="tk-visit" href={store.website_url} target="_blank" rel="noopener noreferrer">Visit {displayName}</a>}
+                </div>
+            </section>
+        </div> : <>
         <div className="store-ui-shell store-ui-header-row">
             <section className="store-ui-hero">
                 <div className="store-ui-hero-content">
@@ -189,6 +213,7 @@ export default function StorePageClient({ initialData, slug }: { initialData: St
                 </div>
             </section>
         </div>
+        </>}
         <div className="store-ui-shell store-ui-layout">
             <aside className="store-ui-sidebar" aria-label={`${displayName} store information`}>
                 <Card className="store-ui-page-nav-card"><h2>On this page</h2><nav className="store-ui-page-nav" aria-label={`${displayName} page sections`}><a href="#store-ui-offers">Coupon codes and offers</a><a href="#store-ui-faqs">Coupon FAQs</a>{pseo?.sections.map((section) => <a href={`#store-ui-${section.id}`} key={section.id}>{section.title}</a>)}{contentPanels.map((panel) => <a href={`#store-ui-${panel.id}`} key={panel.id}>{panel.title}</a>)}{!!relatedStores.length && <a href="#store-ui-related">Related stores</a>}</nav></Card>

@@ -57,26 +57,41 @@ export default function StoresPageClient({ initialStores }: { initialStores: Sto
         try { localStorage.setItem('cp-saved-stores', JSON.stringify(next)); } catch { /* Keep session selection if storage is unavailable. */ }
     };
 
+    const counts = stores.reduce<Record<string, number>>((acc, store) => { if (store.category_name) acc[store.category_name] = (acc[store.category_name] || 0) + 1; return acc; }, {});
+    const totalOffers = stores.reduce((sum, store) => sum + (store.coupon_count || 0), 0);
+    const filtering = Boolean(query.trim()) || category !== 'All Stores' || onlySaved;
+
     return <div className={s.page}><div className={s.shell}>
         <nav className={s.breadcrumb} aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span>Stores</span></nav>
-        <header className={s.heading}><h1>Stores</h1><p>Explore {stores.length} brands and find current coupons and deals.</p></header>
-        <Link href={festival2026.path} className="festival-directory-link"><span><strong>{festival2026.name}</strong><small>Explore early deals, SBI card offers and Prime benefits.</small></span><i className="fas fa-arrow-right" aria-hidden="true" /></Link>
-        <div className={s.toolbar}>
-            <label className={s.search}><i className="fas fa-search" aria-hidden="true" /><input aria-label="Search stores" placeholder="Search stores" value={query} onChange={event => setQuery(event.target.value)} />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery('')}><i className="fas fa-xmark" aria-hidden="true" /></button>}</label>
-            <button type="button" className={s.saved} aria-pressed={onlySaved} onClick={() => setOnlySaved(!onlySaved)}><i className={`${onlySaved ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /> Saved ({saved.length})</button>
-            <label className={s.sort}><span className="visually-hidden">Sort stores</span><i className="fas fa-arrow-down-wide-short" aria-hidden="true" /><select value={sort} onChange={event => setSort(event.target.value)}><option value="popular">Sort by: Most offers</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option></select><i className="fas fa-chevron-down" aria-hidden="true" /></label>
+        <header className={s.heading}>
+            <div><h1>All stores</h1><p>Coupons and deals from {stores.length} brands, checked and updated regularly.</p></div>
+            <dl className={s.stats}><div><dt>Brands</dt><dd>{stores.length}</dd></div><div><dt>Live offers</dt><dd>{totalOffers.toLocaleString('en-IN')}</dd></div><div><dt>Categories</dt><dd>{categories.length}</dd></div></dl>
+        </header>
+        <Link href={festival2026.path} className={s.promo}><span className={s.promoTag}>Live event</span><strong>{festival2026.name}</strong><span className={s.promoText}>Early deals, SBI card offers and Prime benefits</span><i className="fas fa-arrow-right" aria-hidden="true" /></Link>
+        <div className={s.controls}>
+            <div className={s.toolbar}>
+                <label className={s.search}><span className="visually-hidden">Search stores</span><i className="fas fa-search" aria-hidden="true" /><input type="search" placeholder="Search by store name" value={query} onChange={event => setQuery(event.target.value)} />{query && <button type="button" aria-label="Clear search" onClick={() => setQuery('')}><i className="fas fa-xmark" aria-hidden="true" /></button>}</label>
+                <button type="button" className={s.saved} aria-pressed={onlySaved} onClick={() => setOnlySaved(!onlySaved)}><i className={`${onlySaved ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /> Saved <span className={s.pill}>{saved.length}</span></button>
+                <label className={s.sort}><span className="visually-hidden">Sort stores</span><select value={sort} onChange={event => setSort(event.target.value)}><option value="popular">Most offers</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option></select><i className="fas fa-chevron-down" aria-hidden="true" /></label>
+            </div>
+            <div className={s.categories} role="group" aria-label="Filter by category">{['All Stores', ...categories].map(name => <button type="button" key={name} aria-pressed={category === name} className={category === name ? s.active : ''} onClick={() => setCategory(name)}>{name}<span>{name === 'All Stores' ? stores.length : counts[name]}</span></button>)}</div>
         </div>
-        <div className={s.categories} role="group" aria-label="Store category">{['All Stores', ...categories].map(name => <button type="button" key={name} aria-pressed={category === name} className={category === name ? s.active : ''} onClick={() => setCategory(name)}>{name}</button>)}</div>
-        {failed && <p className={s.status}>Showing the saved catalog. Live updates are temporarily unavailable.</p>}
-        <section className={s.results} aria-label="Store results"><p className={s.count} aria-live="polite">{filtered.length} {filtered.length === 1 ? 'store' : 'stores'} available</p>
-            {filtered.length ? <div className={s.grid}>{filtered.map(store => {
+        {failed && <p className={s.status}><i className="fas fa-circle-info" aria-hidden="true" /> Showing saved store list. Live updates will return shortly.</p>}
+        <section aria-label="Store results">
+            <div className={s.resultsHead}><p aria-live="polite"><strong>{filtered.length}</strong> {filtered.length === 1 ? 'store' : 'stores'}{category !== 'All Stores' ? ` in ${category}` : ''}</p>{filtering && <button type="button" onClick={reset}>Clear filters</button>}</div>
+            {filtered.length ? <ul className={s.grid}>{filtered.map(store => {
                 const storeName = store.name.replace(/\s+coupon\s+codes?$/i, '');
-                return <article className={s.card} key={store.id}>
-                    <button type="button" className={s.heart} aria-label={`${saved.includes(store.id) ? 'Unsave' : 'Save'} ${storeName}`} aria-pressed={saved.includes(store.id)} onClick={() => toggleSaved(store.id)}><i className={`${saved.includes(store.id) ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /></button>
-                    <Link href={getStorePath(store.slug)} className={s.logo}><Logo store={store} /></Link>
-                    <div className={s.cardBody}><p className={s.category}>{store.category_name || 'Store'}</p><h2>{storeName}</h2><p className={s.offers}>{store.coupon_count || 0} {(store.coupon_count || 0) === 1 ? 'offer' : 'offers'} available</p><Link href={getStorePath(store.slug)} className={s.cardLink}>{store.coupon_count ? 'View offers' : 'Explore store'} <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
-                </article>;
-            })}</div> : <div className={s.empty}><i className="fas fa-store-slash" aria-hidden="true" /><h2>No stores match</h2><p>Try another name or clear the filters.</p><button type="button" onClick={reset}>Show all stores</button></div>}
+                const count = store.coupon_count || 0;
+                const isSaved = saved.includes(store.id);
+                return <li className={s.card} key={store.id}>
+                    <span className={s.logo}><Logo store={store} /></span>
+                    <div className={s.cardBody}>
+                        <h2><Link href={getStorePath(store.slug)} className={s.cardLink}>{storeName}</Link></h2>
+                        <div className={s.meta}><span className={count ? s.offers : `${s.offers} ${s.offersNone}`}>{count ? <><strong>{count.toLocaleString('en-IN')}</strong> {count === 1 ? 'offer' : 'offers'}</> : 'View store'}</span><span className={s.category}>{store.category_name || 'Store'}</span></div>
+                    </div>
+                    <button type="button" className={s.heart} aria-label={`${isSaved ? 'Remove' : 'Save'} ${storeName}`} title={isSaved ? 'Remove from saved' : 'Save store'} aria-pressed={isSaved} onClick={() => toggleSaved(store.id)}><i className={`${isSaved ? 'fas' : 'far'} fa-heart`} aria-hidden="true" /></button>
+                </li>;
+            })}</ul> : <div className={s.empty}><i className="fas fa-magnifying-glass" aria-hidden="true" /><h2>{onlySaved && !saved.length ? 'No saved stores yet' : 'No stores match'}</h2><p>{onlySaved && !saved.length ? 'Tap the heart on any store to keep it here.' : query ? `Nothing found for “${query.trim()}”. Check the spelling or browse all stores.` : 'Try another category or clear the filters.'}</p><button type="button" onClick={reset}>Browse all stores</button></div>}
         </section>
     </div></div>;
 }

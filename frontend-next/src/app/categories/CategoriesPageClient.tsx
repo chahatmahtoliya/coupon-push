@@ -27,10 +27,9 @@ export default function CategoriesPageClient({ initialCategories }: { initialCat
         let active = true;
         categoriesApi.getAllFresh().then((fresh) => {
             if (!active || !fresh.length) return;
-            // Partial API responses must not erase categories available at build time.
-            const bySlug = new Map(initialCategories.map(category => [category.slug, category]));
-            for (const category of fresh) bySlug.set(category.slug, category);
-            setCategories(prepareDirectoryCategories([...bySlug.values()]));
+            // This endpoint returns the complete active directory. Merging the
+            // build snapshot back in would resurrect removed categories.
+            setCategories(prepareDirectoryCategories(fresh));
         }).catch(() => { /* Keep the saved directory available when offline. */ });
         return () => { active = false; };
     }, [initialCategories]);

@@ -7,9 +7,13 @@ import { PowerBankPicks } from '@/components/features/PowerBankPicks';
 import { capacity, withProductPhoto } from '@/lib/power-bank-shopping';
 import { PowerBankGuide } from '@/components/features/PowerBankGuide';
 import { categoriesApi, couponsApi, storesApi } from '@/services/api';
-import { getCategoryPath } from '@/lib/routes';
 import { rotateOffersByBrand } from '@/lib/brand-rotation';
+import { getCategoryPath } from '@/lib/routes';
 import type { Category, Coupon } from '@/types';
+import '@/styles/category-circuit.css';
+
+// Categories that use the circuit-board theme.
+const CIRCUIT_THEME_SLUGS = new Set(['electronics']);
 
 export interface CategoryPageData {
     coupons: Coupon[];
@@ -113,7 +117,31 @@ export default function CategoryPageClient({ initialData, initialCategories = []
     const clearFilters = () => { setSelectedStores([]); setDiscounts([]); setTypes([]); setValidity('all'); setBudget('all'); setSize('all'); };
     const promoCount = coupons.filter((coupon) => Boolean(coupon.code?.trim())).length;
 
-    return <div className={`cp-category-page cp-category-explorer${isPowerBank ? ' pb-shopping' : ''}`}>
+    const circuit = CIRCUIT_THEME_SLUGS.has(slug);
+
+    return <div className={`cp-category-page cp-category-explorer${isPowerBank ? ' pb-shopping' : ''}${circuit ? ' cc-theme' : ''}`}>
+        {circuit && <header className="cc-hero">
+            <div className="cp-category-shell">
+                <nav className="cp-category-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><Link href="/categories">Categories</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span aria-current="page">{name}</span></nav>
+                <div className="cc-hero-grid">
+                    <div className="cc-hero-copy">
+                        <p className="cc-live"><span aria-hidden="true" />Updated with today's offers</p>
+                        <h1>{name}</h1>
+                        <p>{description}</p>
+                        <ul className="cc-pads">
+                            <li><strong>{coupons.length}</strong><span>live offers</span></li>
+                            <li><strong>{stores.length}</strong><span>{stores.length === 1 ? 'store' : 'stores'}</span></li>
+                            <li><strong>{promoCount}</strong><span>promo {promoCount === 1 ? 'code' : 'codes'}</span></li>
+                        </ul>
+                    </div>
+                    <div className="cc-collage" aria-hidden="true">
+                        {[['tv', 'TVs'], ['fridge', 'Refrigerators'], ['washer', 'Washing machines'], ['headphones', 'Audio'], ['microwave', 'Kitchen appliances']].map(([file, label]) => <figure className={`cc-shot cc-shot-${file}`} key={file}><img src={`/images/electronics/${file}.jpg`} alt="" loading="eager" decoding="async" /><figcaption>{label}</figcaption></figure>)}
+                        <span className="cc-sticker">Codes &amp; deals<strong>updated daily</strong></span>
+                    </div>
+                </div>
+            </div>
+        </header>}
+        {!circuit && 
         <header className={`cp-category-hero${slug === 'power-banks' ? ' cp-power-bank-hero' : ''}`}>
             <div className="cp-category-shell">
                 <nav className="cp-category-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><Link href="/categories">Categories</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span aria-current="page">{name}</span></nav>
@@ -124,7 +152,7 @@ export default function CategoryPageClient({ initialData, initialCategories = []
                     {(!isPowerBank || promoCount > 0) && <span><i className="fas fa-tag" aria-hidden="true" /><span><strong>{promoCount}</strong> Promo {promoCount === 1 ? 'code' : 'codes'}</span></span>}
                 </div>
             </div>
-        </header>
+        </header>}
         <div className="cp-category-shell">
             <nav className="cp-category-shortcuts" aria-label="Browse categories">
                 {shortcuts.map((category) => <Link key={category.id} href={getCategoryPath(category.slug)} className={category.slug === slug ? 'active' : ''} aria-current={category.slug === slug ? 'page' : undefined}><span className="cp-category-shortcut-icon"><i className={`fas ${category.icon.replace(/^(?:fas|far)\s+/, '')}`} aria-hidden="true" /></span><span>{category.name}<small>{category.coupon_count} offers available</small></span><i className="fas fa-chevron-right" aria-hidden="true" /></Link>)}
@@ -132,7 +160,7 @@ export default function CategoryPageClient({ initialData, initialCategories = []
             </nav>
             {stores.length > 0 && <section className="cp-category-stores" aria-labelledby="category-stores-title">
                 <div className="cp-category-section-heading"><h2 id="category-stores-title">Popular stores</h2><Link href="/stores/">Browse stores <i className="fas fa-arrow-right" aria-hidden="true" /></Link></div>
-                <div className="cp-category-store-list">{stores.slice(0, 8).map((store) => <button type="button" key={store.slug} className={selectedStores.includes(store.slug) ? 'active' : ''} aria-label={`Show ${store.count} ${store.count === 1 ? 'offer' : 'offers'} from ${store.name}`} aria-pressed={selectedStores.includes(store.slug)} onClick={() => setSelectedStores(selectedStores.includes(store.slug) ? [] : [store.slug])}><StoreMark name={store.name} logo={store.logo} /><span>{store.name}</span><small>{store.count} {store.count === 1 ? 'offer' : 'offers'}</small></button>)}</div>
+                <div className="cp-category-store-list">{stores.slice(0, 8).map((store) => <button type="button" key={store.slug} className={selectedStores.includes(store.slug) ? 'active' : ''} aria-label={`Show ${store.count} ${store.count === 1 ? 'offer' : 'offers'} from ${store.name}`} aria-pressed={selectedStores.includes(store.slug)} style={{ '--share': `${Math.round(store.count / Math.max(coupons.length, 1) * 100)}%` } as React.CSSProperties} onClick={() => setSelectedStores(selectedStores.includes(store.slug) ? [] : [store.slug])}><StoreMark name={store.name} logo={store.logo} /><span>{store.name}</span><small>{store.count} {store.count === 1 ? 'offer' : 'offers'}</small>{circuit && <span className="cc-meter" aria-hidden="true"><span /><em>{Math.round(store.count / Math.max(coupons.length, 1) * 100)}% of offers</em></span>}</button>)}</div>
             </section>}
             {isPowerBank && <PowerBankPicks offers={coupons} />}
             <div className="cp-category-layout">
