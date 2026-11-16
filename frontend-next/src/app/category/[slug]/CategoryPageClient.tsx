@@ -125,8 +125,21 @@ export default function CategoryPageClient({ initialData, initialCategories = []
 
     const circuit = CIRCUIT_THEME_SLUGS.has(slug);
 
+    // Admin banner first; the built-in banner below is the fallback.
+    const adminBanner = categories.find((category) => category.slug === slug)?.banner || null;
+    const builtInBanner = CATEGORY_BANNERS[slug];
+    const bannerImage = adminBanner?.image || builtInBanner?.image || '/assets/images/category-hero.svg';
+    const bannerStyle = {
+        '--banner-bg': adminBanner?.color || builtInBanner?.color || '#f6eee8',
+        '--banner-img': `url(${JSON.stringify(bannerImage)})`,
+        '--banner-img-mobile': `url(${JSON.stringify(adminBanner?.image_mobile || bannerImage)})`,
+        '--banner-focus': adminBanner ? `${adminBanner.focus || 'center'} center` : 'center',
+    } as React.CSSProperties;
+    const bannerHeading = adminBanner?.heading || (isPowerBank ? 'Power Bank Deals' : `${name} Deals and Promos`);
+    const bannerSubtitle = adminBanner?.subtitle || description;
+
     return <div className={`cp-category-page cp-category-explorer${isPowerBank ? ' pb-shopping' : ''}${circuit ? ' cc-theme' : ''}`}>
-        <header className="cp-cat-banner" style={{ '--banner-bg': CATEGORY_BANNERS[slug]?.color || '#f6eee8', '--banner-img': `url('${CATEGORY_BANNERS[slug]?.image || '/assets/images/category-hero.svg'}')` } as React.CSSProperties}>
+        <header className="cp-cat-banner" style={bannerStyle}>
             <div className="cp-category-shell">
                 <div className="cp-cat-banner-card">
                     <div className="cp-cat-banner-copy">
@@ -135,8 +148,8 @@ export default function CategoryPageClient({ initialData, initialCategories = []
                             {promoCount > 0 && <li><i className="fas fa-tag" aria-hidden="true" /><strong>{promoCount.toLocaleString('en-IN')}</strong> promo code deals</li>}
                             {stores.length > 0 && <li><i className="fas fa-store" aria-hidden="true" /><strong>{stores.length.toLocaleString('en-IN')}</strong> {stores.length === 1 ? 'store' : 'stores'}</li>}
                         </ul>
-                        <h1>{isPowerBank ? 'Power Bank Deals' : `${name} Deals and Promos`}</h1>
-                        {description && <p>{description}</p>}
+                        <h1>{bannerHeading}</h1>
+                        {bannerSubtitle && <p>{bannerSubtitle}</p>}
                     </div>
                 </div>
             </div>

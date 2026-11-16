@@ -474,7 +474,7 @@
 /* Compact category banner: one background image on the right, fading into a soft colour behind the text. */
 .cp-cat-banner { padding: 16px 0 24px; }
 .cp-cat-banner-card { position: relative; display: flex; align-items: center; min-height: 240px; overflow: hidden; border-radius: 16px; background-color: var(--banner-bg); isolation: isolate; }
-.cp-cat-banner-card::before { content: ""; position: absolute; inset: 0 0 0 auto; z-index: -2; width: 58%; background: var(--banner-img) no-repeat center / cover; }
+.cp-cat-banner-card::before { content: ""; position: absolute; inset: 0 0 0 auto; z-index: -2; width: 58%; background: var(--banner-img) no-repeat var(--banner-focus, center) / cover; }
 .cp-cat-banner-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--banner-bg) 0%, var(--banner-bg) 42%, color-mix(in srgb, var(--banner-bg) 70%, transparent) 52%, transparent 70%); }
 .cp-cat-banner-copy { width: min(100%, 600px); padding: 32px 36px; }
 .cp-cat-banner-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
@@ -495,7 +495,7 @@
 @media (max-width: 600px) {
     .cp-cat-banner { padding: 12px 0 16px; }
     .cp-cat-banner-card { flex-direction: column; align-items: stretch; min-height: 0; border-radius: 14px; }
-    .cp-cat-banner-card::before { inset: 0 0 auto 0; width: 100%; height: 120px; }
+    .cp-cat-banner-card::before { inset: 0 0 auto 0; width: 100%; height: 120px; background-image: var(--banner-img-mobile, var(--banner-img)); }
     .cp-cat-banner-card::after { background: linear-gradient(180deg, transparent 0, transparent 60px, var(--banner-bg) 120px); }
     .cp-cat-banner-copy { width: 100%; padding: 84px 16px 18px; }
     .cp-cat-banner-pills { gap: 6px; margin-bottom: 12px; }

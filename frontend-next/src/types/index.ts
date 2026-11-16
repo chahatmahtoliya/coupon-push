@@ -67,6 +67,15 @@ export interface Coupon {
 }
 
 // Category interface
+export interface CategoryBanner {
+    image: string;
+    image_mobile?: string | null;
+    color?: string | null;
+    focus?: 'left' | 'center' | 'right';
+    heading?: string | null;
+    subtitle?: string | null;
+}
+
 export interface Category {
     id: number;
     name: string;
@@ -74,6 +83,8 @@ export interface Category {
     icon: string;
     description?: string;
     coupon_count: number;
+    /** Admin-managed category page banner; null keeps the built-in banner. */
+    banner?: CategoryBanner | null;
     created_at?: string | null;
     updated_at?: string | null;
 }
