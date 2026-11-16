@@ -15,6 +15,12 @@ import '@/styles/category-circuit.css';
 // Categories that use the circuit-board theme.
 const CIRCUIT_THEME_SLUGS = new Set(['electronics']);
 
+// One background image per category banner; the colour fills behind the text side.
+const CATEGORY_BANNERS: Record<string, { image: string; color: string }> = {
+    electronics: { image: '/assets/images/categories/electronics-hero.webp', color: '#f3f0eb' },
+    'power-banks': { image: '/assets/images/power-bank-hero.webp', color: '#fcf5ed' },
+};
+
 export interface CategoryPageData {
     coupons: Coupon[];
     stores: { name: string; slug: string; count: number; logo?: string }[];
@@ -120,39 +126,21 @@ export default function CategoryPageClient({ initialData, initialCategories = []
     const circuit = CIRCUIT_THEME_SLUGS.has(slug);
 
     return <div className={`cp-category-page cp-category-explorer${isPowerBank ? ' pb-shopping' : ''}${circuit ? ' cc-theme' : ''}`}>
-        {circuit && <header className="cc-hero">
+        <header className="cp-cat-banner" style={{ '--banner-bg': CATEGORY_BANNERS[slug]?.color || '#f6eee8', '--banner-img': `url('${CATEGORY_BANNERS[slug]?.image || '/assets/images/category-hero.svg'}')` } as React.CSSProperties}>
             <div className="cp-category-shell">
-                <nav className="cp-category-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><Link href="/categories">Categories</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span aria-current="page">{name}</span></nav>
-                <div className="cc-hero-grid">
-                    <div className="cc-hero-copy">
-                        <p className="cc-live"><span aria-hidden="true" />Updated with today's offers</p>
-                        <h1>{name}</h1>
-                        <p>{description}</p>
-                        <ul className="cc-pads">
-                            <li><strong>{coupons.length}</strong><span>live offers</span></li>
-                            <li><strong>{stores.length}</strong><span>{stores.length === 1 ? 'store' : 'stores'}</span></li>
-                            <li><strong>{promoCount}</strong><span>promo {promoCount === 1 ? 'code' : 'codes'}</span></li>
+                <div className="cp-cat-banner-card">
+                    <div className="cp-cat-banner-copy">
+                        <ul className="cp-cat-banner-pills">
+                            <li><span className="cp-cat-banner-dot" aria-hidden="true" /><strong>{coupons.length.toLocaleString('en-IN')}</strong> deals available</li>
+                            {promoCount > 0 && <li><i className="fas fa-tag" aria-hidden="true" /><strong>{promoCount.toLocaleString('en-IN')}</strong> promo code deals</li>}
+                            {stores.length > 0 && <li><i className="fas fa-store" aria-hidden="true" /><strong>{stores.length.toLocaleString('en-IN')}</strong> {stores.length === 1 ? 'store' : 'stores'}</li>}
                         </ul>
-                    </div>
-                    <div className="cc-collage" aria-hidden="true">
-                        {[['tv', 'TVs'], ['fridge', 'Refrigerators'], ['washer', 'Washing machines'], ['headphones', 'Audio'], ['microwave', 'Kitchen appliances']].map(([file, label]) => <figure className={`cc-shot cc-shot-${file}`} key={file}><img src={`/images/electronics/${file}.jpg`} alt="" loading="eager" decoding="async" /><figcaption>{label}</figcaption></figure>)}
-                        <span className="cc-sticker">Codes &amp; deals<strong>updated daily</strong></span>
+                        <h1>{isPowerBank ? 'Power Bank Deals' : `${name} Deals and Promos`}</h1>
+                        {description && <p>{description}</p>}
                     </div>
                 </div>
             </div>
-        </header>}
-        {!circuit && 
-        <header className={`cp-category-hero${slug === 'power-banks' ? ' cp-power-bank-hero' : ''}`}>
-            <div className="cp-category-shell">
-                <nav className="cp-category-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><i className="fas fa-chevron-right" aria-hidden="true" /><Link href="/categories">Categories</Link><i className="fas fa-chevron-right" aria-hidden="true" /><span aria-current="page">{name}</span></nav>
-                <div className="cp-category-heading"><h1>{slug === 'power-banks' ? 'Power Bank Deals' : name}</h1><p>{description}</p>{isPowerBank && <a className="pb-hero-cta" href="#pb-all-deals">Find your next power bank <i className="fas fa-arrow-right" aria-hidden="true" /></a>}</div>
-                <div className="cp-category-hero-facts">
-                    <span><i className="fas fa-ticket" aria-hidden="true" /><span><strong>{coupons.length}</strong> offers available</span></span>
-                    <span><i className="fas fa-store" aria-hidden="true" /><span><strong>{stores.length}</strong> Stores</span></span>
-                    {(!isPowerBank || promoCount > 0) && <span><i className="fas fa-tag" aria-hidden="true" /><span><strong>{promoCount}</strong> Promo {promoCount === 1 ? 'code' : 'codes'}</span></span>}
-                </div>
-            </div>
-        </header>}
+        </header>
         <div className="cp-category-shell">
             <nav className="cp-category-shortcuts" aria-label="Browse categories">
                 {shortcuts.map((category) => <Link key={category.id} href={getCategoryPath(category.slug)} className={category.slug === slug ? 'active' : ''} aria-current={category.slug === slug ? 'page' : undefined}><span className="cp-category-shortcut-icon"><i className={`fas ${category.icon.replace(/^(?:fas|far)\s+/, '')}`} aria-hidden="true" /></span><span>{category.name}<small>{category.coupon_count} offers available</small></span><i className="fas fa-chevron-right" aria-hidden="true" /></Link>)}
